@@ -4,7 +4,8 @@ public class ModificationProbTree {
 private static ModificationProbTree _instance;
 	
 	private ModificationProbTree(){
-		
+		initTree();
+		localizeTree();
 	}
 	
 	public static ModificationProbTree getInstance(){
@@ -13,5 +14,21 @@ private static ModificationProbTree _instance;
 		}
 		
 		return _instance;
+	}
+	
+	private void initTree(){
+		
+	}
+	
+	private void localizeTree(){
+		
+	}
+	
+	public void addNode(ProbTreeNode high, ProbTreeNode low){
+		
+	}
+	
+	public void addNode(ProbTreeNode high, ProbTreeEdge e, ProbTreeNode low){
+		
 	}
 }
