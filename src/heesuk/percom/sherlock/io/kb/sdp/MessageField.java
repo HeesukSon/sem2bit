@@ -51,4 +51,8 @@ public class MessageField {
 	public void setLength(String length) {
 		this.length = length;
 	}
+	
+	public String getName(){
+		return this.name;
+	}
 }

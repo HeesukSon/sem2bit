@@ -1,7 +1,5 @@
 package heesuk.percom.sherlock.io.kb.sdp;
 
-import java.util.ArrayList;
-
 public class SDP {
 	private String name;
 	private SDPMessage reqmsg;

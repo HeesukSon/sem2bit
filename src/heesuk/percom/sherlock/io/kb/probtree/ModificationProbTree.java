@@ -1,5 +1,6 @@
 package heesuk.percom.sherlock.io.kb.probtree;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import heesuk.percom.sherlock.io.kb.sdp.Functionality;
@@ -18,6 +19,46 @@ public class ModificationProbTree {
 	public ModificationProbTree() {
 		root = new ProbTreeNode("ROOT", 1);
 		init();
+	}
+	
+	public ModificationCandidate[] getSortedCandidates(){
+		ArrayList<ModificationCandidate> list = new ArrayList<ModificationCandidate>();
+		computeCandidateProb(this.root, 1f, list);
+		sortCandidates(list);
+		
+		ModificationCandidate[] arr = new ModificationCandidate[list.size()];
+		return list.toArray(arr);
+	}
+	
+	public void sortCandidates(ArrayList<ModificationCandidate> list){
+		for(int i=0; i<list.size()-1; i++){
+			for(int j=i+1; j<list.size(); j++){
+				ModificationCandidate max = list.get(i);
+				ModificationCandidate cur = list.get(j);
+				
+				if(max.getProb() < cur.getProb()){
+					ModificationCandidate tmp = max;
+					list.set(i, cur);
+					list.set(j, max);
+				}
+			}
+		}
+	}
+	
+	private void computeCandidateProb(ProbTreeNode node, float prob, ArrayList<ModificationCandidate> list){
+		if(node.getDepth()==4){
+			for(ProbTreeEdge out : node.getOutEdges()){
+				String field = SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldName(node.getLabel());
+				String update = out.getNext().getLabel();
+				float final_prob = prob*out.getWeight();
+				ModificationCandidate candidate = new ModificationCandidate(field, update, final_prob);
+				list.add(candidate);
+			}
+		}else{
+			for(ProbTreeEdge out : node.getOutEdges()){
+				computeCandidateProb(out.getNext(), prob*out.getWeight(), list);
+			}
+		}
 	}
 
 	public void localize(SDPName sdpName) {

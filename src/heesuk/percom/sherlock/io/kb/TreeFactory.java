@@ -1,5 +1,6 @@
 package heesuk.percom.sherlock.io.kb;
 
+import heesuk.percom.sherlock.io.kb.probtree.ModificationCandidate;
 import heesuk.percom.sherlock.io.kb.probtree.ModificationProbTree;
 import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
 import heesuk.percom.sherlock.io.kb.seqtree.ModificationSeqPlanTree;
@@ -30,7 +31,7 @@ public class TreeFactory {
 	}
 	
 	public void localizeProbTree(){
-		this.probTree.localize(SDPKBUtil.getInstance().getLocalSDP());
+		this.probTree.localize(SDPKBUtil.getInstance().getLocalSDPName());
 	}
 	
 	public void computeModificationProb(){
@@ -39,6 +40,10 @@ public class TreeFactory {
 	
 	public void printProbTree(){
 		this.probTree.printTree();
+	}
+	
+	public ModificationCandidate[] getSortedCandidates(){
+		return this.probTree.getSortedCandidates();
 	}
 	
 	public void printSeqPlanTree(){

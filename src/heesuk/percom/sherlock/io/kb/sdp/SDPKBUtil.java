@@ -108,8 +108,12 @@ public class SDPKBUtil {
 		System.out.println("Field existance probability computation is done.");
 	}
 	
-	public SDPName getLocalSDP(){
+	public SDPName getLocalSDPName(){
 		return this.localSDP;
+	}
+	
+	public SDP getLocalSDP(){
+		return this.sdpMap.get(this.localSDP);
 	}
 	
 	public ArrayList<MessageFieldUpdate> getUpdateHistory(){
