@@ -12,4 +12,17 @@ public class SDPMessage {
 	public void addField(MessageField field){
 		this.fieldList.add(field);
 	}
+
+	public ArrayList<MessageField> getFieldList() {
+		return fieldList;
+	}
+	
+	public boolean contains(String field){
+		for(MessageField containedField : this.fieldList){
+			if(containedField.getType().toString().equals(field))
+				return true;
+		}
+		
+		return false;
+	}
 }

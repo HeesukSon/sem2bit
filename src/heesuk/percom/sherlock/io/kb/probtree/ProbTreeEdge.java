@@ -14,8 +14,9 @@ public class ProbTreeEdge {
 		this.weight = weight;
 	}
 	
-	public void setWeight(float weight){
+	public ProbTreeEdge setWeight(float weight){
 		this.weight = weight;
+		return this;
 	}
 	
 	public float getWeight(){

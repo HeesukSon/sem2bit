@@ -62,8 +62,4 @@ public enum MessageFieldType {
 	public String toString(){
 		return toString();
 	}
-	
-	public int getTotalNum(){
-		return 14;
-	}
 }

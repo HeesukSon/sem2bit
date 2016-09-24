@@ -21,6 +21,12 @@ public class MessageField {
 	public MessageField(String name, MessageFieldType type, MessageFieldLocation location, int length){
 		this(name, type, location, ""+length);
 	}
+	
+	public MessageField(String name, MessageFieldType type){
+		this();
+		this.name = name;
+		this.type = type;
+	}
 
 	public MessageFieldType getType() {
 		return type;
