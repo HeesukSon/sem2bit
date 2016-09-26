@@ -23,6 +23,10 @@ public class TreeFactory {
 		return _instance;
 	}
 	
+	public ModificationCandidate[] getNextSequence(){
+		return this.seqPlanTree.getModSeq(0);
+	}
+	
 	public void buildTree(){
 		this.probTree = new ModificationProbTree();
 		this.probTree.init();
@@ -31,17 +35,10 @@ public class TreeFactory {
 		
 		ModificationCandidate[] candidates = this.probTree.getSortedCandidates();
 		this.seqPlanTree = new ModificationSeqPlanTree(candidates);
+		
 		System.out.println("\n##### Sorted Modification Candidates #####");
 		for(int i=0; i<candidates.length; i++){
 			System.out.println(candidates[i].toString());
-		}
-		
-		System.out.println("\n");
-		System.out.println("##### Modification Sequence #####");
-		for(int i=0; i<3000; i++){
-			System.out.print("["+i+"] ");
-			if(this.getRightSequence(i))
-				break;
 		}
 	}
 	
