@@ -23,21 +23,21 @@ public class ModificationSeqPlanTree {
 		}
 	}
 
-	public ModificationCandidate[] getModSeq() {
+	public ModificationCandidate[] getModSeq(int count) {
 		ArrayList<ModificationCandidate> candidates = new ArrayList<ModificationCandidate>();
 		for (int i = 0; i < this.candidates.length; i++) {
 			candidates.add(this.candidates[i]);
 		}
 		// return getModSeq(this.root, candidates, new
 		// ArrayList<ModificationCandidate>());
-		return getModSeq(this.root, this.candidates, new ArrayList<ModificationCandidate>());
+		return getModSeq(count, this.root, candidates, new ArrayList<ModificationCandidate>());
 	}
 
-	public ModificationCandidate[] getModSeq(SeqTreeNode node, ModificationCandidate[] candidates,
+	public ModificationCandidate[] getModSeq(int count, SeqTreeNode node, ArrayList<ModificationCandidate> candidates,
 			ArrayList<ModificationCandidate> seq) {
+		
 		if (/* at the bound depth: base case */node.getDepth() == SDPKBUtil.getInstance().getModSeqBound() + 1) {
-			// System.out.println("[Bottom line] node =
-			// "+node.getItem().toStringWithoutWeight());
+			//System.out.println("[Bottom line] node = "+node.getItem().toStringWithoutWeight());
 			// add the current node to the sequence
 			seq.add(node.getItem());
 			ModificationCandidate[] result = new ModificationCandidate[seq.size()];
@@ -46,262 +46,157 @@ public class ModificationSeqPlanTree {
 			// return the result sequence
 			return seq.toArray(result);
 		} else /* before the bound depth: intermediate nodes */ {
-			// System.out.println("[Before the bottom line] node =
-			// "+node.getItem().toStringWithoutWeight());
+			//System.out.println("[Before the bottom line] node = "+node.getItem().toStringWithoutWeight()+", candidates.length = "+candidates.size());
 			// add the current node to seq
 			seq.add(node.getItem());
+			this.removeThisNode(node, candidates);
 			// prune useless candidates accordingly
-			// ArrayList<ModificationCandidate> original =
-			// this.pruneCandidates(node, candidates);
-			ModificationCandidate[] original = this.pruneCandidates(node, candidates);
-
+			ArrayList<ModificationCandidate> original = new ArrayList<ModificationCandidate>();
+			for(int i=0; i<candidates.size(); i++){
+				original.add(new ModificationCandidate(candidates.get(i)));
+			}
+			this.pruneCandidates(node, candidates);
+			
 			if (/* no child */node.getChildren().size() == 0) {
-				// System.out.println("[No child exist]");
+				//System.out.println("[No child exist]");
 				// add the candidate with the highest prob. as a child
-				// node.addChild(new SeqTreeNode(candidates.get(0)));
-				node.addChild(new SeqTreeNode(candidates[0]));
-				// System.out.println("[Child added] child =
-				// "+node.getRightMostChild().getItem().toStringWithoutWeight());
+				node.addChild(new SeqTreeNode(candidates.get(0)));
+				
+				//System.out.println("[Child added] child = "+node.getRightMostChild().getItem().toStringWithoutWeight());
 				// remove the added node from candidates
-				// candidates.remove(0);
-				this.removeArrElement(candidates, 0);
-				return getModSeq(node.getRightMostChild(), candidates, seq);
+				candidates.remove(0);
+				
+				return getModSeq(count, node.getRightMostChild(), candidates, seq);
 			} else /* child exists */ {
 				// System.out.println("[A child exist]");
 				if (/* current node has further sequences */node.hasMoreSequence(candidates)) {
-					// System.out.println("[Current node has further
-					// sequences]");
-					if (/* the right-most-child has further sequences */node.getRightMostChild()
+					//System.out.println("[Current node has further sequences]");
+					if (/* the right-most-child has further sequences */!node.getRightMostChild().isDead() && node.getRightMostChild()
 							.hasMoreSequence(candidates)) {
 						if (/* right before the bound depth */ node.getDepth() == SDPKBUtil.getInstance()
 								.getModSeqBound()) {
-							// System.out.println("[Right before the bound
-							// depth] children size =
-							// "+node.getChildren().size()+", candidate size =
-							// "+candidates.size());
-							if (/* has more to add */ node.getChildren().size() < candidates.length) {
-								// System.out.println("[Has more to add]");
+							//System.out.println("[Right before the bound depth] children size = "+node.getChildren().size()+", candidate size = "+candidates.size());
+							if (/* has more to add */ node.hasMoreSequence(candidates)) {
+								//System.out.println("[Has more to add]");
 
-								// add the candidate with the highest prob.
-								// which was not added as a child before
-								int size = candidates.length;
+								// add the candidate with the highest prob. which was not added as a child before
+								int size = candidates.size();
 								for (int i = 0; i < size; i++) {
-									if (!node.hasChild(candidates[i])) {
-										node.addChild(new SeqTreeNode(candidates[i]));
-										// System.out.println("[Child added]
-										// child =
-										// "+node.getRightMostChild().getItem().toStringWithoutWeight());
+									if (!node.hasChild(candidates.get(i))) {
+										node.addChild(new SeqTreeNode(candidates.get(i)));
+										//System.out.println("[Child added] child = "+node.getRightMostChild().getItem().toStringWithoutWeight());
 										// remove the added node from candidates
-										// candidates.remove(i);
-										this.removeArrElement(candidates, i);
+										candidates.remove(i);
 										size--;
+										i--;
 										break;
 									}
 								}
 
-								return getModSeq(node.getRightMostChild(), candidates, seq);
+								return getModSeq(count, node.getRightMostChild(), candidates, seq);
 							} else {
-								// System.out.println("[Nothing to add]");
+								//System.out.println("[Nothing to add]");
 								// mark the current node as dead
 								node.setDead(true);
 								// remove current node from the sequence
 								seq.remove(seq.size() - 1);
 								seq.remove(seq.size() - 1);
 								// recover the pruned candidates
-								candidates = original;
-								// System.out.println("[Going back to the
-								// parent");
-								return getModSeq(node.getParent(), candidates, seq);
+								//candidates = original;
+								candidates.clear();
+								//System.out.println("[Going back to the parent");
+								return getModSeq(count, node.getParent(), original, seq);
 							}
 						} else {
-							// System.out.println("[Right-most-node has further
-							// sequences] r-m-n =
-							// "+node.getRightMostChild().getItem().toStringWithoutWeight());
-							return getModSeq(node.getRightMostChild(), candidates, seq);
+							//System.out.println("[Right-most-node has further sequences] r-m-n = "+node.getRightMostChild().getItem().toStringWithoutWeight());
+							return getModSeq(count, node.getRightMostChild(), candidates, seq);
 						}
 					} else /* new child need to be added */ {
-						// System.out.println("[R-m-n has no seq. New child need
-						// to be added]");
-						// add the candidate with the highest prob. which was
-						// not added as a child before
-						int size = candidates.length;
+						//System.out.println("[R-m-n has no seq. New child need to be added]");
+						// add the candidate with the highest prob. which was not added as a child before
+						int size = candidates.size();
 						for (int i = 0; i < size; i++) {
-							if (!node.hasChild(candidates[i])) {
-								node.addChild(new SeqTreeNode(candidates[i]));
-								// System.out.println("[Child added] child =
-								// "+node.getRightMostChild().getItem().toStringWithoutWeight());
+							if (!node.hasChild(candidates.get(i))) {
+								node.addChild(new SeqTreeNode(candidates.get(i)));
+								//System.out.println("[Child added] child = "+node.getRightMostChild().getItem().toStringWithoutWeight());
 								// remove the added node from candidates
-								// candidates.remove(i);
-								this.removeArrElement(candidates, i);
+								candidates.remove(i);
 								size--;
+								i--;
 								break;
 							}
 						}
 
-						return getModSeq(node.getRightMostChild(), candidates, seq);
+						return getModSeq(count, node.getRightMostChild(), candidates, seq);
 					}
 				} else /* this node has no more sequence */ {
-					// System.out.println("[No more sequence] node =
-					// "+node.getItem().toStringWithoutWeight());
+					//System.out.println("[No more sequence] node = "+node.getItem().toStringWithoutWeight());
 					// mark this node as dead
 					node.setDead(true);
-					// System.out.println("[Node marked as dead] node =
-					// "+node.getItem().toStringWithoutWeight());
+					//System.out.println("[Node marked as dead] node = "+node.getItem().toStringWithoutWeight());
 					// remove current node from the sequence
 					seq.remove(seq.size() - 1);
 					seq.remove(seq.size() - 1);
 					// recover the pruned candidates
-					candidates = original;
+					
+					/*candidates.clear();
+					for (int i = 0; i < original.size(); i++) {
+						candidates.add(new ModificationCandidate(original.get(i)));
+					}
 					return getModSeq(node.getParent(), candidates, seq);
+					*/
+					candidates.clear();
+					original.add(node.getItem());
+					return getModSeq(count, node.getParent(), original, seq);
 				}
 			}
-		}
-	}
-
-	public void removeArrElement(ModificationCandidate[] candidates, int index) {
-		int size = candidates.length;
-		for (int i = 0; i < candidates.length; i++) {
-			if (i == index) {
-				candidates[i] = null;
-				size--;
-			}
-		}
-
-		ModificationCandidate[] newCandidates = new ModificationCandidate[size];
-		int cnt = 0;
-
-		for (int i = 0; i < candidates.length; i++) {
-			if (candidates[i] != null) {
-				newCandidates[cnt++] = candidates[i];
-			}
-		}
-
-		candidates = new ModificationCandidate[newCandidates.length];
-		for (int i = 0; i < newCandidates.length; i++) {
-			candidates[i] = newCandidates[i];
 		}
 	}
 
 	// HEURISTICS-based pruning
-	private ModificationCandidate[] pruneCandidates(SeqTreeNode node, ModificationCandidate[] candidates) {
-		ModificationCandidate[] original = this.removeFutureCandidateWithNoEffect(node,
-				removeThisNode(node, candidates));
+	private void pruneCandidates(SeqTreeNode node, ArrayList<ModificationCandidate> candidates) {
+		this.removeFutureCandidateWithNoEffect(node, candidates);
 		this.removeDuplicateCandidates(node, candidates);
-
-		return original;
 	}
 
-	private ModificationCandidate[] removeThisNode(SeqTreeNode node, ModificationCandidate[] candidates) {
-		System.out.println("[removeThisNode()]");
-		int size = candidates.length;
-		for (int i = 0; i < candidates.length; i++) {
-			try {
-				if (node.getItem().sameWith(candidates[i])) {
-					candidates[i] = null;
-					size--;
-				}
-			} catch (NullPointerException e) {
+	private void removeThisNode(SeqTreeNode node, ArrayList<ModificationCandidate> candidates) {
+		int size = candidates.size();
+		for (int i = 0; i < size; i++) {
 
+			if (node.getItem().sameWith(candidates.get(i))) {
+				candidates.remove(i);
+				size--;
+				i--;
 			}
+
 		}
-
-		ModificationCandidate[] newCandidates = new ModificationCandidate[size];
-		int cnt = 0;
-
-		for (int i = 0; i < candidates.length; i++) {
-			if (candidates[i] != null) {
-				newCandidates[cnt++] = candidates[i];
-			}
-		}
-
-		candidates = new ModificationCandidate[newCandidates.length];
-		for (int i = 0; i < newCandidates.length; i++) {
-			candidates[i] = newCandidates[i];
-		}
-
-		return candidates;
 	}
 
 	// HEURISTICS NO.1: remove modifications after a deletion
-	private ModificationCandidate[] removeFutureCandidateWithNoEffect(SeqTreeNode node,
-			ModificationCandidate[] candidates) {
-		System.out.println("[removeFutureCandidateWithNoEffect()]");
-		for (int i = 0; i < candidates.length; i++) {
-			System.out.println("candidates[" + i + "] = "
-					+ ((candidates[i] == null) ? "null" : candidates[i].toStringWithoutWeight()));
-		}
-
-		ModificationCandidate[] original = new ModificationCandidate[candidates.length];
-		for (int i = 0; i < candidates.length; i++) {
-
-		}
-
-		int size = candidates.length;
-		for (int i = 0; i < candidates.length; i++) {
+	private void removeFutureCandidateWithNoEffect(SeqTreeNode node, ArrayList<ModificationCandidate> candidates) {
+		int size = candidates.size();
+		for (int i = 0; i < size; i++) {
 			if (node.getItem().getUpdate().equals(UpdatePattern.DELETE_FIELD.toString())
-					&& node.getItem().getField().equals(candidates[i].getField())) {
-				candidates[i] = null;
+					&& node.getItem().getField().equals(candidates.get(i).getField())) {
+				candidates.remove(i);
 				size--;
+				i--;
 			}
 		}
-
-		ModificationCandidate[] newCandidates = new ModificationCandidate[size];
-		int cnt = 0;
-
-		for (int i = 0; i < candidates.length; i++) {
-			if (candidates[i] != null) {
-				newCandidates[cnt++] = candidates[i];
-			}
-		}
-
-		candidates = new ModificationCandidate[newCandidates.length];
-		for (int i = 0; i < newCandidates.length; i++) {
-			candidates[i] = newCandidates[i];
-		}
-
-		return original;
 	}
 
 	// HEURISTICS NO.2: remove duplicates
-	private ModificationCandidate[] removeDuplicateCandidates(SeqTreeNode node, ModificationCandidate[] candidates) {
-		System.out.println("[removeDuplcateCandidates()]");
-		for (int i = 0; i < candidates.length; i++) {
-			System.out.println("candidates[" + i + "] = "
-					+ ((candidates[i] == null) ? "null" : candidates[i].toStringWithoutWeight()));
-		}
-
-		ModificationCandidate[] original = new ModificationCandidate[candidates.length];
-		for (int i = 0; i < candidates.length; i++) {
-			original[i] = new ModificationCandidate(candidates[i]);
-		}
-
-		int size = candidates.length;
-		for (int i = 0; i < candidates.length - 1; i++) {
-			for (int j = i + 1; j < candidates.length; j++) {
-				try {
-					if (candidates[i].sameWith(candidates[j])) {
-						System.out.println("[TO-BE-DELETED] " + candidates[j].toStringWithoutWeight());
-						candidates[j] = null;
-						size--;
-					}
-				} catch (NullPointerException e) {
-
+	private void removeDuplicateCandidates(SeqTreeNode node, ArrayList<ModificationCandidate> candidates) {
+		int size = candidates.size();
+		for (int i = 0; i < size - 1; i++) {
+			for (int j = i + 1; j < size; j++) {
+				if (candidates.get(i).sameWith(candidates.get(j))) {
+					candidates.remove(j);
+					size--;
+					j--;
 				}
 			}
 		}
-
-		ModificationCandidate[] newCandidates = new ModificationCandidate[size];
-		int cnt = 0;
-
-		for (int i = 0; i < candidates.length; i++) {
-			if (candidates[i] != null) {
-				newCandidates[cnt++] = candidates[i];
-			}
-		}
-
-		candidates = newCandidates;
-
-		return original;
 	}
 
 	/////////////////// following codes are deprecated ///////////////////

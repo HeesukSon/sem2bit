@@ -9,10 +9,15 @@ public class ModificationCandidate{
 		
 	}
 	
-	public ModificationCandidate(String field, String update, float prob){
+	public ModificationCandidate(String field, String update){
 		this();
 		this.field = field;
 		this.update = update;
+		this.prob = 0f;
+	}
+	
+	public ModificationCandidate(String field, String update, float prob){
+		this(field, update);
 		this.prob = prob;
 	}
 	

@@ -56,11 +56,11 @@ public class SDPKBUtil {
 		addUpdateHistory();
 		computeUpdateStat();
 		computeModSeqBound();
-	}	
+	}
 	
 	public void computeModSeqBound(){
 		// TODO algorithm should be added later
-		this.modSeqBound = 8;
+		this.modSeqBound = 7;
 	}
 	
 	public int getModSeqBound(){

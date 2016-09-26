@@ -97,13 +97,14 @@ public class SeqTreeNode {
 		this.dead = dead;		
 	}
 	
-	public boolean hasMoreSequence(ModificationCandidate[] candidates){
+	public boolean hasMoreSequence(ArrayList<ModificationCandidate> candidates){
 		return hasMoreSequence(this, candidates);
 	}
 	
 	// Assumption: if there's a room, candidates always give a child to add
-	private boolean hasMoreSequence(SeqTreeNode node, ModificationCandidate[] candidates) {
-		if (/* node has room for a child addition */ node.getChildren().size() < candidates.length) {
+	private boolean hasMoreSequence(SeqTreeNode node, ArrayList<ModificationCandidate> candidates) {
+		//System.out.println(node.getItem().toStringWithoutWeight()+".getChildren().size() = "+node.getChildren().size()+", candidates.size()="+candidates.size());
+		if (/* node has room for a child addition */ node.getChildren().size() < candidates.size()) {
 			return true;
 		} else/* node cannot add more children */ {
 			if (/* all children node are dead */ this.allChildrenDead()) {
