@@ -1,5 +1,7 @@
 package heesuk.percom.sherlock.io.msg;
 
+import heesuk.percom.sherlock.io.kb.probtree.ModificationCandidate;
+
 public class ProbeMessageComposer {
 	private static ProbeMessageComposer _instance;
 	
@@ -15,5 +17,7 @@ public class ProbeMessageComposer {
 		return _instance;
 	}
 	
-	
+	public BitLevelModification[] getBitModifications(ModificationCandidate[] seq){
+		
+	}
 }

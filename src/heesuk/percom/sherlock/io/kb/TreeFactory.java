@@ -42,6 +42,7 @@ public class TreeFactory {
 		}
 	}
 	
+	// for preliminary result
 	public boolean getRightSequence(int count){
 		ModificationCandidate[] seq = this.seqPlanTree.getModSeq(count);
 		boolean result = true;

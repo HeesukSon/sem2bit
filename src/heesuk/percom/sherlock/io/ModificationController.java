@@ -6,9 +6,10 @@ import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
 
 public class ModificationController {
 	private static ModificationController _instance;
+	private Thread interactionMonitorT;
 	
 	private ModificationController(){
-		
+		this.interactionMonitorT = new Thread(new InteractionMonitorJob());
 	}
 	
 	public static ModificationController getInstance(){
@@ -24,6 +25,7 @@ public class ModificationController {
 		SDPKBUtil.getInstance().printStat();
 		
 		TreeFactory.getInstance().buildTree();	
+		// TODO this.interactionMonitorT.run();
 	}
 	
 	public void startSeqVerification(int bound){
@@ -35,5 +37,19 @@ public class ModificationController {
 			}
 			System.out.println();
 		}	
+	}
+	
+	public class InteractionMonitorJob implements Runnable{
+		@Override
+		public void run() {
+			// (1) get the next modified message
+			// (2) transmit the returned message to the target host
+			// (3) wait for a certain interaction timeout TODO: timeout should be defined 
+			// if timeout:
+			// -> go back to (1)
+			// otherwise (a reply message is returned):
+			// -> (4) send a notification to the upper-level application
+			// (5) terminate TODO: 'what is the termination signal?'
+		}
 	}
 }
