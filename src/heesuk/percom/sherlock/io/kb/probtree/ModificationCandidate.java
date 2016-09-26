@@ -16,8 +16,23 @@ public class ModificationCandidate{
 		this.prob = prob;
 	}
 	
+	public ModificationCandidate(ModificationCandidate candidate){
+		this(candidate.getField(), candidate.getUpdate(), candidate.getProb());
+	}
+	
+	public boolean sameWith(ModificationCandidate candidate){
+		if(this.field.equals(candidate.getField()) && this.update.equals(candidate.getUpdate()))
+			return true;
+		else
+			return false;
+	}
+	
 	public String toString(){
 		return "<"+update+" "+field+" : "+prob+">";
+	}
+	
+	public String toStringWithoutWeight(){
+		return "<"+update+" "+field+">";
 	}
 
 	public String getField() {

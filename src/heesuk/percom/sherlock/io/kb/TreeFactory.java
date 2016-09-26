@@ -26,24 +26,35 @@ public class TreeFactory {
 	public void buildTree(){
 		this.probTree = new ModificationProbTree();
 		this.probTree.init();
-		//this.seqPlanTree = new ModificationSeqPlanTree();
-		//this.seqPlanTree.prune();
-	}
-	
-	public void localizeProbTree(){
 		this.probTree.localize(SDPKBUtil.getInstance().getLocalSDPName());
+		this.probTree.computeWeights();
+		
+		ModificationCandidate[] candidates = this.probTree.getSortedCandidates();
+		this.seqPlanTree = new ModificationSeqPlanTree(candidates);
+		System.out.println("\n##### Sorted Modification Candidates #####");
+		for(int i=0; i<candidates.length; i++){
+			System.out.println(candidates[i].toString());
+		}
+		
+		System.out.println("\n");
+		System.out.println("##### Modification Sequence #####");
+		for(int i=0; i<300; i++){
+			System.out.print("["+i+"]");
+			this.printSequence();
+		}
 	}
 	
-	public void computeModificationProb(){
-		this.probTree.computeWeights();
+	public void printSequence(){
+		ModificationCandidate[] seq = this.seqPlanTree.getModSeq();
+		
+		for(int i=0; i<seq.length; i++){
+			System.out.print(seq[i].toStringWithoutWeight()+"  ");
+		}
+		System.out.println();
 	}
 	
 	public void printProbTree(){
 		this.probTree.printTree();
-	}
-	
-	public ModificationCandidate[] getSortedCandidates(){
-		return this.probTree.getSortedCandidates();
 	}
 	
 	public void printSeqPlanTree(){

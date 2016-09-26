@@ -10,6 +10,7 @@ public class SDPKBUtil {
 	private HashMap<String, Float> update_pattern_prob;
 	private ArrayList<MessageFieldUpdate> updateHistory;
 	final private SDPName localSDP = SDPName.SLPv1;
+	private int modSeqBound;
 
 	private SDPKBUtil() {
 		this.sdpMap = new HashMap<SDPName, SDP>();
@@ -54,7 +55,17 @@ public class SDPKBUtil {
 		// add SDP update history
 		addUpdateHistory();
 		computeUpdateStat();
+		computeModSeqBound();
 	}	
+	
+	public void computeModSeqBound(){
+		// TODO algorithm should be added later
+		this.modSeqBound = 8;
+	}
+	
+	public int getModSeqBound(){
+		return this.modSeqBound;
+	}
 
 	public void computeUpdateStat() {
 		int size = this.updateHistory.size();

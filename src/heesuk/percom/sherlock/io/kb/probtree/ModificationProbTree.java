@@ -24,7 +24,10 @@ public class ModificationProbTree {
 	public ModificationCandidate[] getSortedCandidates(){
 		ArrayList<ModificationCandidate> list = new ArrayList<ModificationCandidate>();
 		computeCandidateProb(this.root, 1f, list);
+		System.out.println("Computing each modification candidate's probability is done.");
 		sortCandidates(list);
+		System.out.println("Sorting the modification candidate list is done.");
+		System.out.println("Modification candidate list size : "+list.size());
 		
 		ModificationCandidate[] arr = new ModificationCandidate[list.size()];
 		return list.toArray(arr);
@@ -89,16 +92,14 @@ public class ModificationProbTree {
 			}
 		}
 	}
-	
-	public void prunePresentFieldAdds(SDPName sdp, ProbTreeNode node){
-		
-	}
 
 	public void computeWeights() {
 		this.computeWeight_1_2();
 		this.computeWeight_2_3();
 		this.computeWeight_3_4();
 		this.computeWeight_4_5();
+		
+		System.out.println("Weight value computation for modification probability tree is done.");
 	}
 	
 	private void computeWeight_1_2(){
