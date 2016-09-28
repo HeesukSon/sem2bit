@@ -1,4 +1,4 @@
-package heesuk.percom.sherlock.io.kb.probtree;
+package heesuk.percom.sherlock.io.msg;
 
 public class ModificationCandidate{
 	private String field;

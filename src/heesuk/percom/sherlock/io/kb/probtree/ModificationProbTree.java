@@ -12,6 +12,7 @@ import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
 import heesuk.percom.sherlock.io.kb.sdp.SDPMessage;
 import heesuk.percom.sherlock.io.kb.sdp.SDPName;
 import heesuk.percom.sherlock.io.kb.sdp.UpdatePattern;
+import heesuk.percom.sherlock.io.msg.ModificationCandidate;
 
 public class ModificationProbTree {
 	private ProbTreeNode root;

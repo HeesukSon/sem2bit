@@ -4,6 +4,8 @@ import ch.ethz.iks.slp.Advertiser;
 import ch.ethz.iks.slp.ServiceLocationManager;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceURL;
+import heesuk.percom.sherlock.io.ModificationController;
+import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
 
 import java.util.Locale;
 import org.osgi.framework.InvalidSyntaxException;
@@ -13,6 +15,8 @@ import java.util.Hashtable;
 public class Registration {
 
 	public static void main(String[] args) throws ServiceLocationException, InvalidSyntaxException {
+		SDPKBUtil.getInstance().buildKB();
+		
 		// get Advertiser instance
 		Advertiser advertiser = ServiceLocationManager.getAdvertiser(new Locale("en"));
 

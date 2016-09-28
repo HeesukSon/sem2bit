@@ -2,6 +2,9 @@ package heesuk.percom.sherlock.io.kb.sdp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
+
+import ch.ethz.iks.slp.impl.SLPMessage;
 
 public class SDPKBUtil {
 	private static SDPKBUtil _instance;
@@ -213,14 +216,14 @@ public class SDPKBUtil {
 		msg.addField(new MessageField("Service Type", MessageFieldType.SERVICE_TYPE, MessageFieldLocation.BODY, "v"));
 		msg.addField(
 				new MessageField("Target Address", MessageFieldType.TARGET_ADDRESS, MessageFieldLocation.BODY, 32));
-		msg.addField(new MessageField("Version", MessageFieldType.VERSION_INFO, MessageFieldLocation.HEADER, 8));
-		msg.addField(new MessageField("Function", MessageFieldType.MESSAGE_TYPE, MessageFieldLocation.HEADER, 8));
-		msg.addField(new MessageField("Length", MessageFieldType.MESSAGE_LENGTH, MessageFieldLocation.HEADER, 24));
-		msg.addField(new MessageField("Control", MessageFieldType.CONTROL_FLAG, MessageFieldLocation.HEADER, 40));
-		msg.addField(new MessageField("XID", MessageFieldType.SESSION_MGMT, MessageFieldLocation.HEADER, 16));
+		msg.addField(new MessageField("Version", MessageFieldType.VERSION_INFO, MessageFieldLocation.HEADER, 8, 2));
+		msg.addField(new MessageField("Function", MessageFieldType.MESSAGE_TYPE, MessageFieldLocation.HEADER, 8, SLPMessage.SRVRQST));
+		msg.addField(new MessageField("Length", MessageFieldType.MESSAGE_LENGTH, MessageFieldLocation.HEADER, 24)); // no value yet
+		msg.addField(new MessageField("Control", MessageFieldType.CONTROL_FLAG, MessageFieldLocation.HEADER, 40, (byte) 0x20));
+		msg.addField(new MessageField("XID", MessageFieldType.SESSION_MGMT, MessageFieldLocation.HEADER, 16)); // no value yet
 		msg.addField(new MessageField("Language Tag Length", MessageFieldType.LANGUAGE_TAG_LENGTH,
-				MessageFieldLocation.HEADER, 16));
-		msg.addField(new MessageField("Language Tag", MessageFieldType.LANGUAGE_TAG, MessageFieldLocation.HEADER, "v"));
+				MessageFieldLocation.HEADER, 16, 0)); 
+		msg.addField(new MessageField("Language Tag", MessageFieldType.LANGUAGE_TAG, MessageFieldLocation.HEADER, "v", (new Locale("ko", "").getLanguage()))); 
 
 		slp2.addMessage(msg);
 		this.sdpMap.put(SDPName.SLPv2, slp2);

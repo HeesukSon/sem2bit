@@ -5,6 +5,7 @@ public class MessageField {
 	private MessageFieldType type;
 	private MessageFieldLocation location;
 	private String length;
+	private Object value;
 	
 	public MessageField(){
 		
@@ -18,8 +19,30 @@ public class MessageField {
 		this.length = length;
 	}
 	
+	public MessageField(String name, MessageFieldType type, MessageFieldLocation location, String length, int value){
+		this();
+		this.name = name;
+		this.type = type;
+		this.location = location;
+		this.length = length;
+		this.value = value;
+	}
+	
+	public MessageField(String name, MessageFieldType type, MessageFieldLocation location, String length, String value){
+		this();
+		this.name = name;
+		this.type = type;
+		this.location = location;
+		this.length = length;
+		this.value = value;
+	}
+	
 	public MessageField(String name, MessageFieldType type, MessageFieldLocation location, int length){
 		this(name, type, location, ""+length);
+	}
+	
+	public MessageField(String name, MessageFieldType type, MessageFieldLocation location, int length, int value){
+		this(name, type, location, ""+length, value);
 	}
 	
 	public MessageField(String name, MessageFieldType type){
@@ -55,4 +78,14 @@ public class MessageField {
 	public String getName(){
 		return this.name;
 	}
+
+	public Object getValue() {
+		return value;
+	}
+
+	public void setValue(Object value) {
+		this.value = value;
+	}
+	
+	
 }

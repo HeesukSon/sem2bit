@@ -6,6 +6,8 @@ import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceLocationEnumeration;
 import ch.ethz.iks.slp.ServiceType;
 import ch.ethz.iks.slp.ServiceURL;
+import heesuk.percom.sherlock.io.ModificationController;
+import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -13,6 +15,8 @@ import java.util.Locale;
 public class Lookup {
 
 	public static void main(String[] args) throws ServiceLocationException {
+		SDPKBUtil.getInstance().buildKB();
+		
 		// get Locator instance
 		Locator locator = ServiceLocationManager.getLocator(new Locale("en"));
 		

@@ -1,9 +1,9 @@
 package heesuk.percom.sherlock.io.kb;
 
-import heesuk.percom.sherlock.io.kb.probtree.ModificationCandidate;
 import heesuk.percom.sherlock.io.kb.probtree.ModificationProbTree;
 import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
 import heesuk.percom.sherlock.io.kb.seqtree.ModificationSeqPlanTree;
+import heesuk.percom.sherlock.io.msg.ModificationCandidate;
 
 public class TreeFactory {
 	private static TreeFactory _instance;

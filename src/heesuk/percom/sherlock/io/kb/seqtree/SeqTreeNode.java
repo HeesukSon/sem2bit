@@ -3,7 +3,7 @@ package heesuk.percom.sherlock.io.kb.seqtree;
 import java.util.ArrayList;
 import java.util.List;
 
-import heesuk.percom.sherlock.io.kb.probtree.ModificationCandidate;
+import heesuk.percom.sherlock.io.msg.ModificationCandidate;
 
 public class SeqTreeNode {
 	private ModificationCandidate item;

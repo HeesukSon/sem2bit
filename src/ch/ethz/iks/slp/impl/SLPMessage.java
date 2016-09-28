@@ -40,6 +40,7 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 import ch.ethz.iks.slp.ServiceLocationException;
+import heesuk.percom.sherlock.io.msg.MessageModificationSpec;
 
 /**
  * base class for all messages that the SLP framework uses.
@@ -161,38 +162,44 @@ public abstract class SLPMessage {
 	 */
 	protected void writeHeader(final DataOutputStream out, int msgSize)
 			throws IOException {
+		System.out.println("############### writeHeader() ################");
+		
+		// determine flag bits
 		byte flags = 0;
 		if (funcID == SRVREG) {
-			flags |= 0x40;
+			flags |= 0x40; // 0100 0000
 		}
 		if (multicast) {
-			flags |= 0x20;
+			flags |= 0x20; // 0010 0000
 		}
 		if (!tcp && msgSize > SLPCore.CONFIG.getMTU()) {
-			flags |= 0x80;
+			flags |= 0x80; // 1000 0000
 		}
-		out.write(2);
-		out.write(funcID);
-		out.write((byte) ((msgSize) >> 16));
-		out.write((byte) (((msgSize) >> 8) & 0xFF));
-		out.write((byte) ((msgSize) & 0xFF));
-		out.write(flags);
+		
+		// write
+		out.write(2); // version
+		out.write(funcID); // function
+		out.write((byte) ((msgSize) >> 16)); // length of 8 bits
+		out.write((byte) (((msgSize) >> 8) & 0xFF)); // length of 16 bits (+8)
+		out.write((byte) ((msgSize) & 0xFF)); // length of 24 bits (+8)
+		out.write(flags); // 8 bits
 		out.write(0);
 		out.write(0);
 		out.write(0);
 		out.write(0);
-		out.writeShort(xid);
-		out.writeUTF(locale.getLanguage());
+		out.writeShort(xid); // 16 bits
+		//out.writeShort(xid); // 16 bits
+		out.writeUTF(locale.getLanguage()); // variable length
 	}
 	
 	/////////////////////////// PERCOM 2017 EXPERIMENT ///////////////////////////
 	// TODO
-	protected void writeV1Header(final DataOutputStream out, int msgSize){
+	protected void writeV1Header(final DataOutputStream out, int msgSize, MessageModificationSpec spec){
 		
 	}
 	
 	// TODO
-	protected void writeV2Header(final DataOutputStream out, int msgSize){
+	protected void writeV2Header(final DataOutputStream out, int msgSize, MessageModificationSpec spec){
 		
 	}
 	

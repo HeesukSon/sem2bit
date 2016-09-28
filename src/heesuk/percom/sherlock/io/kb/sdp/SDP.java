@@ -34,4 +34,12 @@ public class SDP {
 	public SDPMessage getMesage(){
 		return this.reqmsg;
 	}
+
+	public SDPMessage getReqmsg() {
+		return reqmsg;
+	}
+
+	public void setReqmsg(SDPMessage reqmsg) {
+		this.reqmsg = reqmsg;
+	}
 }

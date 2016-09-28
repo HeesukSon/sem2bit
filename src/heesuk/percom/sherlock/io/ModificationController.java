@@ -1,8 +1,8 @@
 package heesuk.percom.sherlock.io;
 
 import heesuk.percom.sherlock.io.kb.TreeFactory;
-import heesuk.percom.sherlock.io.kb.probtree.ModificationCandidate;
 import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
+import heesuk.percom.sherlock.io.msg.ModificationCandidate;
 
 public class ModificationController {
 	private static ModificationController _instance;
@@ -20,10 +20,15 @@ public class ModificationController {
 		return _instance;
 	}
 	
+	/**
+	 * 
+	 */
 	public void init(){
+		// build and load SDP-relevant knowledge base
 		SDPKBUtil.getInstance().buildKB();
 		SDPKBUtil.getInstance().printStat();
 		
+		// build modification probability tree and modification sequence tree
 		TreeFactory.getInstance().buildTree();	
 		// TODO this.interactionMonitorT.run();
 	}
