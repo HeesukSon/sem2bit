@@ -270,6 +270,7 @@ public abstract class SLPCore {
 			return;
 		}
 		isInitialized = true;
+		platform = new StandalonePlatformAbstraction();
 
 		System.out.println("jSLP is running on the following interfaces: " + java.util.Arrays.asList(myIPs));
 		System.out.println("jSLP is using port: " + SLP_PORT);
@@ -355,15 +356,21 @@ public abstract class SLPCore {
 					try {
 						packet = new DatagramPacket(bytes, bytes.length);
 						mtcSocket.receive(packet);
-						System.out.println("initMulticastSocket()");
-						final SLPMessage reply = handleMessage(SLPMessage.parse(packet.getAddress(), packet.getPort(),
-								new DataInputStream(new ByteArrayInputStream(packet.getData())), false));
-						if (reply != null) {
-							final byte[] repbytes = reply.getBytes();
-							DatagramPacket datagramPacket = new DatagramPacket(repbytes, repbytes.length, reply.address,
-									reply.port);
-							mtcSocket.send(datagramPacket);
-							System.out.println("SEND (" + reply.address + ":" + reply.port + ") " + reply.toString());
+						
+						if (!packet.getAddress().toString().equals("/143.248.55.138")) {
+							System.err.println(packet.getAddress().toString()+" sent a request message!!");
+						} else {
+							final SLPMessage reply = handleMessage(
+									SLPMessage.parse(packet.getAddress(), packet.getPort(),
+											new DataInputStream(new ByteArrayInputStream(packet.getData())), false));
+							if (reply != null) {
+								final byte[] repbytes = reply.getBytes();
+								DatagramPacket datagramPacket = new DatagramPacket(repbytes, repbytes.length,
+										reply.address, reply.port);
+								mtcSocket.send(datagramPacket);
+								System.out
+										.println("SEND (" + reply.address + ":" + reply.port + ") " + reply.toString());
+							}
 						}
 					} catch (Exception e) {
 						System.err.println("Exception in Multicast Receiver Thread");
@@ -420,7 +427,6 @@ public abstract class SLPCore {
 	 *             if something goes wrong.
 	 */
 	private static SLPMessage handleMessage(final SLPMessage message) throws ServiceLocationException {
-
 		if (message == null) {
 			return null;
 		}
@@ -516,6 +522,8 @@ public abstract class SLPCore {
 		case SLPMessage.SRVTYPERQST:
 			// silently drop messages where this peer is in the previous
 			// responder list
+			System.out.println("[SLPMessage.SRVTYPERQST] handleMessage() - RECEIVED (" + message.address + ":" + message.port + ") " + message);
+			
 			for (int i = 0; i < SLPCore.myIPs.length; i++) {
 				if (((RequestMessage) message).prevRespList.contains(SLPCore.myIPs[i])) {
 					System.err.println("DROPPED (" + message.address + ":" + message.port + ") " + message.toString()
@@ -523,10 +531,12 @@ public abstract class SLPCore {
 					return null;
 				}
 			}
+			
 
 			// if we have a daemon instance, delegate the
 			// message to the daemon.
 			if (daemon != null) {
+				System.out.println("daemon != null");
 				return daemon.handleMessage(message);
 			} else {
 				System.out.println("SRVTYPERQST recieved (" + message.address + ":" + message.port + ") "
@@ -622,6 +632,7 @@ public abstract class SLPCore {
 	 *             in case of network errors.
 	 */
 	static ReplyMessage sendMessageTCP(final SLPMessage msg) throws ServiceLocationException {
+		System.out.println("\n\n[SLPCore.sendMessageTCP()] msg to send = " + msg);
 		try {
 			if (msg.xid == 0) {
 				msg.xid = nextXid();
@@ -630,9 +641,10 @@ public abstract class SLPCore {
 			socket.setSoTimeout(CONFIG.getTCPTimeout());
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 			DataInputStream in = new DataInputStream(socket.getInputStream());
-			System.out.println("SLPCore.sendMessageTCP()->msg = " + msg);
+			
 			msg.writeTo(out);
 			final ReplyMessage reply = (ReplyMessage) SLPMessage.parse(msg.address, msg.port, in, true);
+			System.out.println("[SLPCore.sendMessageTCP()] reply msg = " + reply+"\n\n");
 			socket.close();
 			return reply;
 		} catch (Exception e) {
@@ -711,7 +723,7 @@ public abstract class SLPCore {
 	 *             in case of network errors.
 	 */
 	static List multicastConvergence(final RequestMessage msg) throws ServiceLocationException {
-		try {
+	//	try {
 
 			long start = System.currentTimeMillis();
 
@@ -747,6 +759,11 @@ public abstract class SLPCore {
 			msg.address = MCAST_ADDRESS;
 			ReplyMessage reply;
 
+			/**
+			 * @author heesuk
+			 * 	myIPs[1] has IPv6 address as the value. So It is prevented for percom 17 experiment
+			 */
+			/*
 			for (int i = 0; i < myIPs.length; i++) {
 				// create a socket bound to the next ip address
 				final InetAddress addr = InetAddress.getByName(myIPs[i]);
@@ -796,7 +813,7 @@ public abstract class SLPCore {
 					 *       Thanks to Richard Reid for figuring out the problem
 					 *       with multicast replies and proposing the fix
 					 */
-					try {
+					/*try {
 						Thread.sleep(transmissionSchedule[retryCounter]);
 					} catch (InterruptedException dontcare) {
 						// Restore the interrupted status
@@ -838,6 +855,7 @@ public abstract class SLPCore {
 					nextTimeout = System.currentTimeMillis() + transmissionSchedule[retryCounter++];
 				}
 			}
+			*/
 
 			// we are done, remove the listener queue
 			synchronized (replyListeners) {
@@ -847,10 +865,11 @@ public abstract class SLPCore {
 			System.out.println("convergence for xid=" + msg.xid + " finished after "
 					+ (System.currentTimeMillis() - start) + " ms, result: " + responses);
 			return responses;
+			/*
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 			throw new ServiceLocationException(ServiceLocationException.NETWORK_ERROR, ioe.getMessage());
-		}
+		}*/
 	}
 
 	private static boolean isLocalResponder(InetAddress addr) {

@@ -132,6 +132,7 @@ public final class LocatorImpl implements Locator {
 	public ServiceLocationEnumeration findServices(final ServiceType type,
 			final List scopes, final String searchFilter)
 			throws ServiceLocationException {
+		System.out.println("[LocatorImpl.findServices()]");
 		try {
 			RequestMessage srvReq = new ServiceRequest(type, scopes,
 					searchFilter, locale);
@@ -218,20 +219,24 @@ public final class LocatorImpl implements Locator {
 	 */
 	private List sendRequest(final RequestMessage req, final List scopeList)
 			throws ServiceLocationException {
+		System.out.println("[LocatorImpl.sendRequest()]");
 		List scopes = scopeList != null ? scopeList : Arrays
 				.asList(new String[] { "default" });
 
 		ArrayList result = new ArrayList();
+		
 		for (Iterator scopeIter = scopes.iterator(); scopeIter.hasNext();) {
 			String scope = (String) scopeIter.next();
 			scope = scope.toLowerCase();
 			List dAs = (List) SLPCore.dAs.get(scope);
 
-			SLPCore.platform
-						.logDebug("DAS FOR SCOPE " + scope + ": " + dAs);
+			System.out.println("DAS FOR SCOPE " + scope + ": " + dAs);
+			result.addAll(SLPCore.multicastConvergence(req));
+		}
 
 			// no DA for the scope known ?
 			// try to find one
+			/*
 			if ((dAs == null || dAs.isEmpty()) && !SLPCore.noDiscovery) {
 				SLPCore.daLookup(Arrays.asList(new String[] { scope }));
 
@@ -257,7 +262,7 @@ public final class LocatorImpl implements Locator {
 				}
 				continue;
 			} else {
-				if (!SLPCore.noDiscovery) {
+				if (SLPCore.noDiscovery) {
 					throw new ServiceLocationException(
 							ServiceLocationException.SCOPE_NOT_SUPPORTED,
 							"Scope " + scope + " is not supported");
@@ -267,6 +272,7 @@ public final class LocatorImpl implements Locator {
 				result.addAll(SLPCore.multicastConvergence(req));
 			}
 		}
+		*/
 		return result;
 	}
 

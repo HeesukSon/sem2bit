@@ -28,18 +28,20 @@ public class TreeFactory {
 	}
 	
 	public void buildTree(){
+		// modification probability tree
 		this.probTree = new ModificationProbTree();
 		this.probTree.init();
 		this.probTree.localize(SDPKBUtil.getInstance().getLocalSDPName());
 		this.probTree.computeWeights();
 		
 		ModificationCandidate[] candidates = this.probTree.getSortedCandidates();
-		this.seqPlanTree = new ModificationSeqPlanTree(candidates);
-		
 		System.out.println("\n##### Sorted Modification Candidates #####");
 		for(int i=0; i<candidates.length; i++){
 			System.out.println(candidates[i].toString());
 		}
+		
+		// modification sequence planning tree
+		this.seqPlanTree = new ModificationSeqPlanTree(candidates);
 	}
 	
 	// for preliminary result

@@ -184,6 +184,19 @@ public abstract class SLPMessage {
 		out.writeShort(xid);
 		out.writeUTF(locale.getLanguage());
 	}
+	
+	/////////////////////////// PERCOM 2017 EXPERIMENT ///////////////////////////
+	// TODO
+	protected void writeV1Header(final DataOutputStream out, int msgSize){
+		
+	}
+	
+	// TODO
+	protected void writeV2Header(final DataOutputStream out, int msgSize){
+		
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * 
@@ -237,10 +250,10 @@ public abstract class SLPMessage {
 	static SLPMessage parse(final InetAddress senderAddr, final int senderPort,
 			final DataInputStream in, final boolean tcp)
 			throws ServiceLocationException, ProtocolException {
-		System.out.println("parse()");
+		System.out.print(">>>>> SLPMessage.parse(): ");
 		try {
 			final int version = in.readByte(); // version
-			System.out.println("SLPMessage.parse()->version = "+version);
+			System.out.print("version = "+version+", ");
 			if (version == 1) {
 				in.readByte(); // funcID
 				final int length = in.readShort();
@@ -251,9 +264,9 @@ public abstract class SLPMessage {
 			}
 			
 			final byte funcID = in.readByte(); // funcID
-			System.out.println("SLPMessage.parse()->funcID = "+funcID);
+			System.out.print("funcID = "+funcID+", ");
 			final int length = readInt(in, 3);
-			System.out.println("SLPMessage.parse()->length = "+length);
+			System.out.print("length = "+length+", ");
 
 			// slpFlags
 			final byte flags = (byte) (in.readShort() >> 8);
@@ -265,9 +278,9 @@ public abstract class SLPMessage {
 			// we don't process extensions, we simply ignore them
 			readInt(in, 3); // extOffset
 			final short xid = in.readShort(); // XID
-			System.out.println("SLPMessage.parse()->xid = "+xid);
+			System.out.print("xid = "+xid+", ");
 			final Locale locale = new Locale(in.readUTF(), ""); // Locale
-			System.out.println("SLPMessage.parse()->locale = "+locale);
+			System.out.println("locale = "+locale);
 
 			final SLPMessage msg;
 

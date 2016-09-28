@@ -1,4 +1,4 @@
-package kr.ac.kaist.hson.slp;
+package ch.ethz.iks.slp.test;
 
 import ch.ethz.iks.slp.Advertiser;
 import ch.ethz.iks.slp.ServiceLocationManager;
