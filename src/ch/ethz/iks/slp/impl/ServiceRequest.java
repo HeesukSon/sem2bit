@@ -39,6 +39,7 @@ import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
 import ch.ethz.iks.slp.impl.filter.Filter;
 import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
+import heesuk.percom.sherlock.io.kb.sdp.SDPName;
 
 /**
  * ServiceRequest message is used to find services in the network.
@@ -151,7 +152,7 @@ class ServiceRequest extends RequestMessage {
 	 */
 	protected void writeTo(final DataOutputStream out) throws IOException {
 		//super.writeHeader(out, getSize());
-		heesuk.percom.sherlock.io.msg.ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldList(), out, getSize(), xid);
+		heesuk.percom.sherlock.io.msg.ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList(), out, getSize(), xid);
 		out.writeUTF(listToString(prevRespList, ","));
 		out.writeUTF(serviceType.toString());
 		out.writeUTF(listToString(scopeList, ","));

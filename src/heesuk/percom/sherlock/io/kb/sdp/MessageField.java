@@ -25,7 +25,7 @@ public class MessageField {
 		this.type = type;
 		this.location = location;
 		this.length = length;
-		this.value = value;
+		this.value = new Integer(value);
 	}
 	
 	public MessageField(String name, MessageFieldType type, MessageFieldLocation location, String length, String value){
@@ -34,7 +34,7 @@ public class MessageField {
 		this.type = type;
 		this.location = location;
 		this.length = length;
-		this.value = value;
+		this.value = new String(value);
 	}
 	
 	public MessageField(String name, MessageFieldType type, MessageFieldLocation location, int length){
@@ -83,9 +83,11 @@ public class MessageField {
 		return value;
 	}
 
-	public void setValue(Object value) {
-		this.value = value;
+	public void setValue(String value) {
+		this.value = new String(value);
 	}
 	
-	
+	public void setValue(int value){
+		this.value = new Integer(value);
+	}
 }

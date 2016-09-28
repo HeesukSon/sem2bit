@@ -357,7 +357,7 @@ public abstract class SLPCore {
 						packet = new DatagramPacket(bytes, bytes.length);
 						mtcSocket.receive(packet);
 						
-						if (!packet.getAddress().toString().equals("/143.248.55.138")) {
+						if (!packet.getAddress().toString().equals("/192.168.0.12")) {
 							System.err.println(packet.getAddress().toString()+" sent a request message!!");
 						} else {
 							final SLPMessage reply = handleMessage(
