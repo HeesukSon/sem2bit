@@ -145,7 +145,7 @@ public final class AdvertiserImpl implements Advertiser {
 	 * 
 	 * @param url
 	 *            the ServiceURL of the service.
-	 * @throws ServiceLocationException
+	 * @throws ServiceLocationException                   
 	 *             if the deregistration has failed for any reason.
 	 * @see Advertiser#deregister(ServiceURL)
 	 */

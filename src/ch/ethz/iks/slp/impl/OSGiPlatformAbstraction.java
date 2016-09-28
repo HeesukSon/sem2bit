@@ -70,7 +70,7 @@ public class OSGiPlatformAbstraction implements PlatformAbstraction,
 	 * @throws InvalidSyntaxException 
 	 * 				may never happen
 	 */
-	OSGiPlatformAbstraction(BundleContext context) throws InvalidSyntaxException {
+	public OSGiPlatformAbstraction(BundleContext context) throws InvalidSyntaxException {
 		this.context = context;
 
 		// initially get the LogService

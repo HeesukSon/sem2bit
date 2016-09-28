@@ -29,6 +29,8 @@
 package ch.ethz.iks.slp;
 
 import java.util.Locale;
+
+import ch.ethz.iks.slp.impl.PlatformAbstraction;
 import ch.ethz.iks.slp.impl.SLPCore;
 
 /**
@@ -50,6 +52,10 @@ public final class ServiceLocationManager extends SLPCore {
 		if(SLPCore.platform == null) {
 			SLPCore.init();
 		}
+	}
+	
+	public static void setPlatform(PlatformAbstraction platform){
+		SLPCore.platform = platform;
 	}
 	
 	/**
