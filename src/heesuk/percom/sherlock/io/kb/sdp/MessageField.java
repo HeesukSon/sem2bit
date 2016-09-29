@@ -11,6 +11,14 @@ public class MessageField {
 		
 	}
 	
+	public MessageField(MessageField field){
+		this.name = field.getName();
+		this.type = field.getType();
+		this.location = field.getLocation();
+		this.length = field.getLength();
+		this.value = (field.getValue()==null)?null:field.getValue();
+	}
+	
 	public MessageField(String name, MessageFieldType type, MessageFieldLocation location, String length){
 		this();
 		this.name = name;

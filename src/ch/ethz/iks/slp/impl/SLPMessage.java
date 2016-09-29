@@ -34,6 +34,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ProtocolException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -189,6 +190,8 @@ public abstract class SLPMessage {
 		out.write(0);
 		out.writeShort(xid); // 16 bits
 		//out.writeShort(xid); // 16 bits
+		out.write(0);
+		out.write(0);
 		out.writeUTF(locale.getLanguage()); // variable length
 	}
 	
@@ -256,10 +259,11 @@ public abstract class SLPMessage {
 	 */
 	static SLPMessage parse(final InetAddress senderAddr, final int senderPort,
 			final DataInputStream in, final boolean tcp)
-			throws ServiceLocationException, ProtocolException {
+			throws ServiceLocationException, ProtocolException, SocketTimeoutException{
 		System.out.print(">>>>> SLPMessage.parse(): ");
 		try {
 			final int version = in.readByte(); // version
+			
 			System.out.print("version = "+version+", ");
 			if (version == 1) {
 				in.readByte(); // funcID
@@ -286,6 +290,8 @@ public abstract class SLPMessage {
 			readInt(in, 3); // extOffset
 			final short xid = in.readShort(); // XID
 			System.out.print("xid = "+xid+", ");
+			final short langTagLength = in.readShort();
+			System.out.print("langTagLength = "+langTagLength+", ");
 			final Locale locale = new Locale(in.readUTF(), ""); // Locale
 			System.out.println("locale = "+locale);
 
@@ -349,10 +355,11 @@ public abstract class SLPMessage {
 		} catch (ProtocolException pe) {
 			throw pe;
 		} catch (IOException ioe) {
-			SLPCore.platform.logError("Network Error", ioe);
-			throw new ServiceLocationException(
-					ServiceLocationException.NETWORK_ERROR, ioe.getMessage());
-		}
+			//SLPCore.platform.logError("Network Error", ioe);
+			//throw new ServiceLocationException(
+				//	ServiceLocationException.NETWORK_ERROR, ioe.getMessage());
+			throw new SocketTimeoutException();
+		} 
 	}
 
 	/**

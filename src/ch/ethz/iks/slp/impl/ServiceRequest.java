@@ -38,8 +38,13 @@ import java.util.Locale;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
 import ch.ethz.iks.slp.impl.filter.Filter;
+import heesuk.percom.sherlock.io.ExperimentStat;
+import heesuk.percom.sherlock.io.kb.TreeFactory;
+import heesuk.percom.sherlock.io.kb.sdp.MessageField;
 import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
 import heesuk.percom.sherlock.io.kb.sdp.SDPName;
+import heesuk.percom.sherlock.io.msg.ModificationCandidate;
+import heesuk.percom.sherlock.io.msg.ProbeMessageComposer;
 
 /**
  * ServiceRequest message is used to find services in the network.
@@ -152,12 +157,48 @@ class ServiceRequest extends RequestMessage {
 	 */
 	protected void writeTo(final DataOutputStream out) throws IOException {
 		//super.writeHeader(out, getSize());
-		heesuk.percom.sherlock.io.msg.ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList(), out, getSize(), xid);
+		//heesuk.percom.sherlock.io.msg.ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList(), out, getSize(), xid);
+		long beforeSeqComp = System.currentTimeMillis();
+		ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
+		long afterSeqComp = System.currentTimeMillis();
+		ExperimentStat.getInstance().setSeqComputeTimeTotal(ExperimentStat.getInstance().getSeqComputeTimeTotal()+(afterSeqComp-beforeSeqComp));
+		
+		boolean result = true;
+		
+		ModificationCandidate[] rightAnswer = new ModificationCandidate[8];
+		rightAnswer[0] = new ModificationCandidate("DEFAULT", "[DEFAULT]");
+		rightAnswer[1] = new ModificationCandidate("Language Code", "[D]");
+		rightAnswer[2] = new ModificationCandidate("Control", "[L]");
+		rightAnswer[3] = new ModificationCandidate("Control", "[V]");
+		rightAnswer[4] = new ModificationCandidate("Length", "[L]");
+		rightAnswer[5] = new ModificationCandidate("Char Encoding", "[D]");
+		rightAnswer[6] = new ModificationCandidate("LANGUAGE_TAG_LENGTH", "[A]");
+		rightAnswer[7] = new ModificationCandidate("LANGUAGE_TAG", "[A]");
+		
+		for(int i=0; i<seq.length; i++){
+			System.out.print(seq[i].toStringWithoutWeight()+"  ");
+			if(!seq[i].sameWith(rightAnswer[i]))
+				result = false;				
+		}
+
+		System.out.println(" ("+result+")");
+		
+		if(result == true){
+			ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList(), out, getSize(), xid);
+		}else{
+			ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv1).getMesage().getFieldList(), out, getSize(), xid);
+		}
+		
+		//ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldList(), seq);
+		//ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
 		out.writeUTF(listToString(prevRespList, ","));
 		out.writeUTF(serviceType.toString());
 		out.writeUTF(listToString(scopeList, ","));
 		out.writeUTF(predicate == null ? "" : predicate.toString());
 		out.writeUTF(spi);
+		
+		long afterHeaderComposition = System.currentTimeMillis();
+		ExperimentStat.getInstance().setMsgComposeTimeTotal(ExperimentStat.getInstance().getMsgComposeTimeTotal()+(afterHeaderComposition-afterSeqComp));
 	}
 
 	/**

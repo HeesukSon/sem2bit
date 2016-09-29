@@ -9,12 +9,13 @@ import ch.ethz.iks.slp.ServiceURL;
 import heesuk.percom.sherlock.io.ModificationController;
 import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
 
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class Lookup {
 
-	public static void main(String[] args) throws ServiceLocationException {
+	public static void main(String[] args) throws ServiceLocationException, SocketTimeoutException, IllegalArgumentException {
 		SDPKBUtil.getInstance().buildKB();
 		
 		// get Locator instance

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import heesuk.percom.sherlock.io.kb.sdp.MessageField;
 import heesuk.percom.sherlock.io.kb.sdp.MessageFieldLocation;
 import heesuk.percom.sherlock.io.kb.sdp.MessageFieldType;
+import heesuk.percom.sherlock.io.kb.sdp.SDP;
+import heesuk.percom.sherlock.io.kb.sdp.UpdatePattern;
 
 public class ProbeMessageComposer {
 	private static ProbeMessageComposer _instance;
@@ -23,6 +25,39 @@ public class ProbeMessageComposer {
 		return _instance;
 	}
 
+	public ArrayList<MessageField> getModifiedFieldList(ArrayList<MessageField> fields,
+			ModificationCandidate[] candidates) {
+		ArrayList<MessageField> modifiedFields = new ArrayList<MessageField>();
+		
+		// copy the original fields
+		for(MessageField originalField : fields){
+			modifiedFields.add(new MessageField(originalField));
+		}
+		
+		// modify the fields
+		for(ModificationCandidate candidate : candidates){
+			if(candidate.getUpdate().equals(UpdatePattern.ADD_NEW_FIELD)){
+				
+			}else if(candidate.getUpdate().equals(UpdatePattern.DELETE_FIELD)){
+				int size = modifiedFields.size();
+				for(int i=0; i<size; i++){
+					if(modifiedFields.get(i).getName().equals(candidate.getField())){
+						modifiedFields.remove(i);
+						break;
+					}
+				}
+			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_FIELD_LENGTH)){
+				
+			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_VOCA)){
+				
+			}else{
+				System.err.println("A non-defined update pattern is detected in ProbeMessageComposer!!");
+			}
+		}
+		
+		return modifiedFields;
+	}
+
 	public void writeMsgHeader(ArrayList<MessageField> fields, final DataOutputStream out, int msgSize, int xid)
 			throws IOException {
 		for (MessageField field : fields) {
@@ -34,27 +69,27 @@ public class ProbeMessageComposer {
 					} else if (field.getLength().equals("16")) {
 						out.writeShort((int) field.getValue());
 					}
-					
+
 					continue;
-				} 
-				
+				}
+
 				if (field.getType() == MessageFieldType.MESSAGE_LENGTH) {
 					field.setValue(msgSize);
 					int value = (int) field.getValue();
 					for (int i = 0; i < Integer.parseInt(field.getLength()) / 8; i++) {
-						int shift = (8 * (Integer.parseInt(field.getLength()) / 8 - i-1));
+						int shift = (8 * (Integer.parseInt(field.getLength()) / 8 - i - 1));
 						out.write(((byte) ((value >> shift) & 0xFF)));
 					}
-					
+
 					continue;
-				} 
-				
+				}
+
 				if (field.getType() == MessageFieldType.LANGUAGE_TAG) {
 					out.writeUTF((String) field.getValue());
-					
+
 					continue;
-				} 
-				
+				}
+
 				if (field.getValue() == null) {
 					// assumption: only the field with fixed length can have no
 					// value
@@ -63,18 +98,12 @@ public class ProbeMessageComposer {
 					}
 					continue;
 				}
-				
-				
-					out.write((int) field.getValue());
-					for (int i = 1; i < Integer.parseInt(field.getLength()) / 8; i++) {
-						out.write(0);
-					
+
+				out.write((int) field.getValue());
+				for (int i = 1; i < Integer.parseInt(field.getLength()) / 8; i++) {
+					out.write(0);
 				}
 			}
 		}
-	}
-
-	public void writeMsgHeader() {
-
 	}
 }

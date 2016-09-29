@@ -1,5 +1,6 @@
 package heesuk.percom.sherlock.io.kb;
 
+import heesuk.percom.sherlock.io.ExperimentStat;
 import heesuk.percom.sherlock.io.kb.probtree.ModificationProbTree;
 import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
 import heesuk.percom.sherlock.io.kb.seqtree.ModificationSeqPlanTree;
@@ -29,19 +30,26 @@ public class TreeFactory {
 	
 	public void buildTree(){
 		// modification probability tree
+		long beforeProbTree = System.currentTimeMillis();
 		this.probTree = new ModificationProbTree();
 		this.probTree.init();
 		this.probTree.localize(SDPKBUtil.getInstance().getLocalSDPName());
 		this.probTree.computeWeights();
 		
 		ModificationCandidate[] candidates = this.probTree.getSortedCandidates();
+		/*
 		System.out.println("\n##### Sorted Modification Candidates #####");
 		for(int i=0; i<candidates.length; i++){
 			System.out.println(candidates[i].toString());
 		}
+		*/
+		long afterProbTree = System.currentTimeMillis();
+		ExperimentStat.getInstance().setProbTreeBuildTime(afterProbTree-beforeProbTree);
 		
 		// modification sequence planning tree
 		this.seqPlanTree = new ModificationSeqPlanTree(candidates);
+		long afterSeqPlanTree = System.currentTimeMillis();
+		ExperimentStat.getInstance().setSeqTreeBuildTime(afterSeqPlanTree-afterProbTree);
 	}
 	
 	// for preliminary result

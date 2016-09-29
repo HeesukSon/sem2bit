@@ -44,6 +44,7 @@ import java.net.MulticastSocket;
 import java.net.ProtocolException;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -630,9 +631,10 @@ public abstract class SLPCore {
 	 * @return the reply.
 	 * @throws ServiceLocationException
 	 *             in case of network errors.
+	 * @throws IOException, SocketTimeoutException 
 	 */
-	static ReplyMessage sendMessageTCP(final SLPMessage msg) throws ServiceLocationException {
-		System.out.println("\n\n[SLPCore.sendMessageTCP()] msg to send = " + msg);
+	static ReplyMessage sendMessageTCP(final SLPMessage msg) throws ServiceLocationException, SocketTimeoutException {
+		//System.out.println("[SLPCore.sendMessageTCP()] msg to send = " + msg);
 		try {
 			if (msg.xid == 0) {
 				msg.xid = nextXid();
@@ -643,12 +645,23 @@ public abstract class SLPCore {
 			DataInputStream in = new DataInputStream(socket.getInputStream());
 			
 			msg.writeTo(out);
-			final ReplyMessage reply = (ReplyMessage) SLPMessage.parse(msg.address, msg.port, in, true);
-			System.out.println("[SLPCore.sendMessageTCP()] reply msg = " + reply+"\n\n");
-			socket.close();
-			return reply;
-		} catch (Exception e) {
+			try{
+				final ReplyMessage reply = (ReplyMessage) SLPMessage.parse(msg.address, msg.port, in, true);
+				//System.out.println("[SLPCore.sendMessageTCP()] reply msg = " + reply+"\n");
+				
+				return reply;
+			}catch(SocketTimeoutException ste){
+				socket.close();
+				throw new SocketTimeoutException();
+			}
+			
+			
+			
+		} catch (ServiceLocationException e) {
 			throw new ServiceLocationException(ServiceLocationException.NETWORK_ERROR, e.getMessage());
+		}catch(IOException e){
+			//e.printStackTrace();
+			throw new SocketTimeoutException();
 		}
 	}
 
@@ -668,7 +681,12 @@ public abstract class SLPCore {
 			msg.xid = nextXid();
 		}
 		if (msg.getSize() > CONFIG.getMTU() || TCP_ONLY) {
-			return sendMessageTCP(msg);
+			try {
+				return sendMessageTCP(msg);
+			} catch (SocketTimeoutException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		try {
@@ -701,7 +719,12 @@ public abstract class SLPCore {
 			throw new ServiceLocationException(ServiceLocationException.NETWORK_INIT_FAILED, se.getMessage());
 		} catch (ProtocolException pe) {
 			// Overflow, retry with TCP
-			return sendMessageTCP(msg);
+			try {
+				return sendMessageTCP(msg);
+			} catch (SocketTimeoutException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (IOException ioe) {
 			System.err.println("Exception during sending of " + msg);
 			System.err.println("to " + msg.address + ":" + msg.port);
@@ -711,6 +734,7 @@ public abstract class SLPCore {
 			t.printStackTrace();
 			throw new ServiceLocationException((short) 1, t.getMessage());
 		}
+		return null;
 	}
 
 	/**
@@ -721,8 +745,9 @@ public abstract class SLPCore {
 	 * @return the collected reply messages.
 	 * @throws ServiceLocationException
 	 *             in case of network errors.
+	 * @throws SocketTimeoutException 
 	 */
-	static List multicastConvergence(final RequestMessage msg) throws ServiceLocationException {
+	static List multicastConvergence(final RequestMessage msg) throws ServiceLocationException, SocketTimeoutException {
 	//	try {
 
 			long start = System.currentTimeMillis();
@@ -749,7 +774,9 @@ public abstract class SLPCore {
 			// loopback which can fail if no SA is running locally
 			msg.address = LOCALHOST;
 			try {
-				replyQueue.add(sendMessageTCP(msg));
+
+					replyQueue.add(sendMessageTCP(msg));
+
 			} catch (ServiceLocationException e) {
 				if (e.getErrorCode() != ServiceLocationException.NETWORK_ERROR) {
 					throw e;
@@ -928,7 +955,12 @@ public abstract class SLPCore {
 					try {
 						// and delegate it to the SLPCore
 						System.out.println("setupReceiverThread()");
-						handleMessage(SLPMessage.parse(packet.getAddress(), packet.getPort(), in, false));
+						try {
+							handleMessage(SLPMessage.parse(packet.getAddress(), packet.getPort(), in, false));
+						} catch (SocketTimeoutException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					} catch (ProtocolException pe) {
 						// Overflow, try to use TCP
 						try {
@@ -937,6 +969,9 @@ public abstract class SLPCore {
 							msg.multicast = false;
 							handleMessage(sendMessageTCP(msg));
 						} catch (ServiceLocationException e) {
+						} catch (SocketTimeoutException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 					} catch (ServiceLocationException e) {
 						e.printStackTrace();

@@ -29,6 +29,7 @@
 package ch.ethz.iks.slp.impl;
 
 import java.net.InetAddress;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -111,8 +112,16 @@ public final class LocatorImpl implements Locator {
 			throws ServiceLocationException {
 		RequestMessage srvTypeReq = new ServiceTypeRequest(namingAuthority,
 				scopes, locale);
-		return new ServiceLocationEnumerationImpl(sendRequest(srvTypeReq,
-				scopes));
+
+			try {
+				return new ServiceLocationEnumerationImpl(sendRequest(srvTypeReq,
+						scopes));
+			} catch (SocketTimeoutException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+
 	}
 
 	/**
@@ -127,12 +136,12 @@ public final class LocatorImpl implements Locator {
 	 * @return a ServiceLocationEnumeration over the results.
 	 * @throws ServiceLocationException
 	 *             if something goes wrong.
+	 * @throws SocketTimeoutException 
 	 * @see Locator#findAttributes(ServiceType, List, List)
 	 */
 	public ServiceLocationEnumeration findServices(final ServiceType type,
 			final List scopes, final String searchFilter)
-			throws ServiceLocationException {
-		System.out.println("[LocatorImpl.findServices()]");
+			throws ServiceLocationException, SocketTimeoutException {
 		try {
 			RequestMessage srvReq = new ServiceRequest(type, scopes,
 					searchFilter, locale);
@@ -164,8 +173,14 @@ public final class LocatorImpl implements Locator {
 	public ServiceLocationEnumeration findAttributes(final ServiceURL url,
 			final List scopes, final List attributeIds)
 			throws ServiceLocationException {
-		return findAttributes(new AttributeRequest(url, scopes, attributeIds,
-				locale));
+		try {
+			return findAttributes(new AttributeRequest(url, scopes, attributeIds,
+					locale));
+		} catch (SocketTimeoutException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
@@ -186,8 +201,14 @@ public final class LocatorImpl implements Locator {
 	public ServiceLocationEnumeration findAttributes(final ServiceType type,
 			final List scopes, final List attributeIds)
 			throws ServiceLocationException {
-		return findAttributes(new AttributeRequest(type, scopes, attributeIds,
-				locale));
+		try {
+			return findAttributes(new AttributeRequest(type, scopes, attributeIds,
+					locale));
+		} catch (SocketTimeoutException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
@@ -198,11 +219,14 @@ public final class LocatorImpl implements Locator {
 	 * @return the resulting Attributes as String.
 	 * @throws ServiceLocationException
 	 *             in case of network errors.
+	 * @throws SocketTimeoutException 
 	 */
 	private ServiceLocationEnumeration findAttributes(
-			final AttributeRequest attReq) throws ServiceLocationException {
-		return new ServiceLocationEnumerationImpl(sendRequest(attReq,
-				attReq.scopeList));
+			final AttributeRequest attReq) throws ServiceLocationException, SocketTimeoutException {
+
+			return new ServiceLocationEnumerationImpl(sendRequest(attReq,
+					attReq.scopeList));
+
 	}
 
 	/**
@@ -216,10 +240,10 @@ public final class LocatorImpl implements Locator {
 	 * @return the list of results.
 	 * @throws ServiceLocationException
 	 *             if something goes wrong.
+	 * @throws SocketTimeoutException 
 	 */
 	private List sendRequest(final RequestMessage req, final List scopeList)
-			throws ServiceLocationException {
-		System.out.println("[LocatorImpl.sendRequest()]");
+			throws ServiceLocationException, SocketTimeoutException{
 		List scopes = scopeList != null ? scopeList : Arrays
 				.asList(new String[] { "default" });
 
@@ -230,7 +254,6 @@ public final class LocatorImpl implements Locator {
 			scope = scope.toLowerCase();
 			List dAs = (List) SLPCore.dAs.get(scope);
 
-			System.out.println("DAS FOR SCOPE " + scope + ": " + dAs);
 			result.addAll(SLPCore.multicastConvergence(req));
 		}
 

@@ -195,16 +195,14 @@ public class SDPKBUtil {
 		SDP slp1 = new SDP(SDPName.SLPv1.toString());
 		SDPMessage msg = new SDPMessage();
 		msg.addField(new MessageField("Service Type", MessageFieldType.SERVICE_TYPE, MessageFieldLocation.BODY, "v"));
-		msg.addField(
-				new MessageField("Target Address", MessageFieldType.TARGET_ADDRESS, MessageFieldLocation.BODY, 32));
-		msg.addField(new MessageField("Version", MessageFieldType.VERSION_INFO, MessageFieldLocation.HEADER, 8));
-		msg.addField(new MessageField("Function", MessageFieldType.MESSAGE_TYPE, MessageFieldLocation.HEADER, 8));
-		msg.addField(new MessageField("Length", MessageFieldType.MESSAGE_LENGTH, MessageFieldLocation.HEADER, 16));
-		msg.addField(new MessageField("Control", MessageFieldType.CONTROL_FLAG, MessageFieldLocation.HEADER, 16));
-		msg.addField(
-				new MessageField("Language Code", MessageFieldType.LANGUAGE_CODE, MessageFieldLocation.HEADER, 16));
-		msg.addField(new MessageField("Char Encoding", MessageFieldType.ENCODING, MessageFieldLocation.HEADER, 8));
-		msg.addField(new MessageField("XID", MessageFieldType.SESSION_MGMT, MessageFieldLocation.HEADER, 16));
+		msg.addField(new MessageField("Target Address", MessageFieldType.TARGET_ADDRESS, MessageFieldLocation.BODY, 32));
+		msg.addField(new MessageField("Version", MessageFieldType.VERSION_INFO, MessageFieldLocation.HEADER, 8, 2));
+		msg.addField(new MessageField("Function", MessageFieldType.MESSAGE_TYPE, MessageFieldLocation.HEADER, 8, SLPMessage.SRVRQST));
+		msg.addField(new MessageField("Length", MessageFieldType.MESSAGE_LENGTH, MessageFieldLocation.HEADER, 16)); // no value yet
+		msg.addField(new MessageField("Control", MessageFieldType.CONTROL_FLAG, MessageFieldLocation.HEADER, 16, (byte) 0x20)); 
+		msg.addField(new MessageField("Language Code", MessageFieldType.LANGUAGE_CODE, MessageFieldLocation.HEADER, 16, 0));
+		msg.addField(new MessageField("Char Encoding", MessageFieldType.ENCODING, MessageFieldLocation.HEADER, 8, 0));
+		msg.addField(new MessageField("XID", MessageFieldType.SESSION_MGMT, MessageFieldLocation.HEADER, 16)); // no value yet
 
 		slp1.addMessage(msg);
 		this.sdpMap.put(SDPName.SLPv1, slp1);
@@ -214,14 +212,13 @@ public class SDPKBUtil {
 		SDP slp2 = new SDP(SDPName.SLPv2.toString());
 		SDPMessage msg = new SDPMessage();
 		msg.addField(new MessageField("Service Type", MessageFieldType.SERVICE_TYPE, MessageFieldLocation.BODY, "v"));
-		msg.addField(
-				new MessageField("Target Address", MessageFieldType.TARGET_ADDRESS, MessageFieldLocation.BODY, 32));
+		msg.addField(new MessageField("Target Address", MessageFieldType.TARGET_ADDRESS, MessageFieldLocation.BODY, 32));
 		msg.addField(new MessageField("Version", MessageFieldType.VERSION_INFO, MessageFieldLocation.HEADER, 8, 2));
 		msg.addField(new MessageField("Function", MessageFieldType.MESSAGE_TYPE, MessageFieldLocation.HEADER, 8, SLPMessage.SRVRQST));
 		msg.addField(new MessageField("Length", MessageFieldType.MESSAGE_LENGTH, MessageFieldLocation.HEADER, 24)); // no value yet
 		msg.addField(new MessageField("Control", MessageFieldType.CONTROL_FLAG, MessageFieldLocation.HEADER, 40, (byte) 0x20));
 		msg.addField(new MessageField("XID", MessageFieldType.SESSION_MGMT, MessageFieldLocation.HEADER, 16)); // no value yet
-		//msg.addField(new MessageField("Language Tag Length", MessageFieldType.LANGUAGE_TAG_LENGTH,MessageFieldLocation.HEADER, 16, 0)); 
+		msg.addField(new MessageField("Language Tag Length", MessageFieldType.LANGUAGE_TAG_LENGTH,MessageFieldLocation.HEADER, 16, 0)); 
 		msg.addField(new MessageField("Language Tag", MessageFieldType.LANGUAGE_TAG, MessageFieldLocation.HEADER, "v", (new Locale("ko", "").getLanguage()))); 
 
 		slp2.addMessage(msg);

@@ -28,6 +28,7 @@
  */
 package ch.ethz.iks.slp;
 
+import java.net.SocketTimeoutException;
 import java.util.List;
 import java.util.Locale;
 
@@ -91,10 +92,11 @@ public interface Locator {
 	 *         of the found services.
 	 * @throws ServiceLocationException
 	 *             in case of an exception in the underlying framework.
+	 * @throws SocketTimeoutException 
 	 * @throws InvalidSyntaxException 
 	 */
 	ServiceLocationEnumeration findServices(ServiceType type, List scopes,
-			String searchFilter) throws ServiceLocationException, IllegalArgumentException;
+			String searchFilter) throws ServiceLocationException, IllegalArgumentException, SocketTimeoutException;
 
 	/**
 	 * Find all services that match a ServiceURL.
