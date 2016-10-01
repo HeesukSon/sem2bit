@@ -163,7 +163,7 @@ class ServiceRequest extends RequestMessage {
 		long afterSeqComp = System.currentTimeMillis();
 		ExperimentStat.getInstance().setSeqComputeTimeTotal(ExperimentStat.getInstance().getSeqComputeTimeTotal()+(afterSeqComp-beforeSeqComp));
 		
-		boolean result = true;
+		boolean result = true; 
 		
 		ModificationCandidate[] rightAnswer = new ModificationCandidate[8];
 		rightAnswer[0] = new ModificationCandidate("DEFAULT", "[DEFAULT]");

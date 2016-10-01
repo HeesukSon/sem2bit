@@ -55,6 +55,7 @@ import java.util.Map;
 
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
+import heesuk.percom.sherlock.io.ExperimentStat;
 
 /**
  * the core class of the jSLP implementation.
@@ -635,23 +636,32 @@ public abstract class SLPCore {
 	 */
 	static ReplyMessage sendMessageTCP(final SLPMessage msg) throws ServiceLocationException, SocketTimeoutException {
 		//System.out.println("[SLPCore.sendMessageTCP()] msg to send = " + msg);
+		long before = System.currentTimeMillis();
 		try {
 			if (msg.xid == 0) {
 				msg.xid = nextXid();
 			}
+			
 			Socket socket = new Socket(msg.address, msg.port);
 			socket.setSoTimeout(CONFIG.getTCPTimeout());
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 			DataInputStream in = new DataInputStream(socket.getInputStream());
 			
+			
 			msg.writeTo(out);
 			try{
+				
 				final ReplyMessage reply = (ReplyMessage) SLPMessage.parse(msg.address, msg.port, in, true);
+				
+				long after = System.currentTimeMillis();
+				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
 				//System.out.println("[SLPCore.sendMessageTCP()] reply msg = " + reply+"\n");
 				
 				return reply;
 			}catch(SocketTimeoutException ste){
 				socket.close();
+				long after = System.currentTimeMillis();
+				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
 				throw new SocketTimeoutException();
 			}
 			

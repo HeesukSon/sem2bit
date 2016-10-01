@@ -51,26 +51,26 @@ public class ModificationController {
 				ExperimentStat.getInstance().increaseExpRoundCnt();
 				this.sendModifiedMessage();
 				after = System.currentTimeMillis();
-				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+				//ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
 			} catch (ServiceLocationException e) {
 				System.out.println("["+cnt+":FAIL] ServiceLocationException!!");
 				after = System.currentTimeMillis();
-				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+				//ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
 				continue;
 			} catch (SocketTimeoutException e) {
 				System.out.println("["+cnt+":FAIL] SocketTimeoutException!!");
 				after = System.currentTimeMillis();
-				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+				//ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
 				continue;
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 				after = System.currentTimeMillis();
-				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+				//ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
 				continue;
 			}
 			
 			after = System.currentTimeMillis();
-			ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+			//ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
 			break;
 		}
 		
