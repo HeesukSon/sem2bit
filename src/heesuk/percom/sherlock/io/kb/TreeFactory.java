@@ -24,7 +24,7 @@ public class TreeFactory {
 		return _instance;
 	}
 	
-	public ModificationCandidate[] getNextSequence(){
+	public synchronized ModificationCandidate[] getNextSequence(){
 		return this.seqPlanTree.getModSeq(0);
 	}
 	

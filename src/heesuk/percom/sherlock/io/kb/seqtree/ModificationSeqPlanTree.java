@@ -23,7 +23,7 @@ public class ModificationSeqPlanTree {
 		}
 	}
 
-	public ModificationCandidate[] getModSeq(int count) {
+	public synchronized ModificationCandidate[] getModSeq(int count) {
 		ArrayList<ModificationCandidate> candidates = new ArrayList<ModificationCandidate>();
 		for (int i = 0; i < this.candidates.length; i++) {
 			candidates.add(this.candidates[i]);
@@ -33,7 +33,7 @@ public class ModificationSeqPlanTree {
 		return getModSeq(count, this.root, candidates, new ArrayList<ModificationCandidate>());
 	}
 
-	public ModificationCandidate[] getModSeq(int count, SeqTreeNode node, ArrayList<ModificationCandidate> candidates,
+	public synchronized ModificationCandidate[] getModSeq(int count, SeqTreeNode node, ArrayList<ModificationCandidate> candidates,
 			ArrayList<ModificationCandidate> seq) {
 		
 		if (/* at the bound depth: base case */node.getDepth() == SDPKBUtil.getInstance().getModSeqBound() + 1) {

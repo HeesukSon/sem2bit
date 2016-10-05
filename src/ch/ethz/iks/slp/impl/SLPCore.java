@@ -359,7 +359,7 @@ public abstract class SLPCore {
 						packet = new DatagramPacket(bytes, bytes.length);
 						mtcSocket.receive(packet);
 						
-						if (!packet.getAddress().toString().equals("/192.168.0.12")) {
+						if (!packet.getAddress().toString().equals("/143.248.225.12")) {
 							System.err.println(packet.getAddress().toString()+" sent a request message!!");
 						} else {
 							final SLPMessage reply = handleMessage(
@@ -784,8 +784,8 @@ public abstract class SLPCore {
 			// loopback which can fail if no SA is running locally
 			msg.address = LOCALHOST;
 			try {
-
-					replyQueue.add(sendMessageTCP(msg));
+				replyQueue.add(sendMessageTCP(msg)); // TODO uncomment for normal experiment with TCP
+				//replyQueue.add(sendMessage(msg, false));
 
 			} catch (ServiceLocationException e) {
 				if (e.getErrorCode() != ServiceLocationException.NETWORK_ERROR) {

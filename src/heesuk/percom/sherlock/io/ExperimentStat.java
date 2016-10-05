@@ -13,6 +13,7 @@ public class ExperimentStat {
 	private long msgTransTimeAvg; //
 	private long msgTransTimeTotal; // computed, printed
 	private long totalExpTime; // computed, printed
+	
 
 	private ExperimentStat() {
 		this.expRoundCnt = 0;

@@ -15,8 +15,27 @@ import heesuk.percom.sherlock.io.msg.ModificationCandidate;
 
 public class ModificationController {
 	private static ModificationController _instance;
+	private Locator locator;
+	private ArrayList<String> scopes;
+	private ArrayList<String> attrs;
 
 	private ModificationController() {
+		
+		// get Locator instance
+				try {
+					locator = ServiceLocationManager.getLocator(new Locale("en"));
+					
+					// find all services of type "test" that have attribute "cool=yes"
+					scopes = new ArrayList<String>();
+					attrs = new ArrayList<String>();
+					scopes.add("default");
+					attrs.add("max-connections");
+				} catch (ServiceLocationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				
 	}
 
 	public static ModificationController getInstance() {
@@ -46,12 +65,22 @@ public class ModificationController {
 		int cnt = 0;
 		while(cnt++ < bound){
 			long before = System.currentTimeMillis();
-			long after;
+			//long after;
+			
+			//try {
+				//ExperimentStat.getInstance().increaseExpRoundCnt();
+				
 			try {
-				ExperimentStat.getInstance().increaseExpRoundCnt();
-				this.sendModifiedMessage();
+				Thread.sleep(2);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				Thread interactionT = new Thread(new InteractionRunnable(cnt, before));
+				interactionT.start();
+				/*sendModifiedMessage();
 				after = System.currentTimeMillis();
-				//ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
 			} catch (ServiceLocationException e) {
 				System.out.println("["+cnt+":FAIL] ServiceLocationException!!");
 				after = System.currentTimeMillis();
@@ -70,27 +99,21 @@ public class ModificationController {
 			}
 			
 			after = System.currentTimeMillis();
-			//ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+			ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
 			break;
+			*/
 		}
-		
+		/*
 		if(cnt == bound){
 			System.out.println("["+cnt+":FAIL] No right sequence is found before the iteration bound..");
 		}else{
 			System.out.println("["+cnt+":SUCCESS] A successful interaction is made!!!");
-		}	
+		}
+		*/
+			
 	}
 
 	public void sendModifiedMessage() throws ServiceLocationException, SocketTimeoutException, IllegalArgumentException{
-		// get Locator instance
-		Locator locator = ServiceLocationManager.getLocator(new Locale("en"));
-
-		// find all services of type "test" that have attribute "cool=yes"
-		ArrayList<String> scopes = new ArrayList<String>();
-		ArrayList<String> attrs = new ArrayList<String>();
-		scopes.add("default");
-		attrs.add("max-connections");
-
 		// find service
 		ServiceLocationEnumeration sle = locator.findServices(new ServiceType("service:test"), scopes, "(cool=yes)");
 	}
@@ -104,5 +127,41 @@ public class ModificationController {
 			}
 			System.out.println();
 		}
+	}
+	
+	public class InteractionRunnable implements Runnable{
+		long before;
+		int index;
+		
+		public InteractionRunnable(int index, long before){
+			this.index = index;
+			this.before = before;
+		}
+		
+		@Override
+		public void run() {
+			try {
+				sendModifiedMessage();
+				long after = System.currentTimeMillis();
+				System.out.println("["+index+":SUCCESS] A reply message is returned!!");
+				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+			} catch (SocketTimeoutException e) {
+				System.out.println("["+index+":FAIL] SocketTimeoutException!!");
+				long after = System.currentTimeMillis();
+				try {
+					this.finalize();
+				} catch (Throwable e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				//ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+				//e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (ServiceLocationException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 }
