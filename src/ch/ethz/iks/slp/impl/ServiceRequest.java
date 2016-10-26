@@ -38,13 +38,13 @@ import java.util.Locale;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
 import ch.ethz.iks.slp.impl.filter.Filter;
-import heesuk.percom.sherlock.io.ExperimentStat;
-import heesuk.percom.sherlock.io.kb.TreeFactory;
-import heesuk.percom.sherlock.io.kb.sdp.MessageField;
-import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
-import heesuk.percom.sherlock.io.kb.sdp.SDPName;
-import heesuk.percom.sherlock.io.msg.ModificationCandidate;
-import heesuk.percom.sherlock.io.msg.ProbeMessageComposer;
+import heesuk.percom.sem2bit.ExperimentStat;
+import heesuk.percom.sem2bit.kb.TreeFactory;
+import heesuk.percom.sem2bit.kb.sdp.MessageField;
+import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
+import heesuk.percom.sem2bit.kb.sdp.enums.SDPName;
+import heesuk.percom.sem2bit.msg.ModificationCandidate;
+import heesuk.percom.sem2bit.msg.ProbeMessageComposer;
 
 /**
  * ServiceRequest message is used to find services in the network.

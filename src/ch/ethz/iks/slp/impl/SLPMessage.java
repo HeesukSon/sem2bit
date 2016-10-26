@@ -41,7 +41,7 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 import ch.ethz.iks.slp.ServiceLocationException;
-import heesuk.percom.sherlock.io.msg.MessageModificationSpec;
+import heesuk.percom.sem2bit.msg.MessageModificationSpec;
 
 /**
  * base class for all messages that the SLP framework uses.

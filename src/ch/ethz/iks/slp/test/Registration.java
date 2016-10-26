@@ -4,8 +4,8 @@ import ch.ethz.iks.slp.Advertiser;
 import ch.ethz.iks.slp.ServiceLocationManager;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceURL;
-import heesuk.percom.sherlock.io.ModificationController;
-import heesuk.percom.sherlock.io.kb.sdp.SDPKBUtil;
+import heesuk.percom.sem2bit.ModificationController;
+import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
 
 import java.util.Locale;
 import org.osgi.framework.InvalidSyntaxException;

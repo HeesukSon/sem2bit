@@ -43,6 +43,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
+import heesuk.percom.sem2bit.Configurations;
+
 /**
  * SLPConfiguration object holds all configurable properties.
  * 
@@ -519,6 +521,7 @@ class SLPConfiguration {
 
 	public int getTCPTimeout() {
 		// TODO wire this to the properties if necessary
-		return 100; // 5sec
+		//return 100;
+		return Configurations.tcp_timeout;
 	}
 }

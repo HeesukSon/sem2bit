@@ -55,7 +55,8 @@ import java.util.Map;
 
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
-import heesuk.percom.sherlock.io.ExperimentStat;
+import heesuk.percom.sem2bit.Configurations;
+import heesuk.percom.sem2bit.ExperimentStat;
 
 /**
  * the core class of the jSLP implementation.
@@ -359,7 +360,7 @@ public abstract class SLPCore {
 						packet = new DatagramPacket(bytes, bytes.length);
 						mtcSocket.receive(packet);
 						
-						if (!packet.getAddress().toString().equals("/143.248.225.12")) {
+						if (!packet.getAddress().toString().equals(Configurations.local_address)) {
 							System.err.println(packet.getAddress().toString()+" sent a request message!!");
 						} else {
 							final SLPMessage reply = handleMessage(
