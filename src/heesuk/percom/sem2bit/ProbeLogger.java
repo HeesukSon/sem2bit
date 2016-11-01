@@ -14,12 +14,6 @@ public class ProbeLogger {
                 log.append(logStr);
             } else if (Configurations.log_mode.equals(tag)) {
                 log.append(logStr);
-            } else {
-                try {
-                    throw new ProbeLoggerException();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
         }
     }
