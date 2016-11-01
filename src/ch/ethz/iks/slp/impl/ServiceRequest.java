@@ -38,7 +38,9 @@ import java.util.Locale;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
 import ch.ethz.iks.slp.impl.filter.Filter;
+import heesuk.percom.sem2bit.Configurations;
 import heesuk.percom.sem2bit.ExperimentStat;
+import heesuk.percom.sem2bit.ProbeLogger;
 import heesuk.percom.sem2bit.kb.TreeFactory;
 import heesuk.percom.sem2bit.kb.sdp.MessageField;
 import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
@@ -157,40 +159,46 @@ class ServiceRequest extends RequestMessage {
 	 */
 	protected void writeTo(final DataOutputStream out) throws IOException {
 		//super.writeHeader(out, getSize());
-		//heesuk.percom.sherlock.io.msg.ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList(), out, getSize(), xid);
 		long beforeSeqComp = System.currentTimeMillis();
 		ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
 		long afterSeqComp = System.currentTimeMillis();
 		ExperimentStat.getInstance().setSeqComputeTimeTotal(ExperimentStat.getInstance().getSeqComputeTimeTotal()+(afterSeqComp-beforeSeqComp));
-		
-		boolean result = true; 
-		
-		ModificationCandidate[] rightAnswer = new ModificationCandidate[8];
-		rightAnswer[0] = new ModificationCandidate("DEFAULT", "[DEFAULT]");
-		rightAnswer[1] = new ModificationCandidate("Language Code", "[D]");
-		rightAnswer[2] = new ModificationCandidate("Control", "[L]");
-		rightAnswer[3] = new ModificationCandidate("Control", "[V]");
-		rightAnswer[4] = new ModificationCandidate("Length", "[L]");
-		rightAnswer[5] = new ModificationCandidate("Char Encoding", "[D]");
-		rightAnswer[6] = new ModificationCandidate("LANGUAGE_TAG_LENGTH", "[A]");
-		rightAnswer[7] = new ModificationCandidate("LANGUAGE_TAG", "[A]");
-		
-		for(int i=0; i<seq.length; i++){
-			System.out.print(seq[i].toStringWithoutWeight()+"  ");
-			if(!seq[i].sameWith(rightAnswer[i]))
-				result = false;				
+
+		if(Configurations.exp_mode.equals("mockup")){
+			boolean result = true;
+
+			ModificationCandidate[] rightAnswer = new ModificationCandidate[8];
+			rightAnswer[0] = new ModificationCandidate("DEFAULT", "[DEFAULT]");
+			rightAnswer[1] = new ModificationCandidate("Language Code", "[D]");
+			rightAnswer[2] = new ModificationCandidate("Control", "[L]");
+			rightAnswer[3] = new ModificationCandidate("Control", "[V]");
+			rightAnswer[4] = new ModificationCandidate("Length", "[L]");
+			rightAnswer[5] = new ModificationCandidate("Char Encoding", "[D]");
+			rightAnswer[6] = new ModificationCandidate("LANGUAGE_TAG_LENGTH", "[A]");
+			rightAnswer[7] = new ModificationCandidate("LANGUAGE_TAG", "[A]");
+
+			StringBuilder seqStr = new StringBuilder();
+			seqStr.append("Computed next sequence = ");
+
+			for(int i=0; i<seq.length; i++){
+				seqStr.append(seq[i].toStringWithoutWeight()+"  ");
+				if(!seq[i].sameWith(rightAnswer[i]))
+					result = false;
+			}
+
+			seqStr.append("\n");
+			ProbeLogger.appendLogln("probe", seqStr.toString());
+
+			if(result == true){
+				ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList(), out, getSize(), xid);
+			}else{
+				ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv1).getMesage().getFieldList(), out, getSize(), xid);
+			}
+		}else {
+			ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldList(), seq);
+			ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
 		}
 
-		System.out.println(" ("+result+")");
-		
-		if(result == true){
-			ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList(), out, getSize(), xid);
-		}else{
-			ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv1).getMesage().getFieldList(), out, getSize(), xid);
-		}
-		
-		//ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldList(), seq);
-		//ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
 		out.writeUTF(listToString(prevRespList, ","));
 		out.writeUTF(serviceType.toString());
 		out.writeUTF(listToString(scopeList, ","));

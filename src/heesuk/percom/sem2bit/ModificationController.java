@@ -64,15 +64,21 @@ public class ModificationController {
 			
 			String line;
 			while((line = bf.readLine()) != null){
-				String[] keyValue = line.split("=");
-				if(keyValue[0].trim().equals("local_address")){
-					Configurations.local_address = keyValue[1].trim();
-				}else if(keyValue[0].trim().equals("tcp_timeout")){
-					Configurations.tcp_timeout = Integer.parseInt(keyValue[1].trim());
-				}else if(keyValue[0].trim().equals("iteration_bound")){
-					Configurations.iteration_bound = Integer.parseInt(keyValue[1].trim());
-				}else{
-					throw new ConfigNotDefinedException();
+				if(!line.startsWith("//")) {
+					String[] keyValue = line.split("=");
+					if (keyValue[0].trim().equals("local_address")) {
+						Configurations.local_address = keyValue[1].trim();
+					} else if (keyValue[0].trim().equals("tcp_timeout")) {
+						Configurations.tcp_timeout = Integer.parseInt(keyValue[1].trim());
+					} else if (keyValue[0].trim().equals("iteration_bound")) {
+						Configurations.iteration_bound = Integer.parseInt(keyValue[1].trim());
+					} else if (keyValue[0].trim().equals("exp_mode")) {
+						Configurations.exp_mode = keyValue[1].trim();
+					} else if (keyValue[0].trim().equals("log_mode")) {
+						Configurations.log_mode = keyValue[1].trim();
+					} else {
+						throw new ConfigNotDefinedException();
+					}
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -95,8 +101,13 @@ public class ModificationController {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
+			if(ProbingStatus.success == false){
 				Thread interactionT = new Thread(new InteractionRunnable(cnt, before));
 				interactionT.start();
+			}else {
+				break;
+			}
 		}	
 	}
 
@@ -107,11 +118,12 @@ public class ModificationController {
 	public void startSeqVerification(int bound) {
 		for (int i = 0; i < bound; i++) {
 			ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
-			System.out.print("[returned sequence:" + i + "] ");
+			ProbeLogger.appendLog("probe", "[returned sequence:" + i + "] ");
 			for (int j = 0; j < seq.length; j++) {
-				System.out.print(seq[j].toStringWithoutWeight() + "  ");
+
+				ProbeLogger.appendLog("probe", seq[j].toStringWithoutWeight() + "  ");
 			}
-			System.out.println();
+			ProbeLogger.appendLog("probe", "\n");
 		}
 	}
 	
@@ -139,10 +151,10 @@ public class ModificationController {
 			try {
 				sendModifiedMessage();
 				long after = System.currentTimeMillis();
-				System.out.println("["+index+":SUCCESS] A reply message is returned!!");
+				ProbeLogger.appendLogln("probe", "["+index+":SUCCESS] A reply message is returned!!");
 				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
 			} catch (SocketTimeoutException e) {
-				System.out.println("["+index+":FAIL] SocketTimeoutException!!");
+				ProbeLogger.appendLogln("probe", "["+index+":FAIL] SocketTimeoutException!!");
 				long after = System.currentTimeMillis();
 				try {
 					this.finalize();

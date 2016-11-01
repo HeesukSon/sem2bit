@@ -57,6 +57,8 @@ import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
 import heesuk.percom.sem2bit.Configurations;
 import heesuk.percom.sem2bit.ExperimentStat;
+import heesuk.percom.sem2bit.ProbeLogger;
+import heesuk.percom.sem2bit.ProbingStatus;
 
 /**
  * the core class of the jSLP implementation.
@@ -225,7 +227,7 @@ public abstract class SLPCore {
 		try {
 			config = propFile.exists() ? new SLPConfiguration(propFile) : new SLPConfiguration();
 		} catch (IOException e1) {
-			System.out.println("Could not parse the property file" + propFile.toString());
+			ProbeLogger.appendLogln("probe", "Could not parse the property file" + propFile.toString());
 			e1.printStackTrace();
 			config = new SLPConfiguration();
 		}
@@ -244,7 +246,7 @@ public abstract class SLPCore {
 					IPs[i] = addresses[i].getHostAddress();
 				}
 			} catch (UnknownHostException e) {
-				System.err.println("Reverse lookup of host name failed. Running service discovery on localloop.");
+				ProbeLogger.appendErrln("probe", "Reverse lookup of host name failed. Running service discovery on localloop.");
 				try {
 					addresses = new InetAddress[] { InetAddress.getLocalHost() };
 				} catch (UnknownHostException e1) {
@@ -275,8 +277,8 @@ public abstract class SLPCore {
 		isInitialized = true;
 		platform = new StandalonePlatformAbstraction();
 
-		System.out.println("jSLP is running on the following interfaces: " + java.util.Arrays.asList(myIPs));
-		System.out.println("jSLP is using port: " + SLP_PORT);
+		ProbeLogger.appendLogln("probe", "jSLP is running on the following interfaces: " + java.util.Arrays.asList(myIPs));
+		ProbeLogger.appendLogln("probe", "jSLP is using port: " + SLP_PORT);
 
 		String[] daAddresses = CONFIG.getDaAddresses();
 		if (daAddresses == null) {
@@ -295,14 +297,14 @@ public abstract class SLPCore {
 						DAAdvertisement daa = (DAAdvertisement) sendMessage(req, true);
 						String[] scopes = (String[]) daa.scopeList.toArray(new String[daa.scopeList.size()]);
 						for (int j = 0; j < scopes.length; j++) {
-							System.out.println("jSLP is adding DA, " + daAddresses[i] + " for the Scope, " + scopes[j]);
+							ProbeLogger.appendLogln("probe", "jSLP is adding DA, " + daAddresses[i] + " for the Scope, " + scopes[j]);
 							SLPUtils.addValue(dAs, scopes[i].toLowerCase(), daAddresses[i]);
 						}
 					} catch (ServiceLocationException e) {
-						System.err.println("Error communitcating with " + daAddresses[i]);
+						ProbeLogger.appendErrln("probe", "Error communitcating with " + daAddresses[i]);
 						e.printStackTrace();
 					} catch (UnknownHostException e) {
-						System.err.println("Unknown net.slp.DAAddresses address: " + daAddresses[i]);
+						ProbeLogger.appendErrln("probe", "Unknown net.slp.DAAddresses address: " + daAddresses[i]);
 						e.printStackTrace();
 					}
 				}
@@ -344,10 +346,10 @@ public abstract class SLPCore {
 			}
 			mtcSocket.joinGroup(MCAST_ADDRESS);
 		} catch (BindException be) {
-			System.err.println(be.getMessage());
+			ProbeLogger.appendErrln("probe", be.getMessage());
 			throw new RuntimeException("You have to be root to open port " + SLP_PORT);
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			ProbeLogger.appendErrln("probe", e.getMessage());
 		}
 
 		// setup and start the multicast thread
@@ -361,7 +363,7 @@ public abstract class SLPCore {
 						mtcSocket.receive(packet);
 						
 						if (!packet.getAddress().toString().equals(Configurations.local_address)) {
-							System.err.println(packet.getAddress().toString()+" sent a request message!!");
+							ProbeLogger.appendErrln("probe", packet.getAddress().toString()+" sent a request message!!");
 						} else {
 							final SLPMessage reply = handleMessage(
 									SLPMessage.parse(packet.getAddress(), packet.getPort(),
@@ -371,12 +373,11 @@ public abstract class SLPCore {
 								DatagramPacket datagramPacket = new DatagramPacket(repbytes, repbytes.length,
 										reply.address, reply.port);
 								mtcSocket.send(datagramPacket);
-								System.out
-										.println("SEND (" + reply.address + ":" + reply.port + ") " + reply.toString());
+								ProbeLogger.appendLogln("probe", "SEND (" + reply.address + ":" + reply.port + ") " + reply.toString());
 							}
 						}
 					} catch (Exception e) {
-						System.err.println("Exception in Multicast Receiver Thread");
+						ProbeLogger.appendErrln("probe", "Exception in Multicast Receiver Thread");
 					}
 				}
 			}
@@ -404,7 +405,7 @@ public abstract class SLPCore {
 		try {
 			return InetAddress.getByName(myIPs[0]);
 		} catch (UnknownHostException e) {
-			System.err.println("Unknown net.slp.interfaces address: " + myIPs[0]);
+			ProbeLogger.appendErrln("probe", "Unknown net.slp.interfaces address: " + myIPs[0]);
 			return null;
 		}
 	}
@@ -434,13 +435,13 @@ public abstract class SLPCore {
 			return null;
 		}
 
-		System.out.println("handleMessage() - RECEIVED (" + message.address + ":" + message.port + ") " + message);
+		ProbeLogger.appendLogln("probe", "handleMessage() - RECEIVED (" + message.address + ":" + message.port + ") " + message);
 
 		switch (message.funcID) {
 		case SLPMessage.DAADVERT:
 			// drop message, if noDADiscovery is set
 			if (noDiscovery) {
-				System.err.println("DROPPED (" + message.address + ":" + message.port + ") " + message.toString()
+				ProbeLogger.appendErrln("probe", "DROPPED (" + message.address + ":" + message.port + ") " + message.toString()
 						+ "(reason: noDADiscovery is set");
 				return null;
 			}
@@ -448,7 +449,7 @@ public abstract class SLPCore {
 			DAAdvertisement advert = (DAAdvertisement) message;
 
 			if (advert.errorCode != 0) {
-				System.err.println("DROPPED DAADvertisement (" + advert.address + ":" + advert.port + ") "
+				ProbeLogger.appendErrln("probe", "DROPPED DAADvertisement (" + advert.address + ":" + advert.port + ") "
 						+ advert.toString() + "(reason: " + advert.errorCode + " != 0");
 				return null;
 			}
@@ -495,7 +496,7 @@ public abstract class SLPCore {
 				}
 
 			}
-			System.out.println("NEW DA LIST: " + dAs);
+			ProbeLogger.appendLogln("probe", "NEW DA LIST: " + dAs);
 
 			return null;
 
@@ -513,7 +514,7 @@ public abstract class SLPCore {
 					}
 					return null;
 				} else {
-					System.out.println("SRVTYPEREPLY recieved (" + message.address + ":" + message.port + ") "
+					ProbeLogger.appendLogln("probe", "SRVTYPEREPLY recieved (" + message.address + ":" + message.port + ") "
 							+ message.toString() + " but not replyListeners present anymore");
 				}
 			}
@@ -525,11 +526,11 @@ public abstract class SLPCore {
 		case SLPMessage.SRVTYPERQST:
 			// silently drop messages where this peer is in the previous
 			// responder list
-			System.out.println("[SLPMessage.SRVTYPERQST] handleMessage() - RECEIVED (" + message.address + ":" + message.port + ") " + message);
+			ProbeLogger.appendLogln("probe", "[SLPMessage.SRVTYPERQST] handleMessage() - RECEIVED (" + message.address + ":" + message.port + ") " + message);
 			
 			for (int i = 0; i < SLPCore.myIPs.length; i++) {
 				if (((RequestMessage) message).prevRespList.contains(SLPCore.myIPs[i])) {
-					System.err.println("DROPPED (" + message.address + ":" + message.port + ") " + message.toString()
+					ProbeLogger.appendErrln("probe", "DROPPED (" + message.address + ":" + message.port + ") " + message.toString()
 							+ "(udp multicast)");
 					return null;
 				}
@@ -539,10 +540,10 @@ public abstract class SLPCore {
 			// if we have a daemon instance, delegate the
 			// message to the daemon.
 			if (daemon != null) {
-				System.out.println("daemon != null");
+				ProbeLogger.appendLogln("probe", "daemon != null");
 				return daemon.handleMessage(message);
 			} else {
-				System.out.println("SRVTYPERQST recieved (" + message.address + ":" + message.port + ") "
+				ProbeLogger.appendLogln("probe", "SRVTYPERQST recieved (" + message.address + ":" + message.port + ") "
 						+ message.toString() + " but no SLPDaemon to handle the message present");
 				return null;
 			}
@@ -552,7 +553,7 @@ public abstract class SLPCore {
 			if (daemon != null) {
 				return daemon.handleMessage(message);
 			} else {
-				System.out.println("A message recieved (" + message.address + ":" + message.port + ") "
+				ProbeLogger.appendLogln("probe", "A message recieved (" + message.address + ":" + message.port + ") "
 						+ message.toString() + " but no SLPDaemon to handle the message present");
 				return null;
 			}
@@ -601,7 +602,7 @@ public abstract class SLPCore {
 				sreq.multicast = true;
 				byte[] bytes = sreq.getBytes();
 				DatagramPacket d = new DatagramPacket(bytes, bytes.length, MCAST_ADDRESS, SLP_PORT);
-				System.out.println("SENT " + sreq + "(udp multicast)");
+				ProbeLogger.appendLogln("probe", "SENT " + sreq + "(udp multicast)");
 				setupReceiverThread(socket, CONFIG.getWaitTime(), sreq);
 				try {
 					socket.send(d);
@@ -611,16 +612,16 @@ public abstract class SLPCore {
 					final String faulty = myIPs[i];
 					remaining.remove(faulty);
 					myIPs = (String[]) remaining.toArray(new String[remaining.size()]);
-					System.out.println("Blacklisting IP " + faulty);
+					ProbeLogger.appendLogln("probe", "Blacklisting IP " + faulty);
 				}
 			}
 		} catch (IllegalArgumentException ise) {
 			ise.printStackTrace();
 		} catch (UnknownHostException uhe) {
-			System.err.println("Unknown net.slp.interfaces address: " + myIPs[i]);
+			ProbeLogger.appendErrln("probe", "Unknown net.slp.interfaces address: " + myIPs[i]);
 			throw new ServiceLocationException(ServiceLocationException.NETWORK_ERROR, uhe.getMessage());
 		} catch (IOException e) {
-			System.err.println("Error connecting to: " + myIPs[i]);
+			ProbeLogger.appendErrln("probe", "Error connecting to: " + myIPs[i]);
 			throw new ServiceLocationException(ServiceLocationException.NETWORK_ERROR, e.getMessage());
 		}
 	}
@@ -636,7 +637,6 @@ public abstract class SLPCore {
 	 * @throws IOException, SocketTimeoutException 
 	 */
 	static ReplyMessage sendMessageTCP(final SLPMessage msg) throws ServiceLocationException, SocketTimeoutException {
-		//System.out.println("[SLPCore.sendMessageTCP()] msg to send = " + msg);
 		long before = System.currentTimeMillis();
 		try {
 			if (msg.xid == 0) {
@@ -647,20 +647,20 @@ public abstract class SLPCore {
 			socket.setSoTimeout(CONFIG.getTCPTimeout());
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 			DataInputStream in = new DataInputStream(socket.getInputStream());
-			
-			
+
 			msg.writeTo(out);
 			try{
-				
 				final ReplyMessage reply = (ReplyMessage) SLPMessage.parse(msg.address, msg.port, in, true);
 				
 				long after = System.currentTimeMillis();
 				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
-				//System.out.println("[SLPCore.sendMessageTCP()] reply msg = " + reply+"\n");
-				
+				ProbeLogger.appendLogln("probe", "[SLPCore.sendMessageTCP()] reply msg = " + reply+"\n");
+				ProbingStatus.success = true;
+
 				return reply;
 			}catch(SocketTimeoutException ste){
 				socket.close();
+
 				long after = System.currentTimeMillis();
 				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
 				throw new SocketTimeoutException();
@@ -713,7 +713,7 @@ public abstract class SLPCore {
 
 			dsocket.send(packet);
 
-			System.out.println("SENT (" + msg.address + ":" + msg.port + ") " + msg + " (via udp port "
+			ProbeLogger.appendLogln("probe", "SENT (" + msg.address + ":" + msg.port + ") " + msg + " (via udp port "
 					+ dsocket.getLocalPort() + ")");
 
 			// if no reply is expected, return
@@ -737,8 +737,8 @@ public abstract class SLPCore {
 				e.printStackTrace();
 			}
 		} catch (IOException ioe) {
-			System.err.println("Exception during sending of " + msg);
-			System.err.println("to " + msg.address + ":" + msg.port);
+			ProbeLogger.appendErrln("probe", "Exception during sending of " + msg);
+			ProbeLogger.appendErrln("probe", "to " + msg.address + ":" + msg.port);
 			ioe.printStackTrace();
 			throw new ServiceLocationException(ServiceLocationException.NETWORK_ERROR, ioe.getMessage());
 		} catch (Throwable t) {
@@ -759,6 +759,7 @@ public abstract class SLPCore {
 	 * @throws SocketTimeoutException 
 	 */
 	static List multicastConvergence(final RequestMessage msg) throws ServiceLocationException, SocketTimeoutException {
+		// try loop is commented to throw the Exceptions to the callers
 	//	try {
 
 			long start = System.currentTimeMillis();
@@ -798,7 +799,7 @@ public abstract class SLPCore {
 			ReplyMessage reply;
 
 			/**
-			 * @author heesuk
+			 * @author heesuk (heesuk.chad.son@gmail.com)
 			 * 	myIPs[1] has IPv6 address as the value. So It is prevented for percom 17 experiment
 			 */
 			/*
@@ -844,7 +845,7 @@ public abstract class SLPCore {
 						break;
 					}
 
-					System.out.println("SENT " + msg);
+					ProbeLogger.appendLogln("slp", "SENT " + msg);
 
 					/**
 					 * @fix: bug #1518729. Changed processing of the replyQueue.
@@ -900,7 +901,7 @@ public abstract class SLPCore {
 				replyListeners.remove(queryXID);
 			}
 
-			System.out.println("convergence for xid=" + msg.xid + " finished after "
+			ProbeLogger.appendLogln("probe", "convergence for xid=" + msg.xid + " finished after "
 					+ (System.currentTimeMillis() - start) + " ms, result: " + responses);
 			return responses;
 			/*
@@ -947,14 +948,14 @@ public abstract class SLPCore {
 						int soTimeout = (int) (l < 0 ? 1 : l);
 						socket.setSoTimeout(soTimeout);
 					} catch (SocketException e1) {
-						System.err.println("Exception in mcast receiver thread");
+						ProbeLogger.appendErrln("probe", "Exception in mcast receiver thread");
 						return;
 					}
 
 					packet = new DatagramPacket(bytes, bytes.length);
 					try {
 						// try to receive a datagram packet
-						System.out.println("SLPCore.setupReceiverThread(): before socket.receive(packet)");
+						ProbeLogger.appendLogln("probe", "SLPCore.setupReceiverThread(): before socket.receive(packet)");
 						socket.receive(packet);
 					} catch (InterruptedIOException iioe) {
 						continue;
@@ -965,7 +966,7 @@ public abstract class SLPCore {
 					final DataInputStream in = new DataInputStream(new ByteArrayInputStream(packet.getData()));
 					try {
 						// and delegate it to the SLPCore
-						System.out.println("setupReceiverThread()");
+						ProbeLogger.appendLogln("probe", "setupReceiverThread()");
 						try {
 							handleMessage(SLPMessage.parse(packet.getAddress(), packet.getPort(), in, false));
 						} catch (SocketTimeoutException e) {

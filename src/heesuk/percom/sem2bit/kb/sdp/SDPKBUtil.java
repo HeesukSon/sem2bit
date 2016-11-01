@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import ch.ethz.iks.slp.impl.SLPMessage;
+import heesuk.percom.sem2bit.ProbeLogger;
 import heesuk.percom.sem2bit.kb.sdp.enums.Functionality;
 import heesuk.percom.sem2bit.kb.sdp.enums.MessageFieldLocation;
 import heesuk.percom.sem2bit.kb.sdp.enums.MessageFieldType;
@@ -49,14 +50,14 @@ public class SDPKBUtil {
 
 	public void buildKB() {
 		// add SDP message structure information
-		System.out.println("start adding SDP knowledge base...");
+		ProbeLogger.appendLogln("tree","start adding SDP knowledge base...");
 		addSLPv1();
 		addSLPv2();
 		addUPnPv1();
 		addUPnPv2();
 		addDNSSD();
 		addCoAP();
-		System.out.println("SDP knowledge base addition is done!");
+		ProbeLogger.appendLogln("tree","SDP knowledge base addition is done!");
 
 		// add field existence probability
 		computeStat();
@@ -99,12 +100,12 @@ public class SDPKBUtil {
 	}
 
 	public void printStat() {
-		System.out.println("\n##### Field Existence Probability #####");
+		ProbeLogger.appendLogln("tree","\n##### Field Existence Probability #####");
 		for (String key : this.field_ex_prob.keySet()) {
 			System.out.printf("%s\t:\t%f\n", key, this.field_ex_prob.get(key));
 		}
 		
-		System.out.println("\n##### Update Pattern Update Probability #####");
+		ProbeLogger.appendLogln("tree","\n##### Update Pattern Update Probability #####");
 		for(String p : this.update_pattern_prob.keySet()){
 			System.out.printf("%s\t:\t%f\n", p.toString(), this.update_pattern_prob.get(p));
 		}
@@ -125,7 +126,7 @@ public class SDPKBUtil {
 		for (String type : this.field_ex_prob.keySet()) {
 			this.field_ex_prob.replace(type, this.field_ex_prob.get(type) / sdp_num);
 		}
-		System.out.println("Field existance probability computation is done.");
+		ProbeLogger.appendLogln("tree","Field existance probability computation is done.");
 	}
 	
 	public SDPName getLocalSDPName(){

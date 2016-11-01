@@ -3,6 +3,7 @@ package heesuk.percom.sem2bit.kb.seqtree;
 import java.util.ArrayList;
 import java.util.List;
 
+import heesuk.percom.sem2bit.ProbeLogger;
 import heesuk.percom.sem2bit.msg.ModificationCandidate;
 
 public class SeqTreeNode {
@@ -103,7 +104,7 @@ public class SeqTreeNode {
 	
 	// Assumption: if there's a room, candidates always give a child to add
 	private boolean hasMoreSequence(SeqTreeNode node, ArrayList<ModificationCandidate> candidates) {
-		//System.out.println(node.getItem().toStringWithoutWeight()+".getChildren().size() = "+node.getChildren().size()+", candidates.size()="+candidates.size());
+		ProbeLogger.appendLogln("tree", node.getItem().toStringWithoutWeight() + ".getChildren().size() = " + node.getChildren().size() + ", candidates.size()=" + candidates.size());
 		if (/* node has room for a child addition */ node.getChildren().size() < candidates.size()) {
 			return true;
 		} else/* node cannot add more children */ {

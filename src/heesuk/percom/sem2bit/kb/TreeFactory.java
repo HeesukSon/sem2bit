@@ -72,7 +72,6 @@ public class TreeFactory {
 			if(!seq[i].sameWith(rightAnswer[i]))
 				result = false;				
 		}
-		System.out.println(" ("+result+")");
 		
 		return result;
 	} 

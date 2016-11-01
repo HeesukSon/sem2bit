@@ -3,6 +3,7 @@ package heesuk.percom.sem2bit.kb.probtree;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import heesuk.percom.sem2bit.ProbeLogger;
 import heesuk.percom.sem2bit.kb.sdp.MessageFieldUpdate;
 import heesuk.percom.sem2bit.kb.sdp.SDP;
 import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
@@ -25,10 +26,10 @@ public class ModificationProbTree {
 	public ModificationCandidate[] getSortedCandidates(){
 		ArrayList<ModificationCandidate> list = new ArrayList<ModificationCandidate>();
 		computeCandidateProb(this.root, 1f, list);
-		System.out.println("Computing each modification candidate's probability is done.");
+		ProbeLogger.appendLogln("tree","Computing each modification candidate's probability is done.");
 		sortCandidates(list);
-		System.out.println("Sorting the modification candidate list is done.");
-		System.out.println("Modification candidate list size : "+list.size());
+		ProbeLogger.appendLogln("tree","Sorting the modification candidate list is done.");
+		ProbeLogger.appendLogln("tree","Modification candidate list size : "+list.size());
 		
 		ModificationCandidate[] arr = new ModificationCandidate[list.size()];
 		return list.toArray(arr);
@@ -100,7 +101,7 @@ public class ModificationProbTree {
 		this.computeWeight_3_4();
 		this.computeWeight_4_5();
 		
-		System.out.println("Weight value computation for modification probability tree is done.");
+		ProbeLogger.appendLogln("tree","Weight value computation for modification probability tree is done.");
 	}
 	
 	private void computeWeight_1_2(){
@@ -219,7 +220,7 @@ public class ModificationProbTree {
 	}
 
 	public void printTree() {
-		System.out.println("\n################# PRINT MODIFICATION PROBABILITY TREE #################");
+		ProbeLogger.appendLogln("tree","\n################# PRINT MODIFICATION PROBABILITY TREE #################");
 		printTree("",this.root);
 	}
 
@@ -231,8 +232,8 @@ public class ModificationProbTree {
 			}
 		} else if (node.getOutEdges().length==0) {
 			// leaf node
-			//System.out.println(prev+node.getLabel());
-			System.out.println(prev+" (END)");
+			//ProbeLogger.appendLogln("tree",prev+node.getLabel());
+			ProbeLogger.appendLogln("tree",prev+" (END)");
 		} else {
 			// intermediate nodes
 			for (ProbTreeEdge out : node.getOutEdges()) {

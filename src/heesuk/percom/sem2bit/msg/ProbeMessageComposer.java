@@ -4,6 +4,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import heesuk.percom.sem2bit.ProbeLogger;
 import heesuk.percom.sem2bit.kb.sdp.MessageField;
 import heesuk.percom.sem2bit.kb.sdp.enums.MessageFieldLocation;
 import heesuk.percom.sem2bit.kb.sdp.enums.MessageFieldType;
@@ -50,7 +51,7 @@ public class ProbeMessageComposer {
 			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_VOCA)){
 				
 			}else{
-				System.err.println("A non-defined update pattern is detected in ProbeMessageComposer!!");
+				ProbeLogger.appendErrln("probe", "A non-defined update pattern is detected in ProbeMessageComposer!!");
 			}
 		}
 		

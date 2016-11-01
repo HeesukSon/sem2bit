@@ -2,17 +2,18 @@ package heesuk.percom.sem2bit;
 
 public class ExperimentStat {
 	private static ExperimentStat _instance;
-	private long expRoundCnt; // computed, printed
-	private long kbLoadingTime; // computed, printed
-	private long probTreeBuildTime; // computed, printed
-	private long seqTreeBuildTime; // computed, printed
-	private long seqComputeTimeAvg; //
-	private long seqComputeTimeTotal; // computed, printed
-	private long msgComposeTimeAvg; //
-	private long msgComposeTimeTotal; // computed, printed
-	private long msgTransTimeAvg; //
-	private long msgTransTimeTotal; // computed, printed
-	private long totalExpTime; // computed, printed
+
+	private long expRoundCnt;
+	private long kbLoadingTime;
+	private long probTreeBuildTime;
+	private long seqTreeBuildTime;
+	private long seqComputeTimeAvg;
+	private long seqComputeTimeTotal;
+	private long msgComposeTimeAvg;
+	private long msgComposeTimeTotal;
+	private long msgTransTimeAvg;
+	private long msgTransTimeTotal;
+	private long totalExpTime;
 	
 
 	private ExperimentStat() {
@@ -35,25 +36,25 @@ public class ExperimentStat {
 	}
 
 	public void printStat() {
-		System.out.println("\n\n########### EXPERIMENT RESULT ###############");
-		System.out.println("- Elapsed Experiment Time in Overall: " + totalExpTime + " (ms)");
-		System.out.println("- Tried # of Modification Rounds: " + expRoundCnt);
-		System.out.println("- Elapsed Time for SDP KB Loading: " + kbLoadingTime + " (ms, "
+		ProbeLogger.appendStatln("\n\n########### EXPERIMENT RESULT ###############");
+		ProbeLogger.appendStatln("- Elapsed Experiment Time in Overall: " + totalExpTime + " (ms)");
+		ProbeLogger.appendStatln("- Tried # of Modification Rounds: " + expRoundCnt);
+		ProbeLogger.appendStatln("- Elapsed Time for SDP KB Loading: " + kbLoadingTime + " (ms, "
 				+ ((float) kbLoadingTime / totalExpTime * 100) + "%)");
-		System.out.println("- Elapsed Time for Probability Tree Construction: " + probTreeBuildTime + " (ms, "
+		ProbeLogger.appendStatln("- Elapsed Time for Probability Tree Construction: " + probTreeBuildTime + " (ms, "
 				+ ((float) probTreeBuildTime / totalExpTime * 100) + "%)");
-		System.out.println("- Elapsed Time for Sequence Planning Tree Initialization: " + seqTreeBuildTime + " (ms, "
+		ProbeLogger.appendStatln("- Elapsed Time for Sequence Planning Tree Initialization: " + seqTreeBuildTime + " (ms, "
 				+ ((float) seqTreeBuildTime / totalExpTime * 100) + "%)");
-		System.out.println("- Elapsed Time for Modification Sequence Computation in Total: " + seqComputeTimeTotal
+		ProbeLogger.appendStatln("- Elapsed Time for Modification Sequence Computation in Total: " + seqComputeTimeTotal
 				+ " (ms, " + ((float) seqComputeTimeTotal / totalExpTime * 100) + "%), Average = "
 				+ ((float) seqComputeTimeTotal / expRoundCnt) + " (ms)");
-		System.out.println("- Elapsed Time for Modified Message Composition in Total: " + msgComposeTimeTotal + " (ms,"
+		ProbeLogger.appendStatln("- Elapsed Time for Modified Message Composition in Total: " + msgComposeTimeTotal + " (ms,"
 				+ ((float) msgComposeTimeTotal / totalExpTime * 100) + "%), Average = "
 				+ ((float) msgComposeTimeTotal / expRoundCnt) + " (ms)");
-		System.out.println("- Elapsed Time for Modified Message Transmission including Waiting in Total: "
+		ProbeLogger.appendStatln("- Elapsed Time for Modified Message Transmission including Waiting in Total: "
 				+ msgTransTimeTotal + " (ms, " + ((float) msgTransTimeTotal / totalExpTime * 100) + "%), Average = "
 				+ ((float) msgTransTimeTotal / expRoundCnt) + " (ms)");
-		System.out.println("- Socket Timeout: 100 (ms)");
+		ProbeLogger.appendStatln("- Socket Timeout: "+Configurations.tcp_timeout+" (ms)");
 	}
 
 	//////////////////// getters & setters ////////////////////

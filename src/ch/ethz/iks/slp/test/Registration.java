@@ -5,6 +5,7 @@ import ch.ethz.iks.slp.ServiceLocationManager;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceURL;
 import heesuk.percom.sem2bit.ModificationController;
+import heesuk.percom.sem2bit.ProbeLogger;
 import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
 
 import java.util.Locale;
@@ -13,7 +14,6 @@ import org.osgi.framework.InvalidSyntaxException;
 import java.util.Hashtable;
 
 public class Registration {
-
 	public static void main(String[] args) throws ServiceLocationException, InvalidSyntaxException {
 		SDPKBUtil.getInstance().buildKB();
 		
@@ -30,9 +30,9 @@ public class Registration {
 		attributes.put("cool", "yes");
 		attributes.put("max-connections", new Integer(5));
 
-		advertiser.register(myService, attributes);
+		ProbeLogger.printLog();
 
-		System.out.println("Registered service:test:myService");
+		advertiser.register(myService, attributes);
 	}
 
 }
