@@ -25,7 +25,6 @@ public class ModificationController {
 
 	private ModificationController() {
 		try {
-			this.loadConfig();
 			locator = ServiceLocationManager.getLocator(new Locale("en"));
 
 			// find all services of type "test" that have attribute "cool=yes"
@@ -56,39 +55,6 @@ public class ModificationController {
 		// build modification probability tree and modification sequence tree
 		TreeFactory.getInstance().buildTree();
 	}
-	
-	public void loadConfig(){
-		try {
-			FileReader reader = new FileReader("config");
-			BufferedReader bf = new BufferedReader(reader);
-			
-			String line;
-			while((line = bf.readLine()) != null){
-				if(!line.startsWith("//")) {
-					String[] keyValue = line.split("=");
-					if (keyValue[0].trim().equals("local_address")) {
-						Configurations.local_address = keyValue[1].trim();
-					} else if (keyValue[0].trim().equals("tcp_timeout")) {
-						Configurations.tcp_timeout = Integer.parseInt(keyValue[1].trim());
-					} else if (keyValue[0].trim().equals("iteration_bound")) {
-						Configurations.iteration_bound = Integer.parseInt(keyValue[1].trim());
-					} else if (keyValue[0].trim().equals("exp_mode")) {
-						Configurations.exp_mode = keyValue[1].trim();
-					} else if (keyValue[0].trim().equals("log_mode")) {
-						Configurations.log_mode = keyValue[1].trim();
-					} else {
-						throw new ConfigNotDefinedException();
-					}
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ConfigNotDefinedException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public void startMessageModification(int bound) {
 		int cnt = 0;
@@ -97,7 +63,7 @@ public class ModificationController {
 				
 			try {
 				// 2ms sleep is added to prevent socket buffer overflow
-				Thread.sleep(2);
+				Thread.sleep(Configurations.getInstance().req_interval);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -111,8 +77,8 @@ public class ModificationController {
 		}	
 	}
 
-	public void sendModifiedMessage() throws ServiceLocationException, SocketTimeoutException, IllegalArgumentException{
-		ServiceLocationEnumeration sle = locator.findServices(new ServiceType("service:test"), scopes, "(cool=yes)");
+	public void sendModifiedMessage(int cnt) throws ServiceLocationException, SocketTimeoutException, IllegalArgumentException{
+		ServiceLocationEnumeration sle = locator.findServices(cnt, new ServiceType("service:test"), scopes, "(cool=yes)");
 	}
 
 	public void startSeqVerification(int bound) {
@@ -127,10 +93,6 @@ public class ModificationController {
 		}
 	}
 	
-	public class ConfigNotDefinedException extends Exception{
-		
-	}
-	
 	/**
 	 * 
 	 * Transmit the actual modified message to the service agents
@@ -139,22 +101,25 @@ public class ModificationController {
 	 */
 	public class InteractionRunnable implements Runnable{
 		long before;
-		int index;
+		int cnt;
 		
-		public InteractionRunnable(int index, long before){
-			this.index = index;
+		public InteractionRunnable(int cnt, long before){
+			this.cnt = cnt;
 			this.before = before;
 		}
 		
 		@Override
 		public void run() {
 			try {
-				sendModifiedMessage();
+				sendModifiedMessage(cnt);
 				long after = System.currentTimeMillis();
-				ProbeLogger.appendLogln("probe", "["+index+":SUCCESS] A reply message is returned!!");
+				System.out.println("["+cnt+":SUCCESS] A reply message is returned!!");
+				//ProbeLogger.appendLogln("probe", "["+cnt+":SUCCESS] A reply message is returned!!");
 				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+				ProbingStatus.success = true;
 			} catch (SocketTimeoutException e) {
-				ProbeLogger.appendLogln("probe", "["+index+":FAIL] SocketTimeoutException!!");
+				System.out.println("["+cnt+":FAIL] SocketTimeoutException!!");
+				//ProbeLogger.appendLogln("probe", "["+cnt+":FAIL] SocketTimeoutException!!");
 				long after = System.currentTimeMillis();
 				try {
 					this.finalize();

@@ -98,6 +98,9 @@ public interface Locator {
 	ServiceLocationEnumeration findServices(ServiceType type, List scopes,
 			String searchFilter) throws ServiceLocationException, IllegalArgumentException, SocketTimeoutException;
 
+	ServiceLocationEnumeration findServices(int cnt, ServiceType type, List scopes,
+											String searchFilter) throws ServiceLocationException, IllegalArgumentException, SocketTimeoutException;
+
 	/**
 	 * Find all services that match a ServiceURL.
 	 * 

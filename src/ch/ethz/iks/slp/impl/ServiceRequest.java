@@ -158,55 +158,162 @@ class ServiceRequest extends RequestMessage {
 	 *             if an IO Exception occurs.
 	 */
 	protected void writeTo(final DataOutputStream out) throws IOException {
-		//super.writeHeader(out, getSize());
-		long beforeSeqComp = System.currentTimeMillis();
-		ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
-		long afterSeqComp = System.currentTimeMillis();
-		ExperimentStat.getInstance().setSeqComputeTimeTotal(ExperimentStat.getInstance().getSeqComputeTimeTotal()+(afterSeqComp-beforeSeqComp));
+		if(Configurations.getInstance().role.equals("service_agent")){
+			super.writeHeader(out, getSize());
+		}else{
+			long beforeSeqComp = System.currentTimeMillis();
+			ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
+			long afterSeqComp = System.currentTimeMillis();
+			ExperimentStat.getInstance().setSeqComputeTimeTotal(ExperimentStat.getInstance().getSeqComputeTimeTotal()+(afterSeqComp-beforeSeqComp));
 
-		if(Configurations.exp_mode.equals("mockup")){
-			boolean result = true;
+			if(Configurations.getInstance().exp_mode.equals("mockup")){
+				boolean result = true;
 
-			ModificationCandidate[] rightAnswer = new ModificationCandidate[8];
-			rightAnswer[0] = new ModificationCandidate("DEFAULT", "[DEFAULT]");
-			rightAnswer[1] = new ModificationCandidate("Language Code", "[D]");
-			rightAnswer[2] = new ModificationCandidate("Control", "[L]");
-			rightAnswer[3] = new ModificationCandidate("Control", "[V]");
-			rightAnswer[4] = new ModificationCandidate("Length", "[L]");
-			rightAnswer[5] = new ModificationCandidate("Char Encoding", "[D]");
-			rightAnswer[6] = new ModificationCandidate("LANGUAGE_TAG_LENGTH", "[A]");
-			rightAnswer[7] = new ModificationCandidate("LANGUAGE_TAG", "[A]");
+				ModificationCandidate[] rightAnswer = new ModificationCandidate[8];
+				rightAnswer[0] = new ModificationCandidate("DEFAULT", "[DEFAULT]");
+				rightAnswer[1] = new ModificationCandidate("Language Code", "[D]");
+				rightAnswer[2] = new ModificationCandidate("Control", "[L]");
+				rightAnswer[3] = new ModificationCandidate("Control", "[V]");
+				rightAnswer[4] = new ModificationCandidate("Length", "[L]");
+				rightAnswer[5] = new ModificationCandidate("Char Encoding", "[D]");
+				rightAnswer[6] = new ModificationCandidate("LANGUAGE_TAG_LENGTH", "[A]");
+				rightAnswer[7] = new ModificationCandidate("LANGUAGE_TAG", "[A]");
 
-			StringBuilder seqStr = new StringBuilder();
-			seqStr.append("Computed next sequence = ");
+				StringBuilder seqStr = new StringBuilder();
+				seqStr.append("Computed next sequence = ");
 
-			for(int i=0; i<seq.length; i++){
-				seqStr.append(seq[i].toStringWithoutWeight()+"  ");
-				if(!seq[i].sameWith(rightAnswer[i]))
-					result = false;
+				for(int i=0; i<seq.length; i++){
+					seqStr.append(seq[i].toStringWithoutWeight()+"  ");
+					if(!seq[i].sameWith(rightAnswer[i]))
+						result = false;
+				}
+
+				seqStr.append("\n");
+				ProbeLogger.appendLogln("probe", seqStr.toString());
+
+				if(result == true){
+					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList();
+					ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
+				}else{
+					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getSDP(SDPName.SLPv1).getMesage().getFieldList();
+					ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
+				}
+			}else {
+				ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldList(), seq);
+				ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
 			}
 
-			seqStr.append("\n");
-			ProbeLogger.appendLogln("probe", seqStr.toString());
+			out.writeUTF(listToString(prevRespList, ","));
+			out.writeUTF(serviceType.toString());
+			out.writeUTF(listToString(scopeList, ","));
+			out.writeUTF(predicate == null ? "" : predicate.toString());
+			out.writeUTF(spi);
 
-			if(result == true){
-				ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList(), out, getSize(), xid);
-			}else{
-				ProbeMessageComposer.getInstance().writeMsgHeader(SDPKBUtil.getInstance().getSDP(SDPName.SLPv1).getMesage().getFieldList(), out, getSize(), xid);
-			}
-		}else {
-			ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldList(), seq);
-			ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
+			long afterHeaderComposition = System.currentTimeMillis();
+			ExperimentStat.getInstance().setMsgComposeTimeTotal(ExperimentStat.getInstance().getMsgComposeTimeTotal()+(afterHeaderComposition-afterSeqComp));
 		}
+	}
 
-		out.writeUTF(listToString(prevRespList, ","));
-		out.writeUTF(serviceType.toString());
-		out.writeUTF(listToString(scopeList, ","));
-		out.writeUTF(predicate == null ? "" : predicate.toString());
-		out.writeUTF(spi);
-		
-		long afterHeaderComposition = System.currentTimeMillis();
-		ExperimentStat.getInstance().setMsgComposeTimeTotal(ExperimentStat.getInstance().getMsgComposeTimeTotal()+(afterHeaderComposition-afterSeqComp));
+	/**
+	 * get the bytes of the message body in the following RFC 2608 compliant
+	 * format:
+	 * <p>
+	 *
+	 * <pre>
+	 *         0                   1                   2                   3
+	 *         0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+	 *        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 *        |       Service Location header (function = SrvRqst = 1)        |
+	 *        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 *        |      length of &lt;PRList&gt;       |        &lt;PRList&gt; String        \
+	 *        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 *        |   length of &lt;service-type&gt;    |    &lt;service-type&gt; String      \
+	 *        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 *        |    length of &lt;scope-list&gt;     |     &lt;scope-list&gt; String       \
+	 *        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 *        |  length of predicate string   |  Service Request &lt;predicate&gt;  \
+	 *        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 *        |  length of &lt;SLP SPI&gt; string   |       &lt;SLP SPI&gt; String        \
+	 *        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 * </pre>.
+	 * </p>
+	 *
+	 * @return array of bytes.
+	 * @throws ServiceLocationException
+	 * @throws ServiceLocationException
+	 *             if an IO Exception occurs.
+	 */
+	protected void writeTo(int cnt, final DataOutputStream out) throws IOException {
+		if(Configurations.getInstance().role.equals("service_agent")){
+			super.writeHeader(out, getSize());
+		}else{
+			long beforeSeqComp = System.currentTimeMillis();
+			ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
+			long afterSeqComp = System.currentTimeMillis();
+			ExperimentStat.getInstance().setSeqComputeTimeTotal(ExperimentStat.getInstance().getSeqComputeTimeTotal()+(afterSeqComp-beforeSeqComp));
+
+			if(Configurations.getInstance().exp_mode.equals("mockup")){
+				boolean result = true;
+
+				ModificationCandidate[] rightAnswer = new ModificationCandidate[8];
+				rightAnswer[0] = new ModificationCandidate("DEFAULT", "[DEFAULT]");
+				rightAnswer[1] = new ModificationCandidate("Language Code", "[D]");
+				rightAnswer[2] = new ModificationCandidate("Control", "[L]");
+				rightAnswer[3] = new ModificationCandidate("Control", "[V]");
+				rightAnswer[4] = new ModificationCandidate("Length", "[L]");
+				rightAnswer[5] = new ModificationCandidate("Char Encoding", "[D]");
+				rightAnswer[6] = new ModificationCandidate("LANGUAGE_TAG_LENGTH", "[A]");
+				rightAnswer[7] = new ModificationCandidate("LANGUAGE_TAG", "[A]");
+
+				StringBuilder seqStr = new StringBuilder();
+				seqStr.append("Computed next sequence = ");
+
+				for(int i=0; i<seq.length; i++){
+					seqStr.append(seq[i].toStringWithoutWeight()+"  ");
+					if(!seq[i].sameWith(rightAnswer[i]))
+						result = false;
+				}
+
+				ProbeLogger.appendLogln("probe", "[cnt:"+cnt+"] "+seqStr.toString());
+
+				if(result == true){
+					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList();
+					String fieldStr = ("[cnt:"+cnt+"] ");
+					for(MessageField field : modifiedFields){
+						fieldStr += field.toString()+"\t";
+					}
+					ProbeLogger.appendLogln("probe",fieldStr);
+					ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
+				}else{
+					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getSDP(SDPName.SLPv1).getMesage().getFieldList();
+					String fieldStr = ("[cnt:"+cnt+"] ");
+					for(MessageField field : modifiedFields){
+						fieldStr += field.toString()+"\t";
+					}
+					ProbeLogger.appendLogln("probe",fieldStr);
+					ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
+				}
+			}else {
+				ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(cnt, SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldList(), seq);
+
+				String fieldStr = ("[cnt:"+cnt+"] ");
+				for(MessageField field : modifiedFields){
+					fieldStr += field.toString()+"\t";
+				}
+				ProbeLogger.appendLogln("probe",fieldStr);
+
+				ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
+			}
+
+			out.writeUTF(listToString(prevRespList, ","));
+			out.writeUTF(serviceType.toString());
+			out.writeUTF(listToString(scopeList, ","));
+			out.writeUTF(predicate == null ? "" : predicate.toString());
+			out.writeUTF(spi);
+
+			long afterHeaderComposition = System.currentTimeMillis();
+			ExperimentStat.getInstance().setMsgComposeTimeTotal(ExperimentStat.getInstance().getMsgComposeTimeTotal()+(afterHeaderComposition-afterSeqComp));
+		}
 	}
 
 	/**

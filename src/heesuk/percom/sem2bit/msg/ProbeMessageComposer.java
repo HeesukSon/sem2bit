@@ -26,6 +26,46 @@ public class ProbeMessageComposer {
 	}
 
 	public ArrayList<MessageField> getModifiedFieldList(ArrayList<MessageField> fields,
+														ModificationCandidate[] candidates) {
+		ArrayList<MessageField> modifiedFields = new ArrayList<MessageField>();
+
+		// copy the original fields
+		for(MessageField originalField : fields){
+			modifiedFields.add(new MessageField(originalField));
+		}
+
+		// modify the fields
+		for(ModificationCandidate candidate : candidates){
+			if(candidate.getUpdate().equals(UpdatePattern.ADD_NEW_FIELD)){
+
+			}else if(candidate.getUpdate().equals(UpdatePattern.DELETE_FIELD)){
+				int size = modifiedFields.size();
+				for(int i=0; i<size; i++){
+					if(modifiedFields.get(i).getName().equals(candidate.getField())){
+						modifiedFields.remove(i);
+						break;
+					}
+				}
+			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_FIELD_LENGTH)){
+
+			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_VOCA)){
+
+			}else{
+				ProbeLogger.appendErrln("probe", "A non-defined update pattern is detected in ProbeMessageComposer!!");
+			}
+		}
+
+		return modifiedFields;
+	}
+
+	/**
+	 *
+	 * @param cnt	iteration count is added for debugging purpose.
+	 * @param fields
+	 * @param candidates
+	 * @return
+	 */
+	public ArrayList<MessageField> getModifiedFieldList(int cnt, ArrayList<MessageField> fields,
 			ModificationCandidate[] candidates) {
 		ArrayList<MessageField> modifiedFields = new ArrayList<MessageField>();
 		
@@ -36,9 +76,9 @@ public class ProbeMessageComposer {
 		
 		// modify the fields
 		for(ModificationCandidate candidate : candidates){
-			if(candidate.getUpdate().equals(UpdatePattern.ADD_NEW_FIELD)){
+			if(candidate.getUpdate().equals(UpdatePattern.ADD_NEW_FIELD.toString())){
 				
-			}else if(candidate.getUpdate().equals(UpdatePattern.DELETE_FIELD)){
+			}else if(candidate.getUpdate().equals(UpdatePattern.DELETE_FIELD.toString())){
 				int size = modifiedFields.size();
 				for(int i=0; i<size; i++){
 					if(modifiedFields.get(i).getName().equals(candidate.getField())){
@@ -46,12 +86,12 @@ public class ProbeMessageComposer {
 						break;
 					}
 				}
-			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_FIELD_LENGTH)){
+			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_FIELD_LENGTH.toString())){
 				
-			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_VOCA)){
+			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_VOCA.toString())){
 				
 			}else{
-				ProbeLogger.appendErrln("probe", "A non-defined update pattern is detected in ProbeMessageComposer!!");
+				ProbeLogger.appendErrln("probe", "A non-defined update pattern is detected in ProbeMessageComposer: "+candidate.getUpdate());
 			}
 		}
 		

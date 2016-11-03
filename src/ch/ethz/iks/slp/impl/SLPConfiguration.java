@@ -522,6 +522,6 @@ class SLPConfiguration {
 	public int getTCPTimeout() {
 		// TODO wire this to the properties if necessary
 		//return 100;
-		return Configurations.tcp_timeout;
+		return Configurations.getInstance().tcp_timeout;
 	}
 }

@@ -211,6 +211,9 @@ public abstract class SLPMessage {
 	 * 
 	 */
 	abstract void writeTo(final DataOutputStream out) throws IOException;
+	void writeTo(int cnt, final DataOutputStream out) throws IOException{
+
+	}
 
 	/**
 	 * 
@@ -259,11 +262,11 @@ public abstract class SLPMessage {
 	static SLPMessage parse(final InetAddress senderAddr, final int senderPort,
 			final DataInputStream in, final boolean tcp)
 			throws ServiceLocationException, ProtocolException, SocketTimeoutException{
-		ProbeLogger.appendLog("probe",">>>>> SLPMessage.parse(): ");
+		//ProbeLogger.appendLog("probe",">>>>> SLPMessage.parse(): ");
 		try {
 			final int version = in.readByte(); // version
 			
-			ProbeLogger.appendLog("probe","version = "+version+", ");
+			//ProbeLogger.appendLog("probe","version = "+version+", ");
 			if (version == 1) {
 				in.readByte(); // funcID
 				final int length = in.readShort();
@@ -274,9 +277,9 @@ public abstract class SLPMessage {
 			}
 			
 			final byte funcID = in.readByte(); // funcID
-			ProbeLogger.appendLog("probe","funcID = "+funcID+", ");
+			///ProbeLogger.appendLog("probe","funcID = "+funcID+", ");
 			final int length = readInt(in, 3);
-			ProbeLogger.appendLog("probe","length = "+length+", ");
+			//ProbeLogger.appendLog("probe","length = "+length+", ");
 
 			// slpFlags
 			final byte flags = (byte) (in.readShort() >> 8);
@@ -288,11 +291,11 @@ public abstract class SLPMessage {
 			// we don't process extensions, we simply ignore them
 			readInt(in, 3); // extOffset
 			final short xid = in.readShort(); // XID
-			ProbeLogger.appendLog("probe","xid = "+xid+", ");
+			//ProbeLogger.appendLog("probe","xid = "+xid+", ");
 			final short langTagLength = in.readShort();
-			ProbeLogger.appendLog("probe","langTagLength = "+langTagLength+", ");
+			//ProbeLogger.appendLog("probe","langTagLength = "+langTagLength+", ");
 			final Locale locale = new Locale(in.readUTF(), ""); // Locale
-			ProbeLogger.appendLogln("probe","locale = "+locale);
+			//ProbeLogger.appendLogln("probe","locale = "+locale);
 
 			final SLPMessage msg;
 

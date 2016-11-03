@@ -54,7 +54,7 @@ public class ExperimentStat {
 		ProbeLogger.appendStatln("- Elapsed Time for Modified Message Transmission including Waiting in Total: "
 				+ msgTransTimeTotal + " (ms, " + ((float) msgTransTimeTotal / totalExpTime * 100) + "%), Average = "
 				+ ((float) msgTransTimeTotal / expRoundCnt) + " (ms)");
-		ProbeLogger.appendStatln("- Socket Timeout: "+Configurations.tcp_timeout+" (ms)");
+		ProbeLogger.appendStatln("- Socket Timeout: "+Configurations.getInstance().tcp_timeout+" (ms)");
 	}
 
 	//////////////////// getters & setters ////////////////////

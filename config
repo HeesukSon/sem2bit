@@ -1,9 +1,15 @@
 local_address = /192.249.28.99
 tcp_timeout = 100
-iteration_bound = 380
+req_interval = 3
+iteration_bound = 500
+//
 // exp_mode = {real | mockup}
-exp_mode = mockup
+exp_mode = real
+//
 // log_mode = {none | probe | tree | both}
 // tree: logs from the tree construction process
 // probe: logs from the probing process
 log_mode = probe
+//
+//role = service_agent
+role = user_agent

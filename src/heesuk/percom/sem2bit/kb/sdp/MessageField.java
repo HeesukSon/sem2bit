@@ -101,4 +101,14 @@ public class MessageField {
 	public void setValue(int value){
 		this.value = new Integer(value);
 	}
+
+	public String toString(){
+		if(this.value instanceof String){
+			return "<"+this.name+":"+this.value+">";
+		}else if(this.value instanceof Integer){
+			return "<"+this.name+":"+((Integer) this.value).intValue()+">";
+		}
+
+		return null;
+	}
 }

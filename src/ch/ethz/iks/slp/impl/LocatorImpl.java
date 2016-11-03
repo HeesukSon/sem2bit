@@ -156,6 +156,37 @@ public final class LocatorImpl implements Locator {
 	}
 
 	/**
+	 * find services.
+	 *
+	 * @param type
+	 *            the service type.
+	 * @param scopes
+	 *            the scopes.
+	 * @param searchFilter
+	 *            an LDAP filter expression.
+	 * @return a ServiceLocationEnumeration over the results.
+	 * @throws ServiceLocationException
+	 *             if something goes wrong.
+	 * @throws SocketTimeoutException
+	 * @see Locator#findAttributes(ServiceType, List, List)
+	 */
+	public ServiceLocationEnumeration findServices(int cnt, final ServiceType type,
+												   final List scopes, final String searchFilter)
+			throws ServiceLocationException, SocketTimeoutException {
+		try {
+			RequestMessage srvReq = new ServiceRequest(type, scopes,
+					searchFilter, locale);
+			return new ServiceLocationEnumerationImpl(sendRequest(cnt, srvReq,
+					scopes));
+		} catch (IllegalArgumentException ise) {
+			throw new ServiceLocationException(
+					ServiceLocationException.INTERNAL_SYSTEM_ERROR, ise
+					.getMessage()
+					+ ": " + searchFilter);
+		}
+	}
+
+	/**
 	 * find attributes by service URL.
 	 * 
 	 * @param url
@@ -296,6 +327,37 @@ public final class LocatorImpl implements Locator {
 			}
 		}
 		*/
+		return result;
+	}
+
+	/**
+	 * send a request. Uses direct communication to a DA or multicast
+	 * convergence, if no DA is known for the specific scope.
+	 *
+	 * @param req
+	 *            the request.
+	 * @param scopeList
+	 *            the scopes.
+	 * @return the list of results.
+	 * @throws ServiceLocationException
+	 *             if something goes wrong.
+	 * @throws SocketTimeoutException
+	 */
+	private List sendRequest(int cnt, final RequestMessage req, final List scopeList)
+			throws ServiceLocationException, SocketTimeoutException{
+		List scopes = scopeList != null ? scopeList : Arrays
+				.asList(new String[] { "default" });
+
+		ArrayList result = new ArrayList();
+
+		for (Iterator scopeIter = scopes.iterator(); scopeIter.hasNext();) {
+			String scope = (String) scopeIter.next();
+			scope = scope.toLowerCase();
+			List dAs = (List) SLPCore.dAs.get(scope);
+
+			result.addAll(SLPCore.multicastConvergence(cnt, req));
+		}
+
 		return result;
 	}
 

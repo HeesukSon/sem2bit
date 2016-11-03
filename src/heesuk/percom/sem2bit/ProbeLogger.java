@@ -9,10 +9,12 @@ public class ProbeLogger {
     private static StringBuilder stat = new StringBuilder();
 
     public static synchronized void appendLog(String tag, String logStr){
-        if(!Configurations.log_mode.equals("none")) {
-            if (Configurations.log_mode.equals("both")) {
+        if(!Configurations.getInstance().log_mode.equals("none")) {
+            if (Configurations.getInstance().log_mode.equals("both")) {
+                //System.out.print(logStr);
                 log.append(logStr);
-            } else if (Configurations.log_mode.equals(tag)) {
+            } else if (Configurations.getInstance().log_mode.equals(tag)) {
+                //System.out.print(logStr);
                 log.append(logStr);
             }
         }
@@ -23,17 +25,13 @@ public class ProbeLogger {
     }
 
     public static synchronized void appendErr(String tag, String errStr){
-        if(!Configurations.log_mode.equals("none")) {
-            if (Configurations.log_mode.equals("both")) {
+        if(!Configurations.getInstance().log_mode.equals("none")) {
+            if (Configurations.getInstance().log_mode.equals("both")) {
+                //System.err.print(errStr);
                 err.append(errStr);
-            } else if (Configurations.log_mode.equals(tag)) {
+            } else if (Configurations.getInstance().log_mode.equals(tag)) {
+                //System.err.print(errStr);
                 err.append(errStr);
-            } else {
-                try {
-                    throw new ProbeLoggerException();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
         }
     }

@@ -362,7 +362,7 @@ public abstract class SLPCore {
 						packet = new DatagramPacket(bytes, bytes.length);
 						mtcSocket.receive(packet);
 						
-						if (!packet.getAddress().toString().equals(Configurations.local_address)) {
+						if (!packet.getAddress().toString().equals(Configurations.getInstance().local_address)) {
 							ProbeLogger.appendErrln("probe", packet.getAddress().toString()+" sent a request message!!");
 						} else {
 							final SLPMessage reply = handleMessage(
@@ -677,6 +677,52 @@ public abstract class SLPCore {
 	}
 
 	/**
+	 * send a unicast message over TCP.
+	 *
+	 * @param msg
+	 *            the message.
+	 * @return the reply.
+	 * @throws ServiceLocationException
+	 *             in case of network errors.
+	 * @throws IOException, SocketTimeoutException
+	 */
+	static ReplyMessage sendMessageTCP(int cnt, final SLPMessage msg) throws ServiceLocationException, SocketTimeoutException {
+		long before = System.currentTimeMillis();
+		try {
+			if (msg.xid == 0) {
+				msg.xid = nextXid();
+			}
+
+			Socket socket = new Socket(msg.address, msg.port);
+			socket.setSoTimeout(CONFIG.getTCPTimeout());
+			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+			DataInputStream in = new DataInputStream(socket.getInputStream());
+
+			msg.writeTo(cnt, out);
+			try{
+				final ReplyMessage reply = (ReplyMessage) SLPMessage.parse(msg.address, msg.port, in, true);
+
+				long after = System.currentTimeMillis();
+				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+				ProbeLogger.appendLogln("probe", "[SLPCore.sendMessageTCP()] reply msg = " + reply+"\n");
+
+				return reply;
+			}catch(SocketTimeoutException ste){
+				socket.close();
+
+				long after = System.currentTimeMillis();
+				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+				throw new SocketTimeoutException();
+			}
+		} catch (ServiceLocationException e) {
+			throw new ServiceLocationException(ServiceLocationException.NETWORK_ERROR, e.getMessage());
+		}catch(IOException e){
+			//e.printStackTrace();
+			throw new SocketTimeoutException();
+		}
+	}
+
+	/**
 	 * send a unicast message over UDP.
 	 * 
 	 * @param msg
@@ -909,6 +955,63 @@ public abstract class SLPCore {
 			ioe.printStackTrace();
 			throw new ServiceLocationException(ServiceLocationException.NETWORK_ERROR, ioe.getMessage());
 		}*/
+	}
+
+	/**
+	 * send a request via multicast convergence algorithm.
+	 *
+	 * @param msg
+	 *            the message.
+	 * @return the collected reply messages.
+	 * @throws ServiceLocationException
+	 *             in case of network errors.
+	 * @throws SocketTimeoutException
+	 */
+	static List multicastConvergence(int cnt, final RequestMessage msg) throws ServiceLocationException, SocketTimeoutException {
+		long start = System.currentTimeMillis();
+
+		List replyQueue = new ArrayList();
+		List responders = new ArrayList();
+		List responses = new ArrayList();
+
+		if (msg.xid == 0) {
+			msg.xid = SLPCore.nextXid();
+		}
+
+		// register the reply queue as listener
+		Integer queryXID = new Integer(msg.xid);
+		synchronized (replyListeners) {
+			replyListeners.put(queryXID, replyQueue);
+		}
+
+		msg.port = SLPCore.SLP_PORT;
+		msg.prevRespList = new ArrayList();
+		msg.multicast = true;
+
+		// send to localhost, in case the OS does not support multicast over
+		// loopback which can fail if no SA is running locally
+		msg.address = LOCALHOST;
+		try {
+			replyQueue.add(sendMessageTCP(cnt, msg)); // TODO uncomment for normal experiment with TCP
+			//replyQueue.add(sendMessage(msg, false));
+
+		} catch (ServiceLocationException e) {
+			if (e.getErrorCode() != ServiceLocationException.NETWORK_ERROR) {
+				throw e;
+			}
+		}
+
+		msg.address = MCAST_ADDRESS;
+		ReplyMessage reply;
+
+		// we are done, remove the listener queue
+		synchronized (replyListeners) {
+			replyListeners.remove(queryXID);
+		}
+
+		ProbeLogger.appendLogln("probe", "convergence for xid=" + msg.xid + " finished after "
+				+ (System.currentTimeMillis() - start) + " ms, result: " + responses);
+		return responses;
 	}
 
 	private static boolean isLocalResponder(InetAddress addr) {
