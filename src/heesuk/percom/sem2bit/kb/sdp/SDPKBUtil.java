@@ -72,6 +72,32 @@ public class SDPKBUtil {
 		// TODO algorithm should be added later
 		this.modSeqBound = 7;
 	}
+
+	public MessageField getMsgField(String fType){
+		MessageField field = new MessageField();
+
+		// TODO inference mechanism should be modified later
+		if(fType.equals(MessageFieldType.LANGUAGE_TAG_LENGTH.toString())){
+			field.setLength("16");
+			field.setValue(0);
+			field.setName("Language Tag Length");
+			field.setLocation(MessageFieldLocation.HEADER);
+			field.setType(MessageFieldType.LANGUAGE_TAG_LENGTH);
+		}else if(fType.equals(MessageFieldType.LANGUAGE_TAG.toString())){
+			field.setLength("v");
+			field.setValue("ko");
+			field.setName("Language Tag");
+			field.setLocation(MessageFieldLocation.HEADER);
+			field.setType(MessageFieldType.LANGUAGE_TAG);
+		}
+
+		return field;
+	}
+
+	public int getNewFieldLength(String fName){
+		// TODO length inference mechanism should be added later
+		return 40;
+	}
 	
 	public int getModSeqBound(){
 		return this.modSeqBound;

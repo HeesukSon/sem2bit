@@ -66,6 +66,10 @@ public class MessageField {
 		return type;
 	}
 
+	public void setName(String name){
+		this.name = name;
+	}
+
 	public void setType(MessageFieldType type) {
 		this.type = type;
 	}
@@ -84,6 +88,10 @@ public class MessageField {
 
 	public void setLength(String length) {
 		this.length = length;
+	}
+
+	public void setLength(int length){
+		this.length = (length+"");
 	}
 	
 	public String getName(){
@@ -104,9 +112,9 @@ public class MessageField {
 
 	public String toString(){
 		if(this.value instanceof String){
-			return "<"+this.name+":"+this.value+">";
+			return "<"+this.type+":"+this.name+":"+this.value+":"+this.length+">";
 		}else if(this.value instanceof Integer){
-			return "<"+this.name+":"+((Integer) this.value).intValue()+">";
+			return "<"+this.type+":"+this.name+":"+((Integer) this.value).intValue()+":"+this.length+">";
 		}
 
 		return null;

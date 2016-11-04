@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import heesuk.percom.sem2bit.ProbeLogger;
 import heesuk.percom.sem2bit.kb.sdp.MessageField;
+import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
 import heesuk.percom.sem2bit.kb.sdp.enums.MessageFieldLocation;
 import heesuk.percom.sem2bit.kb.sdp.enums.MessageFieldType;
 import heesuk.percom.sem2bit.kb.sdp.enums.UpdatePattern;
@@ -77,7 +78,7 @@ public class ProbeMessageComposer {
 		// modify the fields
 		for(ModificationCandidate candidate : candidates){
 			if(candidate.getUpdate().equals(UpdatePattern.ADD_NEW_FIELD.toString())){
-				
+				modifiedFields.add(SDPKBUtil.getInstance().getMsgField(candidate.getField()));
 			}else if(candidate.getUpdate().equals(UpdatePattern.DELETE_FIELD.toString())){
 				int size = modifiedFields.size();
 				for(int i=0; i<size; i++){
@@ -87,7 +88,13 @@ public class ProbeMessageComposer {
 					}
 				}
 			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_FIELD_LENGTH.toString())){
-				
+				int size = modifiedFields.size();
+				for(int i=0; i<size; i++){
+					if(modifiedFields.get(i).getName().equals(candidate.getField())){
+						modifiedFields.get(i).setLength(SDPKBUtil.getInstance().getNewFieldLength(candidate.getField()));
+						break;
+					}
+				}
 			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_VOCA.toString())){
 				
 			}else{
@@ -101,49 +108,139 @@ public class ProbeMessageComposer {
 	public void writeMsgHeader(ArrayList<MessageField> fields, final DataOutputStream out, int msgSize, int xid)
 			throws IOException {
 		for (MessageField field : fields) {
-			if (field.getLocation().equals(MessageFieldLocation.HEADER)) {
-				if (field.getType() == MessageFieldType.SESSION_MGMT) {
-					field.setValue(xid);
-					if (field.getLength().equals("8")) {
-						out.write((int) field.getValue());
-					} else if (field.getLength().equals("16")) {
-						out.writeShort((int) field.getValue());
+			try{
+				if (field.getLocation().equals(MessageFieldLocation.HEADER)) {
+					if (field.getType() == MessageFieldType.SESSION_MGMT) {
+						field.setValue(xid);
+						if (field.getLength().equals("8")) {
+							out.write((int) field.getValue());
+						} else if (field.getLength().equals("16")) {
+							out.writeShort((int) field.getValue());
+						}
+
+						continue;
 					}
 
-					continue;
-				}
+					if (field.getType() == MessageFieldType.LANGUAGE_TAG_LENGTH) {
+						if (field.getLength().equals("8")) {
+							out.write((int) field.getValue());
+						} else if (field.getLength().equals("16")) {
+							out.writeShort((int) field.getValue());
+						} else if (field.getLength().equals("32")) {
+							out.writeInt((int) field.getValue());
+						}
 
-				if (field.getType() == MessageFieldType.MESSAGE_LENGTH) {
-					field.setValue(msgSize);
-					int value = (int) field.getValue();
-					for (int i = 0; i < Integer.parseInt(field.getLength()) / 8; i++) {
-						int shift = (8 * (Integer.parseInt(field.getLength()) / 8 - i - 1));
-						out.write(((byte) ((value >> shift) & 0xFF)));
+						continue;
 					}
 
-					continue;
-				}
+					if (field.getType() == MessageFieldType.MESSAGE_LENGTH) {
+						field.setValue(msgSize);
+						int value = (int) field.getValue();
+						for (int i = 0; i < Integer.parseInt(field.getLength()) / 8; i++) {
+							int shift = (8 * (Integer.parseInt(field.getLength()) / 8 - i - 1));
+							out.write(((byte) ((value >> shift) & 0xFF)));
+						}
 
-				if (field.getType() == MessageFieldType.LANGUAGE_TAG) {
-					out.writeUTF((String) field.getValue());
+						continue;
+					}
 
-					continue;
-				}
+					if (field.getType() == MessageFieldType.LANGUAGE_TAG) {
+						out.writeUTF((String) field.getValue());
 
-				if (field.getValue() == null) {
-					// assumption: only the field with fixed length can have no
-					// value
-					for (int i = 0; i < Integer.parseInt(field.getLength()) / 8; i++) {
+						continue;
+					}
+
+					if (field.getValue() == null) {
+						// assumption: only the field with fixed length can have no
+						// value
+						for (int i = 0; i < Integer.parseInt(field.getLength()) / 8; i++) {
+							out.write(0);
+						}
+						continue;
+					}
+
+					out.write((int) field.getValue());
+					for (int i = 1; i < Integer.parseInt(field.getLength()) / 8; i++) {
 						out.write(0);
 					}
-					continue;
+				}
+			}catch(NullPointerException e){
+				ProbeLogger.appendErrln("probe","[NullPointerException in writeMsgHeader()] field name = "+field.getName()+", field type = "+field.getType());
+			}
+
+		}
+	}
+
+	public void writeMsgHeader(int cnt, ArrayList<MessageField> fields, final DataOutputStream out, int msgSize, int xid)
+			throws IOException {
+		String typeStr = "";
+
+		for (MessageField field : fields) {
+			try{
+				if (field.getLocation().equals(MessageFieldLocation.HEADER)) {
+					typeStr += field.toString();
+					if (field.getType() == MessageFieldType.SESSION_MGMT) {
+						field.setValue(xid);
+						if (field.getLength().equals("8")) {
+							out.write((int) field.getValue());
+						} else if (field.getLength().equals("16")) {
+							out.writeShort((int) field.getValue());
+						}
+
+						continue;
+					}
+
+					if (field.getType() == MessageFieldType.LANGUAGE_TAG_LENGTH) {
+						if (field.getLength().equals("8")) {
+							out.write((int) field.getValue());
+						} else if (field.getLength().equals("16")) {
+							out.writeShort((int) field.getValue());
+						} else if (field.getLength().equals("32")) {
+							out.writeInt((int) field.getValue());
+						}
+
+						continue;
+					}
+
+					if (field.getType() == MessageFieldType.MESSAGE_LENGTH) {
+						field.setValue(msgSize);
+						int value = (int) field.getValue();
+						for (int i = 0; i < Integer.parseInt(field.getLength()) / 8; i++) {
+							int shift = (8 * (Integer.parseInt(field.getLength()) / 8 - i - 1));
+							out.write(((byte) ((value >> shift) & 0xFF)));
+						}
+
+						continue;
+					}
+
+					if (field.getType() == MessageFieldType.LANGUAGE_TAG) {
+						out.writeUTF((String) field.getValue());
+
+						continue;
+					}
+
+					if (field.getValue() == null) {
+						// assumption: only the field with fixed length can have no
+						// value
+						for (int i = 0; i < Integer.parseInt(field.getLength()) / 8; i++) {
+							out.write(0);
+						}
+						continue;
+					}
+
+					out.write((int) field.getValue());
+					for (int i = 1; i < Integer.parseInt(field.getLength()) / 8; i++) {
+						out.write(0);
+					}
 				}
 
-				out.write((int) field.getValue());
-				for (int i = 1; i < Integer.parseInt(field.getLength()) / 8; i++) {
-					out.write(0);
-				}
+
+			}catch(NullPointerException e){
+				ProbeLogger.appendErrln("probe","[NullPointerException in writeMsgHeader()] field name = "+field.getName()+", field type = "+field.getType());
 			}
+
 		}
+
+		if(cnt==57){ ProbeLogger.appendLogln("probe", "[cnt:57] typeStr = "+typeStr); }
 	}
 }

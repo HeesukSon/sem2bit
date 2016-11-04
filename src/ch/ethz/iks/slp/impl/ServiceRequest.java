@@ -265,44 +265,21 @@ class ServiceRequest extends RequestMessage {
 				rightAnswer[6] = new ModificationCandidate("LANGUAGE_TAG_LENGTH", "[A]");
 				rightAnswer[7] = new ModificationCandidate("LANGUAGE_TAG", "[A]");
 
-				StringBuilder seqStr = new StringBuilder();
-				seqStr.append("Computed next sequence = ");
-
 				for(int i=0; i<seq.length; i++){
-					seqStr.append(seq[i].toStringWithoutWeight()+"  ");
 					if(!seq[i].sameWith(rightAnswer[i]))
 						result = false;
 				}
 
-				ProbeLogger.appendLogln("probe", "[cnt:"+cnt+"] "+seqStr.toString());
-
 				if(result == true){
 					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList();
-					String fieldStr = ("[cnt:"+cnt+"] ");
-					for(MessageField field : modifiedFields){
-						fieldStr += field.toString()+"\t";
-					}
-					ProbeLogger.appendLogln("probe",fieldStr);
-					ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
+					ProbeMessageComposer.getInstance().writeMsgHeader(cnt, modifiedFields, out, getSize(), xid);
 				}else{
 					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getSDP(SDPName.SLPv1).getMesage().getFieldList();
-					String fieldStr = ("[cnt:"+cnt+"] ");
-					for(MessageField field : modifiedFields){
-						fieldStr += field.toString()+"\t";
-					}
-					ProbeLogger.appendLogln("probe",fieldStr);
-					ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
+					ProbeMessageComposer.getInstance().writeMsgHeader(cnt, modifiedFields, out, getSize(), xid);
 				}
 			}else {
 				ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(cnt, SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldList(), seq);
-
-				String fieldStr = ("[cnt:"+cnt+"] ");
-				for(MessageField field : modifiedFields){
-					fieldStr += field.toString()+"\t";
-				}
-				ProbeLogger.appendLogln("probe",fieldStr);
-
-				ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
+				ProbeMessageComposer.getInstance().writeMsgHeader(cnt, modifiedFields, out, getSize(), xid);
 			}
 
 			out.writeUTF(listToString(prevRespList, ","));
