@@ -1,4 +1,4 @@
-local_address = /192.249.28.99
+local_address = /143.248.55.138
 tcp_timeout = 100
 req_interval = 3
 iteration_bound = 500
