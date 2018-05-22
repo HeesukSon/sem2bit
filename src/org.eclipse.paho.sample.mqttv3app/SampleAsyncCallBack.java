@@ -34,7 +34,7 @@ import java.util.Arrays;
  *  There are three versions of the sample that implement the same features
  *  but do so using using different programming styles:
  *  <ol>
- *  <li>Sample which uses the API which blocks until the operation completes</li>
+ *  <li>PubSample which uses the API which blocks until the operation completes</li>
  *  <li>SampleAsyncWait shows how to use the asynchronous API with waiters that block until
  *  an action completes</li>
  *  <li>SampleAsyncCallBack (this one) shows how to use the asynchronous API where events are
@@ -74,8 +74,8 @@ public class SampleAsyncCallBack implements MqttCallback {
 		String broker 		= "m2m.eclipse.org";
 		int port 			= 1883;
 		String clientId 	= null;
-		String subTopic		= "Sample/#";
-		String pubTopic 	= "Sample/Java/v3";
+		String subTopic		= "PubSample/#";
+		String pubTopic 	= "PubSample/Java/v3";
 		boolean cleanSession = true;			// Non durable subscriptions
 		boolean ssl = false;
 		String password = null;
@@ -161,7 +161,7 @@ public class SampleAsyncCallBack implements MqttCallback {
 		// With a valid set of arguments, the real work of
 		// driving the client API can begin
 		try {
-			// Create an instance of the Sample client wrapper
+			// Create an instance of the PubSample client wrapper
 			SampleAsyncCallBack sampleClient = new SampleAsyncCallBack(url,clientId,cleanSession, quietMode,userName,password);
 
 			// Perform the specified action
@@ -437,7 +437,7 @@ public class SampleAsyncCallBack implements MqttCallback {
               "    -q  Quiet mode (default is false)\n" +
               "    -a  Perform the relevant action (default is publish)\n" +
               "    -t  Publish/subscribe to <topic> instead of the default\n" +
-              "            (publish: \"Sample/Java/v3\", subscribe: \"Sample/#\")\n" +
+              "            (publish: \"PubSample/Java/v3\", subscribe: \"PubSample/#\")\n" +
               "    -m  Use <message text> instead of the default\n" +
               "            (\"Message from MQTTv3 Java client\")\n" +
               "    -s  Use this QoS instead of the default (2)\n" +

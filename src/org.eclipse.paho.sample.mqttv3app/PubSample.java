@@ -32,7 +32,7 @@ import java.sql.Timestamp;
  *  There are three versions of the sample that implement the same features
  *  but do so using using different programming styles:
  *  <ol>
- *  <li>Sample (this one) which uses the API which blocks until the operation completes</li>
+ *  <li>PubSample (this one) which uses the API which blocks until the operation completes</li>
  *  <li>SampleAsyncWait shows how to use the asynchronous API with waiters that block until
  *  an action completes</li>
  *  <li>SampleAsyncCallBack shows how to use the asynchronous API where events are
@@ -42,7 +42,7 @@ import java.sql.Timestamp;
  *  If the application is run with the -h parameter then info is displayed that
  *  describes all of the options / parameters.
  */
-public class Sample implements MqttCallback {
+public class PubSample implements MqttCallback {
 
 	/**
 	 * The main entry point of the sample.
@@ -148,7 +148,7 @@ public class Sample implements MqttCallback {
 		// driving the client API can begin
 		try {
 			// Create an instance of this class
-			Sample sampleClient = new Sample(url, clientId, cleanSession, quietMode,userName,password);
+			PubSample sampleClient = new PubSample(url, clientId, cleanSession, quietMode,userName,password);
 
 			// Perform the requested action
 			if (action.equals("publish")) {
@@ -186,7 +186,7 @@ public class Sample implements MqttCallback {
    * @param password the password for the user
 	 * @throws MqttException
 	 */
-    public Sample(String brokerUrl, String clientId, boolean cleanSession, boolean quietMode, String userName, String password) throws MqttException {
+    public PubSample(String brokerUrl, String clientId, boolean cleanSession, boolean quietMode, String userName, String password) throws MqttException {
     	this.brokerUrl = brokerUrl;
     	this.quietMode = quietMode;
     	this.clean 	   = cleanSession;
@@ -358,13 +358,13 @@ public class Sample implements MqttCallback {
 	   static void printHelp() {
 	      System.out.println(
 	          "Syntax:\n\n" +
-	              "    Sample [-h] [-a publish|subscribe] [-t <topic>] [-m <message text>]\n" +
+	              "    PubSample [-h] [-a publish|subscribe] [-t <topic>] [-m <message text>]\n" +
 	              "            [-s 0|1|2] -b <hostname|IP address>] [-p <brokerport>] [-i <clientID>]\n\n" +
 	              "    -h  Print this help text and quit\n" +
 	              "    -q  Quiet mode (default is false)\n" +
 	              "    -a  Perform the relevant action (default is publish)\n" +
 	              "    -t  Publish/subscribe to <topic> instead of the default\n" +
-	              "            (publish: \"Sample/Java/v3\", subscribe: \"Sample/#\")\n" +
+	              "            (publish: \"PubSample/Java/v3\", subscribe: \"PubSample/#\")\n" +
 	              "    -m  Use <message text> instead of the default\n" +
 	              "            (\"Message from MQTTv3 Java client\")\n" +
 	              "    -s  Use this QoS instead of the default (2)\n" +

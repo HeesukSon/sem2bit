@@ -1,7 +1,9 @@
 package ch.ethz.iks.slp.impl;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+//import org.apache.commons.logging.Log;
+//import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ch.ethz.iks.slp.impl.filter.Filter;
 import ch.ethz.iks.slp.impl.filter.RFC1960Filter;
 
@@ -44,13 +46,13 @@ public class StandalonePlatformAbstraction implements PlatformAbstraction {
 	/**
 	 * 
 	 */
-	private final Log log;
+	private final Logger log;
 
 	/**
 	 * 
 	 */
 	public StandalonePlatformAbstraction() {
-		log = LogFactory.getLog(SLPCore.class);
+		log = LoggerFactory.getLogger(PlatformAbstraction.class);
 	}
 
 	/**
