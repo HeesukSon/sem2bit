@@ -16,8 +16,11 @@
 
 package org.eclipse.paho.sample.mqttv3app;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -43,6 +46,7 @@ import java.sql.Timestamp;
  *  describes all of the options / parameters.
  */
 public class PubSample implements MqttCallback {
+	private static final Logger LOG = LoggerFactory.getLogger(PubSample.class);
 
 	/**
 	 * The main entry point of the sample.
@@ -51,6 +55,7 @@ public class PubSample implements MqttCallback {
 	 * command-line before performing the specified action.
 	 */
 	public static void main(String[] args) {
+		PropertyConfigurator.configure("log4j.properties");
 
 		// Default settings:
 		boolean quietMode 	= false;
@@ -58,7 +63,8 @@ public class PubSample implements MqttCallback {
 		String topic 		= "";
 		String message 		= "Message from blocking Paho MQTTv3 Java client sample";
 		int qos 			= 2;
-		String broker 		= "m2m.eclipse.org";
+		//String broker 		= "m2m.eclipse.org";
+		String broker = "127.0.0.1";
 		int port 			= 1883;
 		String clientId 	= null;
 		String subTopic		= "Sample/#";
@@ -67,6 +73,7 @@ public class PubSample implements MqttCallback {
 		boolean ssl = false;
 		String password = null;
 		String userName = null;
+
 		// Parse the arguments -
 		for (int i=0; i<args.length; i++) {
 			// Check this is a valid argument
@@ -134,11 +141,11 @@ public class PubSample implements MqttCallback {
 
 		String protocol = "tcp://";
 
-    if (ssl) {
-      protocol = "ssl://";
-    }
+		if (ssl) {
+			protocol = "ssl://";
+		}
 
-    String url = protocol + broker + ":" + port;
+		String url = protocol + broker + ":" + port;
 
 		if (clientId == null || clientId.equals("")) {
 			clientId = "SampleJavaV3_"+action;
@@ -198,6 +205,7 @@ public class PubSample implements MqttCallback {
     	// where they are not likely to get deleted or tampered with
     	String tmpDir = System.getProperty("java.io.tmpdir");
     	MqttDefaultFilePersistence dataStore = new MqttDefaultFilePersistence(tmpDir);
+    	LOG.info("tmpDir of MqttDefaultFilePersistence = {}",tmpDir);
 
     	try {
     		// Construct the connection options object that contains connection parameters

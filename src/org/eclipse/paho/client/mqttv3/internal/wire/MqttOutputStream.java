@@ -31,6 +31,7 @@ import java.io.OutputStream;
  */
 public class MqttOutputStream extends OutputStream {
 	private static final String CLASS_NAME = MqttOutputStream.class.getName();
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(MqttOutputStream.class);
 
 	private ClientState clientState = null;
 	private BufferedOutputStream out;
@@ -70,6 +71,7 @@ public class MqttOutputStream extends OutputStream {
 	 */
 	public void write(MqttWireMessage message) throws IOException, MqttException {
 		final String methodName = "write";
+		LOG.info("methodName = {}",methodName);
 		byte[] bytes = message.getHeader();
 		byte[] pl = message.getPayload();
 //		out.write(message.getHeader());

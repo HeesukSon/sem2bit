@@ -30,6 +30,7 @@ import java.net.SocketTimeoutException;
  * <code>MqttWireMessage</code>. 
  */
 public class MqttInputStream extends InputStream {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(MqttInputStream.class);
 	private static final String CLASS_NAME = MqttInputStream.class.getName();
 
 	private ClientState clientState = null;
@@ -69,7 +70,8 @@ public class MqttInputStream extends InputStream {
 	 */
 	public MqttWireMessage readMqttWireMessage() throws IOException, MqttException {
 		final String methodName ="readMqttWireMessage";
-		
+		LOG.info("methodName : {}",methodName);
+
 		MqttWireMessage message = null;
 		try {
 			// read header

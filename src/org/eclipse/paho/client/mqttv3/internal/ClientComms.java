@@ -21,8 +21,6 @@ package org.eclipse.paho.client.mqttv3.internal;
 
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.internal.wire.*;
-import org.eclipse.paho.client.mqttv3.logging.Logger;
-import org.eclipse.paho.client.mqttv3.logging.LoggerFactory;
 
 import java.util.Enumeration;
 import java.util.Properties;
@@ -35,6 +33,8 @@ import java.util.concurrent.TimeUnit;
  * messages.
  */
 public class ClientComms {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(ClientComms.class);
+
 	public static String 		VERSION = "${project.version}";
 	public static String 		BUILD_LEVEL = "L${build.level}";
 	private static final String CLASS_NAME = ClientComms.class.getName();
@@ -96,6 +96,7 @@ public class ClientComms {
 
 	private void shutdownExecutorService() {
 		String methodName = "shutdownExecutorService";
+		LOG.info("methodName = {}",methodName);
 		executorService.shutdown();
 		try {
 			if (!executorService.awaitTermination(1, TimeUnit.SECONDS)) {
@@ -118,6 +119,7 @@ public class ClientComms {
 	 */
 	void internalSend(MqttWireMessage message, MqttToken token) throws MqttException {
 		final String methodName = "internalSend";
+		LOG.info("methodName = {}",methodName);
 		//@TRACE 200=internalSend key={0} message={1} token={2}
 
 		if (token.getClient() == null ) {
@@ -132,7 +134,9 @@ public class ClientComms {
 
 		try {
 			// Persist if needed and send the message
+			LOG.info("before clientState.send(msg,token)");
 			this.clientState.send(message, token);
+			LOG.info("clientState.send(msg,token) is done.");
 		} catch(MqttException e) {
 			if (message instanceof MqttPublish) {
 				this.clientState.undo((MqttPublish)message);
@@ -150,6 +154,7 @@ public class ClientComms {
 	 */
 	public void sendNoWait(MqttWireMessage message, MqttToken token) throws MqttException {
 		final String methodName = "sendNoWait";
+		LOG.info("methodName = {}",methodName);
 		if (isConnected() ||
 				(!isConnected() && message instanceof MqttConnect) ||
 				(isDisconnecting() && message instanceof MqttDisconnect)) {
@@ -183,6 +188,7 @@ public class ClientComms {
 	 */
 	public void close(boolean force) throws MqttException {
 		final String methodName = "close";
+		LOG.info("methodName = {}",methodName);
 		synchronized (conLock) {
 			if (!isClosed()) {
 				// Must be disconnected before close can take place or if we are being forced
@@ -226,6 +232,8 @@ public class ClientComms {
 	 */
 	public void connect(MqttConnectOptions options, MqttToken token) throws MqttException {
 		final String methodName = "connect";
+		LOG.info("methodName = {}",methodName);
+
 		synchronized (conLock) {
 			if (isDisconnected() && !closePending) {
 				//@TRACE 214=state=CONNECTING
@@ -233,6 +241,16 @@ public class ClientComms {
 				conState = CONNECTING;
 
 				conOptions = options;
+				LOG.info("Connect options:\n- client ID: {}\n- version: {}\n- clean session: {}\n" +
+						"- keep alive interval: {}\n- user name: {}\n- password: {}\n" +
+						"- will message: {}\n- will destination: {}",client.getClientId(),
+						conOptions.getMqttVersion(),
+						conOptions.isCleanSession(),
+						conOptions.getKeepAliveInterval(),
+						conOptions.getUserName(),
+						conOptions.getPassword(),
+						conOptions.getWillMessage(),
+						conOptions.getWillDestination());
 
                 MqttConnect connect = new MqttConnect(client.getClientId(),
                         conOptions.getMqttVersion(),
@@ -408,6 +426,7 @@ public class ClientComms {
 	// complete.
 	private MqttToken handleOldTokens(MqttToken token, MqttException reason) {
 		final String methodName = "handleOldTokens";
+		LOG.info("methodName = {}",methodName);
 		//@TRACE 222=>
 
 		MqttToken tokToNotifyLater = null;
@@ -444,6 +463,7 @@ public class ClientComms {
 
 	public void disconnect(MqttDisconnect disconnect, long quiesceTimeout, MqttToken token) throws MqttException {
 		final String methodName = "disconnect";
+		LOG.info("methodName = {}",methodName);
 		synchronized (conLock){
 			if (isClosed()) {
 				//@TRACE 223=failed: in closed state

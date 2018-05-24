@@ -83,7 +83,7 @@ public class MqttConnect extends MqttWireMessage {
 	public boolean isCleanSession() {
 		return cleanSession;
 	}
-	
+
 	protected byte[] getVariableHeader() throws MqttException {
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();

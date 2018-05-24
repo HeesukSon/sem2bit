@@ -33,6 +33,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class CommsSender implements Runnable {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(CommsSender.class);
 	private static final String CLASS_NAME = CommsSender.class.getName();
 
 	//Sends MQTT packets to the server on its own thread
@@ -75,6 +76,7 @@ public class CommsSender implements Runnable {
 	 */
 	public void stop() {
 		final String methodName = "stop";
+		LOG.info("methodName : {}",methodName);
 
 		synchronized (lifecycle) {
 			if (senderFuture != null) {
@@ -93,6 +95,7 @@ public class CommsSender implements Runnable {
 						}
 					} catch (InterruptedException ex) {
 					} finally {
+						LOG.info("CommsSender relases runningSemaphore.");
 						runningSemaphore.release();
 					}
 				}
@@ -106,6 +109,7 @@ public class CommsSender implements Runnable {
 		sendThread = Thread.currentThread();
 		sendThread.setName(threadName);
 		final String methodName = "run";
+		LOG.info("methodName : {}", methodName);
 		MqttWireMessage message = null;
 
 		try {
@@ -114,11 +118,13 @@ public class CommsSender implements Runnable {
 			running = false;
 			return;
 		}
+		LOG.info("runningSemaphore is acquired");
 
 		try {
 			while (running && (out != null)) {
 				try {
 					message = clientState.get();
+					LOG.info("message class = {}",message.getClass().toString());
 					if (message != null) {
 						//@TRACE 802=network send key={0} msg={1}
 
@@ -126,6 +132,8 @@ public class CommsSender implements Runnable {
 							out.write(message);
 							out.flush();
 						} else {
+							LOG.info("message header : {}",message.getHeader());
+							LOG.info("message header -> String : {}",new String(message.getHeader()));
 							MqttToken token = tokenStore.getToken(message);
 							// While quiescing the tokenstore can be cleared so need
 							// to check for null for the case where clear occurs
@@ -133,6 +141,7 @@ public class CommsSender implements Runnable {
 							if (token != null) {
 								synchronized (token) {
 									out.write(message);
+									LOG.info("A message is written to the out stream");
 									try {
 										out.flush();
 									} catch (IOException ex) {
@@ -159,6 +168,7 @@ public class CommsSender implements Runnable {
 			} // end while
 		} finally {
 			running = false;
+			LOG.info("CommsSender releases runningSemaphore.");
 			runningSemaphore.release();
 		}
 

@@ -31,6 +31,7 @@ import java.util.concurrent.Semaphore;
  * Receives MQTT packets from the server.
  */
 public class CommsReceiver implements Runnable {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(CommsReceiver.class);
 	private static final String CLASS_NAME = CommsReceiver.class.getName();
 
 	private boolean running = false;
@@ -61,6 +62,7 @@ public class CommsReceiver implements Runnable {
 	public void start(String threadName, ExecutorService executorService) {
 		this.threadName = threadName;
 		final String methodName = "start";
+		LOG.info("methodName = {}",methodName);
 		//@TRACE 855=starting
 		synchronized (lifecycle) {
 			if (!running) {
@@ -75,6 +77,7 @@ public class CommsReceiver implements Runnable {
 	 */
 	public void stop() {
 		final String methodName = "stop";
+		LOG.info("methodName = {}",methodName);
 		synchronized (lifecycle) {
 			if (receiverFuture != null) {
 				receiverFuture.cancel(true);
@@ -90,6 +93,7 @@ public class CommsReceiver implements Runnable {
 					}
 					catch (InterruptedException ex) {
 					} finally {
+						LOG.info("CommsReceiver releases runningSemaphore.");
 						runningSemaphore.release();
 					}
 				}
@@ -106,10 +110,13 @@ public class CommsReceiver implements Runnable {
 		recThread = Thread.currentThread();
 		recThread.setName(threadName);
 		final String methodName = "run";
+		LOG.info("methodName : {}",methodName);
+
 		MqttToken token = null;
 
 		try {
 			runningSemaphore.acquire();
+			LOG.info("runningSemaphore is acquired.");
 		} catch (InterruptedException e) {
 			running = false;
 			return;
@@ -120,6 +127,10 @@ public class CommsReceiver implements Runnable {
 				//@TRACE 852=network read message
 				receiving = in.available() > 0;
 				MqttWireMessage message = in.readMqttWireMessage();
+				LOG.info("message.getClass().toString() = {}",message.getClass().toString());
+				LOG.info("message.getHeader() in bytes = {}",message.getHeader());
+				LOG.info("message.getPayload() in bytes = {}", message.getPayload());
+				LOG.info("message.getPayload() in String = {}", new String(message.getPayload()));
 				receiving = false;
 
 				// instanceof checks if message is null
@@ -169,6 +180,7 @@ public class CommsReceiver implements Runnable {
 			}
 			finally {
 				receiving = false;
+				LOG.info("CommsReceiver releases runningSemaphore.");
 				runningSemaphore.release();
 			}
 		}
