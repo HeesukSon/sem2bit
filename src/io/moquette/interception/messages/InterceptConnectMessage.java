@@ -17,10 +17,13 @@
 package io.moquette.interception.messages;
 
 import io.netty.handler.codec.mqtt.MqttConnectMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
 public class InterceptConnectMessage extends InterceptAbstractMessage {
+    private static final Logger LOG = LoggerFactory.getLogger(InterceptConnectMessage.class);
 
     private final MqttConnectMessage msg;
 

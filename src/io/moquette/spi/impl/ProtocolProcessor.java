@@ -62,7 +62,6 @@ import static io.netty.handler.codec.mqtt.MqttQoS.*;
  * Used by the front facing class ProtocolProcessorBootstrapper.
  */
 public class ProtocolProcessor {
-
     static final class WillMessage {
 
         private final String topic;

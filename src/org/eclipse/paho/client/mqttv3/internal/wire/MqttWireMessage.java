@@ -116,6 +116,11 @@ public abstract class MqttWireMessage {
 	        byte[] varHeader = getVariableHeader();
 	        int remLen = varHeader.length + getPayload().length;
 
+	        // TODO identify each field and re-composite the header info.
+			// ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
+			// ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldList(), seq);
+			// ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
+
 	        ByteArrayOutputStream baos = new ByteArrayOutputStream();
 	        DataOutputStream dos = new DataOutputStream(baos);
 	        dos.writeByte(first);

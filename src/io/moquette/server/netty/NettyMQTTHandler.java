@@ -17,6 +17,7 @@
 package io.moquette.server.netty;
 
 import io.moquette.spi.impl.ProtocolProcessor;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -40,9 +41,10 @@ public class NettyMQTTHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object message) {
+        LOG.info("channelRead(ctx,message):: message type = {}",message.getClass().toString());
         MqttMessage msg = (MqttMessage) message;
         MqttMessageType messageType = msg.fixedHeader().messageType();
-        LOG.debug("Processing MQTT message, type: {}", messageType);
+        LOG.info("Processing MQTT message, type: {}", messageType);
         try {
             switch (messageType) {
                 case CONNECT:
