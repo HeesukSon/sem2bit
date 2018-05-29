@@ -1,6 +1,6 @@
 package heesuk.percom.sem2bit.msg;
 
-import heesuk.percom.sem2bit.kb.sdp.MessageField;
+import heesuk.percom.sem2bit.kb.protocol.MessageField;
 
 public class MessageFieldComposition {
 	private MessageField field;

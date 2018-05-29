@@ -1,8 +1,14 @@
 package heesuk.percom.sem2bit.kb;
 
+import heesuk.percom.sem2bit.ConfigUtil;
+import heesuk.percom.sem2bit.kb.protocol.enums.Domain;
+import heesuk.percom.sem2bit.exception.DomainNotDefinedException;
 import heesuk.percom.sem2bit.ExperimentStat;
+import heesuk.percom.sem2bit.exception.LocalProtocolNotSpecifiedException;
 import heesuk.percom.sem2bit.kb.probtree.ModificationProbTree;
-import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
+import heesuk.percom.sem2bit.kb.protocol.ProtocolKBUtil;
+import heesuk.percom.sem2bit.kb.protocol.iot.IoTProtocolKBUtil;
+import heesuk.percom.sem2bit.kb.protocol.sdp.SDPKBUtil;
 import heesuk.percom.sem2bit.kb.seqtree.ModificationSeqPlanTree;
 import heesuk.percom.sem2bit.msg.ModificationCandidate;
 
@@ -11,6 +17,7 @@ public class TreeFactory {
 	
 	private ModificationProbTree probTree;
 	private ModificationSeqPlanTree seqPlanTree;
+	private ProtocolKBUtil kb;
 	
 	private TreeFactory(){
 		
@@ -28,12 +35,27 @@ public class TreeFactory {
 		return this.seqPlanTree.getModSeq(0);
 	}
 	
-	public void buildTree(){
+	public void buildTree() throws DomainNotDefinedException, LocalProtocolNotSpecifiedException {
+		Domain domain = ConfigUtil.getInstance().domain;
+		if(domain == Domain.SDP){
+			this.kb = SDPKBUtil.getInstance();
+		}else if(domain == Domain.IoT_Protocol){
+			this.kb = IoTProtocolKBUtil.getInstance();
+		}else{
+			throw new DomainNotDefinedException();
+		}
+
 		// modification probability tree
 		long beforeProbTree = System.currentTimeMillis();
 		this.probTree = new ModificationProbTree();
 		this.probTree.init();
-		this.probTree.localize(SDPKBUtil.getInstance().getLocalSDPName());
+
+		if(kb.getLocalProtocolName() != null){
+			this.probTree.localize(kb.getLocalProtocolName());
+		}else{
+			throw new LocalProtocolNotSpecifiedException();
+		}
+
 		this.probTree.computeWeights();
 		
 		ModificationCandidate[] candidates = this.probTree.getSortedCandidates();

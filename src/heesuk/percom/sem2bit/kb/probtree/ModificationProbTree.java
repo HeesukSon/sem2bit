@@ -3,34 +3,50 @@ package heesuk.percom.sem2bit.kb.probtree;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import heesuk.percom.sem2bit.ProbeLogger;
-import heesuk.percom.sem2bit.kb.sdp.MessageFieldUpdate;
-import heesuk.percom.sem2bit.kb.sdp.SDP;
-import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
-import heesuk.percom.sem2bit.kb.sdp.SDPMessage;
-import heesuk.percom.sem2bit.kb.sdp.enums.Functionality;
-import heesuk.percom.sem2bit.kb.sdp.enums.MessageFieldType;
-import heesuk.percom.sem2bit.kb.sdp.enums.RequirementChange;
-import heesuk.percom.sem2bit.kb.sdp.enums.SDPName;
-import heesuk.percom.sem2bit.kb.sdp.enums.UpdatePattern;
+import heesuk.percom.sem2bit.ConfigUtil;
+import heesuk.percom.sem2bit.kb.protocol.enums.Domain;
+import heesuk.percom.sem2bit.kb.protocol.MessageFieldUpdate;
+import heesuk.percom.sem2bit.kb.protocol.Protocol;
+import heesuk.percom.sem2bit.kb.protocol.ProtocolKBUtil;
+import heesuk.percom.sem2bit.kb.protocol.ProtocolMessage;
+import heesuk.percom.sem2bit.kb.protocol.iot.IoTProtocolKBUtil;
+import heesuk.percom.sem2bit.kb.protocol.sdp.SDPKBUtil;
+import heesuk.percom.sem2bit.kb.protocol.enums.Functionality;
+import heesuk.percom.sem2bit.kb.protocol.enums.MessageFieldType;
+import heesuk.percom.sem2bit.kb.protocol.enums.RequirementChange;
+import heesuk.percom.sem2bit.kb.protocol.enums.ProtocolName;
+import heesuk.percom.sem2bit.kb.protocol.enums.UpdatePattern;
 import heesuk.percom.sem2bit.msg.ModificationCandidate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ModificationProbTree {
+	private static final Logger LOG = LoggerFactory.getLogger(ModificationProbTree.class);
+
 	private ProbTreeNode root;
+	private ProtocolKBUtil kb;
 
 	public ModificationProbTree() {
-		root = new ProbTreeNode("ROOT", 1);
+		this.root = new ProbTreeNode("ROOT", 1);
+		if(ConfigUtil.getInstance().domain == Domain.SDP){
+			this.kb = SDPKBUtil.getInstance();
+		}else if(ConfigUtil.getInstance().domain == Domain.IoT_Protocol){
+			this.kb = IoTProtocolKBUtil.getInstance();
+		}else{
+			this.kb = null;
+		}
 		init();
 	}
 	
 	public ModificationCandidate[] getSortedCandidates(){
 		ArrayList<ModificationCandidate> list = new ArrayList<ModificationCandidate>();
 		computeCandidateProb(this.root, 1f, list);
-		ProbeLogger.appendLogln("tree","Computing each modification candidate's probability is done.");
+		LOG.info("Computing each modification candidate's probability is done.");
+
 		sortCandidates(list);
-		ProbeLogger.appendLogln("tree","Sorting the modification candidate list is done.");
-		ProbeLogger.appendLogln("tree","Modification candidate list size : "+list.size());
-		
+		LOG.info("Sorting the modification candidate list is done.");
+		LOG.info("Modification candidate list size : {}", list.size());
+
 		ModificationCandidate[] arr = new ModificationCandidate[list.size()];
 		return list.toArray(arr);
 	}
@@ -53,7 +69,7 @@ public class ModificationProbTree {
 	private void computeCandidateProb(ProbTreeNode node, float prob, ArrayList<ModificationCandidate> list){
 		if(node.getDepth()==4){
 			for(ProbTreeEdge out : node.getOutEdges()){
-				String field = SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldName(node.getLabel());
+				String field = kb.getLocalProtocol().getMessage().getFieldName(node.getLabel());
 				String update = out.getNext().getLabel();
 				float final_prob = prob*out.getWeight();
 				ModificationCandidate candidate = new ModificationCandidate(field, update, final_prob);
@@ -66,19 +82,19 @@ public class ModificationProbTree {
 		}
 	}
 
-	public void localize(SDPName sdpName) {
+	public void localize(ProtocolName pName) {
 		// (1) prune Service Search
 		this.root.removeChild(Functionality.SERVICE_SEARCH.toString());
 		
 		// (2) prune meaningless field updates
-		this.pruneMeaninglessUpdates(sdpName, this.root);
+		this.pruneMeaninglessUpdates(pName, this.root);
 	}
 	
-	public void pruneMeaninglessUpdates(SDPName sdpName, ProbTreeNode node){
+	public void pruneMeaninglessUpdates(ProtocolName pName, ProbTreeNode node){
 		for(ProbTreeEdge out : node.getOutEdges()){
 			if(out.getNext().getDepth() == 4){
-				SDP sdp = SDPKBUtil.getInstance().getSDP(sdpName);
-				SDPMessage msg = sdp.getMesage();
+				Protocol p = kb.getProtocol(pName);
+				ProtocolMessage msg = p.getMessage();
 				
 				if(msg.contains(out.getNext().getLabel())){
 					// (2-1) if D-4 field is present, delete D-5 node, [A]
@@ -90,7 +106,7 @@ public class ModificationProbTree {
 					out.getNext().removeChild(UpdatePattern.CHANGE_VOCA.toString());
 				}
 			}else{
-				pruneMeaninglessUpdates(sdpName, out.getNext());
+				pruneMeaninglessUpdates(pName, out.getNext());
 			}
 		}
 	}
@@ -101,14 +117,14 @@ public class ModificationProbTree {
 		this.computeWeight_3_4();
 		this.computeWeight_4_5();
 		
-		ProbeLogger.appendLogln("tree","Weight value computation for modification probability tree is done.");
+		LOG.info("Weight value computation for modification probability tree is done.");
 	}
 	
 	private void computeWeight_1_2(){
 		int cp_cnt = 0;
 		int mh_cnt = 0;
 		
-		for(MessageFieldUpdate update : SDPKBUtil.getInstance().getUpdateHistory()){
+		for(MessageFieldUpdate update : kb.getUpdateHistory()){
 			if(update.getFunc().equals(Functionality.CONTENT_PARSING)){
 				cp_cnt++;
 			}else if(update.getFunc().equals(Functionality.MESSAGE_HANDLING)){
@@ -155,7 +171,7 @@ public class ModificationProbTree {
 	
 	private void updateEvidence(ProbTreeNode node, HashMap<String, Integer> evidence){
 		if(node.getDepth()==3){
-			evidence.put(node.getLabel(), SDPKBUtil.getInstance().getRequirementChangeCount(node.getLabel()));
+			evidence.put(node.getLabel(), kb.getRequirementChangeCount(node.getLabel()));
 		}else{
 			for(ProbTreeEdge out : node.getOutEdges()){
 				updateCandidate(out.getNext(), evidence);
@@ -197,18 +213,18 @@ public class ModificationProbTree {
 		if(node.getDepth()==4){
 			for(ProbTreeEdge out : node.getOutEdges()){
 				if(out.getNext().getLabel().equals(UpdatePattern.ADD_NEW_FIELD.toString())){
-					float patternProb = SDPKBUtil.getInstance().getUpdatePatternProb(UpdatePattern.ADD_NEW_FIELD.toString());
-					float fieldExProb = SDPKBUtil.getInstance().getFieldExProb(node.getLabel());
+					float patternProb = kb.getUpdatePatternProb(UpdatePattern.ADD_NEW_FIELD.toString());
+					float fieldExProb = kb.getFieldExProb(node.getLabel());
 					node.updateOutEdgeWeight(out.getNext().getLabel(), patternProb*fieldExProb);
 				}else if(out.getNext().getLabel().equals(UpdatePattern.DELETE_FIELD.toString())){
-					float patternProb = SDPKBUtil.getInstance().getUpdatePatternProb(UpdatePattern.DELETE_FIELD.toString());
-					float fieldExProb = SDPKBUtil.getInstance().getFieldExProb(node.getLabel());
+					float patternProb = kb.getUpdatePatternProb(UpdatePattern.DELETE_FIELD.toString());
+					float fieldExProb = kb.getFieldExProb(node.getLabel());
 					node.updateOutEdgeWeight(out.getNext().getLabel(), patternProb*(1-fieldExProb));
 				}else if(out.getNext().getLabel().equals(UpdatePattern.CHANGE_FIELD_LENGTH.toString())){
-					float patternProb = SDPKBUtil.getInstance().getUpdatePatternProb(UpdatePattern.CHANGE_FIELD_LENGTH.toString());
+					float patternProb = kb.getUpdatePatternProb(UpdatePattern.CHANGE_FIELD_LENGTH.toString());
 					node.updateOutEdgeWeight(out.getNext().getLabel(), patternProb);
 				}else{
-					float patternProb = SDPKBUtil.getInstance().getUpdatePatternProb(UpdatePattern.CHANGE_VOCA.toString());
+					float patternProb = kb.getUpdatePatternProb(UpdatePattern.CHANGE_VOCA.toString());
 					node.updateOutEdgeWeight(out.getNext().getLabel(), patternProb);
 				}
 			}
@@ -220,7 +236,7 @@ public class ModificationProbTree {
 	}
 
 	public void printTree() {
-		ProbeLogger.appendLogln("tree","\n################# PRINT MODIFICATION PROBABILITY TREE #################");
+		LOG.info("\n################# PRINT MODIFICATION PROBABILITY TREE #################");
 		printTree("",this.root);
 	}
 
@@ -232,8 +248,7 @@ public class ModificationProbTree {
 			}
 		} else if (node.getOutEdges().length==0) {
 			// leaf node
-			//ProbeLogger.appendLogln("tree",prev+node.getLabel());
-			ProbeLogger.appendLogln("tree",prev+" (END)");
+			LOG.info("{} (END)",prev);
 		} else {
 			// intermediate nodes
 			for (ProbTreeEdge out : node.getOutEdges()) {

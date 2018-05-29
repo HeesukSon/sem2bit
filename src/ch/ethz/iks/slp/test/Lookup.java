@@ -5,9 +5,10 @@ import ch.ethz.iks.slp.ServiceLocationManager;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceLocationEnumeration;
 import ch.ethz.iks.slp.ServiceType;
-import ch.ethz.iks.slp.ServiceURL;
-import heesuk.percom.sem2bit.ModificationController;
-import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
+import heesuk.percom.sem2bit.Constants;
+import heesuk.percom.sem2bit.kb.protocol.enums.ProtocolName;
+import heesuk.percom.sem2bit.kb.protocol.sdp.SDPKBUtil;
+import org.apache.log4j.PropertyConfigurator;
 
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.Locale;
 public class Lookup {
 
 	public static void main(String[] args) throws ServiceLocationException, SocketTimeoutException, IllegalArgumentException {
+		PropertyConfigurator.configure(Constants.ROOT_DIR+"log4j.properties");
 		SDPKBUtil.getInstance().buildKB();
 		
 		// get Locator instance

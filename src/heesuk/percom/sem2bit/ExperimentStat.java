@@ -39,7 +39,7 @@ public class ExperimentStat {
 		ProbeLogger.appendStatln("\n\n########### EXPERIMENT RESULT ###############");
 		ProbeLogger.appendStatln("- Elapsed Experiment Time in Overall: " + totalExpTime + " (ms)");
 		ProbeLogger.appendStatln("- Tried # of Modification Rounds: " + expRoundCnt);
-		ProbeLogger.appendStatln("- Elapsed Time for SDP KB Loading: " + kbLoadingTime + " (ms, "
+		ProbeLogger.appendStatln("- Elapsed Time for IoTProtocol KB Loading: " + kbLoadingTime + " (ms, "
 				+ ((float) kbLoadingTime / totalExpTime * 100) + "%)");
 		ProbeLogger.appendStatln("- Elapsed Time for Probability Tree Construction: " + probTreeBuildTime + " (ms, "
 				+ ((float) probTreeBuildTime / totalExpTime * 100) + "%)");
@@ -54,7 +54,7 @@ public class ExperimentStat {
 		ProbeLogger.appendStatln("- Elapsed Time for Modified Message Transmission including Waiting in Total: "
 				+ msgTransTimeTotal + " (ms, " + ((float) msgTransTimeTotal / totalExpTime * 100) + "%), Average = "
 				+ ((float) msgTransTimeTotal / expRoundCnt) + " (ms)");
-		ProbeLogger.appendStatln("- Socket Timeout: "+Configurations.getInstance().tcp_timeout+" (ms)");
+		ProbeLogger.appendStatln("- Socket Timeout: "+ConfigUtil.getInstance().tcp_timeout+" (ms)");
 	}
 
 	//////////////////// getters & setters ////////////////////

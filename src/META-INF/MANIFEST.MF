@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: /Users/chad1231/Desktop/workspace/sem2bit
+Main-Class: ch.ethz.iks.slp.test.Registration
+

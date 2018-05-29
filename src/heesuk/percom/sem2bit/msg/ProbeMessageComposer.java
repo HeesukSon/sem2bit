@@ -4,18 +4,29 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import heesuk.percom.sem2bit.ConfigUtil;
+import heesuk.percom.sem2bit.kb.protocol.enums.Domain;
 import heesuk.percom.sem2bit.ProbeLogger;
-import heesuk.percom.sem2bit.kb.sdp.MessageField;
-import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
-import heesuk.percom.sem2bit.kb.sdp.enums.MessageFieldLocation;
-import heesuk.percom.sem2bit.kb.sdp.enums.MessageFieldType;
-import heesuk.percom.sem2bit.kb.sdp.enums.UpdatePattern;
+import heesuk.percom.sem2bit.kb.protocol.MessageField;
+import heesuk.percom.sem2bit.kb.protocol.ProtocolKBUtil;
+import heesuk.percom.sem2bit.kb.protocol.enums.MessageFieldLocation;
+import heesuk.percom.sem2bit.kb.protocol.enums.MessageFieldType;
+import heesuk.percom.sem2bit.kb.protocol.enums.UpdatePattern;
+import heesuk.percom.sem2bit.kb.protocol.iot.IoTProtocolKBUtil;
+import heesuk.percom.sem2bit.kb.protocol.sdp.SDPKBUtil;
 
 public class ProbeMessageComposer {
 	private static ProbeMessageComposer _instance;
+	private ProtocolKBUtil kb;
 
 	private ProbeMessageComposer() {
-
+		if(ConfigUtil.getInstance().domain == Domain.SDP){
+			this.kb = SDPKBUtil.getInstance();
+		}else if(ConfigUtil.getInstance().domain == Domain.IoT_Protocol){
+			this.kb = IoTProtocolKBUtil.getInstance();
+		}else{
+			this.kb = null;
+		}
 	}
 
 	public static ProbeMessageComposer getInstance() {
@@ -78,7 +89,7 @@ public class ProbeMessageComposer {
 		// modify the fields
 		for(ModificationCandidate candidate : candidates){
 			if(candidate.getUpdate().equals(UpdatePattern.ADD_NEW_FIELD.toString())){
-				modifiedFields.add(SDPKBUtil.getInstance().getMsgField(candidate.getField()));
+				modifiedFields.add(kb.getMsgField(candidate.getField()));
 			}else if(candidate.getUpdate().equals(UpdatePattern.DELETE_FIELD.toString())){
 				int size = modifiedFields.size();
 				for(int i=0; i<size; i++){
@@ -91,7 +102,7 @@ public class ProbeMessageComposer {
 				int size = modifiedFields.size();
 				for(int i=0; i<size; i++){
 					if(modifiedFields.get(i).getName().equals(candidate.getField())){
-						modifiedFields.get(i).setLength(SDPKBUtil.getInstance().getNewFieldLength(candidate.getField()));
+						modifiedFields.get(i).setLength(kb.getNewFieldLength(candidate.getField()));
 						break;
 					}
 				}

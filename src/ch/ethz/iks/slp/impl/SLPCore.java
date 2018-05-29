@@ -55,7 +55,7 @@ import java.util.Map;
 
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
-import heesuk.percom.sem2bit.Configurations;
+import heesuk.percom.sem2bit.ConfigUtil;
 import heesuk.percom.sem2bit.ExperimentStat;
 import heesuk.percom.sem2bit.ProbeLogger;
 import heesuk.percom.sem2bit.ProbingStatus;
@@ -362,7 +362,7 @@ public abstract class SLPCore {
 						packet = new DatagramPacket(bytes, bytes.length);
 						mtcSocket.receive(packet);
 						
-						if (!packet.getAddress().toString().equals(Configurations.getInstance().local_address)) {
+						if (!packet.getAddress().toString().equals(ConfigUtil.getInstance().local_address)) {
 							ProbeLogger.appendErrln("probe", packet.getAddress().toString()+" sent a request message!!");
 						} else {
 							final SLPMessage reply = handleMessage(

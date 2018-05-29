@@ -4,17 +4,22 @@ import ch.ethz.iks.slp.Advertiser;
 import ch.ethz.iks.slp.ServiceLocationManager;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceURL;
-import heesuk.percom.sem2bit.ModificationController;
+import heesuk.percom.sem2bit.Constants;
 import heesuk.percom.sem2bit.ProbeLogger;
-import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
+import heesuk.percom.sem2bit.kb.protocol.enums.ProtocolName;
+import heesuk.percom.sem2bit.kb.protocol.sdp.SDPKBUtil;
 
 import java.util.Locale;
+
+import org.apache.log4j.PropertyConfigurator;
 import org.osgi.framework.InvalidSyntaxException;
 
 import java.util.Hashtable;
 
 public class Registration {
 	public static void main(String[] args) throws ServiceLocationException, InvalidSyntaxException {
+		//PropertyConfigurator.configure("log4j.properties");
+		PropertyConfigurator.configure(Constants.ROOT_DIR+"log4j.properties");
 		SDPKBUtil.getInstance().buildKB();
 		
 		// get Advertiser instance

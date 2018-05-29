@@ -38,13 +38,13 @@ import java.util.Locale;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
 import ch.ethz.iks.slp.impl.filter.Filter;
-import heesuk.percom.sem2bit.Configurations;
+import heesuk.percom.sem2bit.ConfigUtil;
 import heesuk.percom.sem2bit.ExperimentStat;
 import heesuk.percom.sem2bit.ProbeLogger;
 import heesuk.percom.sem2bit.kb.TreeFactory;
-import heesuk.percom.sem2bit.kb.sdp.MessageField;
-import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
-import heesuk.percom.sem2bit.kb.sdp.enums.SDPName;
+import heesuk.percom.sem2bit.kb.protocol.MessageField;
+import heesuk.percom.sem2bit.kb.protocol.enums.ProtocolName;
+import heesuk.percom.sem2bit.kb.protocol.sdp.SDPKBUtil;
 import heesuk.percom.sem2bit.msg.ModificationCandidate;
 import heesuk.percom.sem2bit.msg.ProbeMessageComposer;
 
@@ -158,7 +158,7 @@ class ServiceRequest extends RequestMessage {
 	 *             if an IO Exception occurs.
 	 */
 	protected void writeTo(final DataOutputStream out) throws IOException {
-		if(Configurations.getInstance().role.equals("service_agent")){
+		if(ConfigUtil.getInstance().role.equals("service_agent")){
 			super.writeHeader(out, getSize());
 		}else{
 			long beforeSeqComp = System.currentTimeMillis();
@@ -166,7 +166,7 @@ class ServiceRequest extends RequestMessage {
 			long afterSeqComp = System.currentTimeMillis();
 			ExperimentStat.getInstance().setSeqComputeTimeTotal(ExperimentStat.getInstance().getSeqComputeTimeTotal()+(afterSeqComp-beforeSeqComp));
 
-			if(Configurations.getInstance().exp_mode.equals("mockup")){
+			if(ConfigUtil.getInstance().exp_mode.equals("mockup")){
 				boolean result = true;
 
 				ModificationCandidate[] rightAnswer = new ModificationCandidate[8];
@@ -192,14 +192,14 @@ class ServiceRequest extends RequestMessage {
 				ProbeLogger.appendLogln("probe", seqStr.toString());
 
 				if(result == true){
-					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList();
+					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getProtocol(ProtocolName.SLPv2).getMessage().getFieldList();
 					ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
 				}else{
-					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getSDP(SDPName.SLPv1).getMesage().getFieldList();
+					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getProtocol(ProtocolName.SLPv1).getMessage().getFieldList();
 					ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
 				}
 			}else {
-				ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldList(), seq);
+				ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(SDPKBUtil.getInstance().getLocalProtocol().getMessage().getFieldList(), seq);
 				ProbeMessageComposer.getInstance().writeMsgHeader(modifiedFields, out, getSize(), xid);
 			}
 
@@ -244,7 +244,7 @@ class ServiceRequest extends RequestMessage {
 	 *             if an IO Exception occurs.
 	 */
 	protected void writeTo(int cnt, final DataOutputStream out) throws IOException {
-		if(Configurations.getInstance().role.equals("service_agent")){
+		if(ConfigUtil.getInstance().role.equals("service_agent")){
 			super.writeHeader(out, getSize());
 		}else{
 			long beforeSeqComp = System.currentTimeMillis();
@@ -252,7 +252,7 @@ class ServiceRequest extends RequestMessage {
 			long afterSeqComp = System.currentTimeMillis();
 			ExperimentStat.getInstance().setSeqComputeTimeTotal(ExperimentStat.getInstance().getSeqComputeTimeTotal()+(afterSeqComp-beforeSeqComp));
 
-			if(Configurations.getInstance().exp_mode.equals("mockup")){
+			if(ConfigUtil.getInstance().exp_mode.equals("mockup")){
 				boolean result = true;
 
 				ModificationCandidate[] rightAnswer = new ModificationCandidate[8];
@@ -271,14 +271,14 @@ class ServiceRequest extends RequestMessage {
 				}
 
 				if(result == true){
-					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getSDP(SDPName.SLPv2).getMesage().getFieldList();
+					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getProtocol(ProtocolName.SLPv2).getMessage().getFieldList();
 					ProbeMessageComposer.getInstance().writeMsgHeader(cnt, modifiedFields, out, getSize(), xid);
 				}else{
-					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getSDP(SDPName.SLPv1).getMesage().getFieldList();
+					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getProtocol(ProtocolName.SLPv1).getMessage().getFieldList();
 					ProbeMessageComposer.getInstance().writeMsgHeader(cnt, modifiedFields, out, getSize(), xid);
 				}
 			}else {
-				ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(cnt, SDPKBUtil.getInstance().getLocalSDP().getMesage().getFieldList(), seq);
+				ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().getModifiedFieldList(cnt, SDPKBUtil.getInstance().getLocalProtocol().getMessage().getFieldList(), seq);
 				ProbeMessageComposer.getInstance().writeMsgHeader(cnt, modifiedFields, out, getSize(), xid);
 			}
 

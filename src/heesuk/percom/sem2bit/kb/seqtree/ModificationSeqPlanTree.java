@@ -1,19 +1,30 @@
 package heesuk.percom.sem2bit.kb.seqtree;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import heesuk.percom.sem2bit.ConfigUtil;
+import heesuk.percom.sem2bit.kb.protocol.enums.Domain;
 import heesuk.percom.sem2bit.ProbeLogger;
-import heesuk.percom.sem2bit.kb.sdp.SDPKBUtil;
-import heesuk.percom.sem2bit.kb.sdp.enums.UpdatePattern;
+import heesuk.percom.sem2bit.kb.protocol.ProtocolKBUtil;
+import heesuk.percom.sem2bit.kb.protocol.enums.UpdatePattern;
+import heesuk.percom.sem2bit.kb.protocol.iot.IoTProtocolKBUtil;
+import heesuk.percom.sem2bit.kb.protocol.sdp.SDPKBUtil;
 import heesuk.percom.sem2bit.msg.ModificationCandidate;
 
 public class ModificationSeqPlanTree {
 	private SeqTreeNode root;
 	private ModificationCandidate[] candidates;
+	private ProtocolKBUtil kb;
 
 	public ModificationSeqPlanTree() {
 		this.root = new SeqTreeNode(1);
+		if(ConfigUtil.getInstance().domain == Domain.SDP){
+			this.kb = SDPKBUtil.getInstance();
+		}else if(ConfigUtil.getInstance().domain == Domain.IoT_Protocol){
+			this.kb = IoTProtocolKBUtil.getInstance();
+		}else{
+			this.kb = null;
+		}
 	}
 
 	public ModificationSeqPlanTree(ModificationCandidate[] candidates) {
@@ -37,7 +48,7 @@ public class ModificationSeqPlanTree {
 	public synchronized ModificationCandidate[] getModSeq(int count, SeqTreeNode node, ArrayList<ModificationCandidate> candidates,
 			ArrayList<ModificationCandidate> seq) {
 		
-		if (/* at the bound depth: base case */node.getDepth() == SDPKBUtil.getInstance().getModSeqBound() + 1) {
+		if (/* at the bound depth: base case */node.getDepth() == kb.getModSeqBound() + 1) {
 			ProbeLogger.appendLog("tree", "[Bottom line] node = "+node.getItem().toStringWithoutWeight());
 			// add the current node to the sequence
 			seq.add(node.getItem());
@@ -73,7 +84,7 @@ public class ModificationSeqPlanTree {
 					ProbeLogger.appendLog("tree", "[Current node has further sequences]");
 					if (/* the right-most-child has further sequences */!node.getRightMostChild().isDead() && node.getRightMostChild()
 							.hasMoreSequence(candidates)) {
-						if (/* right before the bound depth */ node.getDepth() == SDPKBUtil.getInstance()
+						if (/* right before the bound depth */ node.getDepth() == kb
 								.getModSeqBound()) {
 							ProbeLogger.appendLog("tree", "[Right before the bound depth] children size = "+node.getChildren().size()+", candidate size = "+candidates.size());
 							if (/* has more to add */ node.hasMoreSequence(candidates)) {
