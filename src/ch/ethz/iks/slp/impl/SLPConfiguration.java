@@ -43,7 +43,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
-import heesuk.percom.sem2bit.ConfigUtil;
+import heesuk.sem2bit.ConfigUtil;
 
 /**
  * SLPConfiguration object holds all configurable properties.

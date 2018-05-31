@@ -16,6 +16,7 @@
 
 package org.eclipse.paho.sample.mqttv3app;
 
+import heesuk.sem2bit.Constants;
 import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
@@ -55,7 +56,7 @@ public class PubSample implements MqttCallback {
 	 * command-line before performing the specified action.
 	 */
 	public static void main(String[] args) {
-		PropertyConfigurator.configure("log4j.properties");
+		PropertyConfigurator.configure(Constants.ROOT_DIR+"log4j.properties");
 
 		// Default settings:
 		boolean quietMode 	= false;

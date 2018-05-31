@@ -4,10 +4,9 @@ import ch.ethz.iks.slp.Advertiser;
 import ch.ethz.iks.slp.ServiceLocationManager;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceURL;
-import heesuk.percom.sem2bit.Constants;
-import heesuk.percom.sem2bit.ProbeLogger;
-import heesuk.percom.sem2bit.kb.protocol.enums.ProtocolName;
-import heesuk.percom.sem2bit.kb.protocol.sdp.SDPKBUtil;
+import heesuk.sem2bit.Constants;
+import heesuk.sem2bit.ProbeLogger;
+import heesuk.sem2bit.kb.protocol.sdp.SDPKBUtil;
 
 import java.util.Locale;
 

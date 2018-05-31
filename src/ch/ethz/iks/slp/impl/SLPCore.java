@@ -55,10 +55,10 @@ import java.util.Map;
 
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
-import heesuk.percom.sem2bit.ConfigUtil;
-import heesuk.percom.sem2bit.ExperimentStat;
-import heesuk.percom.sem2bit.ProbeLogger;
-import heesuk.percom.sem2bit.ProbingStatus;
+import heesuk.sem2bit.ConfigUtil;
+import heesuk.sem2bit.ExperimentStat;
+import heesuk.sem2bit.ProbeLogger;
+import heesuk.sem2bit.ProbingStatus;
 
 /**
  * the core class of the jSLP implementation.
