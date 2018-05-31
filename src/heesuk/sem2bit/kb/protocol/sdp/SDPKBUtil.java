@@ -23,6 +23,7 @@ public class SDPKBUtil extends ProtocolKBUtil implements IProtocolKBUtil {
 
 	private SDPKBUtil() {
 		super();
+		this.modSeqBound = 7;
 	}
 
 	public static SDPKBUtil getInstance() {

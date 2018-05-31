@@ -69,7 +69,7 @@ public class TreeFactory {
 		}
 
 		this.probTree.computeWeights();
-		
+
 		ModificationCandidate[] candidates = this.probTree.getSortedCandidates();
 		/*
 		System.out.println("\n##### Sorted Modification Candidates #####");

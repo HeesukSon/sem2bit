@@ -15,6 +15,7 @@ public class IoTProtocolKBUtil extends ProtocolKBUtil implements IProtocolKBUtil
 
 	private IoTProtocolKBUtil() {
 		super();
+		this.modSeqBound = 3;
 	}
 
 	public static IoTProtocolKBUtil getInstance() {

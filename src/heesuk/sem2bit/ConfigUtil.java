@@ -23,6 +23,7 @@ public class ConfigUtil {
 	public int req_interval = 2; // default
 	public Domain domain = Domain.IoT_Protocol; //default
 	public ProtocolName localP = ProtocolName.MQTTv3; //default
+	public boolean seqBoundRandom = true; // default
 
 	private ConfigUtil(){
 		try {
@@ -91,6 +92,8 @@ public class ConfigUtil {
 								e.printStackTrace();
 							}
 						}
+					} else if(keyValue[0].trim().equals("seq_bound_random")){
+						seqBoundRandom = new Boolean(keyValue[1].trim());
 					} else {
 						throw new ConfigNotDefinedException();
 					}

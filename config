@@ -1,7 +1,7 @@
 local_address = /192.168.1.105
 tcp_timeout = 100
 req_interval = 3
-iteration_bound = 500
+iteration_bound = 2000
 //
 // exp_mode = {real | mockup}
 exp_mode = real
@@ -10,7 +10,6 @@ exp_mode = real
 // tree: logs from the tree construction process
 // probe: logs from the probing process
 log_mode = probe
-//
 //role = service_agent
 role = user_agent
 // domain = {SDP | IoT_Protocol}
@@ -18,3 +17,5 @@ domain = IoT_Protocol
 // domain = IoT_Protocol
 // local_protocol = {SLPv1 | SLPv2 | UPnPv1 | UPnPv2 | DNS_SD | COAP | MQTTv3 | MQTTv5 | AMQP | SIPv1 | SIPv2}
 local_protocol = MQTTv3
+// seq_bound_random = true
+seq_bound_random = false

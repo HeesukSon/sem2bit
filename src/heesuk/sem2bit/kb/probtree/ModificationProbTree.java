@@ -41,6 +41,9 @@ public abstract class ModificationProbTree {
 		computeCandidateProb(this.root, 1f, list);
 		LOG.info("Computing each modification candidate's probability is done.");
 
+		list = avgDuplicateCandidates(list);
+		LOG.info("Average probability values for duplicate candidates are computed.");
+
 		sortCandidates(list);
 		LOG.info("Sorting the modification candidate list is done.");
 		LOG.info("Modification candidate list size : {}", list.size());
@@ -49,7 +52,7 @@ public abstract class ModificationProbTree {
 		return list.toArray(arr);
 	}
 	
-	public void sortCandidates(ArrayList<ModificationCandidate> list){
+	private void sortCandidates(ArrayList<ModificationCandidate> list){
 		for(int i=0; i<list.size()-1; i++){
 			for(int j=i+1; j<list.size(); j++){
 				ModificationCandidate max = list.get(i);
@@ -62,6 +65,31 @@ public abstract class ModificationProbTree {
 				}
 			}
 		}
+	}
+
+	private ArrayList<ModificationCandidate> avgDuplicateCandidates(ArrayList<ModificationCandidate> list){
+		HashMap<String, Integer> canCntMap = new HashMap<String, Integer>();
+		HashMap<String, Float> canWeightMap = new HashMap<String, Float>();
+		ArrayList<ModificationCandidate> newList = new ArrayList<ModificationCandidate>();
+
+		for(ModificationCandidate candidate: list){
+			if(!canCntMap.keySet().contains(candidate.toStringWithoutWeight())){
+				canCntMap.put(candidate.toStringWithoutWeight(), 1);
+				canWeightMap.put(candidate.toStringWithoutWeight(), candidate.getProb());
+				newList.add(candidate);
+			}else{
+				canCntMap.put(candidate.toStringWithoutWeight(), canCntMap.get(candidate.toStringWithoutWeight())+1);
+				canWeightMap.put(candidate.toStringWithoutWeight(), canWeightMap.get(candidate.toStringWithoutWeight())+candidate.getProb());
+			}
+		}
+
+		for(ModificationCandidate candidate : newList){
+			float wSum = canWeightMap.get(candidate.toStringWithoutWeight());
+			int cnt = canCntMap.get(candidate.toStringWithoutWeight());
+			candidate.setProb(wSum/(float)cnt);
+		}
+
+		return newList;
 	}
 	
 	private void computeCandidateProb(ProbTreeNode node, float prob, ArrayList<ModificationCandidate> list){

@@ -106,6 +106,9 @@ public class ModificationController {
 			ServiceLocationEnumeration sle = locator.findServices(
 					cnt, new ServiceType("service:test"), scopes, "(cool=yes)");
 		}else if(ConfigUtil.getInstance().domain == Domain.IoT_Protocol){
+			ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
+			LOG.info("[{}] {}",cnt, seq);
+			/*
 			// Default settings:
 			String action 		= "publish";
 			String topic 		= "Sample/Java/v3";
@@ -137,6 +140,7 @@ public class ModificationController {
 				LOG.error("excep "+me);
 				me.printStackTrace();
 			}
+			*/
 		}else{
 			try {
 				throw new DomainNotDefinedException();
@@ -182,7 +186,9 @@ public class ModificationController {
 				LOG.info("["+cnt+":SUCCESS] A reply message is returned!!");
 				//ProbeLogger.appendLogln("probe", "["+cnt+":SUCCESS] A reply message is returned!!");
 				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
-				ProbingStatus.success = true;
+				//TODO: set the success variable true before the experiment
+				//ProbingStatus.success = true;
+				ProbingStatus.success = false;
 			} catch (SocketTimeoutException e) {
 				LOG.info("["+cnt+":FAIL] SocketTimeoutException!!");
 				//ProbeLogger.appendLogln("probe", "["+cnt+":FAIL] SocketTimeoutException!!");

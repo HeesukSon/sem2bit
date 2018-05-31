@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * A subclass of ProtocoKBUtil is supposed to be called in a Singleton
@@ -26,6 +27,7 @@ public class ProtocolKBUtil implements IProtocolKBUtil{
 	protected ArrayList<MessageFieldUpdate> updateHistory;
 	protected ProtocolName localProtocol;
 	protected int modSeqBound;
+	protected ArrayList<Integer> usedModSeqBound;
 
 	protected ProtocolKBUtil() {
 		this.pMap = new HashMap<ProtocolName, Protocol>();
@@ -34,6 +36,7 @@ public class ProtocolKBUtil implements IProtocolKBUtil{
 		this.update_pattern_prob = new HashMap<String, Float>();
 
 		this.localProtocol = ConfigUtil.getInstance().localP;
+		this.usedModSeqBound = new ArrayList<Integer>();
 
 		for(UpdatePattern p : UpdatePattern.values()){
 			this.update_pattern_prob.put(p.toString(), new Float(0f));
@@ -73,8 +76,28 @@ public class ProtocolKBUtil implements IProtocolKBUtil{
 	}
 	
 	public void computeModSeqBound(){
-		// TODO algorithm should be added later
-		this.modSeqBound = 7;
+		Random r = new Random();
+		int newBound;
+
+		do{
+			newBound = (int)r.nextGaussian()+this.modSeqBound;
+		} while(newBound <= 0 || isBoundUsed(newBound));
+		this.modSeqBound = newBound;
+		LOG.info("modSeqBound is set to {}.",modSeqBound);
+		this.usedModSeqBound.add(newBound);
+	}
+
+	private boolean isBoundUsed(int bound){
+		boolean used = false;
+
+		for(Integer usedBound : this.usedModSeqBound){
+			if(usedBound.intValue() == bound){
+				used = true;
+				break;
+			}
+		}
+
+		return used;
 	}
 
 	public int getModSeqBound(){
