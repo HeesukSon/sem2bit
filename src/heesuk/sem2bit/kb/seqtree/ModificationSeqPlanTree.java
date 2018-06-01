@@ -151,29 +151,6 @@ public class ModificationSeqPlanTree {
 						return getModSeq(count, node.getRightMostChild(), candidates, seq);
 					}
 				} else /* this node has no more sequence */ {
-					if(false){
-						LOG.debug("[No more sequence] node = {}",
-								node.getItem().toStringWithoutWeight());
-						// mark this node as dead
-						node.setDead(true);
-						LOG.debug("[Node marked as dead] node = {}",
-								node.getItem().toStringWithoutWeight());
-						// remove current node from the sequence
-						seq.remove(seq.size() - 1);
-						seq.remove(seq.size() - 1);
-						// recover the pruned candidates
-
-					/*candidates.clear();
-					for (int i = 0; i < original.size(); i++) {
-						candidates.add(new ModificationCandidate(original.get(i)));
-					}
-					return getModSeq(node.getParent(), candidates, seq);
-					*/
-						candidates.clear();
-						original.add(node.getItem());
-						return getModSeq(count, node.getParent(), original, seq);
-					}
-
 					try{
 						LOG.info("[No more sequence] node = {}",
 								node.getItem().toStringWithoutWeight());
@@ -186,12 +163,6 @@ public class ModificationSeqPlanTree {
 						seq.remove(seq.size() - 1);
 						// recover the pruned candidates
 
-					/*candidates.clear();
-					for (int i = 0; i < original.size(); i++) {
-						candidates.add(new ModificationCandidate(original.get(i)));
-					}
-					return getModSeq(node.getParent(), candidates, seq);
-					*/
 						candidates.clear();
 						original.add(node.getItem());
 						return getModSeq(count, node.getParent(), original, seq);

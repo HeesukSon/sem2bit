@@ -92,6 +92,8 @@ import java.util.concurrent.ScheduledExecutorService;
  * @see IMqttAsyncClient
  */
 public class MqttAsyncClient implements IMqttAsyncClient {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(MqttAsyncClient.class);
+
 	private static final String CLASS_NAME = MqttAsyncClient.class.getName();
 
 	private static final String CLIENT_ID_PREFIX = "paho";

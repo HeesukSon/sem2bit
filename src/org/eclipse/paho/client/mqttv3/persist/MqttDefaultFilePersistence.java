@@ -73,8 +73,6 @@ public class MqttDefaultFilePersistence implements MqttClientPersistence {
 	}
 	
 	public void open(String clientId, String theConnection) throws MqttPersistenceException {
-		LOG.info("open({}, {})",clientId, theConnection);
-
 		if (dataDir.exists() && !dataDir.isDirectory()) {
 			throw new MqttPersistenceException();
 		} else if (!dataDir.exists() ) {
@@ -105,18 +103,15 @@ public class MqttDefaultFilePersistence implements MqttClientPersistence {
 		synchronized (this) {
 			if (clientDir == null) {
 				String key = keyBuffer.toString();
-				LOG.info("open():: key = {}",key);
 				clientDir = new File(dataDir, key);
 
 				if (!clientDir.exists()) {
 					clientDir.mkdir();
-					LOG.info("clientDir is made.");
 				}
 			}
 
 			try {
 				fileLock = new FileLock(clientDir, LOCK_FILENAME);
-				LOG.info("fileLock for clientDir({}) is created.",clientDir);
 	 		} catch (Exception e) {
 	 			// TODO - This shouldn't be here according to the interface
 	 			// See https://github.com/eclipse/paho.mqtt.java/issues/178
@@ -141,17 +136,16 @@ public class MqttDefaultFilePersistence implements MqttClientPersistence {
 	}
 
 	public void close() throws MqttPersistenceException {
-		LOG.info("close()");
 		synchronized (this) {
 			// checkIsOpen();
 			if (fileLock != null) {
 				fileLock.release();
-				LOG.info("fileLock is released.");
+				LOG.debug("fileLock is released.");
 			}
 
 			if (getFiles().length == 0) {
 				clientDir.delete();
-				LOG.info("clientDir is deleted.");
+				LOG.debug("clientDir is deleted.");
 			}
 			clientDir = null;
 		}
@@ -164,12 +158,11 @@ public class MqttDefaultFilePersistence implements MqttClientPersistence {
 	 * @throws MqttPersistenceException if an exception occurs whilst persisting the message
 	 */
 	public void put(String key, MqttPersistable message) throws MqttPersistenceException {
-		LOG.info("put(key:{}, message)",key);
 		checkIsOpen();
 		File file = new File(clientDir, key+MESSAGE_FILE_EXTENSION);
 		File backupFile = new File(clientDir, key+MESSAGE_FILE_EXTENSION+MESSAGE_BACKUP_FILE_EXTENSION);
 
-		LOG.info("put():: clientDir = {}",clientDir);
+		LOG.debug("put():: clientDir = {}",clientDir);
 		
 		if (file.exists()) {
 			// Backup the existing file so the overwrite can be rolled-back 
@@ -183,13 +176,13 @@ public class MqttDefaultFilePersistence implements MqttClientPersistence {
 			FileOutputStream fos = new FileOutputStream(file);
 			fos.write(message.getHeaderBytes(), message.getHeaderOffset(), message.getHeaderLength());
 
-			LOG.info("message information is written to the clientDir.");
-			LOG.info("put():: message.headerBytes : {}",message.getHeaderBytes());
+			LOG.debug("message information is written to the clientDir.");
+			LOG.debug("put():: message.headerBytes : {}",message.getHeaderBytes());
 
 			if (message.getPayloadBytes()!=null) {
 				fos.write(message.getPayloadBytes(), message.getPayloadOffset(), message.getPayloadLength());
-				LOG.info("put():: message.payloadBytes : {}",message.getPayloadBytes());
-				LOG.info("put():: message.payloadBytes->string : {}", new String(message.getPayloadBytes()));
+				LOG.debug("put():: message.payloadBytes : {}",message.getPayloadBytes());
+				LOG.debug("put():: message.payloadBytes->string : {}", new String(message.getPayloadBytes()));
 			}
 			fos.getFD().sync();
 			fos.close();
@@ -214,7 +207,6 @@ public class MqttDefaultFilePersistence implements MqttClientPersistence {
 	}
 
 	public MqttPersistable get(String key) throws MqttPersistenceException {
-		LOG.info("get(key:{})",key);
 		checkIsOpen();
 		MqttPersistable result;
 		try {
@@ -244,7 +236,6 @@ public class MqttDefaultFilePersistence implements MqttClientPersistence {
 		File file = new File(clientDir, key+MESSAGE_FILE_EXTENSION);
 		if (file.exists()) {
 			file.delete();
-			LOG.info("clientDir file is deleted.");
 		}
 	}
 	

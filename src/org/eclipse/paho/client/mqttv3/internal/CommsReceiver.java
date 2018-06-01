@@ -62,7 +62,7 @@ public class CommsReceiver implements Runnable {
 	public void start(String threadName, ExecutorService executorService) {
 		this.threadName = threadName;
 		final String methodName = "start";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		//@TRACE 855=starting
 		synchronized (lifecycle) {
 			if (!running) {
@@ -77,7 +77,7 @@ public class CommsReceiver implements Runnable {
 	 */
 	public void stop() {
 		final String methodName = "stop";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		synchronized (lifecycle) {
 			if (receiverFuture != null) {
 				receiverFuture.cancel(true);
@@ -93,7 +93,7 @@ public class CommsReceiver implements Runnable {
 					}
 					catch (InterruptedException ex) {
 					} finally {
-						LOG.info("CommsReceiver releases runningSemaphore.");
+						LOG.debug("CommsReceiver releases runningSemaphore.");
 						runningSemaphore.release();
 					}
 				}
@@ -110,13 +110,13 @@ public class CommsReceiver implements Runnable {
 		recThread = Thread.currentThread();
 		recThread.setName(threadName);
 		final String methodName = "run";
-		LOG.info("methodName : {}",methodName);
+		LOG.debug("methodName : {}",methodName);
 
 		MqttToken token = null;
 
 		try {
 			runningSemaphore.acquire();
-			LOG.info("runningSemaphore is acquired.");
+			LOG.debug("runningSemaphore is acquired.");
 		} catch (InterruptedException e) {
 			running = false;
 			return;
@@ -130,7 +130,6 @@ public class CommsReceiver implements Runnable {
 				LOG.info("message.getClass().toString() = {}",message.getClass().toString());
 				LOG.info("message.getHeader() in bytes = {}",message.getHeader());
 				LOG.info("message.getPayload() in bytes = {}", message.getPayload());
-				LOG.info("message.getPayload() in String = {}", new String(message.getPayload()));
 				receiving = false;
 
 				// instanceof checks if message is null
@@ -180,7 +179,7 @@ public class CommsReceiver implements Runnable {
 			}
 			finally {
 				receiving = false;
-				LOG.info("CommsReceiver releases runningSemaphore.");
+				LOG.debug("CommsReceiver releases runningSemaphore.");
 				runningSemaphore.release();
 			}
 		}

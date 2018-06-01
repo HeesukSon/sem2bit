@@ -18,6 +18,8 @@ package org.eclipse.paho.client.mqttv3.internal.wire;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
@@ -25,6 +27,7 @@ import java.io.*;
  * An on-the-wire representation of an MQTT CONNECT message.
  */
 public class MqttConnect extends MqttWireMessage {
+	private static final Logger LOG = LoggerFactory.getLogger(MqttWireMessage.class);
 
 	public static final String KEY = "Con";
 
@@ -36,6 +39,16 @@ public class MqttConnect extends MqttWireMessage {
 	private int keepAliveInterval;
 	private String willDestination;
 	private int MqttVersion;
+
+	private int addFieldCnt = 0;
+
+	public void increaseMqttVersion(){
+		MqttVersion++;
+	}
+
+	public void increaseAddFieldCnt(){
+		this.addFieldCnt++;
+	}
 	
 	/**
 	 * Constructor for an on the wire MQTT connect message
@@ -88,12 +101,14 @@ public class MqttConnect extends MqttWireMessage {
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			DataOutputStream dos = new DataOutputStream(baos);
-			
+
 			if (MqttVersion == 3) {
 				encodeUTF8(dos,"MQIsdp");			
 			}
 			else if (MqttVersion == 4) {
 				encodeUTF8(dos,"MQTT");			
+			}else{
+				encodeUTF8(dos,"MQTT");
 			}
 			dos.write(MqttVersion);
 
@@ -119,6 +134,12 @@ public class MqttConnect extends MqttWireMessage {
 			}
 			dos.write(connectFlags);
 			dos.writeShort(keepAliveInterval);
+
+			for(int i=0; i<this.addFieldCnt; i++){
+				byte addedField = 0;
+				dos.write(addedField);
+			}
+
 			dos.flush();
 			return baos.toByteArray();
 		} catch(IOException ioe) {

@@ -106,33 +106,25 @@ public class ModificationController {
 			ServiceLocationEnumeration sle = locator.findServices(
 					cnt, new ServiceType("service:test"), scopes, "(cool=yes)");
 		}else if(ConfigUtil.getInstance().domain == Domain.IoT_Protocol){
-			ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
-			LOG.info("[{}] {}",cnt, seq);
-			/*
+			// ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
+			// LOG.info("[{}] {}",cnt, seq);
+
 			// Default settings:
-			String action 		= "publish";
-			String topic 		= "Sample/Java/v3";
-			String message 		= "Message from blocking Paho MQTTv3 Java client sample";
-			int qos 			= 2;
-			//String broker 		= "m2m.eclipse.org";
-			String broker = "127.0.0.1";
+			String action 		= "connect";
+			String broker = ConfigUtil.getInstance().broker_address;
 			int port 			= 1883;
-			String clientId 	= "SampleJavaV3_"+action;
+			String clientId 	= "SampleJavaV3_"+action+"("+cnt+")";
 			boolean cleanSession = true;			// Non durable subscriptions
 			String password = null;
 			String userName = null;
 			String protocol = "tcp://";
-
 			String url = protocol + broker + ":" + port;
 
-			// With a valid set of arguments, the real work of
-			// driving the client API can begin
 			try {
-				// Create an instance of this class
-				MQTTConnector sampleClient = new MQTTConnector(url, clientId, cleanSession,userName,password);
-				sampleClient.publish(topic,qos,message.getBytes());
+				MQTTConnector sampleClient =
+						new MQTTConnector(url, clientId, cleanSession,userName,password);
+				sampleClient.connect();
 			} catch(MqttException me) {
-				// Display full details of any exception that occurs
 				LOG.error("reason "+me.getReasonCode());
 				LOG.error("msg "+me.getMessage());
 				LOG.error("loc "+me.getLocalizedMessage());
@@ -140,7 +132,6 @@ public class ModificationController {
 				LOG.error("excep "+me);
 				me.printStackTrace();
 			}
-			*/
 		}else{
 			try {
 				throw new DomainNotDefinedException();
@@ -184,14 +175,10 @@ public class ModificationController {
 				sendModifiedMessage(cnt);
 				long after = System.currentTimeMillis();
 				LOG.info("["+cnt+":SUCCESS] A reply message is returned!!");
-				//ProbeLogger.appendLogln("probe", "["+cnt+":SUCCESS] A reply message is returned!!");
 				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
-				//TODO: set the success variable true before the experiment
-				//ProbingStatus.success = true;
-				ProbingStatus.success = false;
+				ProbingStatus.success = true;
 			} catch (SocketTimeoutException e) {
 				LOG.info("["+cnt+":FAIL] SocketTimeoutException!!");
-				//ProbeLogger.appendLogln("probe", "["+cnt+":FAIL] SocketTimeoutException!!");
 				try {
 					this.finalize();
 				} catch (Throwable e1) {

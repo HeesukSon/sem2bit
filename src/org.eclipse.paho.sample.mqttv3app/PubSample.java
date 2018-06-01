@@ -247,6 +247,7 @@ public class PubSample implements MqttCallback {
     	client.connect(conOpt);
     	log("Connected");
 
+
     	String time = new Timestamp(System.currentTimeMillis()).toString();
     	log("Publishing at: "+time+ " to topic \""+topicName+"\" qos "+qos);
 
@@ -258,6 +259,7 @@ public class PubSample implements MqttCallback {
     	// it has been delivered to the server meeting the specified
     	// quality of service.
     	client.publish(topicName, message);
+
 
     	// Disconnect the client
     	client.disconnect();

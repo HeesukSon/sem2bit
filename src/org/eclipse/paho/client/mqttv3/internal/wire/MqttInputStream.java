@@ -70,7 +70,7 @@ public class MqttInputStream extends InputStream {
 	 */
 	public MqttWireMessage readMqttWireMessage() throws IOException, MqttException {
 		final String methodName ="readMqttWireMessage";
-		LOG.info("methodName : {}",methodName);
+		LOG.debug("methodName : {}",methodName);
 
 		MqttWireMessage message = null;
 		try {

@@ -200,7 +200,7 @@ public class ClientState {
 	
 	private MqttWireMessage restoreMessage(String key, MqttPersistable persistable) throws MqttException {
 		final String methodName = "restoreMessage";
-		LOG.info("methodName : {}",methodName);
+		LOG.debug("methodName : {}",methodName);
 		MqttWireMessage message = null;
 
 		try {
@@ -228,7 +228,6 @@ public class ClientState {
 	 * @param newMsg the message to insert into the list
 	 */
 	private void insertInOrder(Vector list, MqttWireMessage newMsg) {
-		LOG.info("methodName = insertInOrder");
 		int newMsgId = newMsg.getMessageId();
 		for (int i = 0; i < list.size(); i++) {
 			MqttWireMessage otherMsg = (MqttWireMessage) list.elementAt(i);
@@ -248,7 +247,6 @@ public class ClientState {
 	 * @return a new reordered list
 	 */
 	private Vector reOrder(Vector list) {
-		LOG.info("methodName = reOrder");
 		// here up the new list
 		Vector newList = new Vector();
 
@@ -294,7 +292,7 @@ public class ClientState {
 	 */
 	protected void restoreState() throws MqttException {
 		final String methodName = "restoreState";
-		LOG.info("methodName : {}",methodName);
+		LOG.debug("methodName : {}",methodName);
 		Enumeration messageKeys = persistence.keys();
 		MqttPersistable persistable;
 		String key;
@@ -394,7 +392,7 @@ public class ClientState {
 	
 	private void restoreInflightMessages() {
 		final String methodName = "restoreInflightMessages";
-		LOG.info("methodName : {}",methodName);
+		LOG.debug("methodName : {}",methodName);
 		pendingMessages = new Vector(this.maxInflight);
 		pendingFlows = new Vector();
 
@@ -446,7 +444,7 @@ public class ClientState {
 	 */
 	public void send(MqttWireMessage message, MqttToken token) throws MqttException {
 		final String methodName = "send";
-		LOG.info("methodName : {}",methodName);
+		LOG.debug("methodName : {}",methodName);
 		if (message.isMessageIdRequired() && (message.getMessageId() == 0)) {
 				if(message instanceof MqttPublish  && (((MqttPublish) message).getMessage().getQos() != 0)){
 						message.setMessageId(getNextMessageId());
@@ -470,7 +468,7 @@ public class ClientState {
 			
 		if (message instanceof MqttPublish) {
 			synchronized (queueLock) {
-				LOG.info("message instanceof MqttPublish = true");
+				LOG.debug("message instanceof MqttPublish = true");
 				if (actualInFlight >= this.maxInflight) {
 					//@TRACE 613= sending {0} msgs at max inflight window
 
@@ -493,23 +491,23 @@ public class ClientState {
 				tokenStore.saveToken(token, message);
 				pendingMessages.addElement(message);
 				queueLock.notifyAll();
-				LOG.info("queueLock is notified to all.");
+				LOG.debug("queueLock is notified to all.");
 			}
 		} else {
 			//@TRACE 615=pending send key={0} message {1}
 
 			if (message instanceof MqttConnect) {
-				LOG.info("message instanceof MqttConnect = true");
+				LOG.debug("message instanceof MqttConnect = true");
 				synchronized (queueLock) {
 					// Add the connect action at the head of the pending queue ensuring it jumps
 					// ahead of any of other pending actions.
 					tokenStore.saveToken(token, message);
 					pendingFlows.insertElementAt(message,0);
 					queueLock.notifyAll();
-					LOG.info("queueLock is notified to all.");
+					LOG.debug("queueLock is notified to all.");
 				}
 			} else {
-				LOG.info("message instanceof Pub/Conn == false");
+				LOG.debug("message instanceof Pub/Conn == false");
 				if (message instanceof MqttPingReq) {
 					this.pingCommand = message;
 				}
@@ -527,7 +525,7 @@ public class ClientState {
 					}
 					pendingFlows.addElement(message);
 					queueLock.notifyAll();
-					LOG.info("queueLock is notified to all.");
+					LOG.debug("queueLock is notified to all.");
 				}
 			}
 		}
@@ -540,7 +538,7 @@ public class ClientState {
 	 */
 	public void persistBufferedMessage(MqttWireMessage message) {
 		final String methodName = "persistBufferedMessage";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		String key = getSendBufferedPersistenceKey(message);
 		
 		// Because the client will have disconnected, we will want to re-open persistence
@@ -565,7 +563,7 @@ public class ClientState {
 	 */
 	public void unPersistBufferedMessage(MqttWireMessage message){
 		final String methodName = "unPersistBufferedMessage";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		try{
 			//@TRACE 517=Un-Persisting Buffered message key={0}
 			persistence.remove(getSendBufferedPersistenceKey(message));
@@ -582,7 +580,7 @@ public class ClientState {
 	 */
 	protected void undo(MqttPublish message) throws MqttPersistenceException {
 		final String methodName = "undo";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		synchronized (queueLock) {
 			//@TRACE 618=key={0} QoS={1} 
 
@@ -622,7 +620,7 @@ public class ClientState {
 	 */
 	public MqttToken checkForActivity(IMqttActionListener pingCallback) throws MqttException {
 		final String methodName = "checkForActivity";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		//@TRACE 616=checkForActivity entered
 
         synchronized (quiesceLock) {
@@ -719,7 +717,7 @@ public class ClientState {
 	 */
 	protected MqttWireMessage get() throws MqttException {
 		final String methodName = "get";
-		LOG.info("methodName : {}",methodName);
+		LOG.debug("methodName : {}",methodName);
 		MqttWireMessage result = null;
 
 		synchronized (queueLock) {
@@ -759,8 +757,6 @@ public class ClientState {
 				// Now process any queued flows or messages
 				if (!pendingFlows.isEmpty()) {
 					// Process the first "flow" in the queue
-					LOG.info("!pendingFlows.isEmpty() == true");
-					LOG.info("pendingFlows.size() = {}",pendingFlows.size());
 					result = (MqttWireMessage)pendingFlows.remove(0);
 					if (result instanceof MqttPubRel) {
 						inFlightPubRels++;
@@ -770,13 +766,11 @@ public class ClientState {
 		
 					checkQuiesceLock();
 				} else if (!pendingMessages.isEmpty()) {
-					LOG.info("!pendingMessages.isEmpty() == true");
-					// If the inflight window is full then messages are not 
+					// If the inflight window is full then messages are not
 					// processed until the inflight window has space. 
 					if (actualInFlight < this.maxInflight) {
 						// The in flight window is not full so process the 
 						// first message in the queue
-						LOG.info("pendingMessages.size() = {}",pendingMessages.size());
 						result = (MqttWireMessage)pendingMessages.elementAt(0);
 						pendingMessages.removeElementAt(0);
 						actualInFlight++;
@@ -797,7 +791,7 @@ public class ClientState {
 	
     public void notifySentBytes(int sentBytesCount) {
         final String methodName = "notifySentBytes";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
         if (sentBytesCount > 0) {
         	this.lastOutboundActivity = System.currentTimeMillis();
         }
@@ -811,7 +805,7 @@ public class ClientState {
 	 */
 	protected void notifySent(MqttWireMessage message) {
 		final String methodName = "notifySent";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		
 		this.lastOutboundActivity = System.currentTimeMillis();
 		//@TRACE 625=key={0}
@@ -844,7 +838,7 @@ public class ClientState {
 
 	private void decrementInFlight() {
 		final String methodName = "decrementInFlight";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		synchronized (queueLock) {
 			actualInFlight--;
 			//@TRACE 646=-1 actualInFlight={0}
@@ -857,7 +851,7 @@ public class ClientState {
 	
 	protected boolean checkQuiesceLock() {
 		final String methodName = "checkQuiesceLock";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 //		if (quiescing && actualInFlight == 0 && pendingFlows.size() == 0 && inFlightPubRels == 0 && callback.isQuiesced()) {
 		int tokC = tokenStore.count();
 		if (quiescing && tokC == 0 && pendingFlows.size() == 0 && callback.isQuiesced()) {
@@ -872,7 +866,7 @@ public class ClientState {
 	
     public void notifyReceivedBytes(int receivedBytesCount) {
         final String methodName = "notifyReceivedBytes";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
         if (receivedBytesCount > 0) {
             this.lastInboundActivity = System.currentTimeMillis();
         }
@@ -887,7 +881,7 @@ public class ClientState {
 	 */
 	protected void notifyReceivedAck(MqttAck ack) throws MqttException {
 		final String methodName = "notifyReceivedAck";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		this.lastInboundActivity = System.currentTimeMillis();
 
 		// @TRACE 627=received key={0} message={1}
@@ -965,7 +959,7 @@ public class ClientState {
 	 */
 	protected void notifyReceivedMsg(MqttWireMessage message) throws MqttException {
 		final String methodName = "notifyReceivedMsg";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		this.lastInboundActivity = System.currentTimeMillis();
 
 		// @TRACE 651=received key={0} message={1}
@@ -1019,7 +1013,7 @@ public class ClientState {
 	 */
 	protected void notifyComplete(MqttToken token) throws MqttException {
 		final String methodName = "notifyComplete";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 
 		MqttWireMessage message = token.internalTok.getWireMessage();
 
@@ -1060,7 +1054,7 @@ public class ClientState {
 
 	protected void notifyResult(MqttWireMessage ack, MqttToken token, MqttException ex) {
 		final String methodName = "notifyResult";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		// unblock any threads waiting on the token  
 		token.internalTok.markComplete(ack, ex);
 		token.internalTok.notifyComplete();
@@ -1083,7 +1077,7 @@ public class ClientState {
 	 */
 	public void connected() {
 		final String methodName = "connected";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		//@TRACE 631=connected
 		this.connected = true;
 		
@@ -1101,7 +1095,7 @@ public class ClientState {
 	 */
 	public Vector resolveOldTokens(MqttException reason) {
 		final String methodName = "resolveOldTokens";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		//@TRACE 632=reason {0}
 
 		// If any outstanding let the user know the reason why it is still
@@ -1140,7 +1134,7 @@ public class ClientState {
 	 */
 	public void disconnected(MqttException reason) {
 		final String methodName = "disconnected";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		//@TRACE 633=disconnected
 
 		this.connected = false;
@@ -1208,7 +1202,7 @@ public class ClientState {
 	 */
 	public void quiesce(long timeout) {
 		final String methodName = "quiesce";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		// If the timeout is greater than zero t
 		if (timeout > 0 ) {
 			//@TRACE 637=timeout={0}
@@ -1252,7 +1246,7 @@ public class ClientState {
 
 	public void notifyQueueLock() {
 		final String methodName = "notifyQueueLock";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 		synchronized (queueLock) {
 			//@TRACE 638=notifying queueLock holders
 			queueLock.notifyAll();
@@ -1261,7 +1255,7 @@ public class ClientState {
 
 	protected void deliveryComplete(MqttPublish message) throws MqttPersistenceException {
 		final String methodName = "deliveryComplete";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 
 		//@TRACE 641=remove publish from persistence. key={0}
 
@@ -1271,7 +1265,7 @@ public class ClientState {
 	
 	protected void deliveryComplete(int messageId) throws MqttPersistenceException {
 		final String methodName = "deliveryComplete";
-		LOG.info("methodName = {}",methodName);
+		LOG.debug("methodName = {}",methodName);
 
 		//@TRACE 641=remove publish from persistence. key={0}
 

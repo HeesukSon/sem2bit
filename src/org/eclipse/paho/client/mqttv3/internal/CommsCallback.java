@@ -114,10 +114,10 @@ public class CommsCallback implements Runnable {
 						}
 						// Wait for the thread to finish.
 						runningSemaphore.acquire();
-						LOG.info("CommsCallback acquired runningSemaphore");
+						LOG.debug("CommsCallback acquired runningSemaphore");
 					} catch (InterruptedException ex) {
 					} finally {
-						LOG.info("CommsCallback releases runningSemaphore.");
+						LOG.debug("CommsCallback releases runningSemaphore.");
 						runningSemaphore.release();
 					}
 				}
@@ -146,7 +146,7 @@ public class CommsCallback implements Runnable {
 
 		try {
 			runningSemaphore.acquire();
-			LOG.info("CommsCallback acquired runningSemaphore.");
+			LOG.debug("CommsCallback acquired runningSemaphore.");
 		} catch (InterruptedException e) {
 			running = false;
 			return;
@@ -208,7 +208,7 @@ public class CommsCallback implements Runnable {
 				running = false;
 				clientComms.shutdownConnection(null, new MqttException(ex));
 			} finally {
-				LOG.info("CommsCallback releases runningSemaphore.");
+				LOG.debug("CommsCallback releases runningSemaphore.");
 				runningSemaphore.release();
 			    synchronized (spaceAvailable) {
                     // Notify the spaceAvailable lock, to say that there's now

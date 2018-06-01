@@ -51,6 +51,7 @@ public class MQTTMessageLogger extends ChannelDuplexHandler {
         }
         MqttMessage msg = (MqttMessage) message;
         String clientID = NettyUtils.clientID(ctx.channel());
+        LOG.info("message fixed header: {}, variable header: {}", msg.fixedHeader(), msg.variableHeader());
         MqttMessageType messageType = msg.fixedHeader().messageType();
         LOG.info("messageType = {}",messageType);
         switch (messageType) {

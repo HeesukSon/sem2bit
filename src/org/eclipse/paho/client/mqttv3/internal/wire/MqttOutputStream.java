@@ -15,6 +15,11 @@
  */
 package org.eclipse.paho.client.mqttv3.internal.wire;
 
+import heesuk.sem2bit.kb.TreeFactory;
+import heesuk.sem2bit.kb.protocol.enums.MessageFieldType;
+import heesuk.sem2bit.kb.protocol.enums.UpdatePattern;
+import heesuk.sem2bit.kb.protocol.iot.IoTProtocolKBUtil;
+import heesuk.sem2bit.msg.ModificationCandidate;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.internal.ClientState;
 import org.eclipse.paho.client.mqttv3.logging.Logger;
@@ -71,9 +76,26 @@ public class MqttOutputStream extends OutputStream {
 	 */
 	public void write(MqttWireMessage message) throws IOException, MqttException {
 		final String methodName = "write";
-		LOG.info("methodName = {}, message type = {}",methodName, message.getClass().toString());
-		byte[] bytes = message.getHeader();
-		byte[] pl = message.getPayload();
+
+		ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
+		String adaptSeq = "";
+		for(ModificationCandidate candidate : seq){
+			adaptSeq += candidate.toStringWithoutWeight();
+			adaptSeq += "\n";
+		}
+		byte[] originHeader = message.getHeader();
+		String messageType = message.getClass().toString();
+		MqttWireMessage adaptedMessage = composeAdaptedMessage(message, seq);
+		LOG.info("\n[{}]\nBEFORE: {}\nAdapt Sequence: \n{}AFTER: {}\n",messageType, originHeader, adaptSeq, adaptedMessage.getHeader());
+
+		/* BEFORE update for SeM2Bit experiment */
+		//byte[] bytes = message.getHeader();
+		//byte[] pl = message.getPayload();
+
+		/* AFTER update for SeM2Bit experiment */
+		byte[] bytes = adaptedMessage.getHeader();
+		byte[] pl = adaptedMessage.getPayload();
+
 //		out.write(message.getHeader());
 //		out.write(message.getPayload());
 		out.write(bytes,0,bytes.length);
@@ -89,6 +111,37 @@ public class MqttOutputStream extends OutputStream {
         }		
 		
 		// @TRACE 529= sent {0}
+	}
+
+	/**
+	 * added to adapt the message output according to the sequence planning tree output.
+	 * @author Heesuk Son (heesuk.chad.son@gmail.com)
+	 * @param message
+	 * @param seq
+	 * @return Adapted message to be transmitted to the broker
+	 */
+	public MqttWireMessage composeAdaptedMessage(MqttWireMessage message, ModificationCandidate[] seq){
+		for(ModificationCandidate candidate : seq){
+			String update = candidate.getUpdate();
+
+			if(update.equals(UpdatePattern.ADD_NEW_FIELD.toString())){
+				if(message instanceof MqttConnect){
+					((MqttConnect) message).increaseAddFieldCnt();
+				}
+			}else if(update.equals(UpdatePattern.CHANGE_VOCA.toString())){
+
+			}else if(update.equals(UpdatePattern.VALUE_CHANGE.toString())){
+				if(message instanceof MqttConnect){
+					((MqttConnect) message).increaseMqttVersion();
+				}
+			}else if(update.equals(UpdatePattern.DELETE_FIELD.toString())){
+
+			}else{
+				// Length
+			}
+		}
+
+		return message;
 	}
 }
 

@@ -103,6 +103,18 @@ public class MQTTConnector implements MqttCallback {
 		}
     }
 
+    public void connect() throws MqttException {
+		// Connect to the MQTT server
+		LOG.info("Connecting to "+brokerUrl + " with client ID "+client.getClientId());
+		client.connect(conOpt);
+		LOG.info("Connected");
+
+		// Disconnect the client
+		//client.disconnect();
+		//LOG.info("Disconnected");
+	}
+
+
     /**
      * Publish / send a message to an MQTT server
      * @param topicName the name of the topic to publish to
@@ -111,12 +123,12 @@ public class MQTTConnector implements MqttCallback {
      * @throws MqttException
      */
     public void publish(String topicName, int qos, byte[] payload) throws MqttException {
-
     	// Connect to the MQTT server
-		// LOG.info("Connecting to "+brokerUrl + " with client ID "+client.getClientId());
+		LOG.info("Connecting to "+brokerUrl + " with client ID "+client.getClientId());
     	client.connect(conOpt);
     	LOG.info("Connected");
 
+    	/*
     	String time = new Timestamp(System.currentTimeMillis()).toString();
     	LOG.info("Publishing at: "+time+ " to topic \""+topicName+"\" qos "+qos);
 
@@ -128,6 +140,7 @@ public class MQTTConnector implements MqttCallback {
     	// it has been delivered to the server meeting the specified
     	// quality of service.
     	client.publish(topicName, message);
+    	*/
 
     	// Disconnect the client
     	client.disconnect();

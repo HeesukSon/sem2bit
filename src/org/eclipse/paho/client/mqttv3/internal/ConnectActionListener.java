@@ -29,6 +29,7 @@ import org.eclipse.paho.client.mqttv3.*;
  * and the users onFailure callback is called</p>
  */
 public class ConnectActionListener implements IMqttActionListener {
+  private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(ConnectActionListener.class);
 
   private MqttClientPersistence persistence;
   private MqttAsyncClient client;
@@ -77,6 +78,7 @@ public class ConnectActionListener implements IMqttActionListener {
    * @param token the {@link IMqttToken} from the successful connection
    */
   public void onSuccess(IMqttToken token) {
+    LOG.debug("onSuccess()");
 	if (originalMqttVersion == MqttConnectOptions.MQTT_VERSION_DEFAULT) {
       options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_DEFAULT);
 	}
@@ -107,7 +109,9 @@ public class ConnectActionListener implements IMqttActionListener {
    * @param exception the {@link Throwable} exception from the failed connection attempt
    */
   public void onFailure(IMqttToken token, Throwable exception) {
+    LOG.debug("onFailure()");
 
+/*
     int numberOfURIs = comms.getNetworkModules().length;
     int index = comms.getNetworkModuleIndex();
 
@@ -152,6 +156,7 @@ public class ConnectActionListener implements IMqttActionListener {
         userCallback.onFailure(userToken, exception);
       }
     }
+*/
   }
 
   /**

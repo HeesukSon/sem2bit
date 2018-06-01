@@ -15,6 +15,7 @@ public class ConfigUtil {
 	private static ConfigUtil _instance;
 
 	public String local_address = "";
+	public String broker_address = "";
 	public int tcp_timeout = 100; // default
 	public int iteration_bound = 10000; // default
 	public String exp_mode = "mockup"; // default
@@ -36,6 +37,8 @@ public class ConfigUtil {
 					String[] keyValue = line.split("=");
 					if (keyValue[0].trim().equals("local_address")) {
 						local_address = keyValue[1].trim();
+					} else if (keyValue[0].trim().equals("broker_address")){
+						broker_address = keyValue[1].trim();
 					} else if (keyValue[0].trim().equals("tcp_timeout")) {
 						tcp_timeout = Integer.parseInt(keyValue[1].trim());
 					} else if (keyValue[0].trim().equals("req_interval")) {
