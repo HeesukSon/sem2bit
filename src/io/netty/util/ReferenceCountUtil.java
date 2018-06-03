@@ -18,12 +18,14 @@ package io.netty.util;
 import io.netty.util.internal.StringUtil;
 import io.netty.util.internal.logging.InternalLogger;
 import io.netty.util.internal.logging.InternalLoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Collection of method to handle objects that may implement {@link ReferenceCounted}.
  */
 public final class ReferenceCountUtil {
-
+    private static final Logger LOG = LoggerFactory.getLogger(ReferenceCountUtil.class);
     private static final InternalLogger logger = InternalLoggerFactory.getInstance(ReferenceCountUtil.class);
 
     static {
@@ -60,6 +62,7 @@ public final class ReferenceCountUtil {
      */
     @SuppressWarnings("unchecked")
     public static <T> T touch(T msg) {
+        LOG.debug("touch():: msg.class = {}",msg.getClass().toString());
         if (msg instanceof ReferenceCounted) {
             return (T) ((ReferenceCounted) msg).touch();
         }
@@ -73,6 +76,7 @@ public final class ReferenceCountUtil {
      */
     @SuppressWarnings("unchecked")
     public static <T> T touch(T msg, Object hint) {
+
         if (msg instanceof ReferenceCounted) {
             return (T) ((ReferenceCounted) msg).touch(hint);
         }

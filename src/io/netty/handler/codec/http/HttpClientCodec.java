@@ -22,6 +22,8 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.CombinedChannelDuplexHandler;
 import io.netty.handler.codec.PrematureChannelClosureException;
 import io.netty.util.ReferenceCountUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayDeque;
 import java.util.List;
@@ -45,6 +47,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public final class HttpClientCodec extends CombinedChannelDuplexHandler<HttpResponseDecoder, HttpRequestEncoder>
         implements HttpClientUpgradeHandler.SourceCodec {
 
+    private static final Logger LOG = LoggerFactory.getLogger(HttpClientCodec.class);
     /** A queue that is used for correlating a request and a response. */
     private final Queue<HttpMethod> queue = new ArrayDeque<HttpMethod>();
     private final boolean parseHttpAfterConnectRequest;
@@ -189,6 +192,7 @@ public final class HttpClientCodec extends CombinedChannelDuplexHandler<HttpResp
         @Override
         protected void decode(
                 ChannelHandlerContext ctx, ByteBuf buffer, List<Object> out) throws Exception {
+        	LOG.debug("Decoder.decode()::");
             if (done) {
                 int readable = actualReadableBytes();
                 if (readable == 0) {

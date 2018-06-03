@@ -26,6 +26,8 @@ import io.netty.util.internal.StringUtil;
 import io.netty.util.internal.UnstableApi;
 import io.netty.util.internal.logging.InternalLogger;
 import io.netty.util.internal.logging.InternalLoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.SocketAddress;
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
  * by a {@link Channel} implementation when the {@link Channel} is created.
  */
 public class DefaultChannelPipeline implements ChannelPipeline {
-
+    private static final Logger LOG = LoggerFactory.getLogger(DefaultChannelPipeline.class);
     static final InternalLogger logger = InternalLoggerFactory.getInstance(DefaultChannelPipeline.class);
 
     private static final String HEAD_NAME = generateName0(HeadContext.class);
@@ -956,18 +958,21 @@ public class DefaultChannelPipeline implements ChannelPipeline {
 
     @Override
     public final ChannelPipeline fireUserEventTriggered(Object event) {
+        LOG.debug("fireUserEventTriggered():: event.class = {}",event.getClass().toString());
         AbstractChannelHandlerContext.invokeUserEventTriggered(head, event);
         return this;
     }
 
     @Override
     public final ChannelPipeline fireChannelRead(Object msg) {
+        LOG.debug("fireChannelRead():: msg.class = {}",msg.getClass().toString());
         AbstractChannelHandlerContext.invokeChannelRead(head, msg);
         return this;
     }
 
     @Override
     public final ChannelPipeline fireChannelReadComplete() {
+        LOG.debug("fireChannelReadComplete()::");
         AbstractChannelHandlerContext.invokeChannelReadComplete(head);
         return this;
     }

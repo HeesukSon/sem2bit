@@ -16,8 +16,11 @@
 package io.netty.channel;
 
 import io.netty.util.concurrent.EventExecutor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class DefaultChannelHandlerContext extends AbstractChannelHandlerContext {
+    private static final Logger LOG = LoggerFactory.getLogger(DefaultChannelHandlerContext.class);
 
     private final ChannelHandler handler;
 

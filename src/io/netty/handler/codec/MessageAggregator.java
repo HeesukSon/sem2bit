@@ -24,6 +24,8 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPipeline;
 import io.netty.util.ReferenceCountUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -51,6 +53,7 @@ import static io.netty.buffer.Unpooled.EMPTY_BUFFER;
 public abstract class MessageAggregator<I, S, C extends ByteBufHolder, O extends ByteBufHolder>
         extends MessageToMessageDecoder<I> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(MessageAggregator.class);
     private static final int DEFAULT_MAX_COMPOSITEBUFFER_COMPONENTS = 1024;
 
     private final int maxContentLength;
@@ -192,6 +195,7 @@ public abstract class MessageAggregator<I, S, C extends ByteBufHolder, O extends
 
     @Override
     protected void decode(final ChannelHandlerContext ctx, I msg, List<Object> out) throws Exception {
+        LOG.debug("ctx.class = {}, msg.class = {}",ctx.getClass().toString(), msg.getClass().toString());
         if (isStartMessage(msg)) {
             handlingOversizedMessage = false;
             if (currentMessage != null) {

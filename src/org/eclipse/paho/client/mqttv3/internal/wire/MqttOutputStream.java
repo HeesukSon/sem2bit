@@ -76,7 +76,7 @@ public class MqttOutputStream extends OutputStream {
 	 */
 	public void write(MqttWireMessage message) throws IOException, MqttException {
 		final String methodName = "write";
-
+/*
 		ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
 		String adaptSeq = "";
 		for(ModificationCandidate candidate : seq){
@@ -87,14 +87,15 @@ public class MqttOutputStream extends OutputStream {
 		String messageType = message.getClass().toString();
 		MqttWireMessage adaptedMessage = composeAdaptedMessage(message, seq);
 		LOG.info("\n[{}]\nBEFORE: {}\nAdapt Sequence: \n{}AFTER: {}\n",messageType, originHeader, adaptSeq, adaptedMessage.getHeader());
+		*/
 
 		/* BEFORE update for SeM2Bit experiment */
-		//byte[] bytes = message.getHeader();
-		//byte[] pl = message.getPayload();
+		byte[] bytes = message.getHeader();
+		byte[] pl = message.getPayload();
 
 		/* AFTER update for SeM2Bit experiment */
-		byte[] bytes = adaptedMessage.getHeader();
-		byte[] pl = adaptedMessage.getPayload();
+		//byte[] bytes = adaptedMessage.getHeader();
+		//byte[] pl = adaptedMessage.getPayload();
 
 //		out.write(message.getHeader());
 //		out.write(message.getPayload());

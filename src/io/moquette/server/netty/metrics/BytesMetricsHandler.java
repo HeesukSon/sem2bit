@@ -49,9 +49,10 @@ public class BytesMetricsHandler extends ChannelDuplexHandler {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        LOG.info("ctx.class = {}, msg.class = {}",ctx.getClass().toString(), msg.getClass().toString());
+        LOG.info("[BEFORE] ctx.class = {}, msg.class = {}",ctx.getClass().toString(), msg.getClass().toString());
         BytesMetrics metrics = ctx.channel().attr(ATTR_KEY_METRICS).get();
         metrics.incrementRead(((ByteBuf) msg).readableBytes());
+        LOG.info("[AFTER] ctx.class = {}, msg.class = {}",ctx.getClass().toString(), msg.getClass().toString());
         ctx.fireChannelRead(msg);
     }
 

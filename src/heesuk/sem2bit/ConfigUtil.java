@@ -25,6 +25,7 @@ public class ConfigUtil {
 	public Domain domain = Domain.IoT_Protocol; //default
 	public ProtocolName localP = ProtocolName.MQTTv3; //default
 	public boolean seqBoundRandom = true; // default
+	public String broker_version = "v3.1.1"; // default
 
 	private ConfigUtil(){
 		try {
@@ -97,6 +98,8 @@ public class ConfigUtil {
 						}
 					} else if(keyValue[0].trim().equals("seq_bound_random")){
 						seqBoundRandom = new Boolean(keyValue[1].trim());
+					} else if(keyValue[0].trim().equals("broker_version")){
+						broker_version = keyValue[1].trim();
 					} else {
 						throw new ConfigNotDefinedException();
 					}

@@ -110,6 +110,12 @@ public class ConnectActionListener implements IMqttActionListener {
    */
   public void onFailure(IMqttToken token, Throwable exception) {
     LOG.debug("onFailure()");
+    /*
+    try {
+      comms.close(true);
+    } catch (MqttException e) {
+      e.printStackTrace();
+    }*/
 
 /*
     int numberOfURIs = comms.getNetworkModules().length;

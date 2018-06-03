@@ -18,6 +18,8 @@ package io.netty.handler.codec.mqtt;
 
 import io.netty.util.CharsetUtil;
 import io.netty.util.internal.ObjectUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Mqtt version specific constant values used by multiple classes in mqtt-codec.
@@ -25,6 +27,8 @@ import io.netty.util.internal.ObjectUtil;
 public enum MqttVersion {
     MQTT_3_1("MQIsdp", (byte) 3),
     MQTT_3_1_1("MQTT", (byte) 4);
+
+    private static final Logger LOG = LoggerFactory.getLogger(MqttVersion.class);
 
     private final String name;
     private final byte level;
@@ -47,6 +51,7 @@ public enum MqttVersion {
     }
 
     public static MqttVersion fromProtocolNameAndLevel(String protocolName, byte protocolLevel) {
+        LOG.debug("protocolName = {}, protocolLevel = {}",protocolName, protocolLevel);
         for (MqttVersion mv : values()) {
             if (mv.name.equals(protocolName)) {
                 if (mv.level == protocolLevel) {

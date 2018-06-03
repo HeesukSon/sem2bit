@@ -20,6 +20,8 @@ import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
 import io.netty.util.internal.TypeParameterMatcher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -33,6 +35,7 @@ import java.util.List;
  */
 public abstract class ByteToMessageCodec<I> extends ChannelDuplexHandler {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ByteToMessageCodec.class);
     private final TypeParameterMatcher outboundMsgMatcher;
     private final MessageToByteEncoder<I> encoder;
 
@@ -100,6 +103,7 @@ public abstract class ByteToMessageCodec<I> extends ChannelDuplexHandler {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        LOG.debug("channelRead():: ctx.class = {}, msg.class = {}, decoder.class = {}",ctx.getClass().toString(), msg.getClass().toString(),decoder.getClass().toString());
         decoder.channelRead(ctx, msg);
     }
 

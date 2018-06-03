@@ -31,13 +31,15 @@ import io.netty.util.internal.StringUtil;
 import io.netty.util.internal.SystemPropertyUtil;
 import io.netty.util.internal.logging.InternalLogger;
 import io.netty.util.internal.logging.InternalLoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.SocketAddress;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 abstract class AbstractChannelHandlerContext extends DefaultAttributeMap
         implements ChannelHandlerContext, ResourceLeakHint {
-
+    private static final Logger LOG = LoggerFactory.getLogger(AbstractChannelHandlerContext.class);
     private static final InternalLogger logger = InternalLoggerFactory.getInstance(AbstractChannelHandlerContext.class);
     volatile AbstractChannelHandlerContext next;
     volatile AbstractChannelHandlerContext prev;
@@ -342,6 +344,7 @@ abstract class AbstractChannelHandlerContext extends DefaultAttributeMap
     }
 
     static void invokeChannelRead(final AbstractChannelHandlerContext next, Object msg) {
+        LOG.debug("invokeChannelRead():: next.class = {}, msg.class = {}",next.getClass().toString(), msg.getClass().toString());
         final Object m = next.pipeline.touch(ObjectUtil.checkNotNull(msg, "msg"), next);
         EventExecutor executor = next.executor();
         if (executor.inEventLoop()) {

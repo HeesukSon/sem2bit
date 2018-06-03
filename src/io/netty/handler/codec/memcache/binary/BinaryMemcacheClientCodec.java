@@ -21,6 +21,8 @@ import io.netty.channel.CombinedChannelDuplexHandler;
 import io.netty.handler.codec.PrematureChannelClosureException;
 import io.netty.handler.codec.memcache.LastMemcacheContent;
 import io.netty.util.internal.UnstableApi;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -40,6 +42,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public final class BinaryMemcacheClientCodec extends
         CombinedChannelDuplexHandler<BinaryMemcacheResponseDecoder, BinaryMemcacheRequestEncoder> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(BinaryMemcacheClientCodec.class);
     private final boolean failOnMissingResponse;
     private final AtomicLong requestResponseCounter = new AtomicLong();
 
@@ -90,6 +93,7 @@ public final class BinaryMemcacheClientCodec extends
 
         @Override
         protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+            LOG.debug("Decoder.decode()::");
             int oldSize = out.size();
             super.decode(ctx, in, out);
 

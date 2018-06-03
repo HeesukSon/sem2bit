@@ -22,6 +22,8 @@ import io.netty.handler.codec.DecoderException;
 import io.netty.handler.codec.ReplayingDecoder;
 import io.netty.handler.codec.mqtt.MqttDecoder.DecoderState;
 import io.netty.util.CharsetUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +40,7 @@ import static io.netty.handler.codec.mqtt.MqttCodecUtil.validateFixedHeader;
  *     the MQTT protocol specification v3.1</a>
  */
 public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
+    private static final Logger LOG = LoggerFactory.getLogger(MqttDecoder.class);
 
     private static final int DEFAULT_MAX_BYTES_IN_MESSAGE = 8092;
 
@@ -70,18 +73,22 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf buffer, List<Object> out) throws Exception {
+        LOG.debug("decode():: ctx.class = {} buffer.class = {}",ctx.getClass().toString(),buffer.getClass().toString());
         switch (state()) {
             case READ_FIXED_HEADER: try {
+                LOG.debug("decode():: READ_FIXED_HEADER");
                 mqttFixedHeader = decodeFixedHeader(buffer);
                 bytesRemainingInVariablePart = mqttFixedHeader.remainingLength();
                 checkpoint(DecoderState.READ_VARIABLE_HEADER);
                 // fall through
             } catch (Exception cause) {
+                LOG.debug("decode():: An exception is thrown while reading fixed header.");
                 out.add(invalidMessage(cause));
                 return;
             }
 
             case READ_VARIABLE_HEADER:  try {
+                LOG.debug("decode():: READ_VARIABLE_HEADER");
                 if (bytesRemainingInVariablePart > maxBytesInMessage) {
                     throw new DecoderException("too large message: " + bytesRemainingInVariablePart + " bytes");
                 }
@@ -91,11 +98,13 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
                 checkpoint(DecoderState.READ_PAYLOAD);
                 // fall through
             } catch (Exception cause) {
+                LOG.debug("decode():: An exception is thrown while reading variable header.");
                 out.add(invalidMessage(cause));
                 return;
             }
 
             case READ_PAYLOAD: try {
+                LOG.debug("decode():: READ_PAYLOAD");
                 final Result<?> decodedPayload =
                         decodePayload(
                                 buffer,
@@ -121,6 +130,7 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
             }
 
             case BAD_MESSAGE:
+                LOG.debug("decode():: BAD_MESSAGE");
                 // Keep discarding until disconnection.
                 buffer.skipBytes(actualReadableBytes());
                 break;
@@ -143,6 +153,7 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
      * @return the fixed header
      */
     private static MqttFixedHeader decodeFixedHeader(ByteBuf buffer) {
+        LOG.debug("decodeFixedHeader():: buffer.class = {}",buffer.getClass().toString());
         short b1 = buffer.readUnsignedByte();
 
         MqttMessageType messageType = MqttMessageType.valueOf(b1 >> 4);
@@ -177,6 +188,7 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
      * @return the variable header
      */
     private static Result<?> decodeVariableHeader(ByteBuf buffer, MqttFixedHeader mqttFixedHeader) {
+        LOG.debug("decodeVariableHeader():: buffer.class = {}",buffer.getClass().toString());
         switch (mqttFixedHeader.messageType()) {
             case CONNECT:
                 return decodeConnectionVariableHeader(buffer);
@@ -207,19 +219,27 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
     }
 
     private static Result<MqttConnectVariableHeader> decodeConnectionVariableHeader(ByteBuf buffer) {
+        LOG.debug("decodeConnectionVariableHeader()::buffer.class = {}, buffer.str = {}",buffer.getClass(),buffer.toString());
         final Result<String> protoString = decodeString(buffer);
+        LOG.debug("protoString.value = {}, protoString.numberOfBytesConsumed = {}",protoString.value, protoString.numberOfBytesConsumed);
+
         int numberOfBytesConsumed = protoString.numberOfBytesConsumed;
+
+        LOG.debug("numberOfBytesConsumed = {}",numberOfBytesConsumed);
 
         final byte protocolLevel = buffer.readByte();
         numberOfBytesConsumed += 1;
+        LOG.debug("numberOfBytesConsumed = {}",numberOfBytesConsumed);
 
         final MqttVersion mqttVersion = MqttVersion.fromProtocolNameAndLevel(protoString.value, protocolLevel);
 
         final int b1 = buffer.readUnsignedByte();
         numberOfBytesConsumed += 1;
+        LOG.debug("numberOfBytesConsumed = {}",numberOfBytesConsumed);
 
         final Result<Integer> keepAlive = decodeMsbLsb(buffer);
         numberOfBytesConsumed += keepAlive.numberOfBytesConsumed;
+        LOG.debug("numberOfBytesConsumed = {}",numberOfBytesConsumed);
 
         final boolean hasUserName = (b1 & 0x80) == 0x80;
         final boolean hasPassword = (b1 & 0x40) == 0x40;
@@ -308,6 +328,7 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
             MqttMessageType messageType,
             int bytesRemainingInVariablePart,
             Object variableHeader) {
+        LOG.debug("decodePayload()::buffer.class = {},messageType = {}",buffer.getClass().toString(),messageType.name());
         switch (messageType) {
             case CONNECT:
                 return decodeConnectionPayload(buffer, (MqttConnectVariableHeader) variableHeader);

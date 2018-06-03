@@ -18,6 +18,8 @@ package io.netty.handler.codec.http;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.CombinedChannelDuplexHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayDeque;
 import java.util.List;
@@ -32,6 +34,7 @@ import java.util.Queue;
 public final class HttpServerCodec extends CombinedChannelDuplexHandler<HttpRequestDecoder, HttpResponseEncoder>
         implements HttpServerUpgradeHandler.SourceCodec {
 
+    private static final Logger LOG = LoggerFactory.getLogger(HttpServerCodec.class);
     /** A queue that is used for correlating a request and a response. */
     private final Queue<HttpMethod> queue = new ArrayDeque<HttpMethod>();
 
@@ -97,6 +100,7 @@ public final class HttpServerCodec extends CombinedChannelDuplexHandler<HttpRequ
 
         @Override
         protected void decode(ChannelHandlerContext ctx, ByteBuf buffer, List<Object> out) throws Exception {
+            LOG.debug("HttpServerRequestDecoder.decode()::");
             int oldSize = out.size();
             super.decode(ctx, buffer, out);
             int size = out.size();
