@@ -23,10 +23,13 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
 import io.netty.util.Attribute;
 import io.netty.util.AttributeKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static io.netty.channel.ChannelFutureListener.CLOSE_ON_FAILURE;
 
 public class BytesMetricsHandler extends ChannelDuplexHandler {
+    private static final Logger LOG = LoggerFactory.getLogger(BytesMetricsHandler.class);
 
     private static final AttributeKey<BytesMetrics> ATTR_KEY_METRICS = AttributeKey.valueOf("BytesMetrics");
 
@@ -46,6 +49,7 @@ public class BytesMetricsHandler extends ChannelDuplexHandler {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        LOG.info("ctx.class = {}, msg.class = {}",ctx.getClass().toString(), msg.getClass().toString());
         BytesMetrics metrics = ctx.channel().attr(ATTR_KEY_METRICS).get();
         metrics.incrementRead(((ByteBuf) msg).readableBytes());
         ctx.fireChannelRead(msg);

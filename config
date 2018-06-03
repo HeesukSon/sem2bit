@@ -20,3 +20,5 @@ domain = IoT_Protocol
 local_protocol = MQTTv3
 // seq_bound_random = true
 seq_bound_random = false
+broker_version = 3.1.1
+//broker_version = 5
