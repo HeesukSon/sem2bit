@@ -18,6 +18,7 @@ package org.eclipse.paho.sample.mqttv3app;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.internal.ConnectFailureException;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,7 +104,7 @@ public class MQTTConnector implements MqttCallback {
 		}
     }
 
-    public void connect() throws MqttException {
+    public void connect() throws MqttException, ConnectFailureException {
 		// Connect to the MQTT server
 		LOG.info("Connecting to "+brokerUrl + " with client ID "+client.getClientId());
 		client.connect(conOpt);
@@ -122,7 +123,7 @@ public class MQTTConnector implements MqttCallback {
      * @param payload the set of bytes to send to the MQTT server
      * @throws MqttException
      */
-    public void publish(String topicName, int qos, byte[] payload) throws MqttException {
+    public void publish(String topicName, int qos, byte[] payload) throws MqttException, ConnectFailureException {
     	// Connect to the MQTT server
 		LOG.info("Connecting to "+brokerUrl + " with client ID "+client.getClientId());
     	client.connect(conOpt);

@@ -19,6 +19,8 @@
 
 package org.eclipse.paho.client.mqttv3;
 
+import org.eclipse.paho.client.mqttv3.internal.ConnectFailureException;
+
 /**
  * Enables an application to communicate with an MQTT server using blocking methods.
  * <p>
@@ -70,7 +72,7 @@ public interface IMqttClient { //extends IMqttAsyncClient {
 	 * @throws MqttException  for non security related problems
 	 * @see #connect(MqttConnectOptions)
 	 */
-  public void connect() throws MqttSecurityException, MqttException;
+  public void connect() throws MqttSecurityException, MqttException, ConnectFailureException;
 
 	/**
 	 * Connects to an MQTT server using the specified options.
@@ -86,7 +88,7 @@ public interface IMqttClient { //extends IMqttAsyncClient {
 	 * reasons
 	 * @throws MqttException  for non security related problems including communication errors
 	 */
-  public void connect(MqttConnectOptions options) throws MqttSecurityException, MqttException;
+  public void connect(MqttConnectOptions options) throws MqttSecurityException, MqttException, ConnectFailureException;
   
 	/**
 	 * Connects to an MQTT server using the specified options.
@@ -103,7 +105,7 @@ public interface IMqttClient { //extends IMqttAsyncClient {
 	 * reasons
 	 * @throws MqttException  for non security related problems including communication errors
 	 */
-public IMqttToken connectWithResult(MqttConnectOptions options) throws MqttSecurityException, MqttException;
+public IMqttToken connectWithResult(MqttConnectOptions options) throws MqttSecurityException, MqttException, ConnectFailureException;
 
 	/**
 	 * Disconnects from the server.

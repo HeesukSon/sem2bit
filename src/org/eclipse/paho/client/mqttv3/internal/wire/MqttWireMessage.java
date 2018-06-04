@@ -25,7 +25,9 @@ import java.io.*;
 /**
  * An on-the-wire representation of an MQTT message.
  */
-public abstract class MqttWireMessage {	
+public abstract class MqttWireMessage {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(MqttWireMessage.class);
+
 	public static final byte MESSAGE_TYPE_CONNECT = 1;
 	public static final byte MESSAGE_TYPE_CONNACK = 2;
 	public static final byte MESSAGE_TYPE_PUBLISH = 3;

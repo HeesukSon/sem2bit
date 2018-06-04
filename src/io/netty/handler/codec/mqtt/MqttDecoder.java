@@ -220,26 +220,39 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
 
     private static Result<MqttConnectVariableHeader> decodeConnectionVariableHeader(ByteBuf buffer) {
         LOG.debug("decodeConnectionVariableHeader()::buffer.class = {}, buffer.str = {}",buffer.getClass(),buffer.toString());
+        LOG.debug("[1] buffer.str = {}, buffer.readerIndex() = {}",buffer.toString(),buffer.readerIndex());
         final Result<String> protoString = decodeString(buffer);
         LOG.debug("protoString.value = {}, protoString.numberOfBytesConsumed = {}",protoString.value, protoString.numberOfBytesConsumed);
 
         int numberOfBytesConsumed = protoString.numberOfBytesConsumed;
 
-        LOG.debug("numberOfBytesConsumed = {}",numberOfBytesConsumed);
+        LOG.debug("[1] numberOfBytesConsumed = {}, buffer.readerIndex() = {}",numberOfBytesConsumed,buffer.readerIndex());
 
+        LOG.debug("[2] buffer.str = {}, buffer.readerIndex() = {}",buffer.toString(),buffer.readerIndex());
         final byte protocolLevel = buffer.readByte();
         numberOfBytesConsumed += 1;
-        LOG.debug("numberOfBytesConsumed = {}",numberOfBytesConsumed);
+        LOG.debug("[2] numberOfBytesConsumed = {}, buffer.readerIndex() = {}",numberOfBytesConsumed, buffer.readerIndex());
 
         final MqttVersion mqttVersion = MqttVersion.fromProtocolNameAndLevel(protoString.value, protocolLevel);
 
+        LOG.debug("[3] buffer.str = {}, buffer.readerIndex() = {}",buffer.toString(),buffer.readerIndex());
         final int b1 = buffer.readUnsignedByte();
         numberOfBytesConsumed += 1;
-        LOG.debug("numberOfBytesConsumed = {}",numberOfBytesConsumed);
+        LOG.debug("[3] numberOfBytesConsumed = {}, buffer.readerIndex() = {}",numberOfBytesConsumed,buffer.readerIndex());
 
+        LOG.debug("[4] buffer.str = {}, buffer.readerIndex() = {}",buffer.toString(),buffer.readerIndex());
         final Result<Integer> keepAlive = decodeMsbLsb(buffer);
         numberOfBytesConsumed += keepAlive.numberOfBytesConsumed;
-        LOG.debug("numberOfBytesConsumed = {}",numberOfBytesConsumed);
+        LOG.debug("[4] numberOfBytesConsumed = {}, buffer.readerIndex() = {}",numberOfBytesConsumed,buffer.readerIndex());
+
+        // ADDED for version 5 specification
+		LOG.debug("[5] buffer.str = {}, buffer.readerIndex() = {}",buffer.toString(),buffer.readerIndex());
+		if(buffer.readerIndex() == buffer.writerIndex()){
+		    throw new MqttPropertyLengthFieldMissingException();
+        }
+        final byte propertyLength = buffer.readByte();
+        numberOfBytesConsumed += 1;
+        LOG.debug("[5] propertyLength = {}, numberOfBytesConsumed = {}, buffer.readerIndex() = {}",propertyLength, numberOfBytesConsumed,buffer.readerIndex());
 
         final boolean hasUserName = (b1 & 0x80) == 0x80;
         final boolean hasPassword = (b1 & 0x40) == 0x40;
@@ -247,7 +260,7 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
         final int willQos = (b1 & 0x18) >> 3;
         final boolean willFlag = (b1 & 0x04) == 0x04;
         final boolean cleanSession = (b1 & 0x02) == 0x02;
-        if (mqttVersion == MqttVersion.MQTT_3_1_1) {
+        if (mqttVersion == MqttVersion.MQTT_5) {
             final boolean zeroReservedFlag = (b1 & 0x01) == 0x0;
             if (!zeroReservedFlag) {
                 // MQTT v3.1.1: The Server MUST validate that the reserved flag in the CONNECT Control Packet is
@@ -448,9 +461,11 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
     }
 
     private static Result<String> decodeString(ByteBuf buffer, int minBytes, int maxBytes) {
+        LOG.debug("decodeString():: buffer.toString() = {}", buffer.toString());
         final Result<Integer> decodedSize = decodeMsbLsb(buffer);
         int size = decodedSize.value;
         int numberOfBytesConsumed = decodedSize.numberOfBytesConsumed;
+        LOG.debug("decodeString()::decodedSize.value = {}, numberOfBytesConsumed = {}, buffer.readerIndex() = {}",size,numberOfBytesConsumed,buffer.readerIndex());
         if (size < minBytes || size > maxBytes) {
             buffer.skipBytes(size);
             numberOfBytesConsumed += size;
@@ -459,6 +474,7 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
         String s = buffer.toString(buffer.readerIndex(), size, CharsetUtil.UTF_8);
         buffer.skipBytes(size);
         numberOfBytesConsumed += size;
+        LOG.debug("decodeString()::decoded string = {}, buffer.readerIndex() = {}",s,buffer.readerIndex());
         return new Result<String>(s, numberOfBytesConsumed);
     }
 
@@ -477,6 +493,12 @@ public final class MqttDecoder extends ReplayingDecoder<DecoderState> {
     private static Result<Integer> decodeMsbLsb(ByteBuf buffer, int min, int max) {
         short msbSize = buffer.readUnsignedByte();
         short lsbSize = buffer.readUnsignedByte();
+        LOG.debug("decodeMsbLsb():: msbSize = {}, lsbSize = {}",msbSize,lsbSize);
+
+        if(msbSize != 0){
+            throw new ZeroMSBException();
+        }
+
         final int numberOfBytesConsumed = 2;
         int result = msbSize << 8 | lsbSize;
         if (result < min || result > max) {

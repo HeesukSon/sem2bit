@@ -203,8 +203,7 @@ public class ProtocolProcessor {
         String clientId = payload.clientIdentifier();
         LOG.debug("Processing CONNECT message. CId={}, username={}", clientId, payload.userName());
 
-        if (msg.variableHeader().version() != MqttVersion.MQTT_3_1.protocolLevel()
-                && msg.variableHeader().version() != MqttVersion.MQTT_3_1_1.protocolLevel()) {
+        if (msg.variableHeader().version() != MqttVersion.MQTT_5.protocolLevel()) {
             MqttConnAckMessage badProto = connAck(CONNECTION_REFUSED_UNACCEPTABLE_PROTOCOL_VERSION);
 
             LOG.error("MQTT protocol version is not valid. CId={}", clientId);

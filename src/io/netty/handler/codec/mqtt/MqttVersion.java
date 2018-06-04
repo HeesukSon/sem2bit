@@ -25,8 +25,7 @@ import org.slf4j.LoggerFactory;
  * Mqtt version specific constant values used by multiple classes in mqtt-codec.
  */
 public enum MqttVersion {
-    MQTT_3_1("MQIsdp", (byte) 3),
-    MQTT_3_1_1("MQTT", (byte) 4);
+    MQTT_5("MQTT", (byte) 5);
 
     private static final Logger LOG = LoggerFactory.getLogger(MqttVersion.class);
 

@@ -17,6 +17,7 @@
 package org.eclipse.paho.sample.mqttv3app;
 
 import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.internal.ConnectFailureException;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 
 import java.io.IOException;
@@ -164,6 +165,8 @@ public class SubSample implements MqttCallback {
 			System.out.println("cause "+me.getCause());
 			System.out.println("excep "+me);
 			me.printStackTrace();
+		} catch (ConnectFailureException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -231,7 +234,7 @@ public class SubSample implements MqttCallback {
      * @param payload the set of bytes to send to the MQTT server
      * @throws MqttException
      */
-    public void publish(String topicName, int qos, byte[] payload) throws MqttException {
+    public void publish(String topicName, int qos, byte[] payload) throws MqttException, ConnectFailureException {
 
     	// Connect to the MQTT server
     	log("Connecting to "+brokerUrl + " with client ID "+client.getClientId());
@@ -264,7 +267,7 @@ public class SubSample implements MqttCallback {
      * @param qos the maximum quality of service to receive messages at for this subscription
      * @throws MqttException
      */
-    public void subscribe(String topicName, int qos) throws MqttException {
+    public void subscribe(String topicName, int qos) throws MqttException, ConnectFailureException {
 
     	// Connect to the MQTT server
     	client.connect(conOpt);

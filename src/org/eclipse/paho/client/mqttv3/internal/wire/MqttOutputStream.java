@@ -15,6 +15,7 @@
  */
 package org.eclipse.paho.client.mqttv3.internal.wire;
 
+import heesuk.sem2bit.ConfigUtil;
 import heesuk.sem2bit.kb.TreeFactory;
 import heesuk.sem2bit.kb.protocol.enums.MessageFieldType;
 import heesuk.sem2bit.kb.protocol.enums.UpdatePattern;
@@ -76,9 +77,20 @@ public class MqttOutputStream extends OutputStream {
 	 */
 	public void write(MqttWireMessage message) throws IOException, MqttException {
 		final String methodName = "write";
-/*
-		ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
+		LOG.debug("methodName = {}",methodName);
+
+		ModificationCandidate[] seq;
 		String adaptSeq = "";
+
+		if(ConfigUtil.getInstance().exp_mode.equals("mockup")){
+			seq = new ModificationCandidate[3];
+			seq[0] = new ModificationCandidate("DEFAULT", "[DEFAULT]");
+			seq[1] = new ModificationCandidate("Protocol Level", "[C]");
+			seq[2] = new ModificationCandidate("Property Length", "[A]");
+		}else{
+			seq = TreeFactory.getInstance().getNextSequence();
+		}
+
 		for(ModificationCandidate candidate : seq){
 			adaptSeq += candidate.toStringWithoutWeight();
 			adaptSeq += "\n";
@@ -87,21 +99,22 @@ public class MqttOutputStream extends OutputStream {
 		String messageType = message.getClass().toString();
 		MqttWireMessage adaptedMessage = composeAdaptedMessage(message, seq);
 		LOG.info("\n[{}]\nBEFORE: {}\nAdapt Sequence: \n{}AFTER: {}\n",messageType, originHeader, adaptSeq, adaptedMessage.getHeader());
-		*/
+
 
 		/* BEFORE update for SeM2Bit experiment */
-		byte[] bytes = message.getHeader();
-		byte[] pl = message.getPayload();
+		//byte[] bytes = message.getHeader();
+		//byte[] pl = message.getPayload();
 
 		/* AFTER update for SeM2Bit experiment */
-		//byte[] bytes = adaptedMessage.getHeader();
-		//byte[] pl = adaptedMessage.getPayload();
+		byte[] bytes = adaptedMessage.getHeader();
+		byte[] pl = adaptedMessage.getPayload();
+		//byte[] pl = new byte[0];
 
 //		out.write(message.getHeader());
 //		out.write(message.getPayload());
 		out.write(bytes,0,bytes.length);
 		clientState.notifySentBytes(bytes.length);
-		
+
         int offset = 0;
         int chunckSize = 1024;
         while (offset < pl.length) {
@@ -109,12 +122,13 @@ public class MqttOutputStream extends OutputStream {
         	out.write(pl, offset, length);
         	offset += chunckSize;
         	clientState.notifySentBytes(length);
-        }		
-		
+        }
+
 		// @TRACE 529= sent {0}
 	}
 
 	/**
+	 *
 	 * added to adapt the message output according to the sequence planning tree output.
 	 * @author Heesuk Son (heesuk.chad.son@gmail.com)
 	 * @param message

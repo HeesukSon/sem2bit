@@ -152,12 +152,14 @@ public class MqttConnect extends MqttWireMessage {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			DataOutputStream dos = new DataOutputStream(baos);
 			encodeUTF8(dos,clientId);
-			
+			LOG.debug("getPayload():: clientId.bytes = {}",baos.toByteArray());
+
 			if (willMessage != null) {
 				encodeUTF8(dos,willDestination);
 				dos.writeShort(willMessage.getPayload().length);
 				dos.write(willMessage.getPayload());
 			}
+			LOG.debug("getPayload():: clientId+will.bytes = {}",baos.toByteArray());
 			
 			if (userName != null) {
 				encodeUTF8(dos,userName);

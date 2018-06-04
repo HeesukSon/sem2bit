@@ -222,8 +222,9 @@ public class CommsCallback implements Runnable {
 	}
 
 	private void handleActionComplete(MqttToken token)
-			throws MqttException {
+			throws MqttException, ConnectFailureException {
 		final String methodName = "handleActionComplete";
+		LOG.debug("methodName = {}",methodName);
 		synchronized (token) {
 			// @TRACE 705=callback and notify for key={0}
 			if (token.isComplete()) {
@@ -294,8 +295,9 @@ public class CommsCallback implements Runnable {
 	 * 
 	 * @param token The {@link MqttToken} that has completed
 	 */
-	public void fireActionEvent(MqttToken token) {
+	public void fireActionEvent(MqttToken token) throws ConnectFailureException {
 		final String methodName = "fireActionEvent";
+		LOG.debug("methodName = {}",methodName);
 
 		if (token != null) {
 			IMqttActionListener asyncCB = token.getActionCallback();

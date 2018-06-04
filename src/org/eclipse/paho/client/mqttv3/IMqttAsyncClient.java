@@ -19,6 +19,8 @@
 
 package org.eclipse.paho.client.mqttv3;
 
+import org.eclipse.paho.client.mqttv3.internal.ConnectFailureException;
+
 /**
  * Enables an application to communicate with an MQTT server using non-blocking methods.
  * <p>
@@ -128,7 +130,7 @@ public interface IMqttAsyncClient {
 	 * will be passed to the callback methods if a callback is set.
 	 * @see #connect(MqttConnectOptions, Object, IMqttActionListener)
 	 */
-	public IMqttToken connect() throws MqttException, MqttSecurityException;
+	public IMqttToken connect() throws MqttException, MqttSecurityException, ConnectFailureException;
 
 	/**
 	 * Connects to an MQTT server using the provided connect options.
@@ -143,7 +145,7 @@ public interface IMqttAsyncClient {
 	 * will be passed to any callback that has been set.
 	 * @see #connect(MqttConnectOptions, Object, IMqttActionListener)
 	 */
-	public IMqttToken connect(MqttConnectOptions options) throws MqttException, MqttSecurityException ;
+	public IMqttToken connect(MqttConnectOptions options) throws MqttException, MqttSecurityException, ConnectFailureException;
 	/**
 	 * Connects to an MQTT server using the default options.
 	 * <p>The default options are specified in {@link MqttConnectOptions} class.
@@ -159,7 +161,7 @@ public interface IMqttAsyncClient {
 	 * will be passed to any callback that has been set.
 	 * @see #connect(MqttConnectOptions, Object, IMqttActionListener)
 	 */
-	public IMqttToken connect(Object userContext, IMqttActionListener callback) throws MqttException, MqttSecurityException;
+	public IMqttToken connect(Object userContext, IMqttActionListener callback) throws MqttException, MqttSecurityException, ConnectFailureException;
 
 
 	/**
@@ -187,7 +189,7 @@ public interface IMqttAsyncClient {
 	 * @throws MqttSecurityException  for security related problems
 	 * @throws MqttException  for non security related problems including communication errors
 	 */
-	public IMqttToken connect(MqttConnectOptions options, Object userContext, IMqttActionListener callback) throws MqttException, MqttSecurityException;
+	public IMqttToken connect(MqttConnectOptions options, Object userContext, IMqttActionListener callback) throws MqttException, MqttSecurityException, ConnectFailureException;
 
 	/**
 	 * Disconnects from the server.

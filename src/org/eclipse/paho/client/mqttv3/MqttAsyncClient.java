@@ -680,7 +680,7 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 	 * org.eclipse.paho.client.IMqttActionListener)
 	 */
 	public IMqttToken connect(Object userContext, IMqttActionListener callback)
-			throws MqttException, MqttSecurityException {
+			throws MqttException, MqttSecurityException, ConnectFailureException {
 		return this.connect(new MqttConnectOptions(), userContext, callback);
 	}
 
@@ -689,7 +689,7 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 	 * 
 	 * @see org.eclipse.paho.client.IMqttAsyncClient#connect()
 	 */
-	public IMqttToken connect() throws MqttException, MqttSecurityException {
+	public IMqttToken connect() throws MqttException, MqttSecurityException, ConnectFailureException {
 		return this.connect(null, null);
 	}
 
@@ -700,7 +700,7 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 	 * org.eclipse.paho.client.IMqttAsyncClient#connect(org.eclipse.paho.
 	 * client.MqttConnectOptions)
 	 */
-	public IMqttToken connect(MqttConnectOptions options) throws MqttException, MqttSecurityException {
+	public IMqttToken connect(MqttConnectOptions options) throws MqttException, MqttSecurityException, ConnectFailureException {
 		return this.connect(options, null, null);
 	}
 
@@ -713,8 +713,9 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 	 * org.eclipse.paho.client.IMqttActionListener)
 	 */
 	public IMqttToken connect(MqttConnectOptions options, Object userContext, IMqttActionListener callback)
-			throws MqttException, MqttSecurityException {
+			throws MqttException, MqttSecurityException, ConnectFailureException {
 		final String methodName = "connect";
+		LOG.debug("methodName = {}",methodName);
 		if (comms.isConnected()) {
 			throw ExceptionHelper.createMqttException(MqttException.REASON_CODE_CLIENT_CONNECTED);
 		}
@@ -1314,8 +1315,9 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 	 * @throws MqttException
 	 *             if there is an issue with reconnecting
 	 */
-	public void reconnect() throws MqttException {
+	public void reconnect() throws MqttException, ConnectFailureException {
 		final String methodName = "reconnect";
+		LOG.debug("methodName = {}",methodName);
 		// @Trace 500=Attempting to reconnect client: {0}
 		// Some checks to make sure that we're not attempting to reconnect an
 		// already connected client
@@ -1347,8 +1349,9 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 	 * they are being thrown due to the server being offline and so reconnect
 	 * attempts will continue.
 	 */
-	private void attemptReconnect() {
+	private void attemptReconnect() throws ConnectFailureException {
 		final String methodName = "attemptReconnect";
+		LOG.debug("methodName = {}",methodName);
 		// @Trace 500=Attempting to reconnect client: {0}
 		try {
 			connect(this.connOpts, this.userContext, new MqttReconnectActionListener(methodName));
@@ -1361,6 +1364,7 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 
 	private void startReconnectCycle() {
 		String methodName = "startReconnectCycle";
+		LOG.debug("methodName = {}",methodName);
 		// @Trace 503=Start reconnect timer for client: {0}, delay: {1}
 		reconnectTimer = new Timer("MQTT Reconnect: " + clientId);
 		reconnectTimer.schedule(new ReconnectTask(), reconnectDelay);
@@ -1368,6 +1372,7 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 
 	private void stopReconnectCycle() {
 		String methodName = "stopReconnectCycle";
+		LOG.debug("methodName = {}",methodName);
 		// @Trace 504=Stop reconnect timer for client: {0}
 		synchronized (clientLock) {
 			if (this.connOpts.isAutomaticReconnect()) {
@@ -1385,7 +1390,11 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 
 		public void run() {
 			// @Trace 506=Triggering Automatic Reconnect attempt.
-			attemptReconnect();
+			try {
+				attemptReconnect();
+			} catch (ConnectFailureException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

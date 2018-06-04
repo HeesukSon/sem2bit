@@ -18,6 +18,7 @@ import heesuk.sem2bit.kb.protocol.iot.IoTProtocolKBUtil;
 import heesuk.sem2bit.kb.protocol.sdp.SDPKBUtil;
 import heesuk.sem2bit.msg.ModificationCandidate;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.internal.ConnectFailureException;
 import org.eclipse.paho.sample.mqttv3app.MQTTConnector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,7 +102,7 @@ public class ModificationController {
 	}
 
 	public void sendModifiedMessage(int cnt)
-			throws ServiceLocationException, SocketTimeoutException, IllegalArgumentException{
+			throws ServiceLocationException, SocketTimeoutException, IllegalArgumentException, ConnectFailureException {
 		if(ConfigUtil.getInstance().domain == Domain.SDP){
 			ServiceLocationEnumeration sle = locator.findServices(
 					cnt, new ServiceType("service:test"), scopes, "(cool=yes)");
@@ -188,6 +189,13 @@ public class ModificationController {
 				e.printStackTrace();
 			} catch (ServiceLocationException e) {
 				e.printStackTrace();
+			} catch (ConnectFailureException e) {
+				LOG.info("["+cnt+":FAIL] ConnectFailureException!!");
+				try {
+					this.finalize();
+				} catch (Throwable e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 		

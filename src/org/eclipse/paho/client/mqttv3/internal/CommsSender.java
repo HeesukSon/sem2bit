@@ -133,13 +133,14 @@ public class CommsSender implements Runnable {
 							out.flush();
 						} else {
 							LOG.debug("message header : {}",message.getHeader());
-							LOG.debug("message header in String : {}",new String(message.getHeader()));
 							MqttToken token = tokenStore.getToken(message);
 							// While quiescing the tokenstore can be cleared so need
 							// to check for null for the case where clear occurs
 							// while trying to send a message.
 							if (token != null) {
 								synchronized (token) {
+									LOG.debug("msg.payload : {}",message.getPayload());
+									LOG.debug("msg.payload.str : {}",new String(message.getPayload()));
 									out.write(message);
 									LOG.debug("A message is written to the out stream");
 									try {
@@ -178,6 +179,7 @@ public class CommsSender implements Runnable {
 
 	private void handleRunException(MqttWireMessage message, Exception ex) {
 		final String methodName = "handleRunException";
+		LOG.debug("methodName = {}",methodName);
 		//@TRACE 804=exception
 		MqttException mex;
 		if ( !(ex instanceof MqttException)) {

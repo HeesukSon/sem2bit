@@ -18,6 +18,7 @@
  */
 package org.eclipse.paho.client.mqttv3;
 
+import org.eclipse.paho.client.mqttv3.internal.ConnectFailureException;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.eclipse.paho.client.mqttv3.util.Debug;
 
@@ -321,21 +322,21 @@ public class MqttClient implements IMqttClient { //), DestinationProvider {
 	/*
 	 * @see IMqttClient#connect()
 	 */
-	public void connect() throws MqttSecurityException, MqttException {
+	public void connect() throws MqttSecurityException, MqttException, ConnectFailureException {
 		this.connect(new MqttConnectOptions());
 	}
 
 	/*
 	 * @see IMqttClient#connect(MqttConnectOptions)
 	 */
-	public void connect(MqttConnectOptions options) throws MqttSecurityException, MqttException {
+	public void connect(MqttConnectOptions options) throws MqttSecurityException, MqttException, ConnectFailureException {
 		aClient.connect(options, null, null).waitForCompletion(getTimeToWait());
 	}
 
 	/*
 	 * @see IMqttClient#connect(MqttConnectOptions)
 	 */
-	public IMqttToken connectWithResult(MqttConnectOptions options) throws MqttSecurityException, MqttException {
+	public IMqttToken connectWithResult(MqttConnectOptions options) throws MqttSecurityException, MqttException, ConnectFailureException {
 		IMqttToken tok = aClient.connect(options, null, null);
 		tok.waitForCompletion(getTimeToWait());
 		return tok;
@@ -719,7 +720,7 @@ public class MqttClient implements IMqttClient { //), DestinationProvider {
 	 * Will attempt to reconnect to the server after the client has lost connection.
 	 * @throws MqttException if an error occurs attempting to reconnect
 	 */
-	public void reconnect() throws MqttException {
+	public void reconnect() throws MqttException, ConnectFailureException {
 		aClient.reconnect();
 	}
 

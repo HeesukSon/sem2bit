@@ -3,6 +3,7 @@ package org.eclipse.paho.sample.mqttv3app;
 import heesuk.sem2bit.Constants;
 import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.internal.ConnectFailureException;
 
 public class Test {
 	public static void main(String[] args){
@@ -32,6 +33,8 @@ public class Test {
 			sampleClient.publish(topic,qos,message.getBytes());
 		} catch(MqttException me) {
 			me.printStackTrace();
+		} catch (ConnectFailureException e) {
+			e.printStackTrace();
 		}
 	}
 }

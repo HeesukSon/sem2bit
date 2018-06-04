@@ -108,8 +108,9 @@ public class ConnectActionListener implements IMqttActionListener {
    * @param token the {@link IMqttToken} from the failed connection attempt
    * @param exception the {@link Throwable} exception from the failed connection attempt
    */
-  public void onFailure(IMqttToken token, Throwable exception) {
+  public void onFailure(IMqttToken token, Throwable exception) throws ConnectFailureException {
     LOG.debug("onFailure()");
+    throw new ConnectFailureException();
     /*
     try {
       comms.close(true);
@@ -169,7 +170,7 @@ public class ConnectActionListener implements IMqttActionListener {
    * Start the connect processing
    * @throws MqttPersistenceException if an error is thrown whilst setting up persistence 
    */
-  public void connect() throws MqttPersistenceException {
+  public void connect() throws MqttPersistenceException, ConnectFailureException {
     MqttToken token = new MqttToken(client.getClientId());
     token.setActionCallback(this);
     token.setUserContext(this);
@@ -188,7 +189,8 @@ public class ConnectActionListener implements IMqttActionListener {
       comms.connect(options, token);
     }
     catch (MqttException e) {
-      onFailure(token, e);
+      //onFailure(token, e);
+      throw new ConnectFailureException();
     }
   }
   

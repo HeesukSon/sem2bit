@@ -17,6 +17,7 @@
 package org.eclipse.paho.sample.mqttv3app;
 
 import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.internal.ConnectFailureException;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 
 import java.io.IOException;
@@ -52,7 +53,7 @@ public class SampleAsyncWait implements MqttCallback {
 	 * This method handles parsing the arguments specified on the
 	 * command-line before performing the specified action.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ConnectFailureException {
 
 		// Default settings:
 		boolean quietMode 	= false;
@@ -235,7 +236,7 @@ public class SampleAsyncWait implements MqttCallback {
      * @param payload the set of bytes to send to the MQTT server
      * @throws MqttException
      */
-    public void publish(String topicName, int qos, byte[] payload) throws MqttException {
+    public void publish(String topicName, int qos, byte[] payload) throws MqttException, ConnectFailureException {
 
     	// Connect to the MQTT server
     	// issue a non-blocking connect and then use the token to wait until the
@@ -278,7 +279,7 @@ public class SampleAsyncWait implements MqttCallback {
      * @param qos the maximum quality of service to receive messages at for this subscription
      * @throws MqttException
      */
-    public void subscribe(String topicName, int qos) throws MqttException {
+    public void subscribe(String topicName, int qos) throws MqttException, ConnectFailureException {
 
     	// Connect to the MQTT server
     	// issue a non-blocking connect and then use the token to wait until the

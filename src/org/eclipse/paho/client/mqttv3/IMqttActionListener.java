@@ -1,5 +1,7 @@
 package org.eclipse.paho.client.mqttv3;
 
+import org.eclipse.paho.client.mqttv3.internal.ConnectFailureException;
+
 /**
  * Implementors of this interface will be notified when an asynchronous action completes.
  * 
@@ -26,5 +28,5 @@ public interface IMqttActionListener {
 	 * @param asyncActionToken associated with the action that has failed
 	 * @param exception thrown by the action that has failed
 	 */
-	public void onFailure(IMqttToken asyncActionToken, Throwable exception);
+	public void onFailure(IMqttToken asyncActionToken, Throwable exception) throws ConnectFailureException;
 }

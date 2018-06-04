@@ -68,7 +68,7 @@ public final class MqttMessageBuilders {
 
     public static final class ConnectBuilder {
 
-        private MqttVersion version = MqttVersion.MQTT_3_1_1;
+        private MqttVersion version = MqttVersion.MQTT_5;
         private String clientId;
         private boolean cleanSession;
         private boolean hasUser;

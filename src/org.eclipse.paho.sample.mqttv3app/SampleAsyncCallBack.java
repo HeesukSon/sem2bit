@@ -17,6 +17,7 @@
 package org.eclipse.paho.sample.mqttv3app;
 
 import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.internal.ConnectFailureException;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 
 import java.io.IOException;
@@ -470,7 +471,7 @@ public class SampleAsyncCallBack implements MqttCallback {
 		public MqttConnector() {
 		}
 
-		public void doConnect() {
+		public void doConnect() throws ConnectFailureException {
 	    	// Connect to the server
 			// Get a token and setup an asynchronous listener on the token which
 			// will be notified once the connect completes
