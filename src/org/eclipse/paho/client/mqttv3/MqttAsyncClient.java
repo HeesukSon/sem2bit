@@ -706,6 +706,63 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 
 	/*
 	 * (non-Javadoc)
+	 *
+	 * @see
+	 * org.eclipse.paho.client.IMqttAsyncClient#connect(org.eclipse.paho.
+	 * client.MqttConnectOptions, java.lang.Object,
+	 * org.eclipse.paho.client.IMqttActionListener)
+	 */
+	public IMqttToken connect(int cnt, MqttConnectOptions options, Object userContext, IMqttActionListener callback)
+			throws MqttException, MqttSecurityException, ConnectFailureException {
+		final String methodName = "connect";
+		LOG.debug("methodName = {}",methodName);
+		if (comms.isConnected()) {
+			throw ExceptionHelper.createMqttException(MqttException.REASON_CODE_CLIENT_CONNECTED);
+		}
+		if (comms.isConnecting()) {
+			throw new MqttException(MqttException.REASON_CODE_CONNECT_IN_PROGRESS);
+		}
+		if (comms.isDisconnecting()) {
+			throw new MqttException(MqttException.REASON_CODE_CLIENT_DISCONNECTING);
+		}
+		if (comms.isClosed()) {
+			throw new MqttException(MqttException.REASON_CODE_CLIENT_CLOSED);
+		}
+		if (options == null) {
+			options = new MqttConnectOptions();
+		}
+		this.connOpts = options;
+		this.userContext = userContext;
+		final boolean automaticReconnect = options.isAutomaticReconnect();
+
+		// @TRACE 103=cleanSession={0} connectionTimeout={1} TimekeepAlive={2}
+		// userName={3} password={4} will={5} userContext={6} callback={7}
+		comms.setNetworkModules(createNetworkModules(serverURI, options));
+		comms.setReconnectCallback(new MqttReconnectCallback(automaticReconnect));
+
+		// Insert our own callback to iterate through the URIs till the connect
+		// succeeds
+		MqttToken userToken = new MqttToken(getClientId());
+		ConnectActionListener connectActionListener = new ConnectActionListener(this, persistence, comms, options,
+				userToken, userContext, callback, reconnecting);
+		userToken.setActionCallback(connectActionListener);
+		userToken.setUserContext(this);
+
+		// If we are using the MqttCallbackExtended, set it on the
+		// connectActionListener
+		if (this.mqttCallback instanceof MqttCallbackExtended) {
+			connectActionListener.setMqttCallbackExtended((MqttCallbackExtended) this.mqttCallback);
+		}
+
+		comms.setNetworkModuleIndex(0);
+		connectActionListener.connect(cnt);
+
+
+		return userToken;
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * 
 	 * @see
 	 * org.eclipse.paho.client.IMqttAsyncClient#connect(org.eclipse.paho.

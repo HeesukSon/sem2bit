@@ -175,6 +175,35 @@ public class ConnectActionListener implements IMqttActionListener {
     }
     */
 
+
+  /**
+   * Start the connect processing
+   * @throws MqttPersistenceException if an error is thrown whilst setting up persistence
+   */
+  public void connect(int cnt) throws MqttPersistenceException, ConnectFailureException {
+    MqttToken token = new MqttToken(client.getClientId());
+    token.setActionCallback(this);
+    token.setUserContext(this);
+
+    persistence.open(client.getClientId(), client.getServerURI());
+
+    if (options.isCleanSession()) {
+      persistence.clear();
+    }
+
+    if (options.getMqttVersion() == MqttConnectOptions.MQTT_VERSION_DEFAULT) {
+      options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1_1);
+    }
+
+    try {
+      comms.connect(options, token);
+    }
+    catch (MqttException e) {
+      //onFailure(token, e);
+      throw new ConnectFailureException(cnt);
+    }
+  }
+
   /**
    * Start the connect processing
    * @throws MqttPersistenceException if an error is thrown whilst setting up persistence 

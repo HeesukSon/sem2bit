@@ -147,7 +147,7 @@ public class MqttOutputStream extends OutputStream {
 			String update = candidate.getUpdate();
 
 			if(update.equals(UpdatePattern.ADD_NEW_FIELD.toString())){
-				if(message instanceof MqttConnect){
+				if(message instanceof MqttConnect && candidate.getField().equals("OFFSET")){
 					((MqttConnect) message).increaseAddFieldCnt();
 				}
 			}else if(update.equals(UpdatePattern.CHANGE_VOCA.toString())){

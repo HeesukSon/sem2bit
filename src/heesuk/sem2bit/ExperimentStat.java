@@ -8,6 +8,7 @@ public class ExperimentStat {
 	private static ExperimentStat _instance;
 
 	private long expRoundCnt;
+	private int successRound;
 	private long kbLoadingTime;
 	private long probTreeBuildTime;
 	private long seqTreeBuildTime;
@@ -52,6 +53,7 @@ public class ExperimentStat {
 		LOG.info("\n\n########### EXPERIMENT RESULT ###############");
 		LOG.info("- Elapsed Experiment Time in Overall: " + totalExpTime + " (ms)");
 		LOG.info("- Tried # of Modification Rounds: " + expRoundCnt);
+		LOG.info("- Success Round: "+successRound);
 		LOG.info("- Elapsed Time for IoTProtocol KB Loading: " + kbLoadingTime + " (ms, "
 				+ ((float) kbLoadingTime / totalExpTime * 100) + "%)");
 		LOG.info("- Elapsed Time for Probability Tree Construction: " + probTreeBuildTime + " (ms, "
@@ -119,6 +121,9 @@ public class ExperimentStat {
 	public void setMsgTransTimeTotal(long msgTransTimeTotal) {
 		this.msgTransTimeTotal = msgTransTimeTotal;
 	}
+	public void addMsgTransTimeTotal(long msgTransTime){
+		this.msgTransTimeTotal += msgTransTime;
+	}
 
 	public void setTotalExpTime(long totalExpTime) {
 		this.totalExpTime = totalExpTime;
@@ -160,7 +165,16 @@ public class ExperimentStat {
 		return msgTransTimeTotal;
 	}
 
-	public long getTotalExpTime() {
+	public long getTotalExpTime()
+	{
 		return totalExpTime;
+	}
+
+	public void setSuccessRound(int rnd){
+		this.successRound = rnd;
+	}
+
+	public int getSuccessRound(){
+		return this.successRound;
 	}
 }

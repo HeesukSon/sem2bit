@@ -9,40 +9,31 @@
     <list default="true" id="be6f5ca0-6f90-493b-a20a-0576a529ec35" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config" beforeDir="false" afterPath="$PROJECT_DIR$/config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/log4j.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ExperimentStat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ExperimentStat.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ModificationController$InteractionRunnable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ModificationController$InteractionRunnable.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ModificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ModificationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/main/MqttMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/main/MqttMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/main/SDPMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/main/SDPMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/MqttAsyncClient$MqttReconnectActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/MqttAsyncClient$MqttReconnectActionListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/MqttAsyncClient$MqttReconnectCallback.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/MqttAsyncClient$MqttReconnectCallback.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/MqttAsyncClient$ReconnectTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/MqttAsyncClient$ReconnectTask.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/MqttAsyncClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/MqttAsyncClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ClientComms$ConnectBG.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ClientComms$ConnectBG.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ClientComms$DisconnectBG.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ClientComms$DisconnectBG.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ClientComms$ReconnectDisconnectedBufferCallback.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ClientComms$ReconnectDisconnectedBufferCallback.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ClientComms.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ClientComms.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/CommsCallback.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/CommsCallback.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/CommsReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/CommsReceiver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/CommsSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/CommsSender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/MqttClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/MqttClient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ConnectActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ConnectActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/TCPNetworkModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/TCPNetworkModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ConnectFailureException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/ConnectFailureException.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/persist/MqttDefaultFilePersistence.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/client/mqttv3/persist/MqttDefaultFilePersistence.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/sample/mqttv3app/MQTTConnector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/sample/mqttv3app/MQTTConnector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/sample/mqttv3app/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/org/eclipse/paho/sample/mqttv3app/Test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/ExperimentStat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/ExperimentStat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/main/MqttMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/main/MqttMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/MQTTConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/MQTTConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttAsyncClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttAsyncClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ClientComms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ClientComms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsCallback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectActionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectActionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/TCPNetworkModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/TCPNetworkModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectFailureException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectFailureException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/persist/MqttDefaultFilePersistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/persist/MqttDefaultFilePersistence.java" afterDir="false" />
     </list>
     <ignored path="sherlock-io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,7 +61,7 @@
                 <entry file="file://$PROJECT_DIR$/log4j.properties">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="13">
-                      <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+                      <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
                     </state>
                   </provider>
                 </entry>
@@ -109,8 +100,8 @@
               <file leaf-file-name="config" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/config">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="52">
-                      <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+                    <state relative-caret-position="39">
+                      <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
                     </state>
                   </provider>
                 </entry>
@@ -135,8 +126,48 @@
               <file leaf-file-name="ConnectActionListener.java" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectActionListener.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="658">
-                      <caret line="121" column="42" selection-start-line="121" selection-start-column="42" selection-end-line="121" selection-end-column="42" />
+                    <state relative-caret-position="690">
+                      <caret line="202" column="43" selection-start-line="202" selection-start-column="43" selection-end-line="202" selection-end-column="43" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="MqttMain.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/main/MqttMain.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="208">
+                      <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="32" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="MqttAsyncClient.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttAsyncClient.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="780">
+                      <caret line="757" column="32" lean-forward="true" selection-start-line="757" selection-start-column="32" selection-end-line="757" selection-end-column="32" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="ModificationController.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="482">
+                      <caret line="168" column="47" lean-forward="true" selection-start-line="168" selection-start-column="47" selection-end-line="168" selection-end-column="47" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="MqttConnect.java" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttConnect.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="391">
+                      <caret line="148" column="3" selection-start-line="148" selection-start-column="3" selection-end-line="148" selection-end-column="3" />
+                      <folding>
+                        <element signature="e#1530#1531#0" expanded="true" />
+                        <element signature="e#1555#1556#0" expanded="true" />
+                      </folding>
                     </state>
                   </provider>
                 </entry>
@@ -144,86 +175,17 @@
               <file leaf-file-name="MqttOutputStream.java" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="383">
-                      <caret line="106" column="125" selection-start-line="106" selection-start-column="125" selection-end-line="106" selection-end-column="125" />
+                    <state relative-caret-position="456">
+                      <caret line="139" column="52" selection-start-line="139" selection-start-column="52" selection-end-line="139" selection-end-column="52" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="ExperimentStat.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ExperimentStat.java">
+              <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/Test.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state>
-                      <caret column="22" selection-start-column="22" selection-end-column="22" />
-                      <folding>
-                        <element signature="imports" expanded="true" />
-                        <element signature="e#3445#3446#0" expanded="true" />
-                        <element signature="e#3498#3499#0" expanded="true" />
-                        <element signature="e#4063#4064#0" expanded="true" />
-                        <element signature="e#4090#4091#0" expanded="true" />
-                        <element signature="e#4198#4199#0" expanded="true" />
-                        <element signature="e#4228#4229#0" expanded="true" />
-                        <element signature="e#4339#4340#0" expanded="true" />
-                        <element signature="e#4372#4373#0" expanded="true" />
-                        <element signature="e#4483#4484#0" expanded="true" />
-                        <element signature="e#4516#4517#0" expanded="true" />
-                        <element signature="e#4553#4554#0" expanded="true" />
-                        <element signature="e#4582#4583#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="CommsCallback.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsCallback.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="424">
-                      <caret line="309" column="82" selection-start-line="309" selection-start-column="82" selection-end-line="309" selection-end-column="82" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="MqttInputStream.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttInputStream.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="635">
-                      <caret line="88" selection-start-line="88" selection-end-line="88" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="CommsReceiver.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsReceiver.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="83">
-                      <caret line="131" column="24" selection-start-line="131" selection-start-column="24" selection-end-line="131" selection-end-column="24" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="ClientComms.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ClientComms.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="648">
-                      <caret line="356" column="60" selection-start-line="356" selection-start-column="60" selection-end-line="356" selection-end-column="60" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="MqttDefaultFilePersistence.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/persist/MqttDefaultFilePersistence.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-803">
-                      <caret line="177" selection-start-line="177" selection-end-line="177" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="MqttMain.java" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/main/MqttMain.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="156">
-                      <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+                    <state relative-caret-position="169">
+                      <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
                     </state>
                   </provider>
                 </entry>
@@ -308,8 +270,8 @@
               <file leaf-file-name="CommsSender.java" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsSender.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="561">
-                      <caret line="108" column="30" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="30" />
+                    <state relative-caret-position="210">
+                      <caret line="81" column="19" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
                     </state>
                   </provider>
                 </entry>
@@ -331,23 +293,22 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>[]</find>
       <find>initializeKeepAliveTimeout</find>
       <find>invokeChannelRead</find>
       <find>writeTo</find>
       <find>writeHeader</find>
-      <find>message type</find>
+      <find />
       <find>SDPName</find>
       <find>sdpMap</find>
       <find>SDPKBUtil</find>
       <find>log(</find>
       <find>990</find>
-      <find>modSeqBound is set to</find>
+      <find />
       <find>write</find>
-      <find>message fixed header:</find>
+      <find />
       <find>disconnect</find>
       <find>channelRead</find>
-      <find>methodName = write</find>
+      <find />
       <find>fireChannelRead</find>
       <find>decodeString</find>
       <find>1:SUCCESS</find>
@@ -361,6 +322,7 @@
       <find>clientI</find>
       <find>ProbeLogger.appendStatln</find>
       <find>LOG.debug</find>
+      <find>.field</find>
     </findStrings>
     <replaceStrings>
       <replace>LOG.info</replace>
@@ -392,14 +354,10 @@
         <option value="$PROJECT_DIR$/src/io/netty/handler/codec/mqtt/MqttCodecUtil.java" />
         <option value="$PROJECT_DIR$/src/io/netty/handler/codec/mqtt/MqttMessageBuilders.java" />
         <option value="$PROJECT_DIR$/src/io/moquette/spi/impl/ProtocolProcessor.java" />
-        <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectFailureException.java" />
         <option value="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/SampleAsyncCallBack.java" />
         <option value="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/SampleAsyncWait.java" />
-        <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttClient.java" />
         <option value="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/PubSample.java" />
-        <option value="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/MQTTConnector.java" />
         <option value="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/SubSample.java" />
-        <option value="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/Test.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttWireMessage.java" />
         <option value="$PROJECT_DIR$/src/io/netty/handler/codec/mqtt/MqttPropertyLengthFieldMissingException.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttConnect.java" />
@@ -408,20 +366,24 @@
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsSender.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/TCPNetworkModule.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttConnectOptions.java" />
-        <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttAsyncClient.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ClientComms.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/persist/MqttDefaultFilePersistence.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsCallback.java" />
-        <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectActionListener.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsReceiver.java" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/FinishExpException.java" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java" />
-        <option value="$PROJECT_DIR$/log4j.properties" />
-        <option value="$PROJECT_DIR$/src/heesuk/sem2bit/ExperimentStat.java" />
-        <option value="$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java" />
-        <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.java" />
+        <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttClient.java" />
+        <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttAsyncClient.java" />
+        <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectFailureException.java" />
+        <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectActionListener.java" />
+        <option value="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/Test.java" />
+        <option value="$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/MQTTConnector.java" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/main/MqttMain.java" />
+        <option value="$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java" />
+        <option value="$PROJECT_DIR$/src/heesuk/sem2bit/ExperimentStat.java" />
+        <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.java" />
+        <option value="$PROJECT_DIR$/log4j.properties" />
         <option value="$PROJECT_DIR$/config" />
       </list>
     </option>
@@ -841,12 +803,12 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50119144" side_tool="true" weight="0.25201467" />
       <window_info anchor="right" id="Maven Projects" order="4" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4988086" visible="true" weight="0.2886447" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4988086" visible="true" weight="0.2886447" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32900944" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.31941393" />
       <window_info id="Capture Tool" order="5" />
       <window_info anchor="right" id="Designer" order="5" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49837133" visible="true" weight="0.112787925" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49837133" visible="true" weight="0.112787925" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49930555" weight="0.16190477" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -882,13 +844,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/mqtt/MqttMessageBuilders.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="70" column="55" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/io/moquette/spi/impl/ProtocolProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -914,13 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="658">
           <caret line="168" column="12" selection-start-line="168" selection-start-column="12" selection-end-line="168" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1040,13 +988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectFailureException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/NetworkModule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="91">
@@ -1072,55 +1013,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="332" column="21" selection-start-line="332" selection-start-column="21" selection-end-line="332" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/MQTTConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="97" column="41" selection-start-line="97" selection-start-column="41" selection-end-line="97" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/io/netty/channel/ChannelFutureListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttAsyncClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="1441" column="12" lean-forward="true" selection-start-line="1441" selection-start-column="12" selection-end-line="1441" selection-end-column="12" />
-          <folding>
-            <element signature="e#34269#34270#0" expanded="true" />
-            <element signature="e#34302#34303#0" expanded="true" />
-            <element signature="e#34406#34407#0" expanded="true" />
-            <element signature="e#34428#34429#0" expanded="true" />
-            <element signature="e#34534#34535#0" expanded="true" />
-            <element signature="e#34557#34558#0" expanded="true" />
-            <element signature="e#35101#35102#0" expanded="true" />
-            <element signature="e#35186#35187#0" expanded="true" />
-            <element signature="e#44305#44306#0" expanded="true" />
-            <element signature="e#44343#44344#0" expanded="true" />
-            <element signature="e#45235#45236#0" expanded="true" />
-            <element signature="e#45281#45282#0" expanded="true" />
-            <element signature="e#52773#52774#0" expanded="true" />
-            <element signature="e#52823#52824#0" expanded="true" />
-            <element signature="e#53087#53088#0" expanded="true" />
-            <element signature="e#53143#53144#0" expanded="true" />
-            <element signature="e#53350#53351#0" expanded="true" />
-            <element signature="e#53402#53403#0" expanded="true" />
-            <element signature="e#53766#53767#0" expanded="true" />
-            <element signature="e#53810#53811#0" expanded="true" />
-            <element signature="e#54358#54359#0" expanded="true" />
-            <element signature="e#54398#54399#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1166,13 +1062,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="131" column="24" selection-start-line="131" selection-start-column="24" selection-end-line="131" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="738">
@@ -1207,74 +1096,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttConnect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
-          <folding>
-            <element signature="e#1530#1531#0" expanded="true" />
-            <element signature="e#1555#1556#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectActionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="121" column="42" selection-start-line="121" selection-start-column="42" selection-end-line="121" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ExperimentStat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="22" selection-start-column="22" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3445#3446#0" expanded="true" />
-            <element signature="e#3498#3499#0" expanded="true" />
-            <element signature="e#4063#4064#0" expanded="true" />
-            <element signature="e#4090#4091#0" expanded="true" />
-            <element signature="e#4198#4199#0" expanded="true" />
-            <element signature="e#4228#4229#0" expanded="true" />
-            <element signature="e#4339#4340#0" expanded="true" />
-            <element signature="e#4372#4373#0" expanded="true" />
-            <element signature="e#4483#4484#0" expanded="true" />
-            <element signature="e#4516#4517#0" expanded="true" />
-            <element signature="e#4553#4554#0" expanded="true" />
-            <element signature="e#4582#4583#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="106" column="125" selection-start-line="106" selection-start-column="125" selection-end-line="106" selection-end-column="125" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="112" column="31" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ReplayingDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
@@ -1286,17 +1107,131 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/main/MqttMain.java">
+    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+        <state relative-caret-position="83">
+          <caret line="131" column="24" selection-start-line="131" selection-start-column="24" selection-end-line="131" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttAsyncClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="757" column="32" lean-forward="true" selection-start-line="757" selection-start-column="32" selection-end-line="757" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectActionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="202" column="43" selection-start-line="202" selection-start-column="43" selection-end-line="202" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="108" column="30" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="30" />
+        <state relative-caret-position="210">
+          <caret line="81" column="19" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectFailureException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding>
+            <element signature="e#199#200#0" expanded="true" />
+            <element signature="e#220#221#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="459" column="11" selection-start-line="459" selection-start-column="11" selection-end-line="459" selection-end-column="11" />
+          <folding>
+            <element signature="e#15480#15481#0" expanded="true" />
+            <element signature="e#15546#15547#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="338" column="16" selection-start-line="338" selection-start-column="16" selection-end-line="338" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/MQTTConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="127" column="41" lean-forward="true" selection-start-line="127" selection-start-column="41" selection-end-line="127" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/main/MqttMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ExperimentStat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="827">
+          <caret line="173" selection-start-line="173" selection-end-line="173" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4955#4956#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="168" column="47" lean-forward="true" selection-start-line="168" selection-start-column="47" selection-end-line="168" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="139" column="52" selection-start-line="139" selection-start-column="52" selection-end-line="139" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttConnect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="148" column="3" selection-start-line="148" selection-start-column="3" selection-end-line="148" selection-end-column="3" />
+          <folding>
+            <element signature="e#1530#1531#0" expanded="true" />
+            <element signature="e#1555#1556#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1319,7 +1254,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited />
           <splitter-proportions>
             <option name="proportions">
               <list>

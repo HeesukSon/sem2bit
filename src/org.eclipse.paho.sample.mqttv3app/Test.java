@@ -29,7 +29,7 @@ public class Test {
 		// driving the client API can begin
 		try {
 			// Create an instance of this class
-			MQTTConnector sampleClient = new MQTTConnector(url, clientId, cleanSession,userName,password);
+			MQTTConnector sampleClient = new MQTTConnector(1,url, clientId, cleanSession,userName,password);
 			sampleClient.publish(topic,qos,message.getBytes());
 		} catch(MqttException me) {
 			me.printStackTrace();

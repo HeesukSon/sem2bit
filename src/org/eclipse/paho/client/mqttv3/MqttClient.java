@@ -329,6 +329,13 @@ public class MqttClient implements IMqttClient { //), DestinationProvider {
 	/*
 	 * @see IMqttClient#connect(MqttConnectOptions)
 	 */
+	public void connect(int cnt, MqttConnectOptions options) throws MqttSecurityException, MqttException, ConnectFailureException {
+		aClient.connect(cnt, options, null, null).waitForCompletion(getTimeToWait());
+	}
+
+	/*
+	 * @see IMqttClient#connect(MqttConnectOptions)
+	 */
 	public void connect(MqttConnectOptions options) throws MqttSecurityException, MqttException, ConnectFailureException {
 		aClient.connect(options, null, null).waitForCompletion(getTimeToWait());
 	}

@@ -56,6 +56,7 @@ public class MQTTConnector implements MqttCallback {
 	private boolean 			clean;
 	private String password;
 	private String userName;
+	private int expCnt;
 
 	/**
 	 * Constructs an instance of the sample client wrapper
@@ -67,11 +68,12 @@ public class MQTTConnector implements MqttCallback {
    * @param password the password for the user
 	 * @throws MqttException
 	 */
-    public MQTTConnector(String brokerUrl, String clientId, boolean cleanSession, String userName, String password) throws MqttException {
+    public MQTTConnector(int expCnt, String brokerUrl, String clientId, boolean cleanSession, String userName, String password) throws MqttException {
     	this.brokerUrl = brokerUrl;
     	this.clean 	   = cleanSession;
     	this.password = password;
     	this.userName = userName;
+    	this.expCnt = expCnt;
     	//This sample stores in a temporary directory... where messages temporarily
     	// stored until the message has been delivered to the server.
     	//..a real application ought to store them somewhere
@@ -107,7 +109,7 @@ public class MQTTConnector implements MqttCallback {
     public void connect() throws MqttException, ConnectFailureException {
 		// Connect to the MQTT server
 		LOG.info("Connecting to "+brokerUrl + " with client ID "+client.getClientId());
-		client.connect(conOpt);
+		client.connect(expCnt,conOpt);
 		LOG.info("Connected");
 
 		// Disconnect the client

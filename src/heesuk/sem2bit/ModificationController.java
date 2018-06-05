@@ -123,7 +123,7 @@ public class ModificationController {
 
 			try {
 				MQTTConnector sampleClient =
-						new MQTTConnector(url, clientId, cleanSession,userName,password);
+						new MQTTConnector(cnt,url, clientId, cleanSession,userName,password);
 				sampleClient.connect();
 			} catch(MqttException me) {
 				LOG.debug("reason "+me.getReasonCode());
@@ -132,7 +132,7 @@ public class ModificationController {
 				LOG.debug("cause "+me.getCause());
 				LOG.debug("excep "+me);
 				//me.printStackTrace();
-				throw new ConnectFailureException();
+				throw new ConnectFailureException(cnt);
 			}
 		}else{
 			try {
@@ -153,7 +153,8 @@ public class ModificationController {
 	public class InteractionRunnable implements Runnable{
 		long before;
 		int cnt;
-		
+		long after;
+
 		public InteractionRunnable(int cnt, long before){
 			this.cnt = cnt;
 			this.before = before;
@@ -162,12 +163,12 @@ public class ModificationController {
 		@Override
 		public void run() {
 			try {
-				long before = System.currentTimeMillis();
 				sendModifiedMessage(cnt);
-				long after = System.currentTimeMillis();
-				LOG.info("["+cnt+":SUCCESS] A reply message is returned!!");
-
+				after = System.currentTimeMillis();
+				ExperimentStat.getInstance().addMsgTransTimeTotal(after-before);
 				ExperimentStat.getInstance().setExpRoundCnt(cnt);
+				ExperimentStat.getInstance().setSuccessRound(cnt);
+				LOG.info("["+cnt+":SUCCESS] A reply message is returned!!");
 				ProbingStatus.success = true;
 			} catch (SocketTimeoutException e) {
 				LOG.info("["+cnt+":FAIL] SocketTimeoutException!!");
@@ -181,10 +182,10 @@ public class ModificationController {
 			} catch (ServiceLocationException e) {
 				e.printStackTrace();
 			} catch (ConnectFailureException e) {
-				LOG.info("["+cnt+":FAIL] ConnectFailureException!!");
+				LOG.info("["+cnt+":FAIL] ConnectFailureException!! (e.cnt={},cnt={})",e.cnt,cnt);
 				try {
-					Thread.currentThread().interrupt();
-					//this.finalize();
+					//Thread.currentThread().interrupt();
+					this.finalize();
 				} catch (Throwable e1) {
 					e1.printStackTrace();
 				}

@@ -1,7 +1,7 @@
 local_address = /192.168.1.105
 broker_address = 127.0.0.1
 tcp_timeout = 1000
-req_interval = 20
+req_interval = 30
 iteration_bound = 5
 //
 // exp_mode = {real | mockup}
