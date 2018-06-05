@@ -109,15 +109,25 @@ public class ConnectActionListener implements IMqttActionListener {
    * @param exception the {@link Throwable} exception from the failed connection attempt
    */
   public void onFailure(IMqttToken token, Throwable exception) throws ConnectFailureException {
-    LOG.debug("onFailure()");
-    throw new ConnectFailureException();
-    /*
-    try {
-      comms.close(true);
-    } catch (MqttException e) {
-      e.printStackTrace();
-    }*/
+    LOG.debug("onFailure():: exception.class = {}",exception.getClass().toString());
 
+    MqttException ex;
+    if (exception instanceof MqttException) {
+      ex = (MqttException) exception;
+    }
+    else {
+      ex = new MqttException(exception);
+    }
+    userToken.internalTok.markComplete(null, ex);
+    userToken.internalTok.notifyComplete();
+    userToken.internalTok.setClient(this.client); // fix bug 469527 - maybe should be set elsewhere?
+
+    if (userCallback != null) {
+      LOG.debug("userCallback == null");
+      userToken.setUserContext(userContext);
+      userCallback.onFailure(userToken, exception);
+    }
+  }
 /*
     int numberOfURIs = comms.getNetworkModules().length;
     int index = comms.getNetworkModuleIndex();
@@ -163,8 +173,7 @@ public class ConnectActionListener implements IMqttActionListener {
         userCallback.onFailure(userToken, exception);
       }
     }
-*/
-  }
+    */
 
   /**
    * Start the connect processing

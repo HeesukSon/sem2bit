@@ -757,6 +757,7 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 		comms.setNetworkModuleIndex(0);
 		connectActionListener.connect();
 
+
 		return userToken;
 	}
 
@@ -1442,6 +1443,7 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 		}
 
 		public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+			LOG.debug("MqttAsyncClient.MqttReconnectActionListener.onFailure()");
 			// @Trace 502=Automatic Reconnect failed, rescheduling: {0}
 			if (reconnectDelay < 128000) {
 				reconnectDelay = reconnectDelay * 2;

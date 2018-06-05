@@ -126,12 +126,13 @@ public class ModificationController {
 						new MQTTConnector(url, clientId, cleanSession,userName,password);
 				sampleClient.connect();
 			} catch(MqttException me) {
-				LOG.error("reason "+me.getReasonCode());
-				LOG.error("msg "+me.getMessage());
-				LOG.error("loc "+me.getLocalizedMessage());
-				LOG.error("cause "+me.getCause());
-				LOG.error("excep "+me);
-				me.printStackTrace();
+				LOG.debug("reason "+me.getReasonCode());
+				LOG.debug("msg "+me.getMessage());
+				LOG.debug("loc "+me.getLocalizedMessage());
+				LOG.debug("cause "+me.getCause());
+				LOG.debug("excep "+me);
+				//me.printStackTrace();
+				throw new ConnectFailureException();
 			}
 		}else{
 			try {
@@ -143,18 +144,6 @@ public class ModificationController {
 
 	}
 
-	public void startSeqVerification(int bound) {
-		for (int i = 0; i < bound; i++) {
-			ModificationCandidate[] seq = TreeFactory.getInstance().getNextSequence();
-			LOG.info("[returned sequence:{}] ", i);
-			for (int j = 0; j < seq.length; j++) {
-
-				ProbeLogger.appendLog("probe", seq[j].toStringWithoutWeight() + "  ");
-			}
-			ProbeLogger.appendLog("probe", "\n");
-		}
-	}
-	
 	/**
 	 * 
 	 * Transmit the actual modified message to the service agents
@@ -173,10 +162,12 @@ public class ModificationController {
 		@Override
 		public void run() {
 			try {
+				long before = System.currentTimeMillis();
 				sendModifiedMessage(cnt);
 				long after = System.currentTimeMillis();
 				LOG.info("["+cnt+":SUCCESS] A reply message is returned!!");
-				ExperimentStat.getInstance().setMsgTransTimeTotal(ExperimentStat.getInstance().getMsgTransTimeTotal()+(after-before));
+
+				ExperimentStat.getInstance().setExpRoundCnt(cnt);
 				ProbingStatus.success = true;
 			} catch (SocketTimeoutException e) {
 				LOG.info("["+cnt+":FAIL] SocketTimeoutException!!");
@@ -192,7 +183,8 @@ public class ModificationController {
 			} catch (ConnectFailureException e) {
 				LOG.info("["+cnt+":FAIL] ConnectFailureException!!");
 				try {
-					this.finalize();
+					Thread.currentThread().interrupt();
+					//this.finalize();
 				} catch (Throwable e1) {
 					e1.printStackTrace();
 				}

@@ -127,9 +127,9 @@ public class CommsReceiver implements Runnable {
 				//@TRACE 852=network read message
 				receiving = in.available() > 0;
 				MqttWireMessage message = in.readMqttWireMessage();
-				LOG.info("message.getClass().toString() = {}",message.getClass().toString());
-				LOG.info("message.getHeader() in bytes = {}",message.getHeader());
-				LOG.info("message.getPayload() in bytes = {}", message.getPayload());
+				LOG.debug("message.getClass().toString() = {}",message.getClass().toString());
+				LOG.debug("message.getHeader() in bytes = {}",message.getHeader());
+				LOG.debug("message.getPayload() in bytes = {}", message.getPayload());
 				receiving = false;
 
 				// instanceof checks if message is null
@@ -175,6 +175,8 @@ public class CommsReceiver implements Runnable {
 				// only shutdown the connection if we're not already shutting down.
 				if (!clientComms.isDisconnecting()) {
 					clientComms.shutdownConnection(token, new MqttException(MqttException.REASON_CODE_CONNECTION_LOST, ioe));
+				}else{
+					LOG.debug("clientComms.isDisconnecting() == {}",clientComms.isDisconnecting());
 				}
 			}
 			finally {

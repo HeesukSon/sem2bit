@@ -17,7 +17,7 @@ public class SDPMain {
 		} catch (LocalProtocolNotSpecifiedException e) {
 			e.printStackTrace();
 		}
-		ModificationController.getInstance().startMessageModification(ConfigUtil.getInstance().iteration_bound);
+		//ModificationController.getInstance().startMessageModification(ConfigUtil.getInstance().iteration_bound);
 		long after = System.currentTimeMillis();
 		ExperimentStat.getInstance().setTotalExpTime(after-before);
 		ExperimentStat.getInstance().printStat();

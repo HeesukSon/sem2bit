@@ -140,12 +140,10 @@ public class MqttDefaultFilePersistence implements MqttClientPersistence {
 			// checkIsOpen();
 			if (fileLock != null) {
 				fileLock.release();
-				LOG.debug("fileLock is released.");
 			}
 
 			if (getFiles().length == 0) {
 				clientDir.delete();
-				LOG.debug("clientDir is deleted.");
 			}
 			clientDir = null;
 		}
@@ -162,8 +160,6 @@ public class MqttDefaultFilePersistence implements MqttClientPersistence {
 		File file = new File(clientDir, key+MESSAGE_FILE_EXTENSION);
 		File backupFile = new File(clientDir, key+MESSAGE_FILE_EXTENSION+MESSAGE_BACKUP_FILE_EXTENSION);
 
-		LOG.debug("put():: clientDir = {}",clientDir);
-		
 		if (file.exists()) {
 			// Backup the existing file so the overwrite can be rolled-back 
 			boolean result = file.renameTo(backupFile);
@@ -176,13 +172,9 @@ public class MqttDefaultFilePersistence implements MqttClientPersistence {
 			FileOutputStream fos = new FileOutputStream(file);
 			fos.write(message.getHeaderBytes(), message.getHeaderOffset(), message.getHeaderLength());
 
-			LOG.debug("message information is written to the clientDir.");
-			LOG.debug("put():: message.headerBytes : {}",message.getHeaderBytes());
 
 			if (message.getPayloadBytes()!=null) {
 				fos.write(message.getPayloadBytes(), message.getPayloadOffset(), message.getPayloadLength());
-				LOG.debug("put():: message.payloadBytes : {}",message.getPayloadBytes());
-				LOG.debug("put():: message.payloadBytes->string : {}", new String(message.getPayloadBytes()));
 			}
 			fos.getFD().sync();
 			fos.close();

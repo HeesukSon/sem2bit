@@ -1,6 +1,10 @@
 package heesuk.sem2bit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ExperimentStat {
+	private static final Logger LOG = LoggerFactory.getLogger(ExperimentStat.class);
 	private static ExperimentStat _instance;
 
 	private long expRoundCnt;
@@ -34,27 +38,36 @@ public class ExperimentStat {
 	public void increaseExpRoundCnt() {
 		this.expRoundCnt += 1;
 	}
+	public void setExpRoundCnt(int cnt){
+		if(expRoundCnt == 0){
+			this.expRoundCnt = cnt;
+		}else if(expRoundCnt < cnt){
+			// do nothing
+		}else{
+			expRoundCnt = cnt;
+		}
+	}
 
 	public void printStat() {
-		ProbeLogger.appendStatln("\n\n########### EXPERIMENT RESULT ###############");
-		ProbeLogger.appendStatln("- Elapsed Experiment Time in Overall: " + totalExpTime + " (ms)");
-		ProbeLogger.appendStatln("- Tried # of Modification Rounds: " + expRoundCnt);
-		ProbeLogger.appendStatln("- Elapsed Time for IoTProtocol KB Loading: " + kbLoadingTime + " (ms, "
+		LOG.info("\n\n########### EXPERIMENT RESULT ###############");
+		LOG.info("- Elapsed Experiment Time in Overall: " + totalExpTime + " (ms)");
+		LOG.info("- Tried # of Modification Rounds: " + expRoundCnt);
+		LOG.info("- Elapsed Time for IoTProtocol KB Loading: " + kbLoadingTime + " (ms, "
 				+ ((float) kbLoadingTime / totalExpTime * 100) + "%)");
-		ProbeLogger.appendStatln("- Elapsed Time for Probability Tree Construction: " + probTreeBuildTime + " (ms, "
+		LOG.info("- Elapsed Time for Probability Tree Construction: " + probTreeBuildTime + " (ms, "
 				+ ((float) probTreeBuildTime / totalExpTime * 100) + "%)");
-		ProbeLogger.appendStatln("- Elapsed Time for Sequence Planning Tree Initialization: " + seqTreeBuildTime + " (ms, "
+		LOG.info("- Elapsed Time for Sequence Planning Tree Initialization: " + seqTreeBuildTime + " (ms, "
 				+ ((float) seqTreeBuildTime / totalExpTime * 100) + "%)");
-		ProbeLogger.appendStatln("- Elapsed Time for Modification Sequence Computation in Total: " + seqComputeTimeTotal
+		LOG.info("- Elapsed Time for Modification Sequence Computation in Total: " + seqComputeTimeTotal
 				+ " (ms, " + ((float) seqComputeTimeTotal / totalExpTime * 100) + "%), Average = "
 				+ ((float) seqComputeTimeTotal / expRoundCnt) + " (ms)");
-		ProbeLogger.appendStatln("- Elapsed Time for Modified Message Composition in Total: " + msgComposeTimeTotal + " (ms,"
+		LOG.info("- Elapsed Time for Modified Message Composition in Total: " + msgComposeTimeTotal + " (ms,"
 				+ ((float) msgComposeTimeTotal / totalExpTime * 100) + "%), Average = "
 				+ ((float) msgComposeTimeTotal / expRoundCnt) + " (ms)");
-		ProbeLogger.appendStatln("- Elapsed Time for Modified Message Transmission including Waiting in Total: "
+		LOG.info("- Elapsed Time for Modified Message Transmission including Waiting in Total: "
 				+ msgTransTimeTotal + " (ms, " + ((float) msgTransTimeTotal / totalExpTime * 100) + "%), Average = "
 				+ ((float) msgTransTimeTotal / expRoundCnt) + " (ms)");
-		ProbeLogger.appendStatln("- Socket Timeout: "+ConfigUtil.getInstance().tcp_timeout+" (ms)");
+		LOG.info("- Socket Timeout: "+ConfigUtil.getInstance().tcp_timeout+" (ms)");
 	}
 
 	//////////////////// getters & setters ////////////////////

@@ -310,6 +310,7 @@ public class ClientComms {
 	 */
 	public void shutdownConnection(MqttToken token, MqttException reason) {
 		final String methodName = "shutdownConnection";
+		LOG.debug("methodName = {}",methodName);
 		boolean wasConnected;
 		MqttToken endToken = null; 		//Token to notify after disconnect completes
 
@@ -676,6 +677,7 @@ public class ClientComms {
 				// start the background processing threads before sending the connect
 				// packet.
 				NetworkModule networkModule = networkModules[networkModuleIndex];
+				LOG.debug("networkModule.class = {}",networkModule.getClass().toString());
 				networkModule.start();
 				receiver = new CommsReceiver(clientComms, clientState, tokenStore, networkModule.getInputStream());
 				receiver.start("MQTT Rec: "+getClient().getClientId(), executorService);

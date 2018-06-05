@@ -16,6 +16,7 @@
 package org.eclipse.paho.client.mqttv3.internal.wire;
 
 import heesuk.sem2bit.ConfigUtil;
+import heesuk.sem2bit.ExperimentStat;
 import heesuk.sem2bit.kb.TreeFactory;
 import heesuk.sem2bit.kb.protocol.enums.MessageFieldType;
 import heesuk.sem2bit.kb.protocol.enums.UpdatePattern;
@@ -88,7 +89,10 @@ public class MqttOutputStream extends OutputStream {
 			seq[1] = new ModificationCandidate("Protocol Level", "[C]");
 			seq[2] = new ModificationCandidate("Property Length", "[A]");
 		}else{
+			long before = System.currentTimeMillis();
 			seq = TreeFactory.getInstance().getNextSequence();
+			long after = System.currentTimeMillis();
+			ExperimentStat.getInstance().setSeqComputeTimeTotal(ExperimentStat.getInstance().getSeqComputeTimeTotal()+after-before);
 		}
 
 		for(ModificationCandidate candidate : seq){
@@ -97,8 +101,11 @@ public class MqttOutputStream extends OutputStream {
 		}
 		byte[] originHeader = message.getHeader();
 		String messageType = message.getClass().toString();
+		long before = System.currentTimeMillis();
 		MqttWireMessage adaptedMessage = composeAdaptedMessage(message, seq);
-		LOG.info("\n[{}]\nBEFORE: {}\nAdapt Sequence: \n{}AFTER: {}\n",messageType, originHeader, adaptSeq, adaptedMessage.getHeader());
+		long after = System.currentTimeMillis();
+		ExperimentStat.getInstance().setMsgComposeTimeTotal(ExperimentStat.getInstance().getMsgComposeTimeTotal()+after-before);
+		LOG.debug("\n[{}]\nBEFORE: {}\nAdapt Sequence: \n{}AFTER: {}\n",messageType, originHeader, adaptSeq, adaptedMessage.getHeader());
 
 
 		/* BEFORE update for SeM2Bit experiment */

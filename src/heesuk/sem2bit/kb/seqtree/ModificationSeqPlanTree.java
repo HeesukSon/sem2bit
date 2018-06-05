@@ -152,7 +152,7 @@ public class ModificationSeqPlanTree {
 					}
 				} else /* this node has no more sequence */ {
 					try{
-						LOG.info("[No more sequence] node = {}",
+						LOG.debug("[No more sequence] node = {}",
 								node.getItem().toStringWithoutWeight());
 						// mark this node as dead
 						node.setDead(true);

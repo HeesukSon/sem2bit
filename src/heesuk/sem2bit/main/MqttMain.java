@@ -13,8 +13,9 @@ public class MqttMain {
 		ModificationController.getInstance().init();
 		ModificationController.getInstance().startMessageModification(ConfigUtil.getInstance().iteration_bound);
 		long after = System.currentTimeMillis();
-		//ExperimentStat.getInstance().setTotalExpTime(after-before);
-		//ExperimentStat.getInstance().printStat();
+		ExperimentStat.getInstance().setTotalExpTime(after-before);
+		ExperimentStat.getInstance().printStat();
+		System.out.println("------------[END]---------------");
 
 		// print
 		//ProbeLogger.printLog();

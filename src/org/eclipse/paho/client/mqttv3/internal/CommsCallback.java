@@ -307,6 +307,7 @@ public class CommsCallback implements Runnable {
 					asyncCB.onSuccess(token);
 				} else {
 					// @TRACE 717=call onFailure key {0}
+					LOG.debug("asyncCB.class = {}",asyncCB.getClass().toString());
 					asyncCB.onFailure(token, token.getException());
 				}
 			}

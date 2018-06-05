@@ -34,6 +34,7 @@ import java.net.SocketAddress;
  */
 public class TCPNetworkModule implements NetworkModule {
 	private static final String CLASS_NAME = TCPNetworkModule.class.getName();
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(TCPNetworkModule.class);
 
 	protected Socket socket;
 	private SocketFactory factory;
@@ -64,6 +65,7 @@ public class TCPNetworkModule implements NetworkModule {
 	 */
 	public void start() throws IOException, MqttException {
 		final String methodName = "start";
+		LOG.debug("methodName = {}",methodName);
 		try {
 //			InetAddress localAddr = InetAddress.getLocalHost();
 //			socket = factory.createSocket(host, port, localAddr, 0);
