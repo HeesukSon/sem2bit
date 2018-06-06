@@ -1,5 +1,5 @@
 local_address = /192.168.1.105
-broker_address = 127.0.0.1
+broker_address = 192.168.1.102
 tcp_timeout = 1000
 req_interval = 30
 iteration_bound = 5
@@ -18,7 +18,7 @@ domain = IoT_Protocol
 // domain = IoT_Protocol
 // local_protocol = {SLPv1 | SLPv2 | UPnPv1 | UPnPv2 | DNS_SD | COAP | MQTTv3 | MQTTv5 | AMQP | SIPv1 | SIPv2}
 local_protocol = MQTTv3
-// seq_bound_random = true
-seq_bound_random = false
+seq_bound_random = true
+//seq_bound_random = false
 broker_version = 3.1.1
 //broker_version = 5

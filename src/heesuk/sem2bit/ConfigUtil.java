@@ -29,7 +29,7 @@ public class ConfigUtil {
 
 	private ConfigUtil(){
 		try {
-			FileReader reader = new FileReader("/Users/chad1231/Desktop/workspace/sem2bit/config");
+			FileReader reader = new FileReader(Constants.ROOT_DIR+"config");
 			BufferedReader bf = new BufferedReader(reader);
 
 			String line;
