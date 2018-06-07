@@ -17,7 +17,7 @@ public class Lookup {
 
 	public static void main(String[] args) throws ServiceLocationException, SocketTimeoutException, IllegalArgumentException {
 		PropertyConfigurator.configure(Constants.ROOT_DIR+"log4j.properties");
-		SDPKBUtil.getInstance().buildKB();
+		//SDPKBUtil.getInstance().buildKB();
 		
 		// get Locator instance
 		Locator locator = ServiceLocationManager.getLocator(new Locale("en"));

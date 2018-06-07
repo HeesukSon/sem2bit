@@ -4,17 +4,17 @@ broker_address = 192.168.1.102
 tcp_timeout = 1000
 // req_interval = 2 for sdp, and 200 for mqtt
 req_interval = 2
-iteration_bound = 1
+iteration_bound = 100
 //
 // exp_mode = {real | mockup}
-exp_mode = mockup
+exp_mode = real
 //sudo
 // log_mode = {none | probe | tree | both}
 // tree: logs from the tree construction process
 // probe: logs from the probing process
 log_mode = probe
-role = service_agent
-//role = user_agent
+//role = service_agent
+role = user_agent
 // domain = {SDP | IoT_Protocol}
 domain = SDP
 // domain = IoT_Protocol

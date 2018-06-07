@@ -39,16 +39,13 @@ import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
 import ch.ethz.iks.slp.impl.filter.Filter;
 import heesuk.sem2bit.ConfigUtil;
-import heesuk.sem2bit.Constants;
 import heesuk.sem2bit.ExperimentStat;
-import heesuk.sem2bit.ProbeLogger;
 import heesuk.sem2bit.kb.TreeFactory;
 import heesuk.sem2bit.kb.protocol.MessageField;
 import heesuk.sem2bit.kb.protocol.enums.ProtocolName;
 import heesuk.sem2bit.kb.protocol.sdp.SDPKBUtil;
 import heesuk.sem2bit.msg.ModificationCandidate;
 import heesuk.sem2bit.msg.ProbeMessageComposer;
-import org.apache.log4j.PropertyConfigurator;
 
 /**
  * ServiceRequest message is used to find services in the network.
@@ -193,7 +190,7 @@ class ServiceRequest extends RequestMessage {
 				}
 
 				seqStr.append("\n");
-				ProbeLogger.appendLogln("probe", seqStr.toString());
+				LOG.info(seqStr.toString());
 
 				if(result == true){
 					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getProtocol(ProtocolName.SLPv2).

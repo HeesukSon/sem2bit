@@ -5,18 +5,15 @@ import ch.ethz.iks.slp.ServiceLocationManager;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceURL;
 import heesuk.sem2bit.Constants;
-import heesuk.sem2bit.ProbeLogger;
-import heesuk.sem2bit.kb.protocol.sdp.SDPKBUtil;
 
 import java.util.Locale;
 
 import org.apache.log4j.PropertyConfigurator;
-import org.osgi.framework.InvalidSyntaxException;
 
 import java.util.Hashtable;
 
 public class Registration {
-	public static void main(String[] args) throws ServiceLocationException, InvalidSyntaxException {
+	public static void main(String[] args) throws ServiceLocationException{
 		PropertyConfigurator.configure(Constants.ROOT_DIR+"log4j.properties");
 		//SDPKBUtil.getInstance().buildKB();
 		
@@ -32,8 +29,6 @@ public class Registration {
 		attributes.put("persistent", Boolean.TRUE);
 		attributes.put("cool", "yes");
 		attributes.put("max-connections", new Integer(5));
-
-		ProbeLogger.printLog();
 
 		advertiser.register(myService, attributes);
 	}

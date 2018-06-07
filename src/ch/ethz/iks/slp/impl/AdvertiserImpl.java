@@ -36,6 +36,7 @@ import java.util.Locale;
 import ch.ethz.iks.slp.Advertiser;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceURL;
+import heesuk.sem2bit.ConfigUtil;
 
 /**
  * Implementation of the Advertiser that provides SLP SA functionality. If the
@@ -47,7 +48,7 @@ import ch.ethz.iks.slp.ServiceURL;
  * @since 0.1
  */
 public final class AdvertiserImpl implements Advertiser {
-
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(AdvertiserImpl.class);
 	/**
 	 * the locale of this instance. Will be used for all messages created by
 	 * this Advertiser instance.
@@ -128,8 +129,11 @@ public final class AdvertiserImpl implements Advertiser {
 				locale);
 		try {
 			reg.address = InetAddress.getLocalHost();
+			//reg.address = InetAddress.getByName(ConfigUtil.getInstance().broker_address);
+			LOG.debug("reg.address = InetAddress.getLocalHost() = {}",reg.address);
 		} catch (UnknownHostException e) {
 			reg.address = SLPCore.getMyIP();
+			LOG.debug("reg.address = SLPCore.getMyIP() = {}",reg.address);
 		}
 		reg.port = SLPCore.SLP_PORT;
 		ServiceAcknowledgement ack = (ServiceAcknowledgement) SLPCore

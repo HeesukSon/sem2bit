@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import heesuk.sem2bit.ConfigUtil;
 import heesuk.sem2bit.kb.protocol.enums.Domain;
-import heesuk.sem2bit.ProbeLogger;
 import heesuk.sem2bit.kb.protocol.MessageField;
 import heesuk.sem2bit.kb.protocol.ProtocolKBUtil;
 import heesuk.sem2bit.kb.protocol.enums.MessageFieldLocation;
@@ -16,6 +15,7 @@ import heesuk.sem2bit.kb.protocol.iot.IoTProtocolKBUtil;
 import heesuk.sem2bit.kb.protocol.sdp.SDPKBUtil;
 
 public class ProbeMessageComposer {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(ProbeMessageComposer.class);
 	private static ProbeMessageComposer _instance;
 	private ProtocolKBUtil kb;
 
@@ -63,7 +63,7 @@ public class ProbeMessageComposer {
 			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_VOCA)){
 
 			}else{
-				ProbeLogger.appendErrln("probe", "A non-defined update pattern is detected in ProbeMessageComposer!!");
+				LOG.error("A non-defined update pattern is detected in ProbeMessageComposer!!");
 			}
 		}
 
@@ -109,7 +109,9 @@ public class ProbeMessageComposer {
 			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_VOCA.toString())){
 				
 			}else{
-				ProbeLogger.appendErrln("probe", "A non-defined update pattern is detected in ProbeMessageComposer: "+candidate.getUpdate());
+				if(!candidate.getUpdate().contains("DEFAULT]")){
+					LOG.error("A non-defined update pattern is detected in ProbeMessageComposer: "+candidate.getUpdate());
+				}
 			}
 		}
 		
@@ -176,7 +178,7 @@ public class ProbeMessageComposer {
 					}
 				}
 			}catch(NullPointerException e){
-				ProbeLogger.appendErrln("probe","[NullPointerException in writeMsgHeader()] field name = "+field.getName()+", field type = "+field.getType());
+				LOG.error("[NullPointerException in writeMsgHeader()] field name = "+field.getName()+", field type = "+field.getType());
 			}
 
 		}
@@ -244,14 +246,10 @@ public class ProbeMessageComposer {
 						out.write(0);
 					}
 				}
-
-
 			}catch(NullPointerException e){
-				ProbeLogger.appendErrln("probe","[NullPointerException in writeMsgHeader()] field name = "+field.getName()+", field type = "+field.getType());
+				//LOG.error("[NullPointerException in writeMsgHeader()] field name = "+field.getName()+", field type = "+field.getType());
 			}
 
 		}
-
-		if(cnt==57){ ProbeLogger.appendLogln("probe", "[cnt:57] typeStr = "+typeStr); }
 	}
 }

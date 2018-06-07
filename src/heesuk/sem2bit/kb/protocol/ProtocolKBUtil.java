@@ -1,7 +1,7 @@
 package heesuk.sem2bit.kb.protocol;
 
 import heesuk.sem2bit.ConfigUtil;
-import heesuk.sem2bit.ProbeLogger;
+import heesuk.sem2bit.kb.protocol.enums.Domain;
 import heesuk.sem2bit.kb.protocol.enums.MessageFieldType;
 import heesuk.sem2bit.kb.protocol.enums.ProtocolName;
 import heesuk.sem2bit.kb.protocol.enums.UpdatePattern;
@@ -60,10 +60,8 @@ public class ProtocolKBUtil implements IProtocolKBUtil{
 
 	public void buildKB() {
 		// add IoTProtocol message structure information
-		ProbeLogger.appendLogln("tree","start adding IoTProtocol knowledge base...");
 		LOG.info("starting adding protocol knowledge base...");
 		addProtocolInfo();
-		ProbeLogger.appendLogln("tree","IoTProtocol knowledge base addition is done!");
 		LOG.info("Protocol knowledge base addition complete.");
 
 		// add field existence probability
@@ -101,7 +99,15 @@ public class ProtocolKBUtil implements IProtocolKBUtil{
 	}
 
 	public int getModSeqBound(){
-		return this.modSeqBound;
+		if(ConfigUtil.getInstance().seqBoundRandom == true){
+			return this.modSeqBound;
+		}else{
+			if(ConfigUtil.getInstance().domain == Domain.SDP){
+				return 7;
+			}else{
+				return 2;
+			}
+		}
 	}
 
 	public void computeUpdateStat() {
@@ -126,18 +132,6 @@ public class ProtocolKBUtil implements IProtocolKBUtil{
 		return cnt;
 	}
 
-	public void printStat() {
-		ProbeLogger.appendLogln("tree","\n##### Field Existence Probability #####");
-		for (String key : this.field_ex_prob.keySet()) {
-			System.out.printf("%s\t:\t%f\n", key, this.field_ex_prob.get(key));
-		}
-		
-		ProbeLogger.appendLogln("tree","\n##### Update Pattern Update Probability #####");
-		for(String p : this.update_pattern_prob.keySet()){
-			System.out.printf("%s\t:\t%f\n", p.toString(), this.update_pattern_prob.get(p));
-		}
-	}
-
 	public void computeStat() {
 		int pNum = this.pMap.size();
 		for (ProtocolName key : pMap.keySet()) {
@@ -153,7 +147,6 @@ public class ProtocolKBUtil implements IProtocolKBUtil{
 		for (String type : this.field_ex_prob.keySet()) {
 			this.field_ex_prob.replace(type, this.field_ex_prob.get(type) / pNum);
 		}
-		ProbeLogger.appendLogln("tree","Field existance probability computation is done.");
 	}
 	
 	public ProtocolName getLocalProtocolName(){

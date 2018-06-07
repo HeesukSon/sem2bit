@@ -26,9 +26,5 @@ public class SDPMain {
 			e.printStackTrace();
 		}
 		ExperimentStat.getInstance().printStat();
-
-		// print
-		ProbeLogger.printLog();
-		ProbeLogger.printStat();
 	}
 }
