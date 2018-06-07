@@ -17,9 +17,8 @@ import java.util.Hashtable;
 
 public class Registration {
 	public static void main(String[] args) throws ServiceLocationException, InvalidSyntaxException {
-		//PropertyConfigurator.configure("log4j.properties");
 		PropertyConfigurator.configure(Constants.ROOT_DIR+"log4j.properties");
-		SDPKBUtil.getInstance().buildKB();
+		//SDPKBUtil.getInstance().buildKB();
 		
 		// get Advertiser instance
 		Advertiser advertiser = ServiceLocationManager.getAdvertiser(new Locale("en"));

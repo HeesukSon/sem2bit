@@ -59,6 +59,7 @@ import heesuk.sem2bit.ConfigUtil;
 import heesuk.sem2bit.ExperimentStat;
 import heesuk.sem2bit.ProbeLogger;
 import heesuk.sem2bit.ProbingStatus;
+import org.eclipse.paho.client.mqttv3.internal.CommsSender;
 
 /**
  * the core class of the jSLP implementation.
@@ -69,6 +70,7 @@ import heesuk.sem2bit.ProbingStatus;
  * @since 0.6
  */
 public abstract class SLPCore {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(SLPCore.class);
 	private static volatile boolean isMulticastSocketInitialized = false;
 	private static volatile boolean isInitialized = false;
 
@@ -830,8 +832,9 @@ public abstract class SLPCore {
 
 			// send to localhost, in case the OS does not support multicast over
 			// loopback which can fail if no SA is running locally
+
 			msg.address = LOCALHOST;
-			try {
+		try {
 				replyQueue.add(sendMessageTCP(msg)); // TODO uncomment for normal experiment with TCP
 				//replyQueue.add(sendMessage(msg, false));
 
@@ -990,7 +993,12 @@ public abstract class SLPCore {
 
 		// send to localhost, in case the OS does not support multicast over
 		// loopback which can fail if no SA is running locally
-		msg.address = LOCALHOST;
+
+		try {
+			msg.address = InetAddress.getByName(ConfigUtil.getInstance().broker_address);
+		} catch (UnknownHostException e) {
+			msg.address = LOCALHOST;
+		}
 		try {
 			replyQueue.add(sendMessageTCP(cnt, msg)); // TODO uncomment for normal experiment with TCP
 			//replyQueue.add(sendMessage(msg, false));

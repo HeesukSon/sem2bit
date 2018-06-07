@@ -7,16 +7,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be6f5ca0-6f90-493b-a20a-0576a529ec35" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SDPMain_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SLP_SA_Registration_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/sherlock_io_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config" beforeDir="false" afterPath="$PROJECT_DIR$/config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/MANIFEST_SDPMain/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/sherlock_io_jar/config" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/sherlock_io_jar/config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/sherlock_io_jar/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/sherlock_io_jar/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/sherlock_io_jar/sherlock-io.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/sherlock_io_jar/sherlock-io.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ConfigUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ConfigUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MANIFEST_SDPMain/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPCore$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPCore$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPCore$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPCore$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPCore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/ServiceRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/ServiceRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/test/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/test/Registration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/main/SDPMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/main/SDPMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java" afterDir="false" />
     </list>
     <ignored path="sherlock-io.iws" />
@@ -36,19 +48,19 @@
     <favorites_list name="sherlock-io" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.3373656">
+    <splitter split-orientation="horizontal" split-proportion="0.49128082">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ConnectActionListener.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ConnectActionListener.java">
+          <file leaf-file-name="ModificationSeqPlanTree.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="619">
-                  <caret line="202" column="43" selection-start-line="202" selection-start-column="43" selection-end-line="202" selection-end-column="43" />
+                <state relative-caret-position="338">
+                  <caret line="36" column="46" selection-start-line="36" selection-start-column="46" selection-end-line="36" selection-end-column="46" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MqttMain.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="MqttMain.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/main/MqttMain.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="286">
@@ -57,38 +69,60 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ModificationController.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java">
+          <file leaf-file-name="ServiceRequest.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-338">
-                  <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
+                <state relative-caret-position="451">
+                  <caret line="268" lean-forward="true" selection-start-line="268" selection-end-line="268" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MQTTConnector.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/MQTTConnector.java">
+          <file leaf-file-name="SLPMessage.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
-                  <caret line="111" column="19" lean-forward="true" selection-start-line="111" selection-start-column="19" selection-end-line="111" selection-end-column="19" />
+                <state relative-caret-position="443">
+                  <caret line="414" column="19" lean-forward="true" selection-start-line="414" selection-start-column="19" selection-end-line="414" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MqttClient.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttClient.java">
+          <file leaf-file-name="Registration.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-4460">
-                  <caret line="331" column="16" selection-start-line="331" selection-start-column="16" selection-end-line="331" selection-end-column="16" />
+                <state relative-caret-position="364">
+                  <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/Test.java">
+          <file leaf-file-name="ServiceLocationManager.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceLocationManager.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="169">
-                  <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+                <state relative-caret-position="468">
+                  <caret line="68" column="58" selection-start-line="68" selection-start-column="58" selection-end-line="68" selection-end-column="58" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SLPConfiguration.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPConfiguration.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="556">
+                  <caret line="522" column="46" lean-forward="true" selection-start-line="522" selection-start-column="46" selection-end-line="522" selection-end-column="46" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TreeFactory.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/TreeFactory.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="53">
+                  <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+                  <folding>
+                    <element signature="e#1268#1269#0" expanded="true" />
+                    <element signature="e#1311#1312#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -96,8 +130,17 @@
           <file leaf-file-name="ConfigUtil.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="247">
-                  <caret line="28" selection-start-line="28" selection-end-line="28" />
+                <state relative-caret-position="117">
+                  <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ModificationController.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="213">
+                  <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -105,84 +148,182 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ReplayingDecoderByteBuf.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ReplayingDecoderByteBuf.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="9711">
-                  <caret line="920" column="18" selection-start-line="920" selection-start-column="18" selection-end-line="920" selection-end-column="18" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MqttDecoder.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/mqtt/MqttDecoder.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="5577">
-                  <caret line="463" column="80" selection-start-line="463" selection-start-column="80" selection-end-line="463" selection-end-column="80" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DecoderException.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/DecoderException.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="78">
-                  <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ByteToMessageDecoder.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ByteToMessageDecoder.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="5512">
-                  <caret line="455" column="17" selection-start-line="455" selection-start-column="17" selection-end-line="455" selection-end-column="17" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MessageToMessageDecoder.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/MessageToMessageDecoder.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="936">
-                  <caret line="94" column="17" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ReplayingDecoder.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ReplayingDecoder.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4537">
-                  <caret line="379" column="57" selection-start-line="379" selection-start-column="57" selection-end-line="379" selection-end-column="57" />
-                  <folding>
-                    <element signature="e#10654#10655#0" expanded="true" />
-                    <element signature="e#10690#10691#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SDPMain.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="299">
-                  <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="CommsSender.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsSender.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="81" column="19" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
+        <splitter split-orientation="vertical" split-proportion="0.5">
+          <split-first>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file leaf-file-name="ReplayingDecoderByteBuf.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ReplayingDecoderByteBuf.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="533">
+                      <caret line="920" column="18" selection-start-line="920" selection-start-column="18" selection-end-line="920" selection-end-column="18" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="MqttDecoder.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/mqtt/MqttDecoder.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="283">
+                      <caret line="463" column="80" selection-start-line="463" selection-start-column="80" selection-end-line="463" selection-end-column="80" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="config" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/config">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state>
+                      <caret column="30" selection-start-column="30" selection-end-column="30" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="DecoderException.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/DecoderException.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="78">
+                      <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="ByteToMessageDecoder.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ByteToMessageDecoder.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="5512">
+                      <caret line="455" column="17" selection-start-line="455" selection-start-column="17" selection-end-line="455" selection-end-column="17" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="MessageToMessageDecoder.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/MessageToMessageDecoder.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="936">
+                      <caret line="94" column="17" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="ReplayingDecoder.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ReplayingDecoder.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="1487">
+                      <caret line="379" column="57" selection-start-line="379" selection-start-column="57" selection-end-line="379" selection-end-column="57" />
+                      <folding>
+                        <element signature="e#10654#10655#0" expanded="true" />
+                        <element signature="e#10690#10691#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="SDPMain.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="78">
+                      <caret line="9" column="78" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="CommsSender.java" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsSender.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="18">
+                      <caret line="35" column="101" selection-start-line="35" selection-start-column="101" selection-end-line="35" selection-end-column="101" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf>
+              <file leaf-file-name="SLPCore.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="334">
+                      <caret line="676" selection-start-line="676" selection-end-line="676" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="ProbingStatus.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ProbingStatus.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="65">
+                      <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="ProbeLogger.java" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ProbeLogger.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="65">
+                      <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="DatagramSocket.java" pinned="false" current-in-tab="false">
+                <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/src.zip!/java/net/DatagramSocket.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="162">
+                      <caret line="811" selection-start-line="811" selection-end-line="811" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="AbstractPlainDatagramSocketImpl.java" pinned="false" current-in-tab="false">
+                <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/src.zip!/java/net/AbstractPlainDatagramSocketImpl.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="162">
+                      <caret line="143" selection-start-line="143" selection-end-line="143" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="AdvertiserImpl.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/AdvertiserImpl.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="281">
+                      <caret line="135" selection-start-line="135" selection-end-line="135" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Test.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="26">
+                      <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="Lookup.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Lookup.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="52">
+                      <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="config" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/config">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="195">
+                      <caret line="15" selection-start-line="15" selection-end-line="15" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
       </split-second>
     </splitter>
   </component>
@@ -238,11 +379,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/io/netty/handler/ssl/JettyNpnSslEngine.java" />
-        <option value="$PROJECT_DIR$/src/io/netty/handler/codec/xml/XmlDecoder.java" />
-        <option value="$PROJECT_DIR$/src/io/moquette/server/netty/metrics/BytesMetricsHandler.java" />
-        <option value="$PROJECT_DIR$/src/io/netty/channel/DefaultChannelHandlerContext.java" />
-        <option value="$PROJECT_DIR$/src/io/netty/handler/codec/MessageAggregator.java" />
         <option value="$PROJECT_DIR$/src/io/netty/channel/DefaultChannelPipeline.java" />
         <option value="$PROJECT_DIR$/src/io/netty/handler/codec/ByteToMessageCodec.java" />
         <option value="$PROJECT_DIR$/src/io/netty/util/ReferenceCountUtil.java" />
@@ -272,7 +408,6 @@
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/persist/MqttDefaultFilePersistence.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsCallback.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsReceiver.java" />
-        <option value="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/FinishExpException.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttClient.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttAsyncClient.java" />
@@ -284,18 +419,24 @@
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/ExperimentStat.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.java" />
-        <option value="$PROJECT_DIR$/log4j.properties" />
-        <option value="$PROJECT_DIR$/config" />
         <option value="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java" />
+        <option value="$PROJECT_DIR$/log4j.properties" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java" />
+        <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java" />
+        <option value="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java" />
+        <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java" />
+        <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java" />
+        <option value="$PROJECT_DIR$/out/artifacts/sherlock_io_jar/config" />
+        <option value="$PROJECT_DIR$/config" />
+        <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="x" value="-541" />
     <option name="y" value="-1440" />
-    <option name="width" value="2560" />
+    <option name="width" value="1991" />
     <option name="height" value="1440" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -338,38 +479,33 @@
             <path>
               <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
               <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-              <item name="SLP_SA_Registration_jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
               <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="slp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
               <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="slp" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="slp" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
               <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
@@ -426,9 +562,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.Lookup">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+    </configuration>
+    <configuration name="Lookup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ch.ethz.iks.slp.test.Lookup" />
+      <module name="sherlock-io" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.ethz.iks.slp.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
     </configuration>
     <configuration name="MqttMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="heesuk.sem2bit.main.MqttMain" />
@@ -441,13 +588,13 @@
         </pattern>
       </extension>
     </configuration>
-    <configuration name="PubSample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.eclipse.paho.sample.mqttv3app.PubSample" />
+    <configuration name="Registration" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ch.ethz.iks.slp.test.Registration" />
       <module name="sherlock-io" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.eclipse.paho.sample.mqttv3app.*" />
+          <option name="PATTERN" value="ch.ethz.iks.slp.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -459,17 +606,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="io.moquette.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="Test (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="heesuk.sem2bit.main.Test" />
-      <module name="sherlock-io" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="heesuk.sem2bit.main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -607,17 +743,17 @@
     <list>
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.MqttMain" />
-      <item itemvalue="Application.Test (1)" />
-      <item itemvalue="Application.PubSample" />
       <item itemvalue="JAR Application.sherlock-io.jar" />
+      <item itemvalue="Application.Registration" />
+      <item itemvalue="Application.Lookup" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Lookup" />
+        <item itemvalue="Application.Registration" />
         <item itemvalue="Application.Server" />
         <item itemvalue="JAR Application.sherlock-io.jar" />
         <item itemvalue="Application.MqttMain" />
-        <item itemvalue="Application.PubSample" />
-        <item itemvalue="Application.Test (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -635,7 +771,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-541" y="-1440" width="2560" height="1440" extended-state="0" />
+    <frame x="-541" y="-1440" width="1870" height="1440" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -647,11 +784,11 @@
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4988086" visible="true" weight="0.20952381" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32900944" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.31941393" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.1934066" />
       <window_info id="Capture Tool" order="5" />
       <window_info anchor="right" id="Designer" order="5" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49837133" visible="true" weight="0.11358221" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49930555" weight="0.45347986" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49837133" visible="true" weight="0.15645514" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49930555" weight="0.2014652" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="3" />
@@ -686,157 +823,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ReplayingDecoderByteBuf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9711">
-          <caret line="920" column="18" selection-start-line="920" selection-start-column="18" selection-end-line="920" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org.eclipse.paho.sample.mqttv3app/SampleAsyncWait.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="719">
-          <caret line="120" column="31" selection-start-line="120" selection-start-column="31" selection-end-line="120" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/msg/ModificationCandidate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12439">
-          <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/iot/IoTProtocolKBUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1846">
-          <caret line="187" column="12" selection-start-line="187" selection-start-column="12" selection-end-line="187" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttWireMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="78" column="18" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/netty/buffer/ByteBuf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="2369" column="27" selection-start-line="2369" selection-start-column="27" selection-end-line="2369" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/mqtt/ZeroMSBException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/DecoderException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ByteToMessageDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5512">
-          <caret line="455" column="17" selection-start-line="455" selection-start-column="17" selection-end-line="455" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/MessageToMessageDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="94" column="17" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/NetworkModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/TCPNetworkModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1404">
-          <caret line="134" column="28" selection-start-line="134" selection-start-column="28" selection-end-line="134" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttConnectOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
-          <folding>
-            <element signature="e#8705#8706#0" expanded="true" />
-            <element signature="e#8736#8737#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/netty/channel/ChannelFutureListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="635">
-          <caret line="88" selection-start-line="88" selection-end-line="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/persist/MqttDefaultFilePersistence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-803">
-          <caret line="177" selection-start-line="177" selection-end-line="177" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/ClientComms.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="356" column="60" selection-start-line="356" selection-start-column="60" selection-end-line="356" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/IMqttActionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsCallback.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
@@ -844,28 +830,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/mqtt/MqttDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5577">
-          <caret line="463" column="80" selection-start-line="463" selection-start-column="80" selection-end-line="463" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/FinishExpException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="2" column="48" selection-start-line="2" selection-start-column="48" selection-end-line="2" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ReplayingDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4537">
-          <caret line="379" column="57" selection-start-line="379" selection-start-column="57" selection-end-line="379" selection-end-column="57" />
-          <folding>
-            <element signature="e#10654#10655#0" expanded="true" />
-            <element signature="e#10690#10691#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -918,30 +886,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/META-INF.MqttMain/META-INF/MANIFEST.MF" />
     <entry file="file://$PROJECT_DIR$/src/resources/META-INF/MANIFEST.MF" />
-    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out/artifacts/sherlock_io_jar/config">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
@@ -952,24 +896,10 @@
     <entry file="file://$PROJECT_DIR$/sherlock-io.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/probtree/ModificationProbTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="335">
           <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2184">
-          <caret line="178" column="13" selection-start-line="178" selection-start-column="13" selection-end-line="178" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -994,13 +924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4460">
-          <caret line="331" column="16" selection-start-line="331" selection-start-column="16" selection-end-line="331" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -1019,17 +942,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java">
+    <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ReplayingDecoderByteBuf.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-338">
-          <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
+        <state relative-caret-position="533">
+          <caret line="920" column="18" selection-start-line="920" selection-start-column="18" selection-end-line="920" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsSender.java">
+    <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/mqtt/MqttDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="81" column="19" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
+        <state relative-caret-position="283">
+          <caret line="463" column="80" selection-start-line="463" selection-start-column="80" selection-end-line="463" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/src.zip!/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="211" column="6" selection-start-line="211" selection-start-column="6" selection-end-line="211" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-434">
+          <caret line="118" column="16" selection-start-line="118" selection-start-column="16" selection-end-line="118" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/io/netty/handler/codec/ReplayingDecoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1487">
+          <caret line="379" column="57" selection-start-line="379" selection-start-column="57" selection-end-line="379" selection-end-column="57" />
+          <folding>
+            <element signature="e#10654#10655#0" expanded="true" />
+            <element signature="e#10690#10691#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/Locator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="923">
+          <caret line="100" column="31" selection-start-line="100" selection-start-column="31" selection-end-line="100" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/LocatorImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="287" column="44" selection-start-line="287" selection-start-column="44" selection-end-line="287" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/OSGiPlatformAbstraction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/MqttClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7995">
+          <caret line="640" column="4" selection-start-line="640" selection-start-column="4" selection-end-line="640" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="522" column="46" lean-forward="true" selection-start-line="522" selection-start-column="46" selection-end-line="522" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/TreeFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53">
+          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+          <folding>
+            <element signature="e#1268#1269#0" expanded="true" />
+            <element signature="e#1311#1312#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1040,10 +1055,136 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="268" lean-forward="true" selection-start-line="268" selection-end-line="268" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+        <state relative-caret-position="78">
+          <caret line="9" column="78" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/ProtocolKBUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="623">
+          <caret line="60" column="16" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="36" column="46" selection-start-line="36" selection-start-column="46" selection-end-line="36" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="414" column="19" lean-forward="true" selection-start-line="414" selection-start-column="19" selection-end-line="414" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/src.zip!/java/net/DatagramSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="811" selection-start-line="811" selection-end-line="811" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceLocationManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="68" column="58" selection-start-line="68" selection-start-column="58" selection-end-line="68" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/src.zip!/java/net/AbstractPlainDatagramSocketImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="143" selection-start-line="143" selection-end-line="143" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/AdvertiserImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="135" selection-start-line="135" selection-end-line="135" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Lookup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/artifacts/sherlock_io_jar/config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="12" column="48" lean-forward="true" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/CommsSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="35" column="101" selection-start-line="35" selection-start-column="101" selection-end-line="35" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="676" selection-start-line="676" selection-end-line="676" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ProbingStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ProbeLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>

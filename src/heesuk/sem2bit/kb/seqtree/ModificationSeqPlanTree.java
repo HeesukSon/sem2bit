@@ -52,7 +52,6 @@ public class ModificationSeqPlanTree {
 			ArrayList<ModificationCandidate> seq) {
 		
 		if (/* at the bound depth: base case */node.getDepth() == kb.getModSeqBound() + 1) {
-			LOG.debug("[Bottom line] node = {}",node.getItem().toStringWithoutWeight());
 			// add the current node to the sequence
 			seq.add(node.getItem());
 			ModificationCandidate[] result = new ModificationCandidate[seq.size()];
@@ -60,8 +59,6 @@ public class ModificationSeqPlanTree {
 			
 			return seq.toArray(result);
 		} else /* before the bound depth: intermediate nodes */ {
-			LOG.debug("[Before the bottom line] node = {}, candidates.length = {}",
-					node.getItem().toStringWithoutWeight(),candidates.size());
 			// add the current node to seq
 			seq.add(node.getItem());
 			this.removeThisNode(node, candidates);
@@ -73,37 +70,27 @@ public class ModificationSeqPlanTree {
 			this.pruneCandidates(node, candidates);
 			
 			if (/* no child */node.getChildren().size() == 0) {
-				LOG.debug("[No child exist]");
 				// add the candidate with the highest prob. as a child
 				node.addChild(new SeqTreeNode(candidates.get(0)));
 				
-				LOG.debug("[Child added] child = {}",
-						node.getRightMostChild().getItem().toStringWithoutWeight());
 				// remove the added node from candidates
 				candidates.remove(0);
 				
 				return getModSeq(count, node.getRightMostChild(), candidates, seq);
 			} else /* child exists */ {
-				 LOG.debug("[A child exist]");
 				if (/* current node has further sequences */node.hasMoreSequence(candidates)) {
-					LOG.debug("[Current node has further sequences]");
 					if (/* the right-most-child has further sequences */
 							!node.getRightMostChild().isDead() && node.getRightMostChild()
 							.hasMoreSequence(candidates)) {
 						if (/* right before the bound depth */ node.getDepth() == kb
 								.getModSeqBound()) {
-							LOG.debug("[Right before the bound depth] children size = {}, candidate size = {}",
-									node.getChildren().size(),candidates.size());
 							if (/* has more to add */ node.hasMoreSequence(candidates)) {
-								LOG.debug("[Has more to add]");
 
 								// add the candidate with the highest prob. which was not added as a child before
 								int size = candidates.size();
 								for (int i = 0; i < size; i++) {
 									if (!node.hasChild(candidates.get(i))) {
 										node.addChild(new SeqTreeNode(candidates.get(i)));
-										LOG.debug("[Child added] child = {}",
-												node.getRightMostChild().getItem().toStringWithoutWeight());
 										// remove the added node from candidates
 										candidates.remove(i);
 										size--;
@@ -114,7 +101,6 @@ public class ModificationSeqPlanTree {
 
 								return getModSeq(count, node.getRightMostChild(), candidates, seq);
 							} else {
-								LOG.debug("[Nothing to add]");
 								// mark the current node as dead
 								node.setDead(true);
 								// remove current node from the sequence
@@ -123,23 +109,17 @@ public class ModificationSeqPlanTree {
 								// recover the pruned candidates
 								//candidates = original;
 								candidates.clear();
-								LOG.debug("[Going back to the parent");
 								return getModSeq(count, node.getParent(), original, seq);
 							}
 						} else {
-							LOG.debug("[Right-most-node has further sequences] r-m-n = {}",
-									node.getRightMostChild().getItem().toStringWithoutWeight());
 							return getModSeq(count, node.getRightMostChild(), candidates, seq);
 						}
 					} else /* new child need to be added */ {
-						LOG.debug("[R-m-n has no seq. New child need to be added]");
 						// add the candidate with the highest prob. which was not added as a child before
 						int size = candidates.size();
 						for (int i = 0; i < size; i++) {
 							if (!node.hasChild(candidates.get(i))) {
 								node.addChild(new SeqTreeNode(candidates.get(i)));
-								LOG.debug("[Child added] child = {}",
-										node.getRightMostChild().getItem().toStringWithoutWeight());
 								// remove the added node from candidates
 								candidates.remove(i);
 								size--;
@@ -152,12 +132,8 @@ public class ModificationSeqPlanTree {
 					}
 				} else /* this node has no more sequence */ {
 					try{
-						LOG.debug("[No more sequence] node = {}",
-								node.getItem().toStringWithoutWeight());
 						// mark this node as dead
 						node.setDead(true);
-						LOG.debug("[Node marked as dead] node = {}",
-								node.getItem().toStringWithoutWeight());
 						// remove current node from the sequence
 						seq.remove(seq.size() - 1);
 						seq.remove(seq.size() - 1);

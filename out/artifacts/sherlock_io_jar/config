@@ -1,8 +1,10 @@
-local_address = /192.168.1.105
+local_address = /192.168.1.102
 broker_address = 192.168.1.102
+// tcp_timeout = 100 as default. (1000?)
 tcp_timeout = 1000
-req_interval = 30
-iteration_bound = 5
+// req_interval = 2 for sdp, and 200 for mqtt
+req_interval = 2
+iteration_bound = 10000
 //
 // exp_mode = {real | mockup}
 exp_mode = real
@@ -11,13 +13,13 @@ exp_mode = real
 // tree: logs from the tree construction process
 // probe: logs from the probing process
 log_mode = probe
-//role = service_agent
-role = user_agent
+role = service_agent
+//role = user_agent
 // domain = {SDP | IoT_Protocol}
-domain = IoT_Protocol
+domain = SDP
 // domain = IoT_Protocol
 // local_protocol = {SLPv1 | SLPv2 | UPnPv1 | UPnPv2 | DNS_SD | COAP | MQTTv3 | MQTTv5 | AMQP | SIPv1 | SIPv2}
-local_protocol = MQTTv3
+local_protocol = SLPv1
 seq_bound_random = true
 //seq_bound_random = false
 broker_version = 3.1.1

@@ -50,6 +50,7 @@ import heesuk.sem2bit.msg.MessageModificationSpec;
  * @since 0.1
  */
 public abstract class SLPMessage {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(SLPMessage.class);
 
 	/**
 	 * the <code>Locale</code> of the message.
@@ -261,16 +262,15 @@ public abstract class SLPMessage {
 	static SLPMessage parse(final InetAddress senderAddr, final int senderPort,
 			final DataInputStream in, final boolean tcp)
 			throws ServiceLocationException, ProtocolException, SocketTimeoutException{
-		//ProbeLogger.appendLog("probe",">>>>> SLPMessage.parse(): ");
 		try {
 			final int version = in.readByte(); // version
 			
-			//ProbeLogger.appendLog("probe","version = "+version+", ");
 			if (version == 1) {
 				in.readByte(); // funcID
 				final int length = in.readShort();
 				byte[] drop = new byte[length - 4];
 				in.readFully(drop);
+				LOG.info("Dropped SLPv1 message from {}:{}",senderAddr,senderPort);
 				SLPCore.platform.logWarning("Dropped SLPv1 message from "
 							+ senderAddr + ":" + senderPort);
 			}
@@ -295,6 +295,9 @@ public abstract class SLPMessage {
 			//ProbeLogger.appendLog("probe","langTagLength = "+langTagLength+", ");
 			final Locale locale = new Locale(in.readUTF(), ""); // Locale
 			//ProbeLogger.appendLogln("probe","locale = "+locale);
+
+			LOG.debug("parse():: funcID={},length={},flags={},xid={},langTagLength={},locale={}",
+					funcID,length,flags,xid,langTagLength,locale);
 
 			final SLPMessage msg;
 

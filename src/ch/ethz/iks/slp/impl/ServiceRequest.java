@@ -39,6 +39,7 @@ import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
 import ch.ethz.iks.slp.impl.filter.Filter;
 import heesuk.sem2bit.ConfigUtil;
+import heesuk.sem2bit.Constants;
 import heesuk.sem2bit.ExperimentStat;
 import heesuk.sem2bit.ProbeLogger;
 import heesuk.sem2bit.kb.TreeFactory;
@@ -47,6 +48,7 @@ import heesuk.sem2bit.kb.protocol.enums.ProtocolName;
 import heesuk.sem2bit.kb.protocol.sdp.SDPKBUtil;
 import heesuk.sem2bit.msg.ModificationCandidate;
 import heesuk.sem2bit.msg.ProbeMessageComposer;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  * ServiceRequest message is used to find services in the network.
@@ -55,6 +57,7 @@ import heesuk.sem2bit.msg.ProbeMessageComposer;
  * @since 0.1
  */
 class ServiceRequest extends RequestMessage {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(ServiceRequest.class);
 
 	/**
 	 * the ServiceType.
@@ -257,6 +260,13 @@ class ServiceRequest extends RequestMessage {
 			long afterSeqComp = System.currentTimeMillis();
 			ExperimentStat.getInstance().setSeqComputeTimeTotal(
 					ExperimentStat.getInstance().getSeqComputeTimeTotal()+(afterSeqComp-beforeSeqComp));
+
+			String seqStr = "";
+			for(ModificationCandidate candidate : seq){
+				seqStr += candidate.toStringWithoutWeight();
+			}
+			LOG.debug("[cnt:{}] adapt seq = {}",cnt, seqStr);
+
 
 			if(ConfigUtil.getInstance().exp_mode.equals("mockup")){
 				boolean result = true;
