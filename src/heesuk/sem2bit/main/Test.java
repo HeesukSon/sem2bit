@@ -1,12 +1,21 @@
 package heesuk.sem2bit.main;
 
-import java.util.Random;
-
 public class Test {
 	public static void main(String[] args){
-		Random r = new Random();
-		for(int i=0; i<100; i++){
-			System.out.println((int)r.nextGaussian()+3);
+		long sum = 0;
+		for(int i=1; i<=6; i++){
+			sum += fact(6)/fact(6-i);
 		}
+
+		System.out.println(sum);
+	}
+
+	static long fact(int x){
+		long result = 1;
+		for(int i=x;i>0;i--){
+			result *= i;
+		}
+
+		return result;
 	}
 }

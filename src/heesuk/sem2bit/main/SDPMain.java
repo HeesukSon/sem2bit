@@ -17,6 +17,11 @@ public class SDPMain {
 		} catch (LocalProtocolNotSpecifiedException e) {
 			e.printStackTrace();
 		}
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		ModificationController.getInstance().startMessageModification(ConfigUtil.getInstance().iteration_bound);
 		long after = System.currentTimeMillis();
 		ExperimentStat.getInstance().setTotalExpTime(after-before);
@@ -26,5 +31,12 @@ public class SDPMain {
 			e.printStackTrace();
 		}
 		ExperimentStat.getInstance().printStat();
+		while(true){
+			try {
+				Thread.sleep(100000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
