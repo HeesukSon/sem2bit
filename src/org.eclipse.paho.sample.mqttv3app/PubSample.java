@@ -66,7 +66,7 @@ public class PubSample implements MqttCallback {
 		String message 		= "Message from blocking Paho MQTTv3 Java client sample";
 		int qos 			= 2;
 		//String broker 		= "m2m.eclipse.org";
-		String broker = "127.0.0.1";
+		String broker = "192.168.35.193";
 		int port 			= 1883;
 		String clientId 	= null;
 		String subTopic		= "Sample/#";
@@ -249,22 +249,22 @@ public class PubSample implements MqttCallback {
     	log("Connected");
 
 
-    	String time = new Timestamp(System.currentTimeMillis()).toString();
-    	log("Publishing at: "+time+ " to topic \""+topicName+"\" qos "+qos);
+    	//String time = new Timestamp(System.currentTimeMillis()).toString();
+    	//log("Publishing at: "+time+ " to topic \""+topicName+"\" qos "+qos);
 
     	// Create and configure a message
-   		MqttMessage message = new MqttMessage(payload);
-    	message.setQos(qos);
+   		//MqttMessage message = new MqttMessage(payload);
+    	//message.setQos(qos);
 
     	// Send the message to the server, control is not returned until
     	// it has been delivered to the server meeting the specified
     	// quality of service.
-    	client.publish(topicName, message);
+    	//client.publish(topicName, message);
 
 
     	// Disconnect the client
-    	client.disconnect();
-    	log("Disconnected");
+    	//client.disconnect();
+    	//log("Disconnected");
     }
 
     /**
