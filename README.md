@@ -2,7 +2,7 @@
 
 sherlock-io is an implementation of SeM2Bit and its two case studies: SLP and MQTT. It is a JAVA project and implemented on IntelliJ IDEA. 
 
-For its execution, it is recommended to use 'Build Artifacts' operations. 
+For its execution, it is recommended to use 'Build Artifacts' operations. Especially, for SLP case study, a direct execution in IDEA causes a 'Permission denied' error.
 
 For SLP case study, two main classes should be built:
 * ch.ethz.iks.slp.test.Registration.java
