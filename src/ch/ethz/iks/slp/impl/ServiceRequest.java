@@ -114,17 +114,9 @@ class ServiceRequest extends RequestMessage {
 	 * @throws IOException
 	 */
 	protected ServiceRequest(final DataInputStream input) throws IOException {
-		LOG.debug("ServiceRequest() entered.");
 		prevRespList = stringToList(input.readUTF(), ",");
-		LOG.debug("prevRespList.size() = {}",prevRespList.size());
 		serviceType = new ServiceType(input.readUTF());
-		LOG.debug("serviceType = {}",serviceType);
 		scopeList = stringToList(input.readUTF(), ",");
-		LOG.debug("scopeList = {");
-		for(Object scope : scopeList){
-			LOG.debug("{},",(String) scope);
-		}
-		LOG.debug("}");
 		try {
 			final String filterStr = input.readUTF();
 			predicate = "".equals(filterStr) ? null : SLPCore.platform
@@ -133,9 +125,7 @@ class ServiceRequest extends RequestMessage {
 			SLPCore.platform.logError("Invalid filter in incoming message "
 						+ xid, ise);
 		}
-		LOG.debug("before spi");
 		spi = input.readUTF();
-		LOG.debug("after spi");
 	}
 
 	/**
@@ -314,11 +304,6 @@ class ServiceRequest extends RequestMessage {
 				ProbeMessageComposer.getInstance().writeMsgHeader(cnt, modifiedFields, out, getSize(), xid);
 			}
 
-			LOG.debug("prevRespList = {}",listToString(prevRespList, ","));
-			LOG.debug("serviceType = {}",serviceType.toString());
-			LOG.debug("scopeList = {}",listToString(scopeList,","));
-			LOG.debug("predicate = {}",predicate == null ? "" : predicate.toString());
-			LOG.debug("spi = {}",spi);
 			out.writeUTF(listToString(prevRespList, ","));
 			out.writeUTF(serviceType.toString());
 			out.writeUTF(listToString(scopeList, ","));

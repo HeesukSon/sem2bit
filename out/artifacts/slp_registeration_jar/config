@@ -7,7 +7,7 @@ req_interval = 30
 iteration_bound = 1
 //
 // exp_mode = {real | mockup}
-exp_mode = mockup
+exp_mode = real
 //sudo
 // log_mode = {none | probe | tree | both}
 // tree: logs from the tree construction process

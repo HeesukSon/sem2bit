@@ -221,7 +221,6 @@ public class ProbeMessageComposer {
 
 	public void writeMsgHeader(int cnt, ArrayList<MessageField> fields, final DataOutputStream out, int msgSize, int xid)
 			throws IOException {
-		LOG.debug("writeMsgHeader():: cnt = {}",cnt);
 		for (MessageField field : fields) {
 			try{
 				if (field.getLocation().equals(MessageFieldLocation.HEADER)) {
@@ -233,7 +232,7 @@ public class ProbeMessageComposer {
 							out.writeShort((int) field.getValue());
 						}
 
-						LOG.debug("field = {}",field.toString());
+						LOG.debug("[cnt:{}] field = {}",cnt,field.toString());
 						continue;
 					}
 
@@ -246,7 +245,7 @@ public class ProbeMessageComposer {
 							out.writeInt((int) field.getValue());
 						}
 
-						LOG.debug("field = {}",field.toString());
+						LOG.debug("[cnt:{}] field = {}",cnt,field.toString());
 						continue;
 					}
 
@@ -258,14 +257,14 @@ public class ProbeMessageComposer {
 							out.write(((byte) ((value >> shift) & 0xFF)));
 						}
 
-						LOG.debug("field = {}",field.toString());
+						LOG.debug("[cnt:{}] field = {}",cnt,field.toString());
 						continue;
 					}
 
 					if (field.getType() == MessageFieldType.LANGUAGE_TAG) {
 						out.writeUTF((String) field.getValue());
 
-						LOG.debug("field = {}",field.toString());
+						LOG.debug("[cnt:{}] field = {}",cnt,field.toString());
 						continue;
 					}
 
@@ -278,11 +277,11 @@ public class ProbeMessageComposer {
 							tmp += "0";
 						}
 						tmp+=">";
-						LOG.debug("field = {}",tmp);
+						LOG.debug("[cnt:{}] field = {}",cnt,tmp);
 						continue;
 					}
 
-					LOG.debug("field = {}",field.toString());
+					LOG.debug("[cnt:{}] field = {}",cnt,field.toString());
 					out.write((int) field.getValue());
 					for (int i = 1; i < Integer.parseInt(field.getLength()) / 8; i++) {
 						out.write(0);

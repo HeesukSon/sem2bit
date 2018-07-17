@@ -7,112 +7,121 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be6f5ca0-6f90-493b-a20a-0576a529ec35" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/sherlock-io/SLP_REG/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SLP_REG/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/slp_main_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/slp_main_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/slp_registration_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/slp_registeration_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config" beforeDir="false" afterPath="$PROJECT_DIR$/config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/HikariCP-2.4.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/alpn-api-1.1.3.v20160715.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/barchart-udt-bundle-2.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/bcpkix-jdk15on-1.59.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/bcprov-jdk15on-1.59.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/bugsnag-3.0.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/commons-codec-1.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/commons-logging-1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/compress-lzf-1.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/conscrypt-openjdk-1.1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/hazelcast-3.5.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/jboss-marshalling-2.0.5.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/jctools-core-2.1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/jzlib-1.1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/librato-java-2.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/log4j-1.2.17.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/log4j-api-2.11.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/log4j.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/lz4-1.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/lzma-java-1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/metrics-core-3.2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/metrics-jvm-3.2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/metrics-librato-5.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-buffer-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-dns-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-haproxy-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-http-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-http2-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-memcache-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-mqtt-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-redis-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-smtp-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-socks-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-stomp-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-codec-xml-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-common-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-example-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-handler-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-handler-proxy-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-resolver-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-resolver-dns-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-transport-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-transport-rxtx-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-transport-sctp-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/netty-transport-udt-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/npn-api-8.1.2.v20120308.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/org.osgi.core-4.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/osgi-service.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/protobuf-java-3.5.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/protobuf-javanano-3.2.0rc2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/rxtx.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/sherlock-io.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/slf4j-api-1.7.25.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/mqtt_sample_jar/slf4j-log4j12-1.7.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/ServiceType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/ServiceType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPCore$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPCore$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPCore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPDaemonImpl$ServiceDisposalThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPDaemonImpl$ServiceDisposalThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPDaemonImpl$TcpServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPDaemonImpl$TcpServerThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPDaemonImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPDaemonImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/SLPMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/ServiceReply.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/ServiceReply.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/ServiceRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/ch/ethz/iks/slp/impl/ServiceRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ConfigUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ConfigUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ModificationController$InteractionRunnable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ModificationController$InteractionRunnable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ModificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/ModificationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/probtree/ModificationProbTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/probtree/ModificationProbTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/probtree/SDPModificationProbTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/probtree/SDPModificationProbTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/ProtocolKBUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/ProtocolKBUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/enums/Functionality$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/enums/Functionality$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/enums/Functionality$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/enums/Functionality$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/enums/Functionality$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/enums/Functionality$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/enums/Functionality$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/enums/Functionality$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/enums/Functionality.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/enums/Functionality.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/sdp/SDPKBUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/kb/protocol/sdp/SDPKBUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/main/SDPMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/main/SDPMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/msg/ProbeMessageComposer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/heesuk/sem2bit/msg/ProbeMessageComposer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/io/moquette/persistence/MemorySessionStore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/io/moquette/persistence/MemorySessionStore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/io/moquette/spi/TransientSession.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/io/moquette/spi/TransientSession.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/io/moquette/spi/impl/BrokerInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/io/moquette/spi/impl/BrokerInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sherlock-io/io/moquette/spi/impl/ProtocolProcessor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sherlock-io/io/moquette/spi/impl/ProtocolProcessor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceURL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceURL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPDaemonImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPDaemonImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/HikariCP-2.4.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/alpn-api-1.1.3.v20160715.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/barchart-udt-bundle-2.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/bcpkix-jdk15on-1.59.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/bcprov-jdk15on-1.59.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/bugsnag-3.0.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/commons-codec-1.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/compress-lzf-1.0.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/conscrypt-openjdk-1.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/hazelcast-3.5.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/jboss-marshalling-2.0.5.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/jctools-core-2.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/jzlib-1.1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/librato-java-2.1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/log4j-1.2.17.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/log4j-api-2.11.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/lz4-1.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/lzma-java-1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/metrics-core-3.2.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/metrics-jvm-3.2.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/metrics-librato-5.1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-buffer-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-dns-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-haproxy-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-http-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-http2-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-memcache-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-mqtt-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-redis-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-smtp-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-socks-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-stomp-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-codec-xml-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-common-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-example-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-handler-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-handler-proxy-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-resolver-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-resolver-dns-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-transport-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-transport-rxtx-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-transport-sctp-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/netty-transport-udt-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/npn-api-8.1.2.v20120308.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/org.osgi.core-4.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/osgi-service.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/protobuf-java-3.5.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/protobuf-javanano-3.2.0rc2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/rxtx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/sherlock-io.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/slf4j-api-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/slf4j-log4j12-1.7.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/HikariCP-2.4.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/alpn-api-1.1.3.v20160715.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/barchart-udt-bundle-2.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/bcpkix-jdk15on-1.59.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/bcprov-jdk15on-1.59.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/bugsnag-3.0.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/commons-codec-1.10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/compress-lzf-1.0.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/conscrypt-openjdk-1.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/hazelcast-3.5.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/jboss-marshalling-2.0.5.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/jctools-core-2.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/jzlib-1.1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/librato-java-2.1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/log4j-1.2.17.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/log4j-api-2.11.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/lz4-1.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/lzma-java-1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/metrics-core-3.2.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/metrics-jvm-3.2.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/metrics-librato-5.1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-buffer-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-dns-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-haproxy-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-http-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-http2-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-memcache-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-mqtt-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-redis-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-smtp-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-socks-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-stomp-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-xml-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-common-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-example-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-handler-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-handler-proxy-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-resolver-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-resolver-dns-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-transport-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-transport-rxtx-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-transport-sctp-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-transport-udt-4.1.25.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/npn-api-8.1.2.v20120308.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/org.osgi.core-4.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/osgi-service.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/protobuf-java-3.5.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/protobuf-javanano-3.2.0rc2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/rxtx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/sherlock-io.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/slf4j-api-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/slf4j-log4j12-1.7.5.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceReply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceReply.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/probtree/ModificationProbTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/probtree/ModificationProbTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/probtree/SDPModificationProbTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/probtree/SDPModificationProbTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/ProtocolKBUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/ProtocolKBUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/enums/Functionality.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/enums/Functionality.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/sdp/SDPKBUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/sdp/SDPKBUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java" afterDir="false" />
     </list>
     <ignored path="sherlock-io.iws" />
@@ -181,7 +190,7 @@
                 <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="-1604">
-                      <caret line="137" column="30" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
+                      <caret line="128" selection-start-line="128" selection-end-line="128" />
                       <folding>
                         <element signature="imports" expanded="true" />
                       </folding>
@@ -196,8 +205,8 @@
               <file leaf-file-name="Registration.java" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="299">
-                      <caret line="33" column="23" lean-forward="true" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+                    <state relative-caret-position="143">
+                      <caret line="21" selection-start-line="21" selection-end-line="21" />
                     </state>
                   </provider>
                 </entry>
@@ -205,17 +214,26 @@
               <file leaf-file-name="AdvertiserImpl.java" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/AdvertiserImpl.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="275">
-                      <caret line="139" column="22" lean-forward="true" selection-start-line="139" selection-start-column="22" selection-end-line="139" selection-end-column="22" />
+                    <state relative-caret-position="-775">
+                      <caret line="132" column="35" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="SLPCore.java" pinned="false" current-in-tab="true">
+              <file leaf-file-name="SLPCore.java" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="208">
-                      <caret line="653" column="20" selection-start-line="653" selection-start-column="20" selection-end-line="653" selection-end-column="20" />
+                    <state relative-caret-position="247">
+                      <caret line="656" column="15" selection-start-line="656" selection-start-column="15" selection-end-line="656" selection-end-column="15" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="ServiceRegistration.java" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="590">
+                      <caret line="146" selection-start-line="146" selection-end-line="146" />
                     </state>
                   </provider>
                 </entry>
@@ -231,8 +249,8 @@
               <file leaf-file-name="ServiceRequest.java" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="197">
-                      <caret line="168" column="6" selection-start-line="168" selection-start-column="6" selection-end-line="168" selection-end-column="6" />
+                    <state relative-caret-position="78">
+                      <caret line="306" selection-start-line="306" selection-end-line="306" />
                       <folding>
                         <element signature="imports" expanded="true" />
                       </folding>
@@ -240,11 +258,29 @@
                   </provider>
                 </entry>
               </file>
+              <file leaf-file-name="config" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/out/artifacts/slp_registeration_jar/config">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="325">
+                      <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
               <file leaf-file-name="ProbeMessageComposer.java" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="855">
-                      <caret line="285" column="22" selection-start-line="285" selection-start-column="22" selection-end-line="285" selection-end-column="22" />
+                    <state relative-caret-position="578">
+                      <caret line="283" column="55" selection-start-line="283" selection-start-column="55" selection-end-line="283" selection-end-column="55" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="config" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/config">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="65">
+                      <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
                     </state>
                   </provider>
                 </entry>
@@ -288,29 +324,11 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="config" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/out/artifacts/slp_registeration_jar/config">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="208">
-                      <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="config" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/out/artifacts/slp_main_jar/config">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="143">
-                      <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
               <file leaf-file-name="ServiceRegistration.java" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="316">
-                      <caret line="183" column="37" lean-forward="true" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
+                      <caret line="176" column="37" lean-forward="true" selection-start-line="176" selection-start-column="37" selection-end-line="176" selection-end-column="37" />
                     </state>
                   </provider>
                 </entry>
@@ -322,8 +340,8 @@
               <file leaf-file-name="SLPMessage.java" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="133">
-                      <caret line="193" column="33" selection-start-line="193" selection-start-column="33" selection-end-line="193" selection-end-column="33" />
+                    <state relative-caret-position="-1050">
+                      <caret line="194" column="4" selection-start-line="194" selection-start-column="4" selection-end-line="194" selection-end-column="4" />
                       <folding>
                         <element signature="imports" expanded="true" />
                       </folding>
@@ -424,22 +442,22 @@
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/ProtocolKBUtil.java" />
         <option value="$PROJECT_DIR$/out/artifacts/slp_main_jar/log4j.properties" />
-        <option value="$PROJECT_DIR$/config" />
-        <option value="$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java" />
-        <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java" />
         <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceType.java" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/sdp/SDPKBUtil.java" />
         <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPDaemonImpl.java" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java" />
-        <option value="$PROJECT_DIR$/out/artifacts/slp_main_jar/config" />
         <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java" />
         <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceReply.java" />
-        <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java" />
         <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java" />
         <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceURL.java" />
         <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java" />
+        <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java" />
+        <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java" />
+        <option value="$PROJECT_DIR$/out/artifacts/slp_main_jar/config" />
         <option value="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/config" />
+        <option value="$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java" />
+        <option value="$PROJECT_DIR$/config" />
       </list>
     </option>
   </component>
@@ -497,20 +515,6 @@
               <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
               <item name="out" type="462c0819:PsiDirectoryNode" />
               <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-              <item name="slp_main_jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-              <item name="slp_registeration_jar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
@@ -1121,13 +1125,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/sdp/SDPKBUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1146,13 +1143,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="285" column="22" selection-start-line="285" selection-start-column="22" selection-end-line="285" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1177,16 +1167,6 @@
           <folding>
             <element signature="e#3962#3963#0" expanded="true" />
             <element signature="e#4011#4012#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="168" column="6" selection-start-line="168" selection-start-column="6" selection-end-line="168" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1244,27 +1224,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="33" column="23" lean-forward="true" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/AdvertiserImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="139" column="22" lean-forward="true" selection-start-line="139" selection-start-column="22" selection-end-line="139" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="653" column="20" selection-start-line="653" selection-start-column="20" selection-end-line="653" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceURL.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -1272,10 +1231,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java">
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="183" column="37" lean-forward="true" selection-start-line="183" selection-start-column="37" selection-end-line="183" selection-end-column="37" />
+        <state relative-caret-position="546">
+          <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1289,24 +1248,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+        <state relative-caret-position="247">
+          <caret line="656" column="15" selection-start-line="656" selection-start-column="15" selection-end-line="656" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out/artifacts/slp_registeration_jar/config">
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/AdvertiserImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        <state relative-caret-position="-775">
+          <caret line="132" column="35" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="176" column="37" lean-forward="true" selection-start-line="176" selection-start-column="37" selection-end-line="176" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="306" selection-start-line="306" selection-end-line="306" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/artifacts/slp_main_jar/config">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+        <state relative-caret-position="338">
+          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/artifacts/slp_registeration_jar/config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="283" column="55" selection-start-line="283" selection-start-column="55" selection-end-line="283" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
