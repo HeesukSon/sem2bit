@@ -60,6 +60,7 @@ import ch.ethz.iks.slp.ServiceURL;
  */
 public final class SLPDaemonImpl implements SLPDaemon {
 
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(SLPDaemonImpl.class);
 	/**
 	 * thread loop variable.
 	 */
@@ -509,6 +510,7 @@ public final class SLPDaemonImpl implements SLPDaemon {
 						DataOutputStream out = new DataOutputStream(con
 								.getOutputStream());
 						reply.writeTo(out);
+						LOG.debug("reply is written to DataOutputStream.");
 						/*
 						 * TODO the RFC encourages to keep the connection open
 						 * to allow the other side to send multiple requests per

@@ -44,10 +44,11 @@ import ch.ethz.iks.slp.ServiceURL;
  * a ServiceRegistation message is sent to register a service with all DAs in
  * the scopes.
  * 
- * @author Jan S. Rellermeyer, IKS, ETH Zürich
+ * @author Jan S. Rellermeyer, IKS, ETH Zï¿½rich
  * @since 0.1
  */
 class ServiceRegistration extends SLPMessage {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(ServiceRegistration.class);
 	/**
 	 * the ServiceURL of the service.
 	 */
@@ -128,13 +129,19 @@ class ServiceRegistration extends SLPMessage {
 	 */
 	ServiceRegistration(final DataInputStream input)
 			throws ServiceLocationException, IOException {
+		LOG.debug("Entered ServiceRegistration constructor.");
 		funcID = SRVREG;
+		LOG.debug("funcID = {}",funcID);
 		locale = SLPCore.DEFAULT_LOCALE;
+		LOG.debug("locale = {}",locale.getLanguage());
 		url = ServiceURL.fromBytes(input);
+		LOG.debug("url = {}",url);
 		serviceType = new ServiceType(input.readUTF());
+		LOG.debug("serviceType = {}",serviceType);
 		scopeList = stringToList(input.readUTF(), ",");
 		attList = stringToList(input.readUTF(), ",");
 		authBlocks = AuthenticationBlock.parse(input);
+		LOG.debug("scopeList.size = {}, attList.size = {}, authBlocks = {}",scopeList.size(), attList.size(), authBlocks);
 
 		if (SLPCore.CONFIG.getSecurityEnabled()) {
 			if (!verify()) {
@@ -143,6 +150,7 @@ class ServiceRegistration extends SLPMessage {
 						"Authentication failed for " + toString());
 			}
 		}
+		LOG.debug("Security check is done.");
 	}
 
 	/**

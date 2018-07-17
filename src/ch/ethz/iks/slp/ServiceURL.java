@@ -36,11 +36,12 @@ import java.io.Serializable;
 /**
  * Implementation of the SLP ServiceURL class defined in RFC 2614.
  * 
- * @author Jan S. Rellermeyer, IKS, ETH Zürich
+ * @author Jan S. Rellermeyer, IKS, ETH Zï¿½rich
  * @since 0.1
  */
 public final class ServiceURL extends ch.ethz.iks.slp.impl.AuthenticatedURL
 		implements Serializable {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(ServiceURL.class);
 
 	/**
 	 * 
@@ -325,8 +326,11 @@ public final class ServiceURL extends ch.ethz.iks.slp.impl.AuthenticatedURL
 	 *             if an internal processing error occurs.
 	 */
 	public void writeTo(DataOutputStream out) throws IOException {
+		LOG.debug("entered writeTo()");
 		out.write(0);
+		LOG.debug("lifetime = {}",lifetime);
 		out.writeShort((short) lifetime);
+		LOG.debug("toString() = {}",toString());
 		out.writeUTF(toString());
 		writeAuthBlock(out);
 	}
@@ -362,12 +366,17 @@ public final class ServiceURL extends ch.ethz.iks.slp.impl.AuthenticatedURL
 	 */
 	public static ServiceURL fromBytes(final DataInputStream input)
 			throws ServiceLocationException, IOException {
+		LOG.debug("Entered ServiceURL Constructor.");
 		ServiceURL surl = new ServiceURL();
 		input.readByte();
 		surl.lifetime = input.readShort();
+		LOG.debug("lifetime = {}",surl.lifetime);
 		surl.url = input.readUTF();
+		LOG.debug("url = {}",surl.url);
 		surl.authBlocks = parseAuthBlock(input);
+		LOG.debug("authBlock = {}",surl.authBlocks);
 		surl.parse();
+		LOG.debug("ServiceURL parsing is done.");
 		return surl;
 	}
 }

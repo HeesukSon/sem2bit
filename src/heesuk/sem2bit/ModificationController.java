@@ -81,22 +81,23 @@ public class ModificationController {
 	}
 
 	public void startMessageModification(int bound) {
+		LOG.info("Message modification started!!");
 		int cnt = 0;
 		while(cnt++ < bound){
 			long before = System.currentTimeMillis();
-				
-			try {
-				// 2ms sleep is added to prevent socket buffer overflow
-				Thread.sleep(ConfigUtil.getInstance().req_interval);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 
 			if(ProbingStatus.success == false){
 				Thread interactionT = new Thread(new InteractionRunnable(cnt, before));
 				interactionT.start();
 			}else {
 				break;
+			}
+
+			try {
+				// 2ms sleep is added to prevent socket buffer overflow
+				Thread.sleep(ConfigUtil.getInstance().req_interval);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}	
 	}

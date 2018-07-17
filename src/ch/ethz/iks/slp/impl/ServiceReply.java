@@ -40,10 +40,11 @@ import ch.ethz.iks.slp.ServiceURL;
 /**
  * a ServiceReply Message is sent as reaction to a ServiceRequest.
  * 
- * @author Jan S. Rellermeyer, IKS, ETH Zürich
+ * @author Jan S. Rellermeyer, IKS, ETH Zï¿½rich
  * @since 0.1
  */
 class ServiceReply extends ReplyMessage {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(ReplyMessage.class);
 	/**
 	 * a List of ServiceURLs.
 	 */
@@ -65,6 +66,9 @@ class ServiceReply extends ReplyMessage {
 		this.port = req.port;
 		this.errorCode = 0;
 		this.urlList = urls;
+		for(int i=0; i<urlList.size(); i++){
+			LOG.debug("urlList.get({}) = {}",i,urlList.get(i));
+		}
 	}
 
 	/**
@@ -79,19 +83,24 @@ class ServiceReply extends ReplyMessage {
 	 */
 	ServiceReply(final DataInputStream input) throws ServiceLocationException,
 			IOException {
+		LOG.debug("Entered ServiceReply constructor.");
 		errorCode = input.readShort();
+		LOG.debug("errorCode = {}",errorCode);
 		short entryCount = input.readShort();
+		LOG.debug("entryCount = {}",entryCount);
 		urlList = new ArrayList();
 
 		for (int i = 0; i < entryCount; i++) {
 			urlList.add(ServiceURL.fromBytes(input));
 		}
+		LOG.debug("urlList.size() = {}",urlList.size());
 		if (SLPCore.CONFIG.getSecurityEnabled()) {
 			if (!verify())
 				throw new ServiceLocationException(
 						ServiceLocationException.AUTHENTICATION_FAILED,
 						toString());
 		}
+		LOG.debug("Security check is done.");
 	}
 
 	/**

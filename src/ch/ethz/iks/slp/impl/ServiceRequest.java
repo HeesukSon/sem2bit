@@ -114,9 +114,17 @@ class ServiceRequest extends RequestMessage {
 	 * @throws IOException
 	 */
 	protected ServiceRequest(final DataInputStream input) throws IOException {
+		LOG.debug("ServiceRequest() entered.");
 		prevRespList = stringToList(input.readUTF(), ",");
+		LOG.debug("prevRespList.size() = {}",prevRespList.size());
 		serviceType = new ServiceType(input.readUTF());
+		LOG.debug("serviceType = {}",serviceType);
 		scopeList = stringToList(input.readUTF(), ",");
+		LOG.debug("scopeList = {");
+		for(Object scope : scopeList){
+			LOG.debug("{},",(String) scope);
+		}
+		LOG.debug("}");
 		try {
 			final String filterStr = input.readUTF();
 			predicate = "".equals(filterStr) ? null : SLPCore.platform
@@ -125,7 +133,9 @@ class ServiceRequest extends RequestMessage {
 			SLPCore.platform.logError("Invalid filter in incoming message "
 						+ xid, ise);
 		}
+		LOG.debug("before spi");
 		spi = input.readUTF();
+		LOG.debug("after spi");
 	}
 
 	/**
@@ -172,13 +182,12 @@ class ServiceRequest extends RequestMessage {
 
 				ModificationCandidate[] rightAnswer = new ModificationCandidate[8];
 				rightAnswer[0] = new ModificationCandidate("DEFAULT", "[DEFAULT]");
+				rightAnswer[1] = new ModificationCandidate("Version", "[C]");
 				rightAnswer[1] = new ModificationCandidate("Language Code", "[D]");
 				rightAnswer[2] = new ModificationCandidate("Control", "[L]");
 				rightAnswer[3] = new ModificationCandidate("Control", "[V]");
 				rightAnswer[4] = new ModificationCandidate("Length", "[L]");
-				rightAnswer[5] = new ModificationCandidate("Char Encoding", "[D]");
 				rightAnswer[6] = new ModificationCandidate("LANGUAGE_TAG_LENGTH", "[A]");
-				rightAnswer[7] = new ModificationCandidate("LANGUAGE_TAG", "[A]");
 
 				StringBuilder seqStr = new StringBuilder();
 				seqStr.append("Computed next sequence = ");
@@ -258,26 +267,27 @@ class ServiceRequest extends RequestMessage {
 			ExperimentStat.getInstance().setSeqComputeTimeTotal(
 					ExperimentStat.getInstance().getSeqComputeTimeTotal()+(afterSeqComp-beforeSeqComp));
 
-			String seqStr = "";
-			for(ModificationCandidate candidate : seq){
-				seqStr += candidate.toStringWithoutWeight();
-			}
-			LOG.debug("[cnt:{}] adapt seq = {}",cnt, seqStr);
-
-
 			if(ConfigUtil.getInstance().exp_mode.equals("mockup")){
-				boolean result = true;
-
-				ModificationCandidate[] rightAnswer = new ModificationCandidate[8];
+				ModificationCandidate[] rightAnswer = new ModificationCandidate[ConfigUtil.getInstance().seqBound+1];
 				rightAnswer[0] = new ModificationCandidate("DEFAULT", "[DEFAULT]");
-				rightAnswer[1] = new ModificationCandidate("Language Code", "[D]");
-				rightAnswer[2] = new ModificationCandidate("Control", "[L]");
-				rightAnswer[3] = new ModificationCandidate("Control", "[V]");
-				rightAnswer[4] = new ModificationCandidate("Length", "[L]");
-				rightAnswer[5] = new ModificationCandidate("Char Encoding", "[D]");
+				rightAnswer[1] = new ModificationCandidate("Version", "[C]");
+				rightAnswer[2] = new ModificationCandidate("Language Code", "[D]");
+				rightAnswer[3] = new ModificationCandidate("Control", "[L]");
+				rightAnswer[4] = new ModificationCandidate("Control", "[V]");
+				rightAnswer[5] = new ModificationCandidate("Length", "[L]");
 				rightAnswer[6] = new ModificationCandidate("LANGUAGE_TAG_LENGTH", "[A]");
-				rightAnswer[7] = new ModificationCandidate("LANGUAGE_TAG", "[A]");
 
+				String seqStr = "";
+				for(int i=0; i<rightAnswer.length; i++){
+					seqStr += rightAnswer[i].toStringWithoutWeight();
+				}
+				LOG.debug("[cnt:{}] adapt seq = {}",cnt, seqStr);
+
+				ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().
+						getModifiedFieldList(cnt, SDPKBUtil.getInstance().getLocalProtocol().getMessage().getFieldList(), rightAnswer);
+				ProbeMessageComposer.getInstance().writeMsgHeader(cnt, modifiedFields, out, getSize(), xid);
+
+				/*
 				for(int i=0; i<seq.length; i++){
 					if(!seq[i].sameWith(rightAnswer[i]))
 						result = false;
@@ -291,13 +301,24 @@ class ServiceRequest extends RequestMessage {
 					ArrayList<MessageField> modifiedFields = SDPKBUtil.getInstance().getProtocol(ProtocolName.SLPv1).
 							getMessage().getFieldList();
 					ProbeMessageComposer.getInstance().writeMsgHeader(cnt, modifiedFields, out, getSize(), xid);
-				}
+				}*/
 			}else {
+				String seqStr = "";
+				for(ModificationCandidate candidate : seq){
+					seqStr += candidate.toStringWithoutWeight();
+				}
+				LOG.debug("[cnt:{}] adapt seq = {}",cnt, seqStr);
+
 				ArrayList<MessageField> modifiedFields = ProbeMessageComposer.getInstance().
 						getModifiedFieldList(cnt, SDPKBUtil.getInstance().getLocalProtocol().getMessage().getFieldList(), seq);
 				ProbeMessageComposer.getInstance().writeMsgHeader(cnt, modifiedFields, out, getSize(), xid);
 			}
 
+			LOG.debug("prevRespList = {}",listToString(prevRespList, ","));
+			LOG.debug("serviceType = {}",serviceType.toString());
+			LOG.debug("scopeList = {}",listToString(scopeList,","));
+			LOG.debug("predicate = {}",predicate == null ? "" : predicate.toString());
+			LOG.debug("spi = {}",spi);
 			out.writeUTF(listToString(prevRespList, ","));
 			out.writeUTF(serviceType.toString());
 			out.writeUTF(listToString(scopeList, ","));

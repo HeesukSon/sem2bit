@@ -74,15 +74,20 @@ public class ProtocolKBUtil implements IProtocolKBUtil{
 	}
 	
 	public void computeModSeqBound(){
-		Random r = new Random();
-		int newBound;
+		if(ConfigUtil.getInstance().seqBoundRandom == true){
+			Random r = new Random();
+			int newBound;
 
-		do{
-			newBound = (int)r.nextGaussian()+this.modSeqBound;
-		} while(newBound <= 0 || isBoundUsed(newBound));
-		this.modSeqBound = newBound;
-		LOG.info("modSeqBound is set to {}.",modSeqBound);
-		this.usedModSeqBound.add(newBound);
+			do{
+				newBound = (int)r.nextGaussian()+this.modSeqBound;
+			} while(newBound <= 0 || isBoundUsed(newBound));
+			this.modSeqBound = newBound;
+			LOG.info("modSeqBound is set to {}.",modSeqBound);
+			this.usedModSeqBound.add(newBound);
+		}else{
+			this.modSeqBound = ConfigUtil.getInstance().seqBound;
+			LOG.info("modSeqBound is set to {}.",modSeqBound);
+		}
 	}
 
 	private boolean isBoundUsed(int bound){
@@ -99,15 +104,7 @@ public class ProtocolKBUtil implements IProtocolKBUtil{
 	}
 
 	public int getModSeqBound(){
-		if(ConfigUtil.getInstance().seqBoundRandom == true){
-			return this.modSeqBound;
-		}else{
-			if(ConfigUtil.getInstance().domain == Domain.SDP){
-				return 7;
-			}else{
-				return 2;
-			}
-		}
+		return this.modSeqBound;
 	}
 
 	public void computeUpdateStat() {

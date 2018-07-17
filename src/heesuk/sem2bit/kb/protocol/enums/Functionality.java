@@ -9,10 +9,6 @@ public enum Functionality {
 		public String toString(){
 			return "CONTENT_PARSING";
 		}
-	},MESSAGE_HANDLING{
-		public String toString(){
-			return "MESSAGE_HANDLING";
-		}
 	},PROTOCOL_BASIC_INFO{
 		public String toString(){ return "PROTOCOL_BASIC_INFO";}
 	},PROTOCOL_BEHAVIOR{

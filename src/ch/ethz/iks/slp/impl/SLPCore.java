@@ -1002,6 +1002,7 @@ public abstract class SLPCore {
 		}
 		try {
 			replyQueue.add(sendMessageTCP(cnt, msg)); // TODO uncomment for normal experiment with TCP
+			LOG.debug("A reply message is put into replyQueue.");
 			//replyQueue.add(sendMessage(msg, false));
 
 		} catch (ServiceLocationException e) {

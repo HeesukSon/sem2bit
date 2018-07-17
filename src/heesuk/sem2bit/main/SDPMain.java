@@ -24,6 +24,7 @@ public class SDPMain {
 		}
 		ModificationController.getInstance().startMessageModification(ConfigUtil.getInstance().iteration_bound);
 		long after = System.currentTimeMillis();
+
 		ExperimentStat.getInstance().setTotalExpTime(after-before);
 		try {
 			Thread.sleep(1000);

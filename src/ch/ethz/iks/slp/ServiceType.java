@@ -22,6 +22,8 @@ import java.io.Serializable;
  * @since 0.1
  */
 public final class ServiceType implements Serializable {
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(ServiceType.class);
+
 
 	/**
 	 * the serial UID.
@@ -75,6 +77,7 @@ public final class ServiceType implements Serializable {
 	 */
 	public ServiceType(final String serviceType) {
 		type = serviceType;
+		LOG.debug("ServiceType.type = {}",serviceType);
 		if (type.startsWith("service:")) {
 			isService = true;
 

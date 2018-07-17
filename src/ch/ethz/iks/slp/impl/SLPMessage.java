@@ -193,19 +193,7 @@ public abstract class SLPMessage {
 		out.write(0);
 		out.writeUTF(locale.getLanguage()); // variable length
 	}
-	
-	/////////////////////////// PERCOM 2017 EXPERIMENT ///////////////////////////
-	// TODO
-	protected void writeV1Header(final DataOutputStream out, int msgSize, MessageModificationSpec spec){
-		
-	}
-	
-	// TODO
-	protected void writeV2Header(final DataOutputStream out, int msgSize, MessageModificationSpec spec){
-		
-	}
-	
-	//////////////////////////////////////////////////////////////////////////////
+
 
 	/**
 	 * 
@@ -293,11 +281,19 @@ public abstract class SLPMessage {
 			//ProbeLogger.appendLog("probe","xid = "+xid+", ");
 			final short langTagLength = in.readShort();
 			//ProbeLogger.appendLog("probe","langTagLength = "+langTagLength+", ");
-			final Locale locale = new Locale(in.readUTF(), ""); // Locale
+			Locale locale = null;
+			if(langTagLength != 0){
+				locale = new Locale(in.readUTF(), ""); // Locale
+			}else if(funcID != 1){
+				locale = new Locale(in.readUTF(), ""); // Locale
+			}else{
+				locale = Locale.getDefault();
+			}
+
 			//ProbeLogger.appendLogln("probe","locale = "+locale);
 
-			LOG.debug("parse():: funcID={},length={},flags={},xid={},langTagLength={},locale={}",
-					funcID,length,flags,xid,langTagLength,locale);
+			LOG.debug("parse():: version={},funcID={},length={},flags={},xid={},langTagLength={},locale={}",
+					version,funcID,length,flags,xid,langTagLength,locale);
 
 			final SLPMessage msg;
 
@@ -339,6 +335,8 @@ public abstract class SLPMessage {
 								+ getType(funcID) + " not supported");
 			}
 
+			LOG.debug("Message type is determined.");
+
 			// set the fields
 			msg.address = senderAddr;
 			msg.port = senderPort;
@@ -347,7 +345,10 @@ public abstract class SLPMessage {
 			msg.xid = xid;
 			msg.funcID = funcID;
 			msg.locale = locale;
+
+			LOG.debug("Field setup is done.");
 			if (msg.getSize() != length) {
+				LOG.error("msg.getSize() {} != length {}",msg.getSize(),length);
 				SLPCore.platform.logError("Length of " + msg + " should be " + length + ", read "
 								+ msg.getSize());
 //				throw new ServiceLocationException(

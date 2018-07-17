@@ -3,10 +3,7 @@ package heesuk.sem2bit.kb.protocol.sdp;
 import java.util.Locale;
 
 import ch.ethz.iks.slp.impl.SLPMessage;
-import heesuk.sem2bit.kb.protocol.IProtocolKBUtil;
-import heesuk.sem2bit.kb.protocol.MessageField;
-import heesuk.sem2bit.kb.protocol.MessageFieldUpdate;
-import heesuk.sem2bit.kb.protocol.ProtocolKBUtil;
+import heesuk.sem2bit.kb.protocol.*;
 import heesuk.sem2bit.kb.protocol.enums.ProtocolName;
 import heesuk.sem2bit.kb.protocol.enums.Functionality;
 import heesuk.sem2bit.kb.protocol.enums.MessageFieldLocation;
@@ -52,25 +49,25 @@ public class SDPKBUtil extends ProtocolKBUtil implements IProtocolKBUtil {
 				Functionality.CONTENT_PARSING, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
 		MessageFieldUpdate u2 = new MessageFieldUpdate(new MessageField("Next Ext Offset", MessageFieldType.CONTROL_FLAG),
 				RequirementChange.CONTROL_OPTION_ADDITION, UpdatePattern.CHANGE_FIELD_LENGTH,
-				Functionality.MESSAGE_HANDLING, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
+				Functionality.PROTOCOL_BEHAVIOR, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
 		MessageFieldUpdate u3 = new MessageFieldUpdate(new MessageField("Encoding", MessageFieldType.ENCODING),
 				RequirementChange.ENCODING_INTEGRATION, UpdatePattern.DELETE_FIELD,
 				Functionality.CONTENT_PARSING, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
 		MessageFieldUpdate u4 = new MessageFieldUpdate(new MessageField("M", MessageFieldType.CONTROL_FLAG),
 				RequirementChange.LANGUAGE_SUPPORT_CHANGE, UpdatePattern.DELETE_FIELD,
-				Functionality.MESSAGE_HANDLING, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
+				Functionality.PROTOCOL_BEHAVIOR, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
 		MessageFieldUpdate u5 = new MessageFieldUpdate(new MessageField("U", MessageFieldType.CONTROL_FLAG),
 				RequirementChange.SECURITY_REQUIREMENT_CHANGE, UpdatePattern.DELETE_FIELD,
-				Functionality.MESSAGE_HANDLING, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
+				Functionality.PROTOCOL_BEHAVIOR, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
 		MessageFieldUpdate u6 = new MessageFieldUpdate(new MessageField("A", MessageFieldType.CONTROL_FLAG),
 				RequirementChange.SECURITY_REQUIREMENT_CHANGE, UpdatePattern.DELETE_FIELD,
-				Functionality.MESSAGE_HANDLING, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
+				Functionality.PROTOCOL_BEHAVIOR, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
 		MessageFieldUpdate u7 = new MessageFieldUpdate(new MessageField("Language Code", MessageFieldType.LANGUAGE_CODE),
 				RequirementChange.LANGUAGE_SUPPORT_CHANGE, UpdatePattern.DELETE_FIELD,
 				Functionality.CONTENT_PARSING, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
 		MessageFieldUpdate u8 = new MessageFieldUpdate(new MessageField("R", MessageFieldType.CONTROL_FLAG),
 				RequirementChange.CONTROL_OPTION_ADDITION, UpdatePattern.ADD_NEW_FIELD,
-				Functionality.MESSAGE_HANDLING, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
+				Functionality.PROTOCOL_BEHAVIOR, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
 		MessageFieldUpdate u9 = new MessageFieldUpdate(new MessageField("Language Tag", MessageFieldType.LANGUAGE_TAG),
 				RequirementChange.LANGUAGE_SUPPORT_CHANGE, UpdatePattern.ADD_NEW_FIELD,
 				Functionality.CONTENT_PARSING, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
@@ -79,7 +76,13 @@ public class SDPKBUtil extends ProtocolKBUtil implements IProtocolKBUtil {
 				Functionality.CONTENT_PARSING, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
 		MessageFieldUpdate u11 = new MessageFieldUpdate(new MessageField("Function Type", MessageFieldType.MESSAGE_TYPE),
 				RequirementChange.CONTROL_OPTION_ADDITION, UpdatePattern.CHANGE_VOCA,
-				Functionality.MESSAGE_HANDLING, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
+				Functionality.PROTOCOL_BEHAVIOR, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
+		MessageFieldUpdate u12 = new MessageFieldUpdate(new MessageField("Version", MessageFieldType.VERSION_INFO),
+				RequirementChange.NOTICE_VERSION_UPDATE, UpdatePattern.VALUE_CHANGE,
+				Functionality.PROTOCOL_BASIC_INFO, ProtocolName.SLPv1.toString(), ProtocolName.SLPv2.toString());
+		MessageFieldUpdate u13 = new MessageFieldUpdate(new MessageField("Version Info", MessageFieldType.VERSION_INFO),
+				RequirementChange.NOTICE_VERSION_UPDATE, UpdatePattern.VALUE_CHANGE,
+				Functionality.PROTOCOL_BASIC_INFO, ProtocolName.UPnPv1.toString(), ProtocolName.UPnPv2.toString());
 
 		this.updateHistory.add(u1);
 		this.updateHistory.add(u2);
@@ -92,6 +95,8 @@ public class SDPKBUtil extends ProtocolKBUtil implements IProtocolKBUtil {
 		this.updateHistory.add(u9);
 		this.updateHistory.add(u10);
 		this.updateHistory.add(u11);
+		this.updateHistory.add(u12);
+		this.updateHistory.add(u13);
 	}
 
 	@Override
@@ -119,6 +124,14 @@ public class SDPKBUtil extends ProtocolKBUtil implements IProtocolKBUtil {
 	@Override
 	public int getNewFieldLength(String fName){
 		// TODO length inference mechanism should be added later
+		Protocol slp = this.pMap.get(ProtocolName.SLPv1);
+		for(MessageField msg : slp.getMessage().getFieldList()){
+			if(msg.getName().equals(fName)){
+				return Integer.parseInt(msg.getLength())+8;
+			}
+		}
+
+
 		return 40;
 	}
 	
@@ -127,12 +140,12 @@ public class SDPKBUtil extends ProtocolKBUtil implements IProtocolKBUtil {
 		SDPMessage msg = new SDPMessage();
 		msg.addField(new MessageField("Service Type", MessageFieldType.SERVICE_TYPE, MessageFieldLocation.BODY, "v"));
 		msg.addField(new MessageField("Target Address", MessageFieldType.TARGET_ADDRESS, MessageFieldLocation.BODY, 32));
-		msg.addField(new MessageField("Version", MessageFieldType.VERSION_INFO, MessageFieldLocation.HEADER, 8, 2));
+		msg.addField(new MessageField("Version", MessageFieldType.VERSION_INFO, MessageFieldLocation.HEADER, 8, 1));
 		msg.addField(new MessageField("Function", MessageFieldType.MESSAGE_TYPE, MessageFieldLocation.HEADER, 8, SLPMessage.SRVRQST));
 		msg.addField(new MessageField("Length", MessageFieldType.MESSAGE_LENGTH, MessageFieldLocation.HEADER, 16)); // no value yet
 		msg.addField(new MessageField("Control", MessageFieldType.CONTROL_FLAG, MessageFieldLocation.HEADER, 16, (byte) 0x20)); 
 		msg.addField(new MessageField("Language Code", MessageFieldType.LANGUAGE_CODE, MessageFieldLocation.HEADER, 16, 0));
-		msg.addField(new MessageField("Char Encoding", MessageFieldType.ENCODING, MessageFieldLocation.HEADER, 8, 0));
+		msg.addField(new MessageField("Char Encoding", MessageFieldType.ENCODING, MessageFieldLocation.HEADER, 16, 0));
 		msg.addField(new MessageField("XID", MessageFieldType.SESSION_MGMT, MessageFieldLocation.HEADER, 16)); // no value yet
 
 		slp1.addMessage(msg);

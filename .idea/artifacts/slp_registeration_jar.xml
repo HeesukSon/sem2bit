@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact name="slp-registeration:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/slp_registeration_jar</output-path>
+    <root id="root">
+      <element id="archive" name="sherlock-io.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/src/SLP_REG/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="sherlock-io" />
+      </element>
+      <element id="library" level="project" name="alt" />
+      <element id="file-copy" path="$PROJECT_DIR$/config" />
+      <element id="file-copy" path="$PROJECT_DIR$/log4j.properties" />
+    </root>
+  </artifact>
+</component>

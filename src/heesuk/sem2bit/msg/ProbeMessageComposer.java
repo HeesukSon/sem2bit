@@ -108,7 +108,18 @@ public class ProbeMessageComposer {
 				}
 			}else if(candidate.getUpdate().equals(UpdatePattern.CHANGE_VOCA.toString())){
 				
-			}else{
+			}else if(candidate.getUpdate().equals(UpdatePattern.VALUE_CHANGE.toString())){
+				int size = modifiedFields.size();
+				for(int i=0; i<size; i++){
+					if(modifiedFields.get(i).getName().equals(candidate.getField())){
+						if(modifiedFields.get(i).getValue() instanceof Integer){
+							modifiedFields.get(i).setValue((int)modifiedFields.get(i).getValue()+1);
+						}
+
+						break;
+					}
+				}
+			}else {
 				if(!candidate.getUpdate().contains("DEFAULT]")){
 					LOG.error("A non-defined update pattern is detected in ProbeMessageComposer: "+candidate.getUpdate());
 				}
@@ -120,6 +131,7 @@ public class ProbeMessageComposer {
 
 	public void writeMsgHeader(ArrayList<MessageField> fields, final DataOutputStream out, int msgSize, int xid)
 			throws IOException {
+		String headerStr = "{";
 		for (MessageField field : fields) {
 			try{
 				if (field.getLocation().equals(MessageFieldLocation.HEADER)) {
@@ -127,14 +139,21 @@ public class ProbeMessageComposer {
 						field.setValue(xid);
 						if (field.getLength().equals("8")) {
 							out.write((int) field.getValue());
+							headerStr += "xid:";
+							headerStr += field.getValue();
+							headerStr += ",";
 						} else if (field.getLength().equals("16")) {
 							out.writeShort((int) field.getValue());
+							headerStr += "xid:";
+							headerStr += field.getValue();
+							headerStr += ",";
 						}
 
 						continue;
 					}
 
 					if (field.getType() == MessageFieldType.LANGUAGE_TAG_LENGTH) {
+						headerStr += "langTagLength:";
 						if (field.getLength().equals("8")) {
 							out.write((int) field.getValue());
 						} else if (field.getLength().equals("16")) {
@@ -142,23 +161,30 @@ public class ProbeMessageComposer {
 						} else if (field.getLength().equals("32")) {
 							out.writeInt((int) field.getValue());
 						}
+						headerStr += ",";
 
 						continue;
 					}
 
 					if (field.getType() == MessageFieldType.MESSAGE_LENGTH) {
+						headerStr += "length:";
 						field.setValue(msgSize);
 						int value = (int) field.getValue();
 						for (int i = 0; i < Integer.parseInt(field.getLength()) / 8; i++) {
 							int shift = (8 * (Integer.parseInt(field.getLength()) / 8 - i - 1));
 							out.write(((byte) ((value >> shift) & 0xFF)));
+							headerStr += ((value >> shift) & 0xFF);
 						}
+						headerStr += ",";
 
 						continue;
 					}
 
 					if (field.getType() == MessageFieldType.LANGUAGE_TAG) {
+						headerStr += "langTag:";
 						out.writeUTF((String) field.getValue());
+						headerStr += field.getValue();
+						headerStr += ",";
 
 						continue;
 					}
@@ -166,32 +192,39 @@ public class ProbeMessageComposer {
 					if (field.getValue() == null) {
 						// assumption: only the field with fixed length can have no
 						// value
+						headerStr += "new:";
 						for (int i = 0; i < Integer.parseInt(field.getLength()) / 8; i++) {
 							out.write(0);
+							headerStr += "0";
 						}
+						headerStr += ",";
 						continue;
 					}
 
+					headerStr += "field:";
 					out.write((int) field.getValue());
+					headerStr += field.getValue();
 					for (int i = 1; i < Integer.parseInt(field.getLength()) / 8; i++) {
 						out.write(0);
+						headerStr += "0";
 					}
+					headerStr += ",";
 				}
 			}catch(NullPointerException e){
 				LOG.error("[NullPointerException in writeMsgHeader()] field name = "+field.getName()+", field type = "+field.getType());
 			}
 
+			headerStr += "}";
+			LOG.debug("headerStr : {}"+headerStr);
 		}
 	}
 
 	public void writeMsgHeader(int cnt, ArrayList<MessageField> fields, final DataOutputStream out, int msgSize, int xid)
 			throws IOException {
-		String typeStr = "";
-
+		LOG.debug("writeMsgHeader():: cnt = {}",cnt);
 		for (MessageField field : fields) {
 			try{
 				if (field.getLocation().equals(MessageFieldLocation.HEADER)) {
-					typeStr += field.toString();
 					if (field.getType() == MessageFieldType.SESSION_MGMT) {
 						field.setValue(xid);
 						if (field.getLength().equals("8")) {
@@ -200,6 +233,7 @@ public class ProbeMessageComposer {
 							out.writeShort((int) field.getValue());
 						}
 
+						LOG.debug("field = {}",field.toString());
 						continue;
 					}
 
@@ -212,6 +246,7 @@ public class ProbeMessageComposer {
 							out.writeInt((int) field.getValue());
 						}
 
+						LOG.debug("field = {}",field.toString());
 						continue;
 					}
 
@@ -223,24 +258,31 @@ public class ProbeMessageComposer {
 							out.write(((byte) ((value >> shift) & 0xFF)));
 						}
 
+						LOG.debug("field = {}",field.toString());
 						continue;
 					}
 
 					if (field.getType() == MessageFieldType.LANGUAGE_TAG) {
 						out.writeUTF((String) field.getValue());
 
+						LOG.debug("field = {}",field.toString());
 						continue;
 					}
 
 					if (field.getValue() == null) {
 						// assumption: only the field with fixed length can have no
 						// value
+						String tmp = ("<value:null,length:"+field.getLength()+",");
 						for (int i = 0; i < Integer.parseInt(field.getLength()) / 8; i++) {
 							out.write(0);
+							tmp += "0";
 						}
+						tmp+=">";
+						LOG.debug("field = {}",tmp);
 						continue;
 					}
 
+					LOG.debug("field = {}",field.toString());
 					out.write((int) field.getValue());
 					for (int i = 1; i < Integer.parseInt(field.getLength()) / 8; i++) {
 						out.write(0);
@@ -249,7 +291,6 @@ public class ProbeMessageComposer {
 			}catch(NullPointerException e){
 				//LOG.error("[NullPointerException in writeMsgHeader()] field name = "+field.getName()+", field type = "+field.getType());
 			}
-
 		}
 	}
 }

@@ -148,32 +148,41 @@ public abstract class ModificationProbTree {
 	}
 	
 	private void computeWeight_1_2(){
-		int cp_cnt = 0;
-		int mh_cnt = 0;
-		int prot_basic_info_cnt = 0;
-		int prot_behav_cnt = 0;
-		int sum = 0;
-		
-		for(MessageFieldUpdate update : kb.getUpdateHistory()){
-			if(update.getFunc().equals(Functionality.CONTENT_PARSING)){
-				cp_cnt++;
-				sum++;
-			}else if(update.getFunc().equals(Functionality.MESSAGE_HANDLING)){
-				mh_cnt++;
-				sum++;
-			}else if(update.getFunc().equals(Functionality.PROTOCOL_BASIC_INFO)){
-				prot_basic_info_cnt++;
-				sum++;
-			}else if(update.getFunc().equals(Functionality.PROTOCOL_BEHAVIOR)){
-				prot_behav_cnt++;
-				sum++;
+		Domain domain = ConfigUtil.getInstance().domain;
+
+		if(domain == Domain.SDP){
+			this.root.updateOutEdgeWeight(Functionality.PROTOCOL_BASIC_INFO.toString(), 0.577f);
+			this.root.updateOutEdgeWeight(Functionality.CONTENT_PARSING.toString(), 0.451f);
+			this.root.updateOutEdgeWeight(Functionality.PROTOCOL_BEHAVIOR.toString(), 0.662f);
+			this.root.updateOutEdgeWeight(Functionality.SESSION_MGMT.toString(), 0.239f);
+		}else{
+			int cp_cnt = 0;
+			int ss_cnt = 0;
+			int prot_basic_info_cnt = 0;
+			int prot_behav_cnt = 0;
+			int sum = 0;
+
+			for(MessageFieldUpdate update : kb.getUpdateHistory()){
+				if(update.getFunc().equals(Functionality.CONTENT_PARSING)){
+					cp_cnt++;
+					sum++;
+				}else if(update.getFunc().equals(Functionality.SESSION_MGMT)){
+					ss_cnt++;
+					sum++;
+				}else if(update.getFunc().equals(Functionality.PROTOCOL_BASIC_INFO)){
+					prot_basic_info_cnt++;
+					sum++;
+				}else if(update.getFunc().equals(Functionality.PROTOCOL_BEHAVIOR)){
+					prot_behav_cnt++;
+					sum++;
+				}
 			}
+
+			this.root.updateOutEdgeWeight(Functionality.CONTENT_PARSING.toString(), (float)cp_cnt/sum);
+			this.root.updateOutEdgeWeight(Functionality.PROTOCOL_BEHAVIOR.toString(), (float)ss_cnt/sum);
+			this.root.updateOutEdgeWeight(Functionality.PROTOCOL_BASIC_INFO.toString(), (float)prot_basic_info_cnt/sum);
+			this.root.updateOutEdgeWeight(Functionality.PROTOCOL_BEHAVIOR.toString(), (float)prot_behav_cnt/sum);
 		}
-		
-		this.root.updateOutEdgeWeight(Functionality.CONTENT_PARSING.toString(), (float)cp_cnt/sum);
-		this.root.updateOutEdgeWeight(Functionality.MESSAGE_HANDLING.toString(), (float)mh_cnt/sum);
-		this.root.updateOutEdgeWeight(Functionality.PROTOCOL_BASIC_INFO.toString(), (float)prot_basic_info_cnt/sum);
-		this.root.updateOutEdgeWeight(Functionality.PROTOCOL_BEHAVIOR.toString(), (float)prot_behav_cnt/sum);
 	}
 	
 	private void computeWeight_2_3(){
