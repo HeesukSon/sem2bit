@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be6f5ca0-6f90-493b-a20a-0576a529ec35" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/config" beforeDir="false" afterPath="$PROJECT_DIR$/config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/HikariCP-2.4.7.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/alpn-api-1.1.3.v20160715.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/barchart-udt-bundle-2.3.0.jar" beforeDir="false" />
@@ -64,65 +63,7 @@
       <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/sherlock-io.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/slf4j-api-1.7.25.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/slp_main_jar/slf4j-log4j12-1.7.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/HikariCP-2.4.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/alpn-api-1.1.3.v20160715.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/barchart-udt-bundle-2.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/bcpkix-jdk15on-1.59.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/bcprov-jdk15on-1.59.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/bugsnag-3.0.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/commons-codec-1.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/commons-logging-1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/compress-lzf-1.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/conscrypt-openjdk-1.1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/hazelcast-3.5.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/jboss-marshalling-2.0.5.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/jctools-core-2.1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/jzlib-1.1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/librato-java-2.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/log4j-1.2.17.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/log4j-api-2.11.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/log4j.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/lz4-1.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/lzma-java-1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/metrics-core-3.2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/metrics-jvm-3.2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/metrics-librato-5.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-buffer-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-dns-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-haproxy-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-http-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-http2-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-memcache-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-mqtt-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-redis-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-smtp-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-socks-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-stomp-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-codec-xml-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-common-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-example-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-handler-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-handler-proxy-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-resolver-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-resolver-dns-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-transport-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-transport-rxtx-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-transport-sctp-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/netty-transport-udt-4.1.25.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/npn-api-8.1.2.v20120308.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/org.osgi.core-4.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/osgi-service.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/protobuf-java-3.5.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/protobuf-javanano-3.2.0rc2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/rxtx.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/sherlock-io.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/slf4j-api-1.7.25.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/slf4j-log4j12-1.7.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java" afterDir="false" />
     </list>
     <ignored path="sherlock-io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -143,215 +84,160 @@
   <component name="FileEditorManager">
     <splitter split-orientation="horizontal" split-proportion="0.46297988">
       <split-first>
-        <splitter split-orientation="vertical" split-proportion="0.43780607">
-          <split-first>
-            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="ServiceURL.java" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceURL.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="133">
-                      <caret line="327" column="16" selection-start-line="327" selection-start-column="16" selection-end-line="327" selection-end-column="16" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="DataOutputStream.java" pinned="false" current-in-tab="false">
-                <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/src.zip!/java/io/DataOutputStream.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="45">
-                      <caret line="351" column="33" selection-start-line="351" selection-start-column="33" selection-end-line="351" selection-end-column="33" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="ServiceReply.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceReply.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="141">
-                      <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
-                      <folding>
-                        <element signature="e#5344#5345#0" expanded="true" />
-                        <element signature="e#5365#5366#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="SLPDaemonImpl.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPDaemonImpl.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="2546">
-                      <caret line="310" column="33" selection-start-line="310" selection-start-column="33" selection-end-line="310" selection-end-column="33" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="ServiceRequest.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-1604">
-                      <caret line="128" selection-start-line="128" selection-end-line="128" />
-                      <folding>
-                        <element signature="imports" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-first>
-          <split-second>
-            <leaf>
-              <file leaf-file-name="Registration.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/test/Registration.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="143">
-                      <caret line="21" selection-start-line="21" selection-end-line="21" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="AdvertiserImpl.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/AdvertiserImpl.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-775">
-                      <caret line="132" column="35" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="SLPCore.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="247">
-                      <caret line="656" column="15" selection-start-line="656" selection-start-column="15" selection-end-line="656" selection-end-column="15" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="ServiceRegistration.java" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="590">
-                      <caret line="146" selection-start-line="146" selection-end-line="146" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-second>
-        </splitter>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="ServiceURL.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceURL.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="551">
+                  <caret line="327" column="16" selection-start-line="327" selection-start-column="16" selection-end-line="327" selection-end-column="16" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DataOutputStream.java" pinned="false" current-in-tab="false">
+            <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/src.zip!/java/io/DataOutputStream.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="45">
+                  <caret line="351" column="33" selection-start-line="351" selection-start-column="33" selection-end-line="351" selection-end-column="33" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ServiceReply.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceReply.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="141">
+                  <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#5344#5345#0" expanded="true" />
+                    <element signature="e#5365#5366#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SLPDaemonImpl.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPDaemonImpl.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2546">
+                  <caret line="310" column="33" selection-start-line="310" selection-start-column="33" selection-end-line="310" selection-end-column="33" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ServiceRequest.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1604">
+                  <caret line="128" selection-start-line="128" selection-end-line="128" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ModificationSeqPlanTree.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="343">
+                  <caret line="140" lean-forward="true" selection-start-line="140" selection-end-line="140" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="config" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/out/artifacts/slp_main_jar/config">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="312">
+                  <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="vertical" split-proportion="0.56858057">
-          <split-first>
-            <leaf>
-              <file leaf-file-name="ServiceRequest.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="78">
-                      <caret line="306" selection-start-line="306" selection-end-line="306" />
-                      <folding>
-                        <element signature="imports" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="config" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/out/artifacts/slp_registeration_jar/config">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="325">
-                      <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="ProbeMessageComposer.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="578">
-                      <caret line="283" column="55" selection-start-line="283" selection-start-column="55" selection-end-line="283" selection-end-column="55" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="config" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/config">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="65">
-                      <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="SDPMain.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/main/SDPMain.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="273">
-                      <caret line="24" column="59" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="ModificationController.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ModificationController.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="125">
-                      <caret line="107" column="58" lean-forward="true" selection-start-line="107" selection-start-column="58" selection-end-line="107" selection-end-column="58" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="SLPMessage.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="434">
-                      <caret line="286" column="31" selection-start-line="286" selection-start-column="31" selection-end-line="286" selection-end-column="31" />
-                      <folding>
-                        <element signature="imports" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="ConfigUtil.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="546">
-                      <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="ServiceRegistration.java" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="316">
-                      <caret line="176" column="37" lean-forward="true" selection-start-line="176" selection-start-column="37" selection-end-line="176" selection-end-column="37" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-first>
-          <split-second>
-            <leaf>
-              <file leaf-file-name="SLPMessage.java" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-1050">
-                      <caret line="194" column="4" selection-start-line="194" selection-start-column="4" selection-end-line="194" selection-end-column="4" />
-                      <folding>
-                        <element signature="imports" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-second>
-        </splitter>
+        <leaf>
+          <file leaf-file-name="ServiceRequest.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="824">
+                  <caret line="318" column="7" selection-start-line="318" selection-start-column="7" selection-end-line="318" selection-end-column="7" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SeqTreeNode.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/SeqTreeNode.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="728">
+                  <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="config" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/out/artifacts/slp_registeration_jar/config">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="325">
+                  <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ProbeMessageComposer.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="578">
+                  <caret line="283" column="55" selection-start-line="283" selection-start-column="55" selection-end-line="283" selection-end-column="55" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="config" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/config">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="65">
+                  <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SLPMessage.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="434">
+                  <caret line="286" column="31" selection-start-line="286" selection-start-column="31" selection-end-line="286" selection-end-column="31" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ConfigUtil.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/ConfigUtil.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="546">
+                  <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ServiceRegistration.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="316">
+                  <caret line="176" column="37" lean-forward="true" selection-start-line="176" selection-start-column="37" selection-end-line="176" selection-end-column="37" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
       </split-second>
     </splitter>
   </component>
@@ -427,7 +313,6 @@
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/ExperimentStat.java" />
         <option value="$PROJECT_DIR$/src/org/eclipse/paho/client/mqttv3/internal/wire/MqttOutputStream.java" />
         <option value="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-        <option value="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java" />
         <option value="$PROJECT_DIR$/out/artifacts/sherlock_io_jar/config" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/SeqTreeNode.java" />
         <option value="$PROJECT_DIR$/log4j.properties" />
@@ -454,10 +339,11 @@
         <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java" />
         <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java" />
         <option value="$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRegistration.java" />
-        <option value="$PROJECT_DIR$/out/artifacts/slp_main_jar/config" />
         <option value="$PROJECT_DIR$/out/artifacts/slp_registeration_jar/config" />
         <option value="$PROJECT_DIR$/src/heesuk/sem2bit/msg/ProbeMessageComposer.java" />
         <option value="$PROJECT_DIR$/config" />
+        <option value="$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java" />
+        <option value="$PROJECT_DIR$/out/artifacts/slp_main_jar/config" />
       </list>
     </option>
   </component>
@@ -519,27 +405,14 @@
             <path>
               <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
               <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="slp_main_jar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
               <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="slp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="slp" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="slp" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
@@ -560,16 +433,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
               <item name="kb" type="462c0819:PsiDirectoryNode" />
-              <item name="protocol" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sem2bit" type="462c0819:PsiDirectoryNode" />
-              <item name="kb" type="462c0819:PsiDirectoryNode" />
-              <item name="protocol" type="462c0819:PsiDirectoryNode" />
-              <item name="sdp" type="462c0819:PsiDirectoryNode" />
+              <item name="seqtree" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sem2bit" type="b2602c69:ProjectViewProjectNode" />
@@ -900,20 +764,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/io/moquette/server/config/ConfigurationParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPDaemon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/protocol/sdp/SDP.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
@@ -1080,13 +930,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out/artifacts/slp_main_jar/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/TreeFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -1226,7 +1069,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/ServiceURL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
+        <state relative-caret-position="551">
           <caret line="327" column="16" selection-start-line="327" selection-start-column="16" selection-end-line="327" selection-end-column="16" />
         </state>
       </provider>
@@ -1235,23 +1078,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="286" column="31" selection-start-line="286" selection-start-column="31" selection-end-line="286" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="656" column="15" selection-start-line="656" selection-start-column="15" selection-end-line="656" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -1276,23 +1102,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="306" selection-start-line="306" selection-end-line="306" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out/artifacts/slp_main_jar/config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/out/artifacts/slp_registeration_jar/config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
@@ -1311,6 +1120,61 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
           <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/artifacts/slp_main_jar/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="286" column="31" selection-start-line="286" selection-start-column="31" selection-end-line="286" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/SLPCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="656" column="15" selection-start-line="656" selection-start-column="15" selection-end-line="656" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ch/ethz/iks/slp/impl/ServiceRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1604">
+          <caret line="128" selection-start-line="128" selection-end-line="128" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/SeqTreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="728">
+          <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heesuk/sem2bit/kb/seqtree/ModificationSeqPlanTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="140" lean-forward="true" selection-start-line="140" selection-end-line="140" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/artifacts/slp_main_jar/config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
         </state>
       </provider>
     </entry>

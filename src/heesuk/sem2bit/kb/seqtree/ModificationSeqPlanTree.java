@@ -160,6 +160,7 @@ public class ModificationSeqPlanTree {
 	private void pruneCandidates(SeqTreeNode node, ArrayList<ModificationCandidate> candidates) {
 		this.removeFutureCandidateWithNoEffect(node, candidates);
 		this.removeDuplicateCandidates(node, candidates);
+		this.removeFutureDeletions(node, candidates);
 	}
 
 	private void removeThisNode(SeqTreeNode node, ArrayList<ModificationCandidate> candidates) {
@@ -198,6 +199,19 @@ public class ModificationSeqPlanTree {
 					size--;
 					j--;
 				}
+			}
+		}
+	}
+
+	// HEURISTICS NO.3: remove future deletions
+	private void removeFutureDeletions(SeqTreeNode node, ArrayList<ModificationCandidate> candidates){
+		int size = candidates.size();
+		for(int i=0; i<size; i++){
+			if(node.getItem().getField().equals(candidates.get(i).getField()) &&
+					candidates.get(i).getUpdate().equals(UpdatePattern.DELETE_FIELD.toString())){
+				candidates.remove(i);
+				size--;
+				i--;
 			}
 		}
 	}
