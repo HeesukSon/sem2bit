@@ -259,13 +259,11 @@ class ServiceRequest extends RequestMessage {
 
 			if(ConfigUtil.getInstance().exp_mode.equals("mockup")){
 				ModificationCandidate[] rightAnswer = new ModificationCandidate[ConfigUtil.getInstance().seqBound+1];
+
 				rightAnswer[0] = new ModificationCandidate("DEFAULT", "[DEFAULT]");
 				rightAnswer[1] = new ModificationCandidate("Version", "[C]");
-				rightAnswer[2] = new ModificationCandidate("Language Code", "[D]");
-				rightAnswer[3] = new ModificationCandidate("Control", "[L]");
-				rightAnswer[4] = new ModificationCandidate("Control", "[V]");
-				rightAnswer[5] = new ModificationCandidate("Length", "[L]");
-				rightAnswer[6] = new ModificationCandidate("LANGUAGE_TAG_LENGTH", "[A]");
+				rightAnswer[2] = new ModificationCandidate("Length", "[L]");
+				rightAnswer[3] = new ModificationCandidate("LANGUAGE_TAG", "[A]");
 
 				String seqStr = "";
 				for(int i=0; i<rightAnswer.length; i++){

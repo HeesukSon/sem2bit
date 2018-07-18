@@ -116,6 +116,18 @@ public class SDPKBUtil extends ProtocolKBUtil implements IProtocolKBUtil {
 			field.setName("Language Tag");
 			field.setLocation(MessageFieldLocation.HEADER);
 			field.setType(MessageFieldType.LANGUAGE_TAG);
+		}else if(fType.equals(MessageFieldType.ANSWER_COUNT.toString())){
+			field.setLength("16");
+			field.setValue(0);
+			field.setName("Answer Count");
+			field.setLocation(MessageFieldLocation.HEADER);
+			field.setType(MessageFieldType.ANSWER_COUNT);
+		}else if(fType.equals(MessageFieldType.QUERY_COUNT.toString())){
+			field.setLength("16");
+			field.setValue(0);
+			field.setName("Query Count");
+			field.setLocation(MessageFieldLocation.HEADER);
+			field.setType(MessageFieldType.QUERY_COUNT);
 		}
 
 		return field;

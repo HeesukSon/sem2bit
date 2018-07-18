@@ -230,6 +230,9 @@ public class ProbeMessageComposer {
 							out.write((int) field.getValue());
 						} else if (field.getLength().equals("16")) {
 							out.writeShort((int) field.getValue());
+						} else if (field.getLength().equals("24")) {
+							out.write(0);
+							out.writeShort((int) field.getValue());
 						}
 
 						LOG.debug("[cnt:{}] field = {}",cnt,field.toString());
@@ -281,9 +284,21 @@ public class ProbeMessageComposer {
 						continue;
 					}
 
+					if (field.getType() == MessageFieldType.CONTROL_FLAG ||
+							field.getType() == MessageFieldType.VERSION_INFO ||
+							field.getType() == MessageFieldType.MESSAGE_TYPE){
+						LOG.debug("[cnt:{}] field = {}",cnt,field.toString());
+						out.write((int) field.getValue());
+						for (int i = 1; i < Integer.parseInt(field.getLength()) / 8; i++) {
+							out.write(0);
+						}
+
+						continue;
+					}
+
+					// Encoding, Answer count, Query count, Language Code
 					LOG.debug("[cnt:{}] field = {}",cnt,field.toString());
-					out.write((int) field.getValue());
-					for (int i = 1; i < Integer.parseInt(field.getLength()) / 8; i++) {
+					for (int i = 0; i < Integer.parseInt(field.getLength()) / 8; i++) {
 						out.write(0);
 					}
 				}

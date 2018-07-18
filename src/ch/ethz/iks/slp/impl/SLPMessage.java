@@ -282,6 +282,8 @@ public abstract class SLPMessage {
 			final short langTagLength = in.readShort();
 			//ProbeLogger.appendLog("probe","langTagLength = "+langTagLength+", ");
 			Locale locale = null;
+
+			/*
 			if(langTagLength != 0){
 				locale = new Locale(in.readUTF(), ""); // Locale
 			}else if(funcID != 1){
@@ -289,6 +291,8 @@ public abstract class SLPMessage {
 			}else{
 				locale = Locale.getDefault();
 			}
+			*/
+			locale = new Locale(in.readUTF(), "");
 
 			//ProbeLogger.appendLogln("probe","locale = "+locale);
 
@@ -351,10 +355,10 @@ public abstract class SLPMessage {
 				LOG.error("msg.getSize() {} != length {}",msg.getSize(),length);
 				SLPCore.platform.logError("Length of " + msg + " should be " + length + ", read "
 								+ msg.getSize());
-//				throw new ServiceLocationException(
-//						ServiceLocationException.INTERNAL_SYSTEM_ERROR,
-//						"Length of " + msg + " should be " + length + ", read "
-//								+ msg.getSize());
+				throw new ServiceLocationException(
+						ServiceLocationException.INTERNAL_SYSTEM_ERROR,
+						"Length of " + msg + " should be " + length + ", read "
+								+ msg.getSize());
 			}
 			return msg;
 		} catch (ProtocolException pe) {

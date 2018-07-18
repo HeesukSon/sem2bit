@@ -23,7 +23,7 @@ public class Registration {
 		// the service has lifetime 60, that means it will only persist for one
 		// minute
 		//ServiceURL myService = new ServiceURL("service:test:myService://my.host.ch", 60);
-		ServiceURL myService = new ServiceURL("service:test:myService://192.168.1.102", 300);
+		ServiceURL myService = new ServiceURL("service:test:myService://192.168.1.102", 1200);
 
 		// some attributes for the service
 		Hashtable attributes = new Hashtable();

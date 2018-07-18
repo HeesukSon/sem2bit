@@ -77,7 +77,6 @@ public final class ServiceType implements Serializable {
 	 */
 	public ServiceType(final String serviceType) {
 		type = serviceType;
-		LOG.debug("ServiceType.type = {}",serviceType);
 		if (type.startsWith("service:")) {
 			isService = true;
 

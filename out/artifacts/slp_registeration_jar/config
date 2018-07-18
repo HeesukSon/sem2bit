@@ -3,7 +3,7 @@ broker_address = 192.168.1.102
 // tcp_timeout = 100 as default. (1000?)
 tcp_timeout = 1000
 // req_interval = 2 for sdp, and 200 for mqtt
-req_interval = 30
+req_interval = 100
 iteration_bound = 1
 //
 // exp_mode = {real | mockup}
