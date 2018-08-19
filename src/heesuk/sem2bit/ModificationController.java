@@ -33,6 +33,9 @@ public class ModificationController {
 	private ArrayList<String> attrs;
 	private ProtocolKBUtil kb;
 
+	private long probingStartTime;
+	private long probingEndTime;
+
 	private ModificationController() {
 		try {
 			if(ConfigUtil.getInstance().domain == Domain.SDP){
@@ -83,6 +86,7 @@ public class ModificationController {
 	public void startMessageModification(int bound) {
 		LOG.info("Message modification started!!");
 		int cnt = 0;
+		this.probingStartTime = System.currentTimeMillis();
 		while(cnt++ < bound){
 			long before = System.currentTimeMillis();
 
@@ -94,7 +98,6 @@ public class ModificationController {
 			}
 
 			try {
-				// 2ms sleep is added to prevent socket buffer overflow
 				Thread.sleep(ConfigUtil.getInstance().req_interval);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -166,6 +169,8 @@ public class ModificationController {
 			try {
 				sendModifiedMessage(cnt);
 				after = System.currentTimeMillis();
+				probingEndTime = System.currentTimeMillis();
+				ExperimentStat.getInstance().setTotalProbingTime(probingEndTime-probingStartTime);
 				ExperimentStat.getInstance().addMsgTransTimeTotal(after-before);
 				ExperimentStat.getInstance().setExpRoundCnt(cnt);
 				ExperimentStat.getInstance().setSuccessRound(cnt);

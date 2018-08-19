@@ -135,6 +135,7 @@ public class MqttConnect extends MqttWireMessage {
 			dos.write(connectFlags);
 			dos.writeShort(keepAliveInterval);
 
+			LOG.info("addFieldCnt = {}",this.addFieldCnt);
 			for(int i=0; i<this.addFieldCnt; i++){
 				byte addedField = 0;
 				dos.write(addedField);

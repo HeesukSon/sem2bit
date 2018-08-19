@@ -19,6 +19,7 @@ public class ExperimentStat {
 	private long msgTransTimeAvg;
 	private long msgTransTimeTotal;
 	private long totalExpTime;
+	private long totalProbingTime;
 	
 
 	private ExperimentStat() {
@@ -26,6 +27,7 @@ public class ExperimentStat {
 		this.seqComputeTimeTotal = 0;
 		this.msgComposeTimeTotal = 0;
 		this.msgTransTimeTotal = 0;
+		this.totalProbingTime = 0;
 	}
 
 	public static ExperimentStat getInstance() {
@@ -39,7 +41,7 @@ public class ExperimentStat {
 	public void increaseExpRoundCnt() {
 		this.expRoundCnt += 1;
 	}
-	public void setExpRoundCnt(int cnt){
+	public synchronized void setExpRoundCnt(int cnt){
 		if(expRoundCnt == 0){
 			this.expRoundCnt = cnt;
 		}else if(expRoundCnt < cnt){
@@ -70,9 +72,22 @@ public class ExperimentStat {
 				+ msgTransTimeTotal + " (ms, " + ((float) msgTransTimeTotal / totalExpTime * 100) + "%), Average = "
 				+ ((float) msgTransTimeTotal / expRoundCnt) + " (ms)");
 		LOG.info("- Socket Timeout: "+ConfigUtil.getInstance().tcp_timeout+" (ms)");
+		LOG.info("- Total Probing Time: {} (ms)",this.totalProbingTime);
 	}
 
 	//////////////////// getters & setters ////////////////////
+
+	public synchronized void addTotalProbingTime(long time){
+		this.totalProbingTime += time;
+	}
+
+	public synchronized void setTotalProbingTime(long time){
+		this.totalProbingTime = time;
+	}
+
+	public long getTotalProbingTime(){
+		return this.totalProbingTime;
+	}
 
 	public long getExpRoundCnt() {
 		return expRoundCnt;
@@ -86,15 +101,15 @@ public class ExperimentStat {
 		this.expRoundCnt = expRoundCnt;
 	}
 
-	public void setKbLoadingTime(long kbLoadingTime) {
+	public synchronized void setKbLoadingTime(long kbLoadingTime) {
 		this.kbLoadingTime = kbLoadingTime;
 	}
 
-	public void setProbTreeBuildTime(long probTreeBuildTime) {
+	public synchronized void setProbTreeBuildTime(long probTreeBuildTime) {
 		this.probTreeBuildTime = probTreeBuildTime;
 	}
 
-	public void setSeqTreeBuildTime(long seqTreeBuildTime) {
+	public synchronized void setSeqTreeBuildTime(long seqTreeBuildTime) {
 		this.seqTreeBuildTime = seqTreeBuildTime;
 	}
 
@@ -102,7 +117,7 @@ public class ExperimentStat {
 		this.seqComputeTimeAvg = seqComputeTimeAvg;
 	}
 
-	public void setSeqComputeTimeTotal(long seqComputeTimeTotal) {
+	public synchronized void setSeqComputeTimeTotal(long seqComputeTimeTotal) {
 		this.seqComputeTimeTotal = seqComputeTimeTotal;
 	}
 
@@ -110,7 +125,7 @@ public class ExperimentStat {
 		this.msgComposeTimeAvg = msgComposeTimeAvg;
 	}
 
-	public void setMsgComposeTimeTotal(long msgComposeTimeTotal) {
+	public synchronized void setMsgComposeTimeTotal(long msgComposeTimeTotal) {
 		this.msgComposeTimeTotal = msgComposeTimeTotal;
 	}
 
@@ -118,14 +133,14 @@ public class ExperimentStat {
 		this.msgTransTimeAvg = msgTransTimeAvg;
 	}
 
-	public void setMsgTransTimeTotal(long msgTransTimeTotal) {
+	public synchronized void setMsgTransTimeTotal(long msgTransTimeTotal) {
 		this.msgTransTimeTotal = msgTransTimeTotal;
 	}
-	public void addMsgTransTimeTotal(long msgTransTime){
+	public synchronized void addMsgTransTimeTotal(long msgTransTime){
 		this.msgTransTimeTotal += msgTransTime;
 	}
 
-	public void setTotalExpTime(long totalExpTime) {
+	public synchronized void setTotalExpTime(long totalExpTime) {
 		this.totalExpTime = totalExpTime;
 	}
 
@@ -170,7 +185,7 @@ public class ExperimentStat {
 		return totalExpTime;
 	}
 
-	public void setSuccessRound(int rnd){
+	public synchronized void setSuccessRound(int rnd){
 		this.successRound = rnd;
 	}
 

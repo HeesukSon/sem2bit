@@ -105,7 +105,7 @@ public class MqttOutputStream extends OutputStream {
 		MqttWireMessage adaptedMessage = composeAdaptedMessage(message, seq);
 		long after = System.currentTimeMillis();
 		ExperimentStat.getInstance().setMsgComposeTimeTotal(ExperimentStat.getInstance().getMsgComposeTimeTotal()+after-before);
-		LOG.debug("\n[{}]\nBEFORE: {}\nAdapt Sequence: \n{}AFTER: {}\n",messageType, originHeader, adaptSeq, adaptedMessage.getHeader());
+		LOG.info("\n[{}]\nBEFORE: {}\nAdapt Sequence: \n{}AFTER: {}\n",messageType, originHeader, adaptSeq, adaptedMessage.getHeader());
 
 
 		/* BEFORE update for SeM2Bit experiment */
@@ -147,7 +147,10 @@ public class MqttOutputStream extends OutputStream {
 			String update = candidate.getUpdate();
 
 			if(update.equals(UpdatePattern.ADD_NEW_FIELD.toString())){
-				if(message instanceof MqttConnect && candidate.getField().equals("OFFSET")){
+				if(message instanceof MqttConnect && candidate.getField().equals("OFFSET")) {
+					((MqttConnect) message).increaseAddFieldCnt();
+				}else{
+					((MqttConnect) message).increaseAddFieldCnt();
 					((MqttConnect) message).increaseAddFieldCnt();
 				}
 			}else if(update.equals(UpdatePattern.CHANGE_VOCA.toString())){

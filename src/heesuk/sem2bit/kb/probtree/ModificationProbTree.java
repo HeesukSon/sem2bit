@@ -47,6 +47,9 @@ public abstract class ModificationProbTree {
 		sortCandidates(list);
 		LOG.info("Sorting the modification candidate list is done.");
 		LOG.info("Modification candidate list size : {}", list.size());
+		for(ModificationCandidate candidate : list){
+			LOG.info(candidate.toString());
+		}
 
 		ModificationCandidate[] arr = new ModificationCandidate[list.size()];
 		return list.toArray(arr);
