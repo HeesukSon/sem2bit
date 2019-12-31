@@ -15,3 +15,5 @@ For MQTT case study, other two main classes should be built:
 * heesuk.sem2bit.main.MQTTMain.java
 
 Server.java is for running an MQTTv5 compatible broker and MQTTMain.java is for adapting an MQTTv3.1.1 message to connect to the running MQTTv5 broker.
+
+To run the extracted jar program, the config file should be customized according to the local environment setups.
